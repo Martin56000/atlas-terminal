@@ -1092,8 +1092,11 @@
     dv.forEach(([d, a]) => { byYear[d.slice(0, 4)] = (byYear[d.slice(0, 4)] || 0) + a; });
     const years = Object.keys(byYear).sort();
     const thisYear = new Date().getUTCFullYear().toString();
-    const yearRows = years.map((y, i) => `<tr><td class="l">${y}${y === thisYear ? ` <span class="note">(${t("dvd.ytd")})</span>` : ""}</td><td>${num(byYear[y], 4)}</td>
-      <td class="${i ? cls(byYear[y] / byYear[years[i - 1]] - 1) : ""}">${i && y !== thisYear ? pct(byYear[y] / byYear[years[i - 1]] - 1, 1) : "—"}</td></tr>`).reverse().join("");
+    // the oldest year of the 10-year window is usually cut (only its last payments): marked partial, and
+    // the following year gets no growth figure rather than a misleading one
+    const growth = i => (i >= 2 && years[i] !== thisYear ? byYear[years[i]] / byYear[years[i - 1]] - 1 : null);
+    const yearRows = years.map((y, i) => `<tr><td class="l">${y}${y === thisYear ? ` <span class="note">(${t("dvd.ytd")})</span>` : i === 0 ? ` <span class="note">(${t("dvd.partial")})</span>` : ""}</td><td>${num(byYear[y], 4)}</td>
+      <td class="${cls(growth(i))}">${isNum(growth(i)) ? pct(growth(i), 1) : "—"}</td></tr>`).reverse().join("");
     const pays = dv.slice().reverse().slice(0, 30).map(([d, a]) => `<tr><td class="l">${fmtDate(d)}</td><td>${num(a, 4)} <span class="note">${esc(ccy || "")}</span></td></tr>`).join("");
     const va = c.valuation || {}, cal = c.calendar || {};
     return panel({ title, tools, cls: "span-8", meta: x.meta, source: "Yahoo Finance (dividends)",

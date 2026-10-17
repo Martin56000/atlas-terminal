@@ -499,5 +499,6 @@
  "lp.note": "Each window has its own command: type it in the blue field then GO. The layout is kept in this browser.",
  "dvd.pending": "Dividends not collected yet for this security: the company page will be completed in a coming update (rotation of 100 pages per run).",
  "gip.last_bar": "Last 5-min bar",
- "gip.official_close": "Official close (auction)"
+ "gip.official_close": "Official close (auction)",
+ "dvd.partial": "start of window, partial"
 }

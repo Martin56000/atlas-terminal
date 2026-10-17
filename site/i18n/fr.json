@@ -499,5 +499,6 @@
  "lp.note": "Chaque fenêtre a sa propre commande : tapez-la dans le champ bleu puis GO. La disposition est gardée dans ce navigateur.",
  "dvd.pending": "Dividendes pas encore collectés pour cette valeur : la fiche société sera complétée lors d'une prochaine mise à jour (rotation de 100 fiches par passage).",
  "gip.last_bar": "Dernière barre 5 min",
- "gip.official_close": "Clôture officielle (enchère)"
+ "gip.official_close": "Clôture officielle (enchère)",
+ "dvd.partial": "début de période, partiel"
 }

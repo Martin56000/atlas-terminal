@@ -572,7 +572,7 @@
     const head = `<tr><th></th>${EQS_COLS.map(([k, lbl, c]) => `<th class="${c || ""} sortable" data-sort="${k}" title="${esc(t("eqs.sort"))}">${t(lbl)}${arrow(k)}</th>`).join("")}</tr>`;
     const body = rows.map(r => `<tr class="click" data-goto="${esc(r.ticker)}">
       <td><button class="star ${r.inWl ? "on" : ""}" data-star="${esc(r.ticker)}" title="${esc(t(r.inWl ? "eqs.remove_wl" : "eqs.add_wl"))}">${r.inWl ? "★" : "☆"}</button></td>
-      <td class="tk">${esc(r.ticker)}</td><td class="nm">${esc(r.name)}</td><td class="l">${esc(r.country)}</td><td class="l note">${t("seg." + r.segment)}</td>
+      <td class="tk l">${esc(r.ticker)}</td><td class="nm">${esc(r.name)}</td><td class="l">${esc(r.country)}</td><td class="l note">${t("seg." + r.segment)}</td>
       ${r.last == null ? `<td class="na" colspan="2" title="${esc(r.quoteErr || "")}">${t("unavailable")}</td>`
         : `<td>${num(r.last, r.last < 10 ? 4 : 2)} <span class="note">${esc(r.currency)}</span>${r.stale ? ` <span class="stale">${t("stale")}</span>` : ""}</td><td class="${cls(r.pct)}">${pct(r.pct)}</td>`}
       <td class="${cls(r.perf)}">${pct(r.perf, 1)}</td><td>${pct(r.vol, 1, false)}</td><td>${num(r.beta, 2)}</td>

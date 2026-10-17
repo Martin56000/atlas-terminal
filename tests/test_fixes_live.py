@@ -74,3 +74,31 @@ def test_rss_fetch_parses_rss(monkeypatch):
     items = news.parse_google_feed(news.fetch_rss("u"), "Google News EN", "en")
     assert items[0]["title"] == "Apple rises" and items[0]["publisher"] == "Reuters"
     assert items[0]["published"] == "2026-10-16T20:00:00+00:00"
+
+
+# ---------------- US fallback sources (FRED times out from GitHub's servers)
+def test_parse_treasury_csv():
+    text = ('Date,"1 Mo","2 Mo","3 Mo","4 Mo","6 Mo","1 Yr","2 Yr","3 Yr","5 Yr","7 Yr","10 Yr","20 Yr","30 Yr"\n'
+            "10/16/2026,4.10,4.08,4.02,3.98,3.90,3.80,3.55,3.50,3.60,3.75,4.05,4.50,4.60\n"
+            "10/15/2026,4.11,4.09,N/A,3.99,3.91,3.81,3.56,3.51,3.61,3.76,4.06,4.51,4.61\n")
+    out = macro.parse_treasury_csv(text)
+    assert out["DGS10"] == [("2026-10-16", 4.05), ("2026-10-15", 4.06)]
+    assert out["DGS3MO"] == [("2026-10-16", 4.02)]          # N/A skipped, never filled
+    assert out["DGS2"][0] == ("2026-10-16", 3.55)
+
+
+def test_parse_nyfed_effr():
+    obj = {"refRates": [{"effectiveDate": "2026-10-16", "type": "EFFR", "percentRate": 3.58},
+                        {"effectiveDate": "2026-10-15", "type": "EFFR", "percentRate": 3.59}]}
+    assert macro.parse_nyfed_effr(obj) == [("2026-10-15", 3.59), ("2026-10-16", 3.58)]
+    with pytest.raises(ValueError):
+        macro.parse_nyfed_effr({"refRates": []})
+
+
+def test_parse_bls():
+    obj = {"status": "REQUEST_SUCCEEDED", "Results": {"series": [{"seriesID": "LNS14000000", "data": [
+        {"year": "2026", "period": "M09", "value": "4.3"}, {"year": "2026", "period": "M08", "value": "4.2"},
+        {"year": "2025", "period": "M13", "value": "4.1"}]}]}}
+    assert macro.parse_bls(obj, "LNS14000000") == [("2026-08-01", 4.2), ("2026-09-01", 4.3)]
+    with pytest.raises(ValueError):
+        macro.parse_bls({"status": "REQUEST_NOT_PROCESSED", "message": ["daily threshold"]}, "LNS14000000")

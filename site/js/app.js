@@ -196,7 +196,7 @@
   }
   function macroStrip() {
     const x = ds("macro.json");
-    if (!x.ok) return panel({ title: t("mkts.macro"), body: dsUnavailable(x), meta: x.meta, source: "FRED + ECB" });
+    if (!x.ok) return panel({ title: t("mkts.macro"), body: dsUnavailable(x), meta: x.meta, source: "FRED / US Treasury / NY Fed / BLS / ECB" });
     const m = x.data, errs = (x.meta.errors || {});
     const latest = id => (m[id] ? m[id].latest : null);
     const cell = (label, val, date, id) => `<div class="cell"><div class="k">${label}</div>
@@ -469,23 +469,24 @@
   async function renderECO() {
     const x = ds("macro.json");
     const fx = await historyOf("EURUSD=X");
-    if (!x.ok) return { html: panel({ title: t("eco.title"), body: dsUnavailable(x), meta: x.meta, source: "FRED + ECB" }) };
+    if (!x.ok) return { html: panel({ title: t("eco.title"), body: dsUnavailable(x), meta: x.meta, source: "FRED / US Treasury / NY Fed / BLS / ECB" }) };
     const m = x.data, errs = x.meta.errors || {};
     const st = dailyStale(x.meta.fetched_at);
     const missing = ids => ids.filter(id => !m[id]).map(id => `${id}: ${errs[id] || t("unavailable")}`);
-    const chartPanel = (id, title, ids, cls, src) => {
+    const srcOf = ids => [...new Set(ids.filter(i => m[i]).map(i => m[i].source))].join(" · ") || "—";
+    const chartPanel = (id, title, ids, cls) => {
       const miss = missing(ids);
-      return panel({ title, cls, meta: x.meta, source: src || "FRED", stale: st,
+      return panel({ title, cls, meta: x.meta, source: srcOf(ids), stale: st,
         body: `<div class="chart" id="${id}"></div>` + (miss.length ? `<div class="unavail"><b>${t("unavailable")}</b><span class="err">${esc(miss.join(" | "))}</span></div>` : "") });
     };
     const lastPt = id => (m[id] ? m[id].latest : null);
     const curve = [["3M", "DGS3MO"], ["2Y", "DGS2"], ["10Y", "DGS10"]].map(([k, id]) => ({ k, p: lastPt(id) }));
     const html =
       chartPanel("ecoRates", t("eco.rates"), ["DFF", "DGS3MO", "DGS2", "DGS10"], "span-8") +
-      panel({ title: t("eco.curve"), cls: "span-4", meta: x.meta, source: "FRED (DGS3MO, DGS2, DGS10)", stale: st, body: curveSVG(curve) }) +
-      chartPanel("ecoInfl", t("eco.inflation"), ["CPIAUCSL", "HICP_EA"], "span-6", "FRED (CPIAUCSL) + ECB (HICP)") +
+      panel({ title: t("eco.curve"), cls: "span-4", meta: x.meta, source: srcOf(["DGS3MO", "DGS2", "DGS10"]), stale: st, body: curveSVG(curve) }) +
+      chartPanel("ecoInfl", t("eco.inflation"), ["CPIAUCSL", "HICP_EA"], "span-6") +
       chartPanel("ecoUnemp", t("eco.unemp"), ["UNRATE"], "span-6") +
-      chartPanel("ecoEcb", t("eco.ecb"), ["ECBDFR"], "span-6", "FRED (ECBDFR)") +
+      chartPanel("ecoEcb", t("eco.ecb"), ["ECBDFR"], "span-6") +
       panel({ title: t("eco.eurusd") + " " + delayed(), cls: "span-6", meta: fx.meta, source: "Yahoo Finance (EURUSD=X)",
         body: fx.ok ? `<div class="chart" id="ecoFx"></div>` : dsUnavailable(fx) });
     const after = () => {

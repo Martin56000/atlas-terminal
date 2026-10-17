@@ -44,14 +44,20 @@ def _download(tickers, **kw):
 def frames(tickers, **kw):
     """One batched download, then a single individual retry for tickers that came back empty
     (Yahoo occasionally drops one symbol from a batch)."""
+    import yfinance as yf
     df = _download(tickers, **kw)
     out = {t: split_frame(df, t) for t in tickers}
+    errors = {}
     for t in [t for t, f in out.items() if f is None]:
-        try:
-            out[t] = split_frame(_download([t], **kw), t)
-        except Exception:  # noqa: BLE001
+        try:  # second call path: Ticker.history instead of download
+            h = yf.Ticker(t).history(auto_adjust=False, **kw)
+            out[t] = split_frame(h, t) if h is not None and not h.empty else None
+            if out[t] is None:
+                errors[t] = "Yahoo Finance returned an empty history for this symbol (download and history calls)"
+        except Exception as e:  # noqa: BLE001
             out[t] = None
-    return out
+            errors[t] = f"Yahoo Finance: {type(e).__name__}: {e}"[:300]
+    return out, errors
 
 
 def split_frame(df, ticker):
@@ -119,12 +125,12 @@ def fetch_currencies(tickers):
 def fetch_history(tickers, currencies, now=None):
     """5-year daily history. Re-downloaded in full every day because adjusted
     closes are rescaled retroactively after each dividend or split."""
-    got = frames(tickers, period=f"{config.HISTORY_YEARS}y", interval="1d")
+    got, errs = frames(tickers, period=f"{config.HISTORY_YEARS}y", interval="1d")
     out = {}
     for t in tickers:
         frame = got[t]
         if frame is None:
-            out[t] = {"status": "error", "error": "no data returned by Yahoo Finance for this ticker"}
+            out[t] = {"status": "error", "error": errs.get(t, "no data returned by Yahoo Finance for this ticker")}
             continue
         frame, cur = apply_currency(frame, currencies.get(t))
         frame = completed_bars(frame, config.BY_TICKER[t]["exchange"], now)
@@ -143,13 +149,13 @@ def fetch_history(tickers, currencies, now=None):
 
 def fetch_quotes(tickers, currencies):
     """Latest delayed quote = last daily bar (today's bar is in progress during the session)."""
-    got = frames(tickers, period="5d", interval="1d")
+    got, errs = frames(tickers, period="5d", interval="1d")
     fetched = store.now_iso()
     out = {}
     for t in tickers:
         frame = got[t]
         if frame is None or len(frame) < 1:
-            out[t] = {"status": "error", "error": "no quote returned by Yahoo Finance", "fetched_at": fetched}
+            out[t] = {"status": "error", "error": errs.get(t, "no quote returned by Yahoo Finance"), "fetched_at": fetched}
             continue
         frame, cur = apply_currency(frame, currencies.get(t))
         last = float(frame["Close"].iloc[-1])

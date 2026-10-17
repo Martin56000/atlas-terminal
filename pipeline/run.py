@@ -42,13 +42,50 @@ def ensure_currencies(meta):
 # ---------------------------------------------------------------- tasks
 def task_macro():
     from . import macro
-    log("macro: FRED + ECB")
+    log("macro: FRED (fallback Treasury / NY Fed / BLS) + ECB")
     data, errors = {}, {}
-    for sid in config.FRED_SERIES:
+    fred_down = None
+    try:  # quick probe: FRED often hangs for cloud IPs; don't spend 15 minutes discovering it
+        data["DFF"] = macro.fetch_fred("DFF", attempts=1, timeout=25)
+    except Exception as e:  # noqa: BLE001
+        fred_down = f"{type(e).__name__}: {e}"[:200]
+    if not fred_down:
+        for sid in [s for s in config.FRED_SERIES if s != "DFF"]:
+            try:
+                data[sid] = macro.fetch_fred(sid)
+            except Exception as e:  # noqa: BLE001
+                errors[sid] = f"FRED: {type(e).__name__}: {e}"[:300]
+    missing = [s for s in config.FRED_SERIES if s not in data]
+    today = schedule.utcnow().date()
+    start_year = today.year - 9  # BLS v1 allows 10 years per request
+    if "DFF" in missing:
         try:
-            data[sid] = macro.fetch_fred(sid)
+            data["DFF"] = macro.fetch_effr(f"{start_year}-01-01", today.isoformat())
         except Exception as e:  # noqa: BLE001
-            errors[sid] = f"{type(e).__name__}: {e}"
+            errors["DFF"] = f"FRED: {fred_down} | NY Fed: {type(e).__name__}: {e}"[:400]
+    if any(s in missing for s in macro.TREASURY_COLS):
+        try:
+            for sid, ser in macro.fetch_treasury(start_year, today.year).items():
+                if sid in missing:
+                    data[sid] = ser
+        except Exception as e:  # noqa: BLE001
+            for sid in macro.TREASURY_COLS:
+                if sid in missing:
+                    errors[sid] = f"FRED: {fred_down or errors.get(sid)} | Treasury: {type(e).__name__}: {e}"[:400]
+    bls_needed = [s for s in config.BLS_SERIES if s in missing]
+    if bls_needed:
+        try:
+            got = macro.fetch_bls([config.BLS_SERIES[s] for s in bls_needed], start_year, today.year)
+            for s in bls_needed:
+                pts = got[config.BLS_SERIES[s]]
+                data[s] = macro._series(pts, f"BLS {config.BLS_SERIES[s]}")
+                if s == "CPIAUCSL":
+                    data[s]["yoy"] = macro._series(macro.yoy(pts), f"BLS {config.BLS_SERIES[s]}, computed YoY")
+        except Exception as e:  # noqa: BLE001
+            for s in bls_needed:
+                errors[s] = f"FRED: {fred_down or errors.get(s)} | BLS: {type(e).__name__}: {e}"[:400]
+    for s in data:
+        errors.pop(s, None)
     for sid, fn in (("HICP_EA", macro.fetch_ecb_hicp), ("ECBDFR", macro.fetch_ecb_deposit_rate)):
         try:
             data[sid] = fn()
@@ -56,7 +93,9 @@ def task_macro():
             errors[sid] = f"{type(e).__name__}: {e}"[:400]
     if not data:
         raise RuntimeError("all macro series failed: " + "; ".join(f"{k}: {v}" for k, v in errors.items()))
-    store.write("macro.json", store.envelope_ok("FRED (fred.stlouisfed.org) + ECB Data Portal", data, {"errors": errors}))
+    providers = ["FRED", "ECB", "BLS", "US Treasury", "Federal Reserve Bank of New York"]
+    sources = sorted({next((p for p in providers if v.get("source", "").startswith(p)), v.get("source", "?")) for v in data.values()})
+    store.write("macro.json", store.envelope_ok(" + ".join(sources), data, {"errors": errors, "fred_down": fred_down}))
 
 
 def task_quotes(tickers, region, currencies):
@@ -137,7 +176,7 @@ def task_risk():
         out[t] = m
         r = metrics.log_returns(metrics.window_prices(p, config.RISK_WINDOW))
         returns[t] = {"dates": [d.strftime("%Y-%m-%d") for d in r.index], "r": [round(x, 8) for x in r.tolist()]}
-    store.write("risk.json", store.envelope_ok("Computed from Yahoo Finance adjusted closes; rf from FRED",
+    store.write("risk.json", store.envelope_ok("Computed from Yahoo Finance adjusted closes; rf: 3-month US Treasury (US), ECB deposit rate (EU)",
                                                {"window": config.RISK_WINDOW, "rf": rf, "metrics": out, "returns": returns}))
 
 

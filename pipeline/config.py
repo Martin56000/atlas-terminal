@@ -112,7 +112,13 @@ SUFFIX_CURRENCY = {".PA": "EUR", ".DE": "EUR", ".AS": "EUR", ".MC": "EUR", ".MI"
 # --- Sources ---------------------------------------------------------------------
 FRED_URL = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}"
 FRED_SERIES = ["DFF", "DGS3MO", "DGS2", "DGS10", "CPIAUCSL", "UNRATE"]
-ECB_URL = "https://data-api.ecb.europa.eu/service/data/{key}?format=csvdata"
+# Primary US sources used when FRED does not answer (FRED often times out from cloud IPs)
+TREASURY_URL = ("https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/"
+                "{year}/all?type=daily_treasury_yield_curve&field_tdr_date_value={year}&page&_format=csv")
+NYFED_EFFR_URL = "https://markets.newyorkfed.org/api/rates/unsecured/effr/search.json?startDate={start}&endDate={end}"
+BLS_URL = "https://api.bls.gov/publicAPI/v1/timeseries/data/"
+BLS_SERIES = {"CPIAUCSL": "CUSR0000SA0", "UNRATE": "LNS14000000"}  # same series FRED republishes
+ECB_URL ="https://data-api.ecb.europa.eu/service/data/{key}?format=csvdata"
 # The ECB replaced the ICP dataset with HICP in Feb 2026; the most recent one wins.
 ECB_HICP_KEYS = ["HICP/M.U2.N.000000.4D0.ANR", "ICP/M.U2.N.000000.4.ANR"]
 ECB_DFR_KEY = "FM/D.U2.EUR.4F.KR.DFR.LEV"

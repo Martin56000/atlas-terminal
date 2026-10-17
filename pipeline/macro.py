@@ -90,13 +90,79 @@ def _series(points, source):
             "latest": {"date": points[-1][0], "value": points[-1][1]}, "source": source}
 
 
-def fetch_fred(series_id):
+def fetch_fred(series_id, attempts=3, timeout=60):
     url = config.FRED_URL.format(sid=series_id) + "&cosd=2008-01-01"
-    pts = parse_fred_csv(_get(url), series_id)
+    pts = parse_fred_csv(_get(url, attempts=attempts, timeout=timeout), series_id)
     data = _series(pts, f"FRED {series_id}")
     if series_id == "CPIAUCSL":
         data["yoy"] = _series(yoy(pts), "FRED CPIAUCSL, computed YoY")
     return data
+
+
+# ---------- primary US sources (used when FRED does not answer) ------------------
+TREASURY_COLS = {"DGS3MO": "3 Mo", "DGS2": "2 Yr", "DGS10": "10 Yr"}
+
+
+def parse_treasury_csv(text):
+    """US Treasury daily par yield curve CSV -> {DGS3MO|DGS2|DGS10: [(date, value)]}."""
+    rows = list(csv.DictReader(io.StringIO(text)))
+    if not rows or "Date" not in rows[0]:
+        raise ValueError("unexpected Treasury response (no Date column)")
+    out = {k: [] for k in TREASURY_COLS}
+    for r in rows:
+        m, d, y = r["Date"].split("/")
+        iso = f"{y}-{int(m):02d}-{int(d):02d}"
+        for sid, col in TREASURY_COLS.items():
+            v = (r.get(col) or "").strip()
+            if v not in ("", "N/A"):
+                out[sid].append((iso, float(v)))
+    return out
+
+
+def parse_nyfed_effr(obj):
+    rates = obj.get("refRates")
+    if not rates:
+        raise ValueError("unexpected NY Fed response (no refRates)")
+    pts = sorted((r["effectiveDate"], float(r["percentRate"])) for r in rates if r.get("percentRate") is not None)
+    if not pts:
+        raise ValueError("no EFFR observations")
+    return pts
+
+
+def parse_bls(obj, series_id):
+    if obj.get("status") != "REQUEST_SUCCEEDED":
+        raise ValueError(f"BLS: {obj.get('status')} {obj.get('message')}")
+    for s in obj["Results"]["series"]:
+        if s["seriesID"] == series_id:
+            pts = [(f"{d['year']}-{d['period'][1:]}-01", float(d["value"])) for d in s["data"]
+                   if d["period"].startswith("M") and d["period"] != "M13" and d["value"] not in ("-", "")]
+            if not pts:
+                raise ValueError(f"BLS: no observations for {series_id}")
+            return sorted(pts)
+    raise ValueError(f"BLS: series {series_id} missing from response")
+
+
+def fetch_treasury(start_year, end_year):
+    merged = {k: [] for k in TREASURY_COLS}
+    for y in range(start_year, end_year + 1):
+        part = parse_treasury_csv(_get(config.TREASURY_URL.format(year=y), attempts=2, timeout=40))
+        for k in merged:
+            merged[k] += part[k]
+    return {k: _series(sorted(set(v)), f"US Treasury par yield curve ({TREASURY_COLS[k]})") for k, v in merged.items() if v}
+
+
+def fetch_effr(start, end):
+    import json
+    pts = parse_nyfed_effr(json.loads(_get(config.NYFED_EFFR_URL.format(start=start, end=end), attempts=2, timeout=40)))
+    return _series(pts, "Federal Reserve Bank of New York (EFFR)")
+
+
+def fetch_bls(series_ids, start_year, end_year):
+    payload = {"seriesid": series_ids, "startyear": str(start_year), "endyear": str(end_year)}
+    r = requests.post(config.BLS_URL, json=payload, headers=HEADERS, timeout=60)
+    r.raise_for_status()
+    obj = r.json()
+    return {sid: parse_bls(obj, sid) for sid in series_ids}
 
 
 def _ecb_candidates(keys):

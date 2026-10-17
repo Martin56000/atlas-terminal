@@ -467,7 +467,7 @@
  "dvd.error": "Dividendes indisponibles :",
  "gip.price": "Cours",
  "gip.time": "Heure",
- "gip.since_open": "depuis l'ouverture",
+ "gip.since_open": "depuis la première barre",
  "gip.session": "Séance du",
  "gip.not_covered": "Pas de graphique intraday pour cette valeur (il couvre les indices, les changes et les valeurs de la liste par défaut).",
  "gip.note": "Barres de 5 minutes, différées d'environ 15 minutes. Mis à jour à chaque passage pendant la séance.",
@@ -497,5 +497,7 @@
  "lp.not_in_pane": "Cette fonction s'ouvre en plein écran.",
  "lp.open_full": "Ouvrir en plein écran",
  "lp.note": "Chaque fenêtre a sa propre commande : tapez-la dans le champ bleu puis GO. La disposition est gardée dans ce navigateur.",
- "dvd.pending": "Dividendes pas encore collectés pour cette valeur : la fiche société sera complétée lors d'une prochaine mise à jour (rotation de 100 fiches par passage)."
+ "dvd.pending": "Dividendes pas encore collectés pour cette valeur : la fiche société sera complétée lors d'une prochaine mise à jour (rotation de 100 fiches par passage).",
+ "gip.last_bar": "Dernière barre 5 min",
+ "gip.official_close": "Clôture officielle (enchère)"
 }

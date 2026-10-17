@@ -467,7 +467,7 @@
  "dvd.error": "Dividends unavailable:",
  "gip.price": "Price",
  "gip.time": "Time",
- "gip.since_open": "since the open",
+ "gip.since_open": "since the first bar",
  "gip.session": "Session",
  "gip.not_covered": "No intraday chart for this security (it covers indices, FX and the default watchlist).",
  "gip.note": "5-minute bars, delayed about 15 minutes. Updated on every run during the session.",
@@ -497,5 +497,7 @@
  "lp.not_in_pane": "This function opens full screen.",
  "lp.open_full": "Open full screen",
  "lp.note": "Each window has its own command: type it in the blue field then GO. The layout is kept in this browser.",
- "dvd.pending": "Dividends not collected yet for this security: the company page will be completed in a coming update (rotation of 100 pages per run)."
+ "dvd.pending": "Dividends not collected yet for this security: the company page will be completed in a coming update (rotation of 100 pages per run).",
+ "gip.last_bar": "Last 5-min bar",
+ "gip.official_close": "Official close (auction)"
 }

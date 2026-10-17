@@ -274,7 +274,7 @@
       tzDate: ts => uPlot.tzDate(new Date(ts * 1e3), o.xtime ? S.tz : "Etc/UTC"),
       cursor: { sync: o.sync ? { key: o.sync } : undefined, drag: { x: true, y: false }, points: { size: 7 } },
       scales: Object.assign({ x: { time: true } }, o.scales || {}),
-      axes: [xAxis(), axis(o.yfmt, o.ysize)].concat(o.extraAxes || []),
+      axes: [o.xtime ? Object.assign(xAxis(), { values: (u, vals) => vals.map(v => fmtTime(v).replace(/ \S+$/, "")) }) : xAxis(), axis(o.yfmt, o.ysize)].concat(o.extraAxes || []),
       series: [{ label: o.xtime ? t("gip.time") : t("col.date"), value: (u, v) => (v == null ? "—" : o.xtime ? fmtTime(v) : fmtDate(new Date(v * 1000).toISOString().slice(0, 10))) }].concat(series),
       legend: { live: true },
     };
@@ -1121,8 +1121,9 @@
     if (!d) return { html: panel({ title, tools, meta: x.meta, source: "Yahoo Finance", body: `<div class="note">${t("gip.not_covered")}</div>` }) };
     const first = d.p[0], last = d.p[d.p.length - 1];
     const html = panel({ title, tools, meta: x.meta, source: "Yahoo Finance (5 min)",
-      body: `<div class="qhead"><span class="px">${num(last)}</span><span class="ch ${cls(last - first)}">${arrowOf(last - first)}${pct(last / first - 1)} ${t("gip.since_open")}</span>
-        <span class="kv">${t("gip.session")} <b>${fmtDate(d.date)}</b></span><span class="kv">${t("hp.high")} <b>${num(Math.max(...d.p))}</b></span><span class="kv">${t("hp.low")} <b>${num(Math.min(...d.p))}</b></span></div>
+      body: `<div class="qhead"><span class="kv">${t("gip.last_bar")}</span><span class="px">${num(last)}</span><span class="ch ${cls(last - first)}">${arrowOf(last - first)}${pct(last / first - 1)} ${t("gip.since_open")}</span>
+        <span class="kv">${t("gip.session")} <b>${fmtDate(d.date)}</b></span>${(() => { const q = (quotesEnv() || { data: {} }).data[tk];
+          return q && q.status === "ok" && q.date === d.date ? `<span class="kv">${t("gip.official_close")} <b>${num(q.last)}</b></span>` : ""; })()}<span class="kv">${t("hp.high")} <b>${num(Math.max(...d.p))}</b></span><span class="kv">${t("hp.low")} <b>${num(Math.min(...d.p))}</b></span></div>
         <div class="chart" id="gipChart"></div><p class="note">${t("gip.note")}</p>` });
     return { html, after: () => drawIntraday($("#gipChart"), d) };
   }

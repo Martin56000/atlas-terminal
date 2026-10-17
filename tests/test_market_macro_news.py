@@ -115,3 +115,13 @@ def test_failure_envelope_has_no_data(tmp_path, monkeypatch):
     assert env["_meta"]["status"] == "error"
     assert "429" in env["_meta"]["error"]
     assert env["_meta"]["last_success"] == first
+
+
+def test_cpi_yoy_with_a_missing_month():
+    # Oct-2025 missing (not published): Sep-2026 must still compare with Sep-2025, and
+    # Oct-2026 has no YoY at all (no base month) instead of a wrong one.
+    pts = [(f"2025-{m:02d}-01", 100.0) for m in range(1, 13) if m != 10]
+    pts += [(f"2026-{m:02d}-01", 103.0) for m in range(1, 11)]
+    out = dict(macro.yoy(pts))
+    assert out["2026-09-01"] == pytest.approx(3.0)
+    assert "2026-10-01" not in out

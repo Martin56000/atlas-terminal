@@ -58,15 +58,14 @@ def most_recent(candidates):
 
 def yoy(points):
     """Monthly index -> year-over-year % change: X_t / X_{t-12} - 1 (in %)."""
-    by_date = dict(points)
-    dates = [d for d, _ in points]
+    # Look up the same month one year earlier by date, not "12 rows back": official series
+    # can have missing months (e.g. BLS publications skipped during the late-2025 US shutdown).
+    by_month = {d[:7]: v for d, v in points}
     out = []
-    for i, d in enumerate(dates):
-        if i >= 12:
-            prev = by_date[dates[i - 12]]
-            # guard: the observation 12 rows earlier must be exactly 1 year earlier
-            if dates[i - 12][:4] == str(int(d[:4]) - 1) and dates[i - 12][5:7] == d[5:7]:
-                out.append((d, (by_date[d] / prev - 1) * 100))
+    for d, v in points:
+        prev = by_month.get(f"{int(d[:4]) - 1:04d}{d[4:7]}")
+        if prev:
+            out.append((d, (v / prev - 1) * 100))
     return out
 
 

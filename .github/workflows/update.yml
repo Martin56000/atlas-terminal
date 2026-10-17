@@ -49,11 +49,11 @@ jobs:
       - name: Unit tests (site)
         run: node --test tests/js/site.test.js
 
-      - name: Cache FinBERT model
+      - name: Cache Hugging Face models (FinBERT + translation)
         uses: actions/cache@v4
         with:
           path: ~/.cache/huggingface
-          key: finbert-prosusai-v1
+          key: hf-models-finbert-opusmt-v2
 
       - name: Restore previous data (branch "data")
         run: |

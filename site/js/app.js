@@ -12,7 +12,7 @@
   };
   const S = {
     lang: LS.get("lang", "fr"), numfmt: LS.get("numfmt", "fr"), tz: LS.get("tz", "Europe/Paris"),
-    auto: LS.get("auto", true), watchlist: LS.get("watchlist", null),
+    auto: LS.get("auto", true), watchlist: LS.get("watchlist", null), translate: LS.get("translate", true),
     tab: "MKTS", ticker: "AAPL", range: LS.get("range", "1Y"), newsTicker: "ALL", faTicker: null,
     eqs: Object.assign({ region: "EU", segment: "ALL", country: "ALL", sort: "pct", dir: -1 }, LS.get("eqs", {})),
   };
@@ -442,8 +442,13 @@
       const sent = h.sentiment
         ? `<span class="sent ${esc(h.sentiment)}">${t("sent." + h.sentiment)} ${num(h.confidence * 100, 0)} %</span>`
         : `<span class="sent">${lang === "fr" ? t("sent.na_fr") : t("sent.na")}</span>`;
+      // French UI + translation on: show the machine translation, original title on hover
+      const useFr = S.lang === "fr" && S.translate && h.title_fr;
+      const title = useFr
+        ? `<a href="${esc(safeUrl(h.link))}" target="_blank" rel="noopener" title="${esc(t("news.mt_tip") + " " + h.title)}">${esc(h.title_fr)}</a> <span class="mt">${t("news.mt")}</span>`
+        : `<a href="${esc(safeUrl(h.link))}" target="_blank" rel="noopener">${esc(h.title)}</a>`;
       return `<div class="news-item"><span class="when">${fmtDT(h.published)}<span class="src">${esc(h.publisher || "—")}<span class="feed">${esc(h.feed)}</span></span></span>
-        <a href="${esc(safeUrl(h.link))}" target="_blank" rel="noopener">${esc(h.title)}</a>${sent}</div>`;
+        <span>${title}</span>${sent}</div>`;
     }).join("");
   }
   function renderNEWS() {
@@ -464,7 +469,8 @@
         ${n.errors && n.errors.length ? `<div class="note">${t("news.partial")}: ${esc(n.errors.join(" | "))}</div>` : ""}`;
     }).join("");
     const sentErr = x.meta.sentiment_error ? `<div class="unavail">${t("news.sent_error")}: <span class="err">${esc(x.meta.sentiment_error)}</span></div>` : "";
-    return panel({ title: t("news.title"), tools, body: sentErr + body + `<p class="note">${t("news.method")}</p>`, meta: x.meta, stale: newsStale(x.meta.fetched_at) });
+    const trErr = x.meta.translation_error && S.lang === "fr" && S.translate ? `<div class="unavail">${t("news.translation_error")}: <span class="err">${esc(x.meta.translation_error)}</span></div>` : "";
+    return panel({ title: t("news.title"), tools, body: sentErr + trErr + body + `<p class="note">${t("news.method")}</p>`, meta: x.meta, stale: newsStale(x.meta.fetched_at) });
   }
 
   // ------------------------------------------------------------------ ECO
@@ -708,6 +714,7 @@
       <div class="setting"><span>${t("settings.numfmt")}</span>${seg("numfmt", [["fr", "1 234,56"], ["us", "1,234.56"]])}</div>
       <div class="setting"><span>${t("settings.tz")}</span>${seg("tz", [["Europe/Paris", "Paris"], ["America/New_York", "New York"]])}</div>
       <div class="setting"><span>${t("settings.auto")}</span>${seg("auto", [[true, t("on")], [false, t("off")]])}</div>
+      <div class="setting"><span>${t("settings.translate")}</span>${seg("translate", [[true, t("on")], [false, t("off")]])}</div>
       <div class="setting"><span>${t("settings.reset_wl")}</span><button class="btn" data-action="reset-wl">${t("settings.reset")}</button></div>
       <p class="note">${t("settings.note")}</p>`;
   }

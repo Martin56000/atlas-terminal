@@ -102,3 +102,22 @@ def test_parse_bls():
     assert macro.parse_bls(obj, "LNS14000000") == [("2026-08-01", 4.2), ("2026-09-01", 4.3)]
     with pytest.raises(ValueError):
         macro.parse_bls({"status": "REQUEST_NOT_PROCESSED", "message": ["daily threshold"]}, "LNS14000000")
+
+
+# ---------------- headline translation
+def test_translation_only_new_english_headlines():
+    from pipeline import translate
+    calls = []
+
+    def fake_tr(titles, batch_size, max_length):  # test double for the translation model
+        calls.append(list(titles))
+        return [{"translation_text": "FR: " + t} for t in titles]
+
+    cache = {"old": "Ancien titre"}
+    items = [{"title": "Old", "link": "old", "lang": "en"}, {"title": "Apple rises", "link": "new", "lang": "en"},
+             {"title": "LVMH recule", "link": "fr1", "lang": "fr"}]
+    translate.translate_new(items, cache, tr=fake_tr)
+    assert calls == [["Apple rises"]]                      # cached and French headlines are not re-translated
+    translate.attach(items, cache)
+    assert [i["title_fr"] for i in items] == ["Ancien titre", "FR: Apple rises", None]
+    assert items[1]["title"] == "Apple rises"              # original always kept

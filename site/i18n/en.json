@@ -124,7 +124,7 @@
   "news.fr_section": "French press (not scored by FinBERT)",
   "news.partial": "Feed errors",
   "news.sent_error": "Sentiment model unavailable",
-  "news.method": "Sentiment by FinBERT (ProsusAI/finbert) on English headlines. Average: positive = +1, neutral = 0, negative = −1. Headlines are never translated.",
+  "news.method": "Sentiment by FinBERT (ProsusAI/finbert) on the original English headline. Average: positive = +1, neutral = 0, negative = −1. In French mode, English headlines are machine-translated (Helsinki-NLP opus-mt-en-fr), can be turned off in settings.",
   "sent.positive": "positive",
   "sent.neutral": "neutral",
   "sent.negative": "negative",
@@ -184,5 +184,9 @@
   "kind.etf": "ETF",
   "kind.fx": "FX",
   "kind.commodity": "Commodity",
-  "kind.stock": "Stock"
+  "kind.stock": "Stock",
+  "settings.translate": "Translate news into French",
+  "news.mt": "machine tr.",
+  "news.mt_tip": "Machine translation — original title:",
+  "news.translation_error": "Translation unavailable (headlines shown in English)"
 }

@@ -124,7 +124,7 @@
   "news.fr_section": "Presse française (non notée par FinBERT)",
   "news.partial": "Flux en erreur",
   "news.sent_error": "Modèle de sentiment indisponible",
-  "news.method": "Sentiment calculé par FinBERT (ProsusAI/finbert) sur les titres en anglais. Moyenne : positif = +1, neutre = 0, négatif = −1. Titres jamais traduits.",
+  "news.method": "Titres anglais traduits automatiquement (Helsinki-NLP opus-mt-en-fr), titre original au survol ; désactivable dans les réglages. Sentiment calculé par FinBERT (ProsusAI/finbert) sur le titre anglais d'origine. Moyenne : positif = +1, neutre = 0, négatif = −1.",
   "sent.positive": "positif",
   "sent.neutral": "neutre",
   "sent.negative": "négatif",
@@ -184,5 +184,9 @@
   "kind.etf": "ETF",
   "kind.fx": "Change",
   "kind.commodity": "Matière première",
-  "kind.stock": "Action"
+  "kind.stock": "Action",
+  "settings.translate": "Traduire les news en français",
+  "news.mt": "trad. auto",
+  "news.mt_tip": "Traduction automatique — titre original :",
+  "news.translation_error": "Traduction indisponible (titres affichés en anglais)"
 }

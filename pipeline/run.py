@@ -208,7 +208,7 @@ def task_fundamentals():
 
 def task_news(tickers=None):
     """Refresh news for `tickers` (default: all) and merge with the other tickers' last results."""
-    from . import news, sentiment
+    from . import news, sentiment, translate
     tickers = tickers or config.WATCHLIST_UNIVERSE
     log(f"news + sentiment: {len(tickers)} tickers")
     cache = store.read("sentiment_cache.json") or {}
@@ -228,17 +228,26 @@ def task_news(tickers=None):
     except Exception as e:  # noqa: BLE001
         traceback.print_exc()
         sentiment_error = f"{type(e).__name__}: {e}"[:300]
+    tcache = store.read("translation_cache.json") or {}
+    translation_error = None
+    try:
+        translate.translate_new(all_items, tcache)
+    except Exception as e:  # noqa: BLE001
+        traceback.print_exc()
+        translation_error = f"{type(e).__name__}: {e}"[:300]
     fetched = store.now_iso()
     for t, res in per.items():
-        en = sentiment.attach(res["en"], cache)
+        en = translate.attach(sentiment.attach(res["en"], cache), tcache)
         fr = sentiment.attach(res["fr"], cache) if res["fr"] is not None else None
         failed = not en and not fr and res["errors"]
         data[t] = {"status": "error" if failed else "ok", "errors": res["errors"], "fetched_at": fetched,
                    "en": en, "fr": fr, "avg": sentiment.average(en)}
     live_links = {h["link"] for v in data.values() for h in (v.get("en") or [])}
     store.write("sentiment_cache.json", {k: v for k, v in cache.items() if k in live_links})
-    store.write("news.json", store.envelope_ok("Yahoo Finance news + Google News RSS; sentiment: ProsusAI/finbert",
-                                               data, {"sentiment_error": sentiment_error}))
+    store.write("translation_cache.json", {k: v for k, v in tcache.items() if k in live_links})
+    store.write("news.json", store.envelope_ok(
+        "Yahoo Finance news + Google News RSS; sentiment: ProsusAI/finbert; translation: Helsinki-NLP/opus-mt-en-fr",
+        data, {"sentiment_error": sentiment_error, "translation_error": translation_error}))
 
 
 def task_validate():

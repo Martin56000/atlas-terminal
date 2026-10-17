@@ -129,6 +129,7 @@ table.t { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-
 .sent.positive { color: var(--up); border-color: #1f5f32; }
 .sent.negative { color: var(--down); border-color: #6b1f1f; }
 .sent.neutral { color: var(--muted); }
+.mt { color: var(--muted); font-size: 10px; border: 1px dotted var(--line-strong); padding: 0 3px; white-space: nowrap; }
 .feed { color: var(--blue); font-size: 10px; margin-left: 6px; }
 .news-tk { color: var(--key); font-weight: 600; margin: 10px 0 2px; display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
 .news-tk .avg { color: var(--ink); font-weight: 400; font-size: 12px; }

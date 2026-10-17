@@ -6,4 +6,6 @@ pandas==3.0.5
 numpy==2.5.3
 requests==2.34.2
 transformers>=4.44
+sentencepiece>=0.2   # tokenizer of the translation model
+sacremoses>=0.1
 pytest>=8

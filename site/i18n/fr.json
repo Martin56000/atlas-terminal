@@ -410,5 +410,6 @@
   "comps.growth": "Croiss. CA",
   "comps.nd": "DN/EBITDA",
   "comps.dy": "Rdt div.",
-  "cal.date": "Date"
+  "cal.date": "Date",
+  "des.summary_note_fr_excerpt": "Début de la description Yahoo Finance, traduit automatiquement (3 premières phrases). Texte original complet au survol."
 }

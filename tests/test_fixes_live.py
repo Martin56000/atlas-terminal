@@ -158,3 +158,11 @@ def test_translate_long_text_sentence_by_sentence():
     assert calls == [["Vicat makes cement.", "It was founded in 1853.", "The stock is listed."]]
     assert out == "FR(Vicat makes cement.) FR(It was founded in 1853.) FR(The stock is listed.)"
     assert translate.translate_text("", tr=fake_tr) is None
+
+
+def test_translate_excerpt_only_first_sentences():
+    from pipeline import translate
+    seen = []
+    fake = lambda sents, batch_size, max_length: seen.extend(sents) or [{"translation_text": s} for s in sents]
+    translate.translate_text("One. Two. Three. Four. Five.", tr=fake, max_sentences=3)
+    assert seen == ["One.", "Two.", "Three."]

@@ -77,9 +77,10 @@ def split_sentences(text):
     return [p for p in parts if p]
 
 
-def translate_text(text, tr=None):
-    """Long text -> French, sentence by sentence (the model handles ~one sentence well)."""
-    sents = split_sentences(text)
+def translate_text(text, tr=None, max_sentences=None):
+    """Long text -> French, sentence by sentence (the model handles ~one sentence well).
+    max_sentences: translate only the beginning (an excerpt), which keeps CPU time reasonable."""
+    sents = split_sentences(text)[:max_sentences] if max_sentences else split_sentences(text)
     if not sents:
         return None
     tr = tr or translator()

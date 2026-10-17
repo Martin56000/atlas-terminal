@@ -294,7 +294,7 @@ def task_company():
         time.sleep(0.3)
 
 
-def task_translate_profiles(budget_s=240):
+def task_translate_profiles(budget_s=360):
     """Machine-translate company descriptions once (kept in the company page), newest pages first."""
     import time
     from . import translate
@@ -310,7 +310,8 @@ def task_translate_profiles(budget_s=240):
         if not pf.get("summary") or pf.get("summary_fr"):
             continue
         try:
-            pf["summary_fr"] = translate.translate_text(pf["summary"])
+            pf["summary_fr"] = translate.translate_text(pf["summary"], max_sentences=3)
+            pf["summary_fr_excerpt"] = len(translate.split_sentences(pf["summary"])) > 3
             store.write(name, env)
             done += 1
         except Exception:  # noqa: BLE001

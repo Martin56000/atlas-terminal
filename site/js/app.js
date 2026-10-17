@@ -798,7 +798,7 @@
     }
     const profilePanel = panel({ title: t("des.profile"), cls: "span-12", meta: x.meta, source: src + " — assetProfile",
       body: esefBlock + (pf.summary ? ((S.lang === "fr" && S.translate && pf.summary_fr)
-        ? `<p class="summary" lang="fr" title="${esc(pf.summary)}">${esc(pf.summary_fr)}</p><p class="note">${t("des.summary_note_fr")}</p>`
+        ? `<p class="summary" lang="fr" title="${esc(pf.summary)}">${esc(pf.summary_fr)}${pf.summary_fr_excerpt ? " […]" : ""}</p><p class="note">${t(pf.summary_fr_excerpt ? "des.summary_note_fr_excerpt" : "des.summary_note_fr")}</p>`
         : `<p class="summary" lang="en">${esc(pf.summary)}</p><p class="note">${t("des.summary_note")}</p>`) : "") });
     return summaryPanel + resultsPanel + quartersPanel + consensusPanel + targetsPanel + surprisesPanel + calPanel + valPanel + profilePanel;
   }

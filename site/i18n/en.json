@@ -410,5 +410,6 @@
   "comps.growth": "Rev. growth",
   "comps.nd": "ND/EBITDA",
   "comps.dy": "Div. yield",
-  "cal.date": "Date"
+  "cal.date": "Date",
+  "des.summary_note_fr_excerpt": "Beginning of the Yahoo Finance description, machine-translated (first 3 sentences). Full original on hover."
 }

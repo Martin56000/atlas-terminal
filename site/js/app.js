@@ -14,8 +14,9 @@
     lang: LS.get("lang", "fr"), numfmt: LS.get("numfmt", "fr"), tz: LS.get("tz", "Europe/Paris"),
     auto: LS.get("auto", true), watchlist: LS.get("watchlist", null),
     tab: "MKTS", ticker: "AAPL", range: LS.get("range", "1Y"), newsTicker: "ALL", faTicker: null,
+    eqs: Object.assign({ region: "EU", segment: "ALL", country: "ALL", sort: "pct", dir: -1 }, LS.get("eqs", {})),
   };
-  const FKEYS = { MKTS: "F1", QUOTE: "F2", FA: "F3", RISK: "F4", NEWS: "F5", ECO: "F6" };
+  const FKEYS = { MKTS: "F1", QUOTE: "F2", FA: "F3", RISK: "F4", NEWS: "F5", ECO: "F6", EQS: "F7" };
   const CORE = ["meta.json", "quotes.json", "risk.json", "macro.json", "news.json", "validation.json"];
 
   let I18N = {};
@@ -526,10 +527,69 @@
       <div class="note">${t("eco.curve_note", { dates })}</div>`;
   }
 
+  // ------------------------------------------------------------------ EQS (equity screener)
+  const EQS_COLS = [
+    ["ticker", "col.ticker", "l"], ["name", "col.name", "l nm"], ["country", "col.country", "l"], ["segment", "col.segment", "l"],
+    ["last", "col.last"], ["pct", "col.pct"], ["perf", "col.perf1y"], ["vol", "risk.vol"], ["beta", "risk.beta"],
+    ["mdd", "risk.mdd"], ["sharpe", "risk.sharpe"],
+  ];
+  function eqsRows() {
+    const m = meta(), q = quotesEnv(), r = ds("risk.json");
+    const metrics = r.ok ? r.data.metrics : {};
+    const wl = new Set(watchlist());
+    return m.watchlist_universe.map(tk => {
+      const u = UNI[tk], x = q && q.data[tk], k = metrics[tk] || {};
+      const okq = x && x.status === "ok", okr = k.status === "ok";
+      return {
+        ticker: tk, name: u.name, country: u.country, segment: u.region === "US" ? "us" : u.segment, region: u.region,
+        last: okq ? x.last : null, currency: okq ? x.currency : "", pct: okq ? x.pct : null, quoteErr: okq ? null : (x ? x.error : t("err.no_quote")),
+        perf: okr ? k.perf_window : null, vol: okr ? k.ann_vol : null, beta: okr ? k.beta : null, mdd: okr ? k.max_drawdown : null,
+        sharpe: okr ? k.sharpe : null, inWl: wl.has(tk), stale: okq && quoteStale(tk, x.fetched_at),
+      };
+    });
+  }
+  function renderEQS() {
+    const m = meta(); if (!m) return firstRunNotice();
+    const f = S.eqs;
+    let rows = eqsRows();
+    const countries = [...new Set(rows.filter(r => f.region === "ALL" || r.region === f.region).map(r => r.country))].sort();
+    rows = rows.filter(r => (f.region === "ALL" || r.region === f.region)
+      && (f.segment === "ALL" || r.segment === f.segment)
+      && (f.country === "ALL" || r.country === f.country));
+    const key = f.sort, dir = f.dir;
+    rows.sort((a, b) => {
+      const va = a[key], vb = b[key];
+      if (va == null && vb == null) return a.ticker.localeCompare(b.ticker);
+      if (va == null) return 1;            // missing values always last, whatever the direction
+      if (vb == null) return -1;
+      return (typeof va === "string" ? va.localeCompare(vb) : va - vb) * dir;
+    });
+    const sel = (name, options, cur) => `<select data-eqs="${name}">${options.map(([v, l]) => `<option value="${esc(v)}" ${v === cur ? "selected" : ""}>${esc(l)}</option>`).join("")}</select>`;
+    const tools = sel("region", [["ALL", t("eqs.all_regions")], ["US", t("region.US")], ["EU", t("region.EU")]], f.region) +
+      sel("segment", [["ALL", t("eqs.all_sizes")], ["large", t("seg.large")], ["smid", t("seg.smid")], ["us", t("seg.us")]], f.segment) +
+      sel("country", [["ALL", t("eqs.all_countries")]].concat(countries.map(c => [c, t("country." + c)])), f.country);
+    const arrow = k => (k === f.sort ? (f.dir > 0 ? " ▲" : " ▼") : "");
+    const head = `<tr><th></th>${EQS_COLS.map(([k, lbl, c]) => `<th class="${c || ""} sortable" data-sort="${k}" title="${esc(t("eqs.sort"))}">${t(lbl)}${arrow(k)}</th>`).join("")}</tr>`;
+    const body = rows.map(r => `<tr class="click" data-goto="${esc(r.ticker)}">
+      <td><button class="star ${r.inWl ? "on" : ""}" data-star="${esc(r.ticker)}" title="${esc(t(r.inWl ? "eqs.remove_wl" : "eqs.add_wl"))}">${r.inWl ? "★" : "☆"}</button></td>
+      <td class="tk">${esc(r.ticker)}</td><td class="nm">${esc(r.name)}</td><td class="l">${esc(r.country)}</td><td class="l note">${t("seg." + r.segment)}</td>
+      ${r.last == null ? `<td class="na" colspan="2" title="${esc(r.quoteErr || "")}">${t("unavailable")}</td>`
+        : `<td>${num(r.last, r.last < 10 ? 4 : 2)} <span class="note">${esc(r.currency)}</span>${r.stale ? ` <span class="stale">${t("stale")}</span>` : ""}</td><td class="${cls(r.pct)}">${pct(r.pct)}</td>`}
+      <td class="${cls(r.perf)}">${pct(r.perf, 1)}</td><td>${pct(r.vol, 1, false)}</td><td>${num(r.beta, 2)}</td>
+      <td class="${isNum(r.mdd) ? "down" : ""}">${pct(r.mdd, 1)}</td><td class="${cls(r.sharpe)}">${num(r.sharpe, 2)}</td></tr>`).join("");
+    const q = quotesEnv(), regs = q ? Object.values(q._meta.regions || {}) : [];
+    const r = ds("risk.json");
+    return panel({ title: `EQS — ${t("eqs.title")} ${delayed()}`, tools,
+      updated: regs.length ? regs.map(x => x.fetched_at).sort().pop() : null,
+      source: "Yahoo Finance (yfinance) · " + t("risk.source"),
+      body: `<div class="note">${t("eqs.count", { n: rows.length })} · ${t("eqs.help")}</div><table class="t">${head}${body}</table>
+        <p class="note">${t("eqs.defs")}${r.ok ? " " + t("eqs.risk_asof", { d: fmtDT(r.meta.fetched_at) }) : ""}</p>` });
+  }
+
   // ------------------------------------------------------------------ HELP
   function renderHELP() {
     const cmds = [["AAPL", "help.quote"], ["AAPL FA", "help.fa"], ["MC.PA RISK", "help.risk"], ["NVDA NEWS", "help.news"],
-      ["MKTS", "help.mkts"], ["ECO", "help.eco"], ["LANG FR / LANG EN", "help.lang"], ["HELP", "help.help"]];
+      ["MKTS", "help.mkts"], ["EQS", "help.eqs"], ["ECO", "help.eco"], ["LANG FR / LANG EN", "help.lang"], ["HELP", "help.help"]];
     return panel({ title: "HELP", updated: null, source: "Atlas Terminal",
       body: `<div class="help-list">${cmds.map(([c, k]) => `<code>${c}</code> — ${t(k)}`).join("<br>")}</div><p class="note">${t("help.more")}</p>` });
   }
@@ -539,7 +599,7 @@
   async function render() {
     const seq = ++renderSeq;
     renderTabs(); renderClocks();
-    const fn = { MKTS: renderMKTS, QUOTE: renderQUOTE, FA: renderFA, RISK: renderRISK, NEWS: renderNEWS, ECO: renderECO, HELP: renderHELP }[S.tab];
+    const fn = { MKTS: renderMKTS, QUOTE: renderQUOTE, FA: renderFA, RISK: renderRISK, NEWS: renderNEWS, ECO: renderECO, EQS: renderEQS, HELP: renderHELP }[S.tab];
     let out = await fn();
     if (seq !== renderSeq) return;            // a newer render started meanwhile
     if (typeof out === "string") out = { html: out };
@@ -595,9 +655,15 @@
   function renderWlEditor() {
     const m = meta(); if (!m) return;
     const wl = watchlist();
-    const byRegion = r => m.watchlist_universe.filter(tk => UNI[tk].region === r);
     const box = tk => `<label><input type="checkbox" data-wl="${esc(tk)}" ${wl.includes(tk) ? "checked" : ""}>${esc(tk)} <span>${esc(UNI[tk].name)}</span></label>`;
-    $("#wlBody").innerHTML = ["US", "EU"].map(r => `<div class="wl-h">${t("region." + r)}</div><div class="wl-grid">${byRegion(r).map(box).join("")}</div>`).join("") +
+    const group = (title, tks) => (tks.length ? `<div class="wl-h">${title}</div><div class="wl-grid">${tks.map(box).join("")}</div>` : "");
+    const all = m.watchlist_universe.map(tk => UNI[tk]);
+    const smid = all.filter(u => u.region === "EU" && u.segment === "smid");
+    const countries = [...new Set(smid.map(u => u.country))].sort();
+    $("#wlBody").innerHTML =
+      group(t("region.US"), all.filter(u => u.region === "US").map(u => u.ticker)) +
+      group(`${t("region.EU")} — ${t("seg.large")}`, all.filter(u => u.region === "EU" && u.segment !== "smid").map(u => u.ticker)) +
+      countries.map(c => group(`${t("region.EU")} — ${t("seg.smid")} — ${t("country." + c)}`, smid.filter(u => u.country === c).map(u => u.ticker))).join("") +
       `<p class="note">${t("wl.note")}</p>`;
   }
   function openDialog(id) { $(id).hidden = false; }
@@ -612,6 +678,22 @@
       if (e.key === "/" && document.activeElement !== $("#cmd")) { e.preventDefault(); $("#cmd").focus(); }
     });
     document.addEventListener("click", async e => {
+      const star = e.target.closest("[data-star]");
+      if (star) {  // add / remove from watchlist without leaving the screener
+        e.stopPropagation();
+        const set = new Set(watchlist()), tk = star.dataset.star;
+        if (set.has(tk)) set.delete(tk); else set.add(tk);
+        S.watchlist = meta().watchlist_universe.filter(x => set.has(x));
+        LS.set("watchlist", S.watchlist);
+        return render();
+      }
+      const th = e.target.closest("[data-sort]");
+      if (th) {
+        const k = th.dataset.sort;
+        S.eqs.dir = S.eqs.sort === k ? -S.eqs.dir : (["ticker", "name", "country", "segment"].includes(k) ? 1 : -1);
+        S.eqs.sort = k; LS.set("eqs", S.eqs);
+        return render();
+      }
       const el = e.target.closest("[data-tab],[data-goto],[data-range],[data-action],[data-set],[data-close]");
       if (!el) { if (e.target.classList.contains("overlay")) closeDialogs(); return; }
       if (el.dataset.close !== undefined) return closeDialogs();
@@ -633,6 +715,11 @@
       if (el.dataset.action === "quote-ticker") go("QUOTE", el.value);
       if (el.dataset.action === "fa-ticker") go("FA", el.value);
       if (el.dataset.action === "news-ticker") { S.newsTicker = el.value; render(); }
+      if (el.dataset.eqs) {
+        S.eqs[el.dataset.eqs] = el.value;
+        if (el.dataset.eqs === "region") S.eqs.country = "ALL";
+        LS.set("eqs", S.eqs); render();
+      }
       if (el.dataset.wl) {
         const set = new Set(watchlist());
         if (el.checked) set.add(el.dataset.wl); else set.delete(el.dataset.wl);

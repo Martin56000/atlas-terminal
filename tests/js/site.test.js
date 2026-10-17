@@ -38,6 +38,8 @@ test("command parser", () => {
   assert.deepEqual(C.parseCommand("AAPL FA", U), { type: "ticker", ticker: "AAPL", tab: "FA" });
   assert.deepEqual(C.parseCommand("mc.pa risk", U), { type: "ticker", ticker: "MC.PA", tab: "RISK" });
   assert.deepEqual(C.parseCommand("ECO", U), { type: "tab", tab: "ECO" });
+  assert.deepEqual(C.parseCommand("eqs", U), { type: "tab", tab: "EQS" });
+  assert.equal(C.parseCommand("AAPL EQS", U).type, "error");
   assert.deepEqual(C.parseCommand("lang en", U), { type: "lang", lang: "en" });
   assert.equal(C.parseCommand("TSLAA", U).type, "error");
   assert.equal(C.parseCommand("AAPL XYZ", U).type, "error");
@@ -67,7 +69,9 @@ test("translations: FR and EN have the same keys and cover every key used", () =
   for (const m of app.matchAll(/\bt\("([a-z0-9_.]+)"/g)) used.add(m[1]);
   for (const m of app.matchAll(/"((?:fa|sent|cmd|help)\.[a-z0-9_]+)"/g)) used.add(m[1]);
   for (const m of html.matchAll(/data-i18n(?:-placeholder|-title)?="([^"]+)"/g)) used.add(m[1]);
-  ["MKTS", "QUOTE", "FA", "RISK", "NEWS", "ECO"].forEach(x => used.add("tab." + x));        // t("tab." + tab)
+  C.TABS.forEach(x => used.add("tab." + x));                                                // t("tab." + tab)
+  ["FR", "DE", "NL", "CH", "GB", "DK", "ES", "IT", "US"].forEach(x => used.add("country." + x)); // t("country." + c)
+  ["large", "smid", "us"].forEach(x => used.add("seg." + x));                              // t("seg." + segment)
   ["positive", "neutral", "negative"].forEach(x => used.add("sent." + x));                 // t("sent." + label)
   ["US", "EU"].forEach(x => used.add("region." + x));                                      // t("region." + r)
   const missing = [...used].filter(k => !k.endsWith(".") && !(k in fr)); // "tab." etc. = dynamic prefixes, checked above

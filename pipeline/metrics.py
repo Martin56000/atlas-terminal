@@ -81,4 +81,6 @@ def risk_metrics(prices: pd.Series, bench_prices: pd.Series, rf: float, window: 
         "sharpe": sharpe_ratio(ret, vol, rf) if (ret is not None and vol is not None and rf is not None) else None,
         "beta": beta(r, b),
         "max_drawdown": max_drawdown(p) if len(p) else None,
+        # simple total return over the window (adjusted closes, dividends included): P_end / P_start - 1
+        "perf_window": float(p.iloc[-1] / p.iloc[0] - 1) if len(p) >= 2 else None,
     }

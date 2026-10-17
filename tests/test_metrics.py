@@ -85,3 +85,10 @@ def test_risk_metrics_combined():
     assert out["sharpe"] == pytest.approx(-0.03 / out["ann_vol"])
     assert out["beta"] == pytest.approx(1.0)
     assert out["max_drawdown"] == pytest.approx(-0.50)
+    assert out["perf_window"] == pytest.approx(0.0)      # 200 -> 200
+
+
+def test_perf_window_hand_example():
+    # window=2 keeps 80, 100, 120 -> total return 120/80 - 1 = +50 %
+    out = m.risk_metrics(s([50, 80, 100, 120]), s([1, 2, 3, 4]), rf=0.0, window=2)
+    assert out["perf_window"] == pytest.approx(0.50)

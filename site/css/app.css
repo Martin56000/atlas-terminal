@@ -157,4 +157,9 @@ table.t { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-
 input[type=checkbox] { accent-color: var(--amber); }
 .help-list { color: var(--ink); line-height: 1.8; }
 .help-list code { color: var(--key); background: #111; padding: 1px 5px; }
+.t th.sortable { cursor: pointer; user-select: none; }
+.t th.sortable:hover { color: var(--amber); }
+.star { background: transparent; border: 0; color: var(--muted); cursor: pointer; font-size: 14px; padding: 0 2px; }
+.star.on { color: var(--key); }
+.ph-tools select { max-width: 180px; }
 .ok-badge { color: var(--up); } .ko-badge { color: var(--err); }

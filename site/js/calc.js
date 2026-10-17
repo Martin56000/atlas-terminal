@@ -1,7 +1,7 @@
 /* Pure helpers shared by the site and the Node tests. No DOM, no data. */
 (function (root) {
   "use strict";
-  const TABS = ["MKTS", "QUOTE", "FA", "RISK", "NEWS", "ECO"];
+  const TABS = ["MKTS", "QUOTE", "FA", "RISK", "NEWS", "ECO", "EQS"];
 
   function safeName(t) { return t.replace(/[^A-Za-z0-9.\-]/g, "_"); }
 
@@ -65,7 +65,7 @@
     const ticker = universe.find(t => t.toUpperCase() === a);
     if (!ticker) return { type: "error", key: "cmd.unknown", arg: parts.join(" ") };
     if (!b) return { type: "ticker", ticker, tab: "QUOTE" };
-    if (TABS.includes(b) && b !== "MKTS" && b !== "ECO") return { type: "ticker", ticker, tab: b };
+    if (TABS.includes(b) && !["MKTS", "ECO", "EQS"].includes(b)) return { type: "ticker", ticker, tab: b };
     return { type: "error", key: "cmd.unknown_fn", arg: b };
   }
 

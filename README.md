@@ -50,5 +50,6 @@ tourne à chaque chargement quotidien ; son résultat est affiché dans l'onglet
 ## Phases
 
 - [x] Phase 1 : MKTS, QUOTE, FA, RISK, NEWS, ECO, roue crantée FR/EN, actions européennes
+- [x] Small & mid caps européennes (65 valeurs, 8 pays) + indices SBF 120, STOXX 600, MDAX, SDAX, FTSE 250 + onglet EQS (filtre)
 - [ ] Phase 2 : DEALS, COMPS
 - [ ] Phase 3 : DCF, HELP détaillé

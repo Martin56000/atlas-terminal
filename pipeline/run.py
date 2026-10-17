@@ -17,7 +17,7 @@ from . import config, metrics, schedule, store
 from .market import safe_name
 
 US_QUOTES = [t["ticker"] for t in config.US_WATCH + config.US_OVERVIEW_EXTRA] + ["BZ=F", "GC=F"]
-EU_QUOTES = [t["ticker"] for t in config.EU_WATCH + config.EU_INDICES] + ["EURUSD=X"]
+EU_QUOTES = [t["ticker"] for t in config.EU_WATCH + config.EU_SMID + config.EU_INDICES] + ["EURUSD=X"]
 ALL = [t["ticker"] for t in config.UNIVERSE]
 
 
@@ -206,12 +206,16 @@ def task_fundamentals():
         store.run_dataset(name, src, lambda t=t: fa.fetch_company(client, t, ciks))
 
 
-def task_news():
+def task_news(tickers=None):
+    """Refresh news for `tickers` (default: all) and merge with the other tickers' last results."""
     from . import news, sentiment
-    log("news + sentiment")
+    tickers = tickers or config.WATCHLIST_UNIVERSE
+    log(f"news + sentiment: {len(tickers)} tickers")
     cache = store.read("sentiment_cache.json") or {}
+    prev = store.read("news.json") or {}
+    data = {t: v for t, v in (prev.get("data") or {}).items() if t in config.WATCHLIST_UNIVERSE and t not in tickers}
     per, all_items = {}, []
-    for t in config.WATCHLIST_UNIVERSE:
+    for t in tickers:
         try:
             res = news.fetch_for_ticker(t)
             per[t] = res
@@ -224,15 +228,14 @@ def task_news():
     except Exception as e:  # noqa: BLE001
         traceback.print_exc()
         sentiment_error = f"{type(e).__name__}: {e}"[:300]
-    live_links = set()
-    data = {}
+    fetched = store.now_iso()
     for t, res in per.items():
         en = sentiment.attach(res["en"], cache)
         fr = sentiment.attach(res["fr"], cache) if res["fr"] is not None else None
-        live_links.update(h["link"] for h in en)
         failed = not en and not fr and res["errors"]
-        data[t] = {"status": "error" if failed else "ok", "errors": res["errors"],
+        data[t] = {"status": "error" if failed else "ok", "errors": res["errors"], "fetched_at": fetched,
                    "en": en, "fr": fr, "avg": sentiment.average(en)}
+    live_links = {h["link"] for v in data.values() for h in (v.get("en") or [])}
     store.write("sentiment_cache.json", {k: v for k, v in cache.items() if k in live_links})
     store.write("news.json", store.envelope_ok("Yahoo Finance news + Google News RSS; sentiment: ProsusAI/finbert",
                                                data, {"sentiment_error": sentiment_error}))
@@ -272,15 +275,12 @@ def main(argv=None):
     today = now.astimezone(schedule.PARIS).date().isoformat()
     paris_t = now.astimezone(schedule.PARIS).time()
     if "daily" in tasks:
-        _safe(task_macro, "macro.json", "FRED (fred.stlouisfed.org) + ECB Data Portal")
+        _safe(task_macro, "macro.json", "FRED / US Treasury / NY Fed / BLS / ECB")
         task_history(currencies)
         task_quotes(US_QUOTES, "US", currencies)
         task_quotes(EU_QUOTES, "EU", currencies)
         task_risk()
         task_fundamentals()
-        if "news" not in tasks:
-            task_news()
-            state["news_at"] = store.now_iso()
         task_validate()
         state["daily"] = today
         if paris_t >= schedule._hm(config.EU_CLOSE_RUN_AT):
@@ -294,8 +294,11 @@ def main(argv=None):
         task_quotes(US_QUOTES, "US", currencies)
     if "quotes_eu" in tasks and "daily" not in tasks and "eu_close" not in tasks:
         task_quotes(EU_QUOTES, "EU", currencies)
-    if "news" in tasks:
+    if "daily" in tasks or "eu_close" in tasks:      # all tickers, small & mid caps included
         task_news()
+        state["news_at"] = store.now_iso()
+    elif "news" in tasks:                            # hourly: large caps only
+        task_news(config.NEWS_HOURLY)
         state["news_at"] = store.now_iso()
 
     meta.update({

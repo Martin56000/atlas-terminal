@@ -84,3 +84,22 @@ def test_market_calendars_know_the_coming_year():
     horizon = pd.Timestamp.now().normalize() + pd.Timedelta(days=300)
     for ex in ("XNYS", "XPAR", "XETR", "XLON"):
         assert xcals.get_calendar(ex).last_session >= horizon, ex
+
+
+def test_translation_never_changes_a_number():
+    from pipeline import translate
+    assert translate.numbers_ok("LVMH was founded in 1765", "LVMH a été fondée en 1765")
+    assert not translate.numbers_ok("LVMH was founded in 1765", "LVMH a été fondée en 1365")   # real model error
+    assert translate.numbers_ok("Sales up 3.5% to $1,234m", "Ventes en hausse de 3,5 % à 1 234 M$")
+    assert not translate.numbers_ok("Q3 sales up 12%", "Ventes en hausse de 12 %")             # a number dropped
+
+    def fake(sents, **k):
+        return [{"translation_text": {"It was founded in 1765.": "Elle a été fondée en 1365.",
+                                      "It sells wine.": "Elle vend du vin."}[s]} for s in sents]
+    out = translate.translate_text("It sells wine. It was founded in 1765.", tr=fake)
+    assert out == "Elle vend du vin. It was founded in 1765."      # the bad sentence stays in English
+    cache = translate.translate_new([{"lang": "en", "link": "l", "title": "Q3 up 12%"}], {},
+                                    tr=lambda xs, **k: [{"translation_text": "Hausse au T3"}])
+    assert cache == {"l": ""}
+    h = translate.attach([{"lang": "en", "link": "l", "title": "Q3 up 12%"}], cache)
+    assert h[0]["title_fr"] is None

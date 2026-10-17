@@ -1,7 +1,7 @@
 /* Pure helpers shared by the site and the Node tests. No DOM, no data. */
 (function (root) {
   "use strict";
-  const TABS = ["MKTS", "QUOTE", "DES", "FA", "RISK", "NEWS", "ECO", "EQS", "COMPS", "DEALS"];
+  const TABS = ["LP", "MKTS", "WEI", "MOST", "QUOTE", "GIP", "HP", "DES", "FA", "DVD", "RISK", "NEWS", "ECO", "FXC", "EQS", "COMPS", "DEALS", "STATUS"];
 
   function safeName(t) { return t.replace(/[^A-Za-z0-9.\-]/g, "_"); }
 
@@ -52,8 +52,56 @@
     return { tickers: avail, matrix, n: dates.length };
   }
 
-  const TICKER_FNS = ["QUOTE", "DES", "FA", "RISK", "NEWS", "COMPS", "DEALS"];
-  const COMMANDS = ["MKTS", "EQS", "COMPS", "DEALS", "ECO", "RISK", "NEWS", "QUOTE", "DES", "FA", "HELP", "LANG FR", "LANG EN"];
+  const TICKER_FNS = ["QUOTE", "GIP", "HP", "DES", "FA", "DVD", "RISK", "NEWS", "COMPS", "DEALS"];
+  const COMMANDS = ["LP", "MKTS", "WEI", "MOST", "FXC", "EQS", "COMPS", "DEALS", "ECO", "STATUS", "RISK", "NEWS", "QUOTE", "DES", "FA", "HELP", "LANG FR", "LANG EN"];
+
+  // ---- terminal-style syntax: "MC FP Equity DES <GO>", "SX5E Index GP", "EURUSD Curncy", function mnemonics
+  const EXCH = { FP: ".PA", GY: ".DE", GR: ".DE", NA: ".AS", SW: ".SW", SE: ".SW", VX: ".SW", LN: ".L", DC: ".CO",
+    SM: ".MC", SQ: ".MC", IM: ".MI", BB: ".BR", SS: ".ST", NO: ".OL", FH: ".HE", PL: ".LS", US: "", UN: "", UW: "", UQ: "" };
+  const SUFFIX_CODE = { ".PA": "FP", ".DE": "GY", ".AS": "NA", ".SW": "SW", ".L": "LN", ".CO": "DC", ".MC": "SM", ".MI": "IM",
+    ".BR": "BB", ".ST": "SS", ".OL": "NO", ".HE": "FH", ".LS": "PL" };
+  const INDEX_CODES = { SX5E: "^STOXX50E", CAC: "^FCHI", DAX: "^GDAXI", UKX: "^FTSE", AEX: "^AEX", SMI: "^SSMI", IBEX: "^IBEX",
+    FTSEMIB: "FTSEMIB.MI", SXXP: "^STOXX", SBF120: "^SBF120", MDAX: "^MDAXI", SDAX: "^SDAXI", MCX: "^FTMC", SPX: "^GSPC",
+    INDU: "^DJI", CCMP: "^IXIC", RTY: "^RUT", NKY: "^N225", HSI: "^HSI", SHCOMP: "000001.SS", AS51: "^AXJO", KOSPI: "^KS11", VIX: "^VIX" };
+  const CMDTY_CODES = { CO1: "BZ=F", BRENT: "BZ=F", GC1: "GC=F", XAU: "GC=F" };
+  const SECTORS = ["EQUITY", "INDEX", "CURNCY", "COMDTY", "CMDTY"];
+  // mnemonics of the classic terminal -> our screens (+ section of the company page)
+  const FN_ALIASES = { GP: ["QUOTE"], ANR: ["DES", "targets"], EE: ["DES", "consensus"], ERN: ["DES", "surprises"], RV: ["COMPS"],
+    MA: ["DEALS"], CN: ["NEWS"], N: ["NEWS"], TOP: ["NEWS"], BETA: ["RISK"], HDS: ["DES"], FXIP: ["FXC"] };
+  const TAB_ALIASES = { MON: "MKTS", BTMM: "ECO", FX: "FXC", WB: "ECO" };
+  const STANDALONE = ["LP", "MKTS", "WEI", "MOST", "FXC", "EQS", "COMPS", "DEALS", "ECO", "STATUS", "NEWS", "RISK"];
+
+  function bbgCode(ticker, item) {
+    for (const [code, tk] of Object.entries(INDEX_CODES)) if (tk === ticker) return code + " Index";
+    if (/^EUR[A-Z]{3}=X$/.test(ticker)) return ticker.slice(0, 6) + " Curncy";
+    for (const [code, tk] of Object.entries(CMDTY_CODES)) if (tk === ticker) return code + " Comdty";
+    const m = ticker.match(/^(.*?)(\.[A-Z]{1,2})$/);
+    if (m && SUFFIX_CODE[m[2]]) return m[1].replace(/-/g, "") + " " + SUFFIX_CODE[m[2]] + " Equity";
+    if (item && item.kind === "index") return ticker + " Index";
+    return ticker + " US Equity";
+  }
+
+  // "MC FP [Equity]" / "SX5E Index" / "EURUSD Curncy" / "CO1 Comdty" at the start of the input -> {ticker, used}
+  function resolveSecurity(parts, universe) {
+    const items = asItems(universe);
+    const has = tk => items.some(u => u.ticker === tk);
+    const [a, b, c] = parts;
+    if (!a) return null;
+    const sectorAt = i => SECTORS.includes(parts[i]);
+    if (INDEX_CODES[a] && has(INDEX_CODES[a])) return { ticker: INDEX_CODES[a], used: b === "INDEX" ? 2 : 1 };
+    if (CMDTY_CODES[a] && has(CMDTY_CODES[a])) return { ticker: CMDTY_CODES[a], used: sectorAt(1) ? 2 : 1 };
+    if (/^EUR[A-Z]{3}$/.test(a) && has(a + "=X")) return { ticker: a + "=X", used: b === "CURNCY" ? 2 : 1 };
+    if (b && b in EXCH) {
+      const suffix = EXCH[b];
+      const match = items.find(u => {
+        const m = u.ticker.match(/^(.*?)(\.[A-Z]{1,2})?$/);
+        const base = (m[1] || "").replace(/-/g, "").toUpperCase(), sfx = m[2] || "";
+        return base === a.replace(/-/g, "") && (suffix === "" ? sfx === "" : sfx === suffix);
+      });
+      if (match) return { ticker: match.ticker, used: c && SECTORS.includes(c) ? 3 : 2 };
+    }
+    return null;
+  }
 
   // lower-case, accents and punctuation removed: "L'Oréal" -> "loreal", "Hermès" -> "hermes"
   function norm(s) {
@@ -120,8 +168,34 @@
   }
 
   function parseCommand(input, universe) {
-    const parts = String(input || "").trim().toUpperCase().split(/\s+/).filter(Boolean);
+    input = String(input || "").replace(/<\s*GO\s*>/gi, " ").replace(/\s+GO\s*$/i, " ").trim();
+    let parts = input.toUpperCase().split(/\s+/).filter(Boolean);
     if (!parts.length) return { type: "none" };
+    if (/^\d{1,2}$/.test(parts[0]) && parts.length === 1) return { type: "menu", n: Number(parts[0]) };
+    if (parts.length === 1 && TAB_ALIASES[parts[0]]) return { type: "tab", tab: TAB_ALIASES[parts[0]] };
+    // function alone ("GP", "ANR", "HP", "DVD") -> on the current security
+    if (parts.length === 1 && TICKER_FNS.includes(parts[0]) && !STANDALONE.includes(parts[0])) return { type: "fn", tab: parts[0] };
+    // function mnemonic alone ("GP", "ANR") -> on the current security
+    if (parts.length === 1 && FN_ALIASES[parts[0]] && !STANDALONE.includes(parts[0])) {
+      const [tab, section] = FN_ALIASES[parts[0]];
+      return Object.assign({ type: "fn", tab }, section ? { section } : {});
+    }
+    // terminal syntax for the security
+    const sec = resolveSecurity(parts, universe);
+    if (sec) {
+      const rest = parts.slice(sec.used);
+      if (!rest.length) return { type: "ticker", ticker: sec.ticker, tab: "QUOTE" };
+      const f = rest[0];
+      if (FN_ALIASES[f]) return Object.assign({ type: "ticker", ticker: sec.ticker, tab: FN_ALIASES[f][0] }, FN_ALIASES[f][1] ? { section: FN_ALIASES[f][1] } : {});
+      if (TICKER_FNS.includes(f)) return { type: "ticker", ticker: sec.ticker, tab: f };
+      return { type: "error", key: "cmd.unknown_fn", arg: f };
+    }
+    // "AAPL GP" / "lvmh anr": map mnemonics in second position
+    if (parts.length >= 2 && FN_ALIASES[parts[parts.length - 1]]) {
+      const [tab, section] = FN_ALIASES[parts[parts.length - 1]];
+      const r = parseCommand(parts.slice(0, -1).join(" ") + " " + tab, universe);
+      if (r.type === "ticker") return Object.assign(r, section ? { section } : {});
+    }
     const [a, b] = parts;
     if (a === "HELP" && !b) return { type: "help" };
     if (a === "LANG") {
@@ -172,7 +246,13 @@
     return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2;
   }
 
-  const api = { median, TABS, safeName, sma, pearson, correlationMatrix, parseCommand, suggest, resolveTicker, norm, isOpen, sessionsClosedSince, parisMinutes };
+  // a machine translation must not contain a number that is not in the original
+  function numbersSubset(src, dst) {
+    const count = s => (String(s || "").match(/\d+/g) || []).reduce((m, x) => (m[x] = (m[x] || 0) + 1, m), {});
+    const a = count(src), b = count(dst);
+    return Object.keys(b).every(k => (a[k] || 0) >= b[k]);
+  }
+  const api = { numbersSubset, bbgCode, resolveSecurity, FN_ALIASES, median, TABS, safeName, sma, pearson, correlationMatrix, parseCommand, suggest, resolveTicker, norm, isOpen, sessionsClosedSince, parisMinutes };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.AtlasCalc = api;
 })(this);

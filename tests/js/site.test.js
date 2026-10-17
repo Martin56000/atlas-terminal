@@ -116,7 +116,7 @@ test("suggest: names, tickers, accents, aliases", () => {
 });
 
 test("suggest: functions after a ticker, commands", () => {
-  assert.deepEqual(C.suggest("TTE.PA ", UNI).map(s => s.value), ["TTE.PA QUOTE", "TTE.PA DES", "TTE.PA FA", "TTE.PA RISK", "TTE.PA NEWS", "TTE.PA COMPS", "TTE.PA DEALS"]);
+  assert.deepEqual(C.suggest("TTE.PA ", UNI).map(s => s.value), "QUOTE GIP HP DES FA DVD RISK NEWS COMPS DEALS".split(" ").map(f => "TTE.PA " + f));
   assert.deepEqual(C.suggest("total f", UNI).map(s => s.value), ["TTE.PA FA"]); // exact name/alias works too
   assert.deepEqual(C.suggest("TTE.PA f", UNI).map(s => s.value), ["TTE.PA FA"]);
   assert.ok(C.suggest("EC", UNI).some(s => s.kind === "cmd" && s.value === "ECO"));
@@ -144,4 +144,24 @@ test("new tabs reachable from the command bar", () => {
   assert.deepEqual(C.parseCommand("lvmh des", U), { type: "ticker", ticker: "MC.PA", tab: "DES" });
   assert.deepEqual(C.parseCommand("MC.PA COMPS", U), { type: "ticker", ticker: "MC.PA", tab: "COMPS" });
   assert.deepEqual(C.parseCommand("deals", U), { type: "tab", tab: "DEALS" });
+});
+
+test("terminal syntax: security codes, mnemonics, menus", () => {
+  const u = UNI.concat([{ ticker: "^STOXX50E", name: "Euro Stoxx 50", kind: "index", region: "EU" }]);
+  assert.deepEqual(C.parseCommand("TTE FP Equity DES <GO>", u), { type: "ticker", ticker: "TTE.PA", tab: "DES" });
+  assert.deepEqual(C.parseCommand("MC FP ANR GO", u), { type: "ticker", ticker: "MC.PA", tab: "DES", section: "targets" });
+  assert.deepEqual(C.parseCommand("SX5E Index GP", u), { type: "ticker", ticker: "^STOXX50E", tab: "QUOTE" });
+  assert.deepEqual(C.parseCommand("3", u), { type: "menu", n: 3 });
+  assert.deepEqual(C.parseCommand("EE", u), { type: "fn", tab: "DES", section: "consensus" });
+  assert.deepEqual(C.parseCommand("HP", u), { type: "fn", tab: "HP" });
+  assert.deepEqual(C.parseCommand("MON", u), { type: "tab", tab: "MKTS" });
+  assert.equal(C.parseCommand("MC FP XYZ", u).type, "error");      // unknown function: never guessed
+  assert.equal(C.bbgCode("TTE.PA"), "TTE FP Equity");
+  assert.equal(C.bbgCode("^STOXX50E"), "SX5E Index");
+});
+
+test("translations with a changed number are not shown", () => {
+  assert.equal(C.numbersSubset("founded in 1765", "fondée en 1765"), true);
+  assert.equal(C.numbersSubset("founded in 1765", "fondée en 1365"), false);
+  assert.equal(C.numbersSubset("up 3.5% to 1,234", "hausse de 3,5 % à 1 234"), true);
 });

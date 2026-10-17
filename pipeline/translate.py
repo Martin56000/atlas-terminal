@@ -44,6 +44,16 @@ def fix_terms(text):
     return text
 
 
+def numbers_ok(src, dst, subset=False):
+    """Machine translation must never change a number: the digit groups of the translation must be
+    exactly those of the source (or, subset=True, all found in the source). "1,234.5" vs "1 234,5"
+    both give 1 / 234 / 5, so only real changes are caught."""
+    import re
+    from collections import Counter
+    a, b = Counter(re.findall(r"\d+", src or "")), Counter(re.findall(r"\d+", dst or ""))
+    return not (b - a) if subset else a == b
+
+
 def translate_new(headlines, cache, tr=None, budget_s=None, batch=16):
     """Translate English headlines whose link is not in cache, newest first, within a time budget
     (the rest stays in English and is translated in the next runs). Mutates and returns cache."""
@@ -58,16 +68,17 @@ def translate_new(headlines, cache, tr=None, budget_s=None, batch=16):
                 break
             chunk = todo[i:i + batch]
             for h, r in zip(chunk, tr([h["title"] for h in chunk], batch_size=batch, max_length=256)):
-                text = (r.get("translation_text") or "").strip()
-                if text:
-                    cache[h["link"]] = fix_terms(text)
+                text = fix_terms((r.get("translation_text") or "").strip())
+                # "" = translated but rejected (a number changed): shown in English, not retried
+                cache[h["link"]] = text if text and numbers_ok(h["title"], text) else ""
     return cache
 
 
 def attach(items, cache):
     for h in items:
         tr = cache.get(h["link"]) if h["lang"] == "en" else None
-        h["title_fr"] = fix_terms(tr) if tr else None   # also fixes translations cached before the glossary
+        # also fixes translations cached before the glossary / the number check
+        h["title_fr"] = fix_terms(tr) if tr and numbers_ok(h["title"], tr) else None
     return items
 
 
@@ -85,4 +96,6 @@ def translate_text(text, tr=None, max_sentences=None):
         return None
     tr = tr or translator()
     out = tr(sents, batch_size=8, max_length=256)
-    return fix_terms(" ".join((r.get("translation_text") or "").strip() for r in out))
+    fr = [fix_terms((r.get("translation_text") or "").strip()) for r in out]
+    # a sentence whose numbers changed stays in English rather than showing a wrong figure
+    return " ".join(f if f and numbers_ok(s, f) else s for s, f in zip(sents, fr))

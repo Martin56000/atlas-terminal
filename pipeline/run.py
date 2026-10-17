@@ -277,7 +277,7 @@ def rotation(prefix, tickers, n, max_age_h, error_age_h=24):
 
 def task_company():
     import time
-    from . import company
+    from . import company, translate
     stocks = [t for t in config.WATCHLIST_UNIVERSE if config.BY_TICKER[t]["kind"] == "stock"]
     todo = rotation("company", stocks, config.COMPANY_PER_RUN, config.COMPANY_MAX_AGE_H)
     log(f"company pages (Yahoo): {len(todo)} of {len(stocks)}")
@@ -287,7 +287,8 @@ def task_company():
 
         def fetch_keep(t=t, prev_pf=prev_pf):
             d = company.fetch(t)
-            if prev_pf.get("summary_fr") and prev_pf.get("summary") == d["profile"].get("summary"):
+            if (prev_pf.get("summary_fr") and prev_pf.get("summary") == d["profile"].get("summary")
+                    and translate.numbers_ok(prev_pf["summary"], prev_pf["summary_fr"], subset=True)):
                 d["profile"]["summary_fr"] = prev_pf["summary_fr"]
             return d
         store.run_dataset(f"company/{safe_name(t)}.json", src, fetch_keep)
@@ -307,7 +308,7 @@ def task_translate_profiles(budget_s=360):
         if not env or env["_meta"]["status"] != "ok":
             continue
         pf = env["data"].get("profile") or {}
-        if not pf.get("summary") or pf.get("summary_fr"):
+        if not pf.get("summary") or (pf.get("summary_fr") and translate.numbers_ok(pf["summary"], pf["summary_fr"], subset=True)):
             continue
         try:
             pf["summary_fr"] = translate.translate_text(pf["summary"], max_sentences=3)

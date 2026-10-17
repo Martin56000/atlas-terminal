@@ -190,3 +190,72 @@ input[type=checkbox] { accent-color: var(--amber); }
 .gloss td { white-space: normal; vertical-align: top; }
 .gloss td:first-child { white-space: nowrap; }
 @media (max-width: 1500px) { .tab .note { display: none; } }
+
+/* ===================== terminal look: input fields blue, GO green, families of functions ===================== */
+:root { --field: #0b2b6b; --field-ink: #fff; --go: #00a650; }
+.cmd { border-color: #2f5fbf; background: var(--field); }
+.cmd input { color: var(--field-ink); }
+.cmd input::placeholder { color: #8ea8dc; }
+.cmd-prompt { color: #fff; background: #1c3f8a; align-self: stretch; display: grid; place-items: center; }
+.cmd-go { background: var(--go); color: #000; letter-spacing: .5px; }
+.cmd-go:hover { background: #19c46a; }
+select, .lp-cmd input { background: var(--field); color: var(--field-ink); border-color: #2f5fbf; }
+.tab.g-home { border-top: 2px solid var(--go); }
+.tab.g-mkt { border-top: 2px solid var(--key); }
+.tab.g-sec { border-top: 2px solid var(--amber); }
+.tab.g-sys { border-top: 2px solid #9a9a9a; }
+.ph-title .sec { color: #fff; background: #1c3f8a; padding: 0 6px; text-transform: none; }
+.pnum { color: #fff; font-weight: 600; }
+.panel.hit { outline: 1px solid var(--amber); }
+
+/* scrolling tape */
+.tape { overflow: hidden; white-space: nowrap; background: #0b0b0b; border-bottom: 1px solid var(--line); font-size: 12px; height: 24px; line-height: 24px; }
+.tape-track { display: inline-block; padding-left: 100%; animation: tape 90s linear infinite; }
+.tape:hover .tape-track { animation-play-state: paused; }
+.tape .ti { margin-right: 28px; cursor: pointer; color: var(--ink); }
+.tape .ti b { color: var(--amber); font-weight: 500; margin-right: 4px; }
+@keyframes tape { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+@media (prefers-reduced-motion: reduce) { .tape-track { animation: none; padding-left: 16px; } .tape { overflow-x: auto; } }
+
+/* numbered menu of the current screen */
+.menu { display: flex; flex-wrap: wrap; gap: 2px 14px; padding: 4px 16px; border-bottom: 1px solid var(--line); font-size: 12px; }
+.menu .mi { background: none; border: 0; color: var(--amber); cursor: pointer; padding: 1px 0; font: inherit; }
+.menu .mi b { color: #fff; }
+.menu .mi:hover { text-decoration: underline; }
+
+/* bottom status bar */
+body { padding-bottom: 26px; }
+.statusbar { position: fixed; left: 0; right: 0; bottom: 0; height: 24px; display: flex; gap: 18px; align-items: center; padding: 0 16px;
+  background: #101010; border-top: 1px solid var(--line-strong); font-size: 11px; color: var(--muted); z-index: 30; white-space: nowrap; overflow: hidden; }
+.statusbar .sb-delay { background: var(--key); color: #000; padding: 0 6px; font-weight: 600; }
+.statusbar a { cursor: pointer; }
+.statusbar .sb-ok { color: var(--up); }
+.statusbar .sb-alert { color: #000; background: var(--down); padding: 0 6px; }
+.statusbar .sb-right { margin-left: auto; }
+@media (max-width: 700px) { .statusbar .sb-right { display: none; } }
+
+/* flash on change */
+.flash-up { animation: flup 1.5s ease-out; }
+.flash-down { animation: fldn 1.5s ease-out; }
+@keyframes flup { 0% { background: #0f6b2e; color: #fff; } 100% { background: transparent; } }
+@keyframes fldn { 0% { background: #8a1b1b; color: #fff; } 100% { background: transparent; } }
+
+/* WEI / FXC / STATUS */
+.t tr.grp td { text-align: left; color: #fff; background: #1a1a1a; font-weight: 600; letter-spacing: 1px; }
+.t.fxc td { text-align: center; } .t.fxc th { text-align: center; }
+.small { font-size: 11px; }
+.warn { color: var(--key) !important; }
+.sub { color: var(--amber); margin: 6px 0 2px; font-size: 12px; text-transform: uppercase; }
+
+/* launchpad: 2 x 2 windows */
+.lp { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; grid-column: span 12; }
+.lp-pane { min-height: 360px; display: flex; flex-direction: column; }
+.lp-pane .pb { overflow: auto; max-height: 420px; }
+.lp-cmd { display: flex; gap: 2px; }
+.lp-cmd input { width: 150px; font: inherit; font-size: 12px; padding: 1px 4px; text-transform: uppercase; border: 1px solid #2f5fbf; }
+.lp-cmd .btn { background: var(--go); color: #000; border-color: var(--go); }
+.qhead .px.small { font-size: 18px; }
+@media (max-width: 900px) { .lp { grid-template-columns: 1fr; } }
+.lp .panel { grid-column: auto; }
+.main > .note { grid-column: span 12; }
+.t td.wrap { white-space: normal; max-width: 380px; }

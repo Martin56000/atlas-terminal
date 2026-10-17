@@ -19,7 +19,7 @@
     <span class="cmd-prompt">&gt;</span>
     <input id="cmd" type="text" spellcheck="false" aria-label="Command" data-i18n-placeholder="cmd.placeholder"
       role="combobox" aria-autocomplete="list" aria-controls="cmdSugg" aria-expanded="false">
-    <button type="submit" class="cmd-go">GO</button>
+    <button type="submit" class="cmd-go">&lt;GO&gt;</button>
     <ul class="sugg" id="cmdSugg" role="listbox" hidden></ul>
   </form>
   <div class="clocks" id="clocks"></div>
@@ -27,10 +27,13 @@
     <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M19.4 13a7.6 7.6 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.4 7.4 0 0 0-1.7-1L15 3h-4l-.4 2.9a7.4 7.4 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.6 7.6 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7.4 7.4 0 0 0 1.7 1L11 21h4l.4-2.9a7.4 7.4 0 0 0 1.7-1l2.5 1 2-3.5zM13 15.5A3.5 3.5 0 1 1 13 8.5a3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg>
   </button>
 </header>
+<div class="tape" id="tape" aria-hidden="true"></div>
 <div class="cmd-msg" id="cmdMsg" role="status" aria-live="polite"></div>
 <nav class="tabs" id="tabs"></nav>
+<nav class="menu" id="menu" hidden></nav>
 <main id="main" class="main"></main>
 <footer class="foot"><span data-i18n="foot.disclaimer"></span></footer>
+<div class="statusbar" id="statusbar"></div>
 
 <div class="overlay" id="settings" hidden>
   <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">

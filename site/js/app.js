@@ -178,7 +178,7 @@
         return `<tr class="click" data-goto="${esc(tk)}"><td class="tk">${esc(tk)}</td>${nameCell}<td class="na" colspan="${opts.cols || 4}" title="${esc(err)}">${t("unavailable")}${own ? " — " + esc(err) : ""}</td></tr>`;
       }
       const stale = quoteStale(tk, x.fetched_at) ? ` <span class="stale">${t("stale")}</span>` : "";
-      return `<tr class="click" data-goto="${esc(tk)}"><td class="tk">${esc(tk)}</td>${nameCell}
+      return `<tr class="click" data-goto="${esc(tk)}"><td class="tk" title="${esc(info.name)}">${esc(tk)}</td>${nameCell}
         <td>${num(x.last, x.last < 10 ? 4 : 2)} <span class="note">${esc(x.currency || "")}</span>${stale}</td>
         <td class="${cls(x.change)}">${signed(x.change, x.last < 10 ? 4 : 2)}</td><td class="${cls(x.pct)}">${pct(x.pct)}</td>
         <td class="note">${fmtDate(x.date)}</td></tr>`;
@@ -190,9 +190,10 @@
     const upd = regs.length ? regs.map(r => r.fetched_at).sort().pop() : null;
     const regErr = regs.filter(r => r.status === "error").map(r => r.error);
     const stale = tickers.some(tk => q && q.data[tk] && quoteStale(tk, q.data[tk].fetched_at));
-    const head = `<tr><th>${t("col.ticker")}</th><th class="l nm">${t("col.name")}</th><th>${t("col.last")}</th><th>${t("col.chg")}</th><th>${t("col.pct")}</th><th>${t("col.date")}</th></tr>`;
+    // compact panels: no name column (the name is in the ticker's tooltip)
+    const head = `<tr><th>${t("col.ticker")}</th><th>${t("col.last")}</th><th>${t("col.chg")}</th><th>${t("col.pct")}</th><th>${t("col.date")}</th></tr>`;
     return panel({ title: `${title} ${delayed()}`, cls, stale, updated: upd, source: "Yahoo Finance (yfinance)",
-      body: (regErr.length ? `<div class="unavail"><b>${t("unavailable")}</b><span class="err">${esc(regErr.join(" | "))}</span></div>` : "") + `<table class="t">${head}${quoteRows(tickers)}</table>` });
+      body: (regErr.length ? `<div class="unavail"><b>${t("unavailable")}</b><span class="err">${esc(regErr.join(" | "))}</span></div>` : "") + `<table class="t">${head}${quoteRows(tickers, { noName: true })}</table>` });
   }
   function macroStrip() {
     const x = ds("macro.json");

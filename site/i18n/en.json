@@ -3,7 +3,7 @@
   "cmd.unknown": "Unknown ticker or command: {arg}. Type HELP.",
   "cmd.unknown_fn": "Unknown function: {arg}. Use QUOTE, FA, RISK or NEWS.",
   "cmd.bad_lang": "Unknown language. Use LANG FR or LANG EN.",
-  "foot.disclaimer": "Atlas Terminal — student project. Real, delayed data (Yahoo Finance, SEC EDGAR, FRED, ECB, Google News). Not investment advice.",
+  "foot.disclaimer": "Atlas Terminal — student project. Real, delayed data (Yahoo Finance, SEC EDGAR, US Treasury, New York Fed, BLS, FRED, ECB, Google News). Not investment advice.",
   "settings.title": "Settings",
   "settings.lang": "Language",
   "settings.numfmt": "Number format",

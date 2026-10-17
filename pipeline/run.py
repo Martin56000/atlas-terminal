@@ -17,7 +17,7 @@ from . import config, metrics, schedule, store
 from .market import safe_name
 
 US_QUOTES = [t["ticker"] for t in config.US_WATCH + config.US_OVERVIEW_EXTRA] + ["BZ=F", "GC=F"]
-EU_QUOTES = [t["ticker"] for t in config.EU_WATCH + config.EU_SMID + config.EU_INDICES] + ["EURUSD=X"]
+EU_QUOTES = [t["ticker"] for t in config.EU_STOCKS + config.EU_INDICES + config.FX_COMMOD if t["region"] == "EU"]
 ALL = [t["ticker"] for t in config.UNIVERSE]
 
 
@@ -155,27 +155,28 @@ def task_risk():
         s = mdata.get(sid)
         rf[region] = {"series": sid, "value": s["latest"]["value"] / 100, "date": s["latest"]["date"]} if s else None
 
-    bench = {r: _adj_series(t) for r, t in config.BENCHMARK.items()}
+    bench = {t: _adj_series(t) for t in set(config.BENCHMARK.values())}
     out, returns = {}, {}
     for t in config.WATCHLIST_UNIVERSE:
         info = config.BY_TICKER[t]
         p = _adj_series(t)
-        b = bench[info["region"]]
+        bname = config.benchmark_for(info)
+        b = bench[bname]
         r_free = rf[info["region"]]
         if p is None or len(p) < 3:
             out[t] = {"status": "error", "error": "price history unavailable"}
             continue
         if b is None:
-            out[t] = {"status": "error", "error": f"benchmark {config.BENCHMARK[info['region']]} history unavailable"}
+            out[t] = {"status": "error", "error": f"benchmark {bname} history unavailable"}
             continue
         m = metrics.risk_metrics(p, b, r_free["value"] if r_free else None, config.RISK_WINDOW)
-        m.update({"status": "ok", "benchmark": config.BENCHMARK[info["region"]],
+        m.update({"status": "ok", "benchmark": bname,
                   "rf_series": r_free["series"] if r_free else None, "rf_date": r_free["date"] if r_free else None})
         if r_free is None:
             m["sharpe_note"] = "risk-free rate unavailable"
         out[t] = m
         r = metrics.log_returns(metrics.window_prices(p, config.RISK_WINDOW))
-        returns[t] = {"dates": [d.strftime("%Y-%m-%d") for d in r.index], "r": [round(x, 8) for x in r.tolist()]}
+        returns[t] = {"dates": [d.strftime("%Y-%m-%d") for d in r.index], "r": [round(x, 6) for x in r.tolist()]}
     store.write("risk.json", store.envelope_ok("Computed from Yahoo Finance adjusted closes; rf: 3-month US Treasury (US), ECB deposit rate (EU)",
                                                {"window": config.RISK_WINDOW, "rf": rf, "metrics": out, "returns": returns}))
 
@@ -215,7 +216,9 @@ def task_news(tickers=None):
     prev = store.read("news.json") or {}
     data = {t: v for t, v in (prev.get("data") or {}).items() if t in config.WATCHLIST_UNIVERSE and t not in tickers}
     per, all_items = {}, []
+    import time
     for t in tickers:
+        time.sleep(0.25)   # be gentle with Google News
         try:
             res = news.fetch_for_ticker(t)
             per[t] = res
@@ -248,6 +251,97 @@ def task_news(tickers=None):
     store.write("news.json", store.envelope_ok(
         "Yahoo Finance news + Google News RSS; sentiment: ProsusAI/finbert; translation: Helsinki-NLP/opus-mt-tc-big-en-fr",
         data, {"sentiment_error": sentiment_error, "translation_error": translation_error}))
+
+
+def _age_hours(env):
+    ts = ((env or {}).get("_meta") or {}).get("fetched_at")
+    if not ts:
+        return None
+    return (schedule.utcnow() - datetime.fromisoformat(ts)).total_seconds() / 3600
+
+
+def rotation(prefix, tickers, n, max_age_h):
+    """Never-fetched first (universe order), then the oldest beyond max_age_h."""
+    never, old = [], []
+    for t in tickers:
+        age = _age_hours(store.read(f"{prefix}/{safe_name(t)}.json"))
+        if age is None:
+            never.append(t)
+        elif age >= max_age_h:
+            old.append((-age, t))
+    return (never + [t for _, t in sorted(old)])[:n]
+
+
+def task_company():
+    import time
+    from . import company
+    stocks = [t for t in config.WATCHLIST_UNIVERSE if config.BY_TICKER[t]["kind"] == "stock"]
+    todo = rotation("company", stocks, config.COMPANY_PER_RUN, config.COMPANY_MAX_AGE_H)
+    log(f"company pages (Yahoo): {len(todo)} of {len(stocks)}")
+    src = "Yahoo Finance via yfinance (profile, statements, analyst estimates)"
+    for t in todo:
+        store.run_dataset(f"company/{safe_name(t)}.json", src, lambda t=t: company.fetch(t))
+        time.sleep(0.3)
+
+
+def task_esef():
+    from . import esef
+    eu = [u["ticker"] for u in config.EU_STOCKS]
+    todo = rotation("esef", eu, config.ESEF_PER_RUN, config.ESEF_MAX_AGE_DAYS * 24)
+    log(f"ESEF annual reports: {len(todo)} of {len(eu)}")
+    src = "ESEF annual report (filings.xbrl.org)"
+    for t in todo:
+        name = f"esef/{safe_name(t)}.json"
+        prev = (store.read(name) or {}).get("data") or {}
+        ov = config.ESEF_OVERRIDES.get(t, {})
+        store.run_dataset(name, src, lambda t=t, prev=prev, ov=ov: esef.fetch(
+            config.BY_TICKER[t], known_lei=ov.get("lei") or prev.get("lei"), search=ov.get("search")))
+
+
+def task_companies_index():
+    """One small file for EQS / COMPS / earnings calendar: multiples in EUR, size class, next results."""
+    from . import comps, fx
+    from .company import facts
+    quotes = (store.read("quotes.json") or {}).get("data") or {}
+    rates = fx.rates_from_quotes(quotes)
+    today = schedule.utcnow().date().isoformat()
+    rows = {}
+    for t in config.WATCHLIST_UNIVERSE:
+        if config.BY_TICKER[t]["kind"] != "stock":
+            continue
+        env = store.read(f"company/{safe_name(t)}.json")
+        if not env or env["_meta"]["status"] != "ok":
+            rows[t] = {"status": "error", "error": (env or {}).get("_meta", {}).get("error") or "not fetched yet"}
+            continue
+        c = env["data"]
+        q = quotes.get(t) or {}
+        r = comps.comp_row(c, q, rates)
+        upcoming = [d for d in (c.get("calendar") or {}).get("earnings_dates") or [] if d >= today]
+        tg = c.get("targets") or {}
+        r.update({"status": "ok", "fetched_at": env["_meta"]["fetched_at"], "next_earnings": upcoming[0] if upcoming else None,
+                  "eps_estimate_next": (c.get("calendar") or {}).get("eps_avg"), "target_mean": tg.get("mean"),
+                  "n_analysts": tg.get("n_analysts"), "reco_key": tg.get("reco_key"),
+                  "facts": facts(c, q.get("last") if q.get("status") == "ok" else None)})
+        rows[t] = r
+    ok_rows = {k: v for k, v in rows.items() if v.get("status") == "ok"}
+    store.write("companies.json", store.envelope_ok(
+        "Yahoo Finance (company data) + our calculations (EUR via Yahoo FX quotes)",
+        {"rows": rows, "sector_medians": comps.sector_medians(ok_rows), "fx": rates,
+         "size_thresholds_eur": {"large": comps.SIZE_LARGE, "mid": comps.SIZE_MID}}))
+
+
+def task_deals():
+    from . import deals
+    sec = []
+    for t in config.WATCHLIST_UNIVERSE:
+        env = store.read(f"fundamentals/{safe_name(t)}.json")
+        d = ((env or {}).get("data") or {})
+        for f in d.get("deals") or []:
+            sec.append({"ticker": t, **f})
+    sec.sort(key=lambda f: f["filed"], reverse=True)
+    news = (store.read("news.json") or {}).get("data") or {}
+    store.write("deals.json", store.envelope_ok("SEC EDGAR filings + keyword detection on collected headlines",
+                                                {"sec": sec[:200], "news": deals.news_deals(news)}))
 
 
 def task_validate():
@@ -303,12 +397,22 @@ def main(argv=None):
         task_quotes(US_QUOTES, "US", currencies)
     if "quotes_eu" in tasks and "daily" not in tasks and "eu_close" not in tasks:
         task_quotes(EU_QUOTES, "EU", currencies)
+    heavy = "daily" in tasks or "eu_close" in tasks
+    if heavy:
+        _safe(task_company, "company_task_error.json", "company pages")
+        _safe(task_esef, "esef_task_error.json", "ESEF")
     if "daily" in tasks or "eu_close" in tasks:      # all tickers, small & mid caps included
         task_news()
         state["news_at"] = store.now_iso()
     elif "news" in tasks:                            # hourly: large caps only
         task_news(config.NEWS_HOURLY)
         state["news_at"] = store.now_iso()
+
+    _safe(task_companies_index, "companies.json", "Yahoo Finance (company data)")
+    _safe(task_deals, "deals.json", "SEC EDGAR + headlines")
+    if gh_out:
+        with open(gh_out, "a", encoding="utf-8") as f:
+            f.write(f"heavy={'true' if heavy else 'false'}\n")
 
     meta.update({
         "generated_at": store.now_iso(),
@@ -318,6 +422,7 @@ def main(argv=None):
         "watchlist_universe": config.WATCHLIST_UNIVERSE,
         "default_watchlist": config.DEFAULT_WATCHLIST,
         "benchmark": config.BENCHMARK,
+        "esef_countries": sorted(__import__("pipeline.esef", fromlist=["x"]).ESEF_COUNTRIES),
     })
     store.write("meta.json", meta)
     store.write("state.json", state)

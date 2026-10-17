@@ -137,7 +137,6 @@ def fetch_history(tickers, currencies, now=None):
         out[t] = {
             "status": "ok", "currency": cur,
             "dates": [d.strftime("%Y-%m-%d") for d in frame.index],
-            "open": frame["Open"].round(6).tolist(),
             "high": frame["High"].round(6).tolist(),
             "low": frame["Low"].round(6).tolist(),
             "close": frame["Close"].round(6).tolist(),

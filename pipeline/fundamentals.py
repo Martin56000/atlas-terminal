@@ -6,6 +6,7 @@ from datetime import date, timedelta
 import requests
 
 from . import config
+from .deals import deal_filings
 
 US_GAAP = {
     "revenue": ["RevenueFromContractWithCustomerExcludingAssessedTax", "Revenues", "SalesRevenueNet",
@@ -228,7 +229,7 @@ def fetch_company(client, ticker, ciks):
     if not is_recent(table):
         last = table["rows"][-1]["end"] if table["rows"] else None
         return {"kind": "na", "reason": "no_recent_sec_data", "last_period": last, "cik": cik, "sec_ticker": sec_ticker,
-                "filings": recent_filings(subs, forms, cik)}
+                "filings": recent_filings(subs, forms, cik), "deals": deal_filings(subs, cik)}
     return {"kind": kind, "cik": cik, "sec_ticker": sec_ticker, "entity": subs.get("name"),
             "fiscal_year_end": subs.get("fiscalYearEnd"), **table,
-            "filings": recent_filings(subs, forms, cik)}
+            "filings": recent_filings(subs, forms, cik), "deals": deal_filings(subs, cik)}

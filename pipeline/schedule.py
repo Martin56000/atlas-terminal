@@ -11,7 +11,7 @@ import pandas as pd
 from . import config
 
 PARIS = ZoneInfo(config.PARIS)
-EU_EXCHANGES = sorted({t["exchange"] for t in config.EU_WATCH + config.EU_INDICES})
+EU_EXCHANGES = sorted({t["exchange"] for t in config.EU_STOCKS + config.EU_INDICES})
 QUOTE_GRACE = timedelta(minutes=20)  # one run just after the close captures the closing print
 
 

@@ -55,15 +55,18 @@ jobs:
           path: ~/.cache/huggingface
           key: hf-models-finbert-opusmt-tcbig-v3
 
-      - name: Restore previous data (branch "data")
+      - name: Restore previous data (branches "data" and "data-daily")
         run: |
-          if git ls-remote --exit-code --heads origin data >/dev/null 2>&1; then
-            git clone --quiet --depth 1 --branch data \
-              "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" site/data
-            rm -rf site/data/.git
-          else
-            mkdir -p site/data
-          fi
+          mkdir -p site/data
+          for b in data data-daily; do
+            if git ls-remote --exit-code --heads origin "$b" >/dev/null 2>&1; then
+              rm -rf "/tmp/$b"
+              git clone --quiet --depth 1 --branch "$b" \
+                "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "/tmp/$b"
+              rm -rf "/tmp/$b/.git"
+              cp -r "/tmp/$b/." site/data/
+            fi
+          done
 
       - name: Run update job
         id: pipeline
@@ -74,16 +77,28 @@ jobs:
         run: |
           if [ "$FORCE" = "true" ]; then python -m pipeline.run --force; else python -m pipeline.run; fi
 
-      - name: Save data (single-commit branch "data")
+      # Heavy, slowly-changing files (5-year histories, company pages, ESEF, SEC) live in "data-daily",
+      # pushed only after the 08:30 / 17:40 runs; everything else in "data", pushed every run.
+      # Both are single-commit branches (force-pushed) so the repository does not grow.
+      - name: Save data
         if: steps.pipeline.outputs.ran == 'true'
+        env:
+          HEAVY: ${{ steps.pipeline.outputs.heavy }}
         run: |
-          cd site/data
-          git init -q -b data
-          git add -A
-          git -c user.name="atlas-bot" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-            commit -q -m "data $(date -u +%Y-%m-%dT%H:%MZ)"
-          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" data
-          rm -rf .git
+          push_dir () {
+            (cd "$1" && git init -q -b "$2" && git add -A && \
+             git -c user.name="atlas-bot" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+               commit -q -m "$2 $(date -u +%Y-%m-%dT%H:%MZ)" && \
+             git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "$2")
+          }
+          rm -rf /tmp/out-light /tmp/out-heavy && mkdir -p /tmp/out-light /tmp/out-heavy
+          cp -r site/data/. /tmp/out-light/
+          for d in history company esef fundamentals; do
+            rm -rf "/tmp/out-light/$d"
+            if [ -d "site/data/$d" ]; then cp -r "site/data/$d" /tmp/out-heavy/; fi
+          done
+          push_dir /tmp/out-light data
+          if [ "$HEAVY" = "true" ]; then push_dir /tmp/out-heavy data-daily; fi
 
       - name: Configure Pages
         if: steps.pipeline.outputs.ran == 'true' || github.event_name != 'schedule'

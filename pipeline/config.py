@@ -9,7 +9,8 @@ import os
 # region: US | EU   (decides benchmark, risk-free rate and market hours)
 # exchange: exchange_calendars code used for trading hours and holidays
 
-SUFFIX_COUNTRY = {".PA": "FR", ".DE": "DE", ".AS": "NL", ".SW": "CH", ".L": "GB", ".CO": "DK", ".MC": "ES", ".MI": "IT"}
+SUFFIX_COUNTRY = {".PA": "FR", ".DE": "DE", ".AS": "NL", ".SW": "CH", ".L": "GB", ".CO": "DK", ".MC": "ES", ".MI": "IT",
+                  ".BR": "BE", ".ST": "SE", ".OL": "NO", ".HE": "FI", ".LS": "PT"}
 
 
 def _t(ticker, name, region, exchange, kind="stock", query_en=None, query_fr=None, adr=None, segment="large"):
@@ -164,6 +165,120 @@ EU_SMID = [
     _smid("VACN.SW", "VAT Group", "XSWX"),
 ]
 
+def _eu(ticker, name, exchange, segment="large", query_en=None, query_fr=None):
+    """Additional European stock (news refreshed once a day)."""
+    q_fr = query_fr if query_fr is not None else (name if ticker.endswith(".PA") else None)
+    return _t(ticker, name, "EU", exchange, query_en=query_en or name, query_fr=q_fr, segment=segment)
+
+
+EU_MORE = [
+    # France: rest of the SBF 120
+    _eu("ACA.PA", "Crédit Agricole", "XPAR", query_en="Credit Agricole SA"),
+    _eu("GLE.PA", "Société Générale", "XPAR", query_en="Societe Generale"),
+    _eu("CS.PA", "AXA", "XPAR", query_en="AXA SA"),
+    _eu("BN.PA", "Danone", "XPAR"),
+    _eu("DG.PA", "Vinci", "XPAR", query_en="Vinci SA"),
+    _eu("EL.PA", "EssilorLuxottica", "XPAR"),
+    _eu("KER.PA", "Kering", "XPAR"),
+    _eu("RI.PA", "Pernod Ricard", "XPAR"),
+    _eu("CAP.PA", "Capgemini", "XPAR"),
+    _eu("ENGI.PA", "Engie", "XPAR"),
+    _eu("ORA.PA", "Orange", "XPAR", query_en="Orange SA telecom", query_fr="Orange opérateur"),
+    _eu("VIE.PA", "Veolia", "XPAR"),
+    _eu("SGO.PA", "Saint-Gobain", "XPAR"),
+    _eu("LR.PA", "Legrand", "XPAR"),
+    _eu("ML.PA", "Michelin", "XPAR"),
+    _eu("STLAP.PA", "Stellantis", "XPAR"),
+    _eu("RNO.PA", "Renault", "XPAR"),
+    _eu("HO.PA", "Thales", "XPAR"),
+    _eu("PUB.PA", "Publicis", "XPAR"),
+    _eu("DSY.PA", "Dassault Systèmes", "XPAR", query_en="Dassault Systemes"),
+    _eu("EN.PA", "Bouygues", "XPAR"),
+    _eu("CA.PA", "Carrefour", "XPAR"),
+    _eu("AC.PA", "Accor", "XPAR"),
+    _eu("URW.PA", "Unibail-Rodamco-Westfield", "XPAR"),
+    _eu("STMPA.PA", "STMicroelectronics", "XPAR"),
+    _eu("FGR.PA", "Eiffage", "XPAR"),
+    _eu("AKE.PA", "Arkema", "XPAR"),
+    _eu("BVI.PA", "Bureau Veritas", "XPAR"),
+    _eu("ERF.PA", "Eurofins Scientific", "XPAR"),
+    _eu("EDEN.PA", "Edenred", "XPAR"),
+    _eu("AM.PA", "Dassault Aviation", "XPAR"),
+    _eu("AMUN.PA", "Amundi", "XPAR"),
+    _eu("BIM.PA", "bioMérieux", "XPAR", query_en="bioMerieux"),
+    _eu("RXL.PA", "Rexel", "XPAR"),
+    _eu("ALO.PA", "Alstom", "XPAR"),
+    _eu("VIV.PA", "Vivendi", "XPAR", segment="smid"),
+    _eu("COV.PA", "Covivio", "XPAR", segment="smid"),
+    _eu("GFC.PA", "Gecina", "XPAR", segment="smid"),
+    _eu("LI.PA", "Klépierre", "XPAR", segment="smid", query_en="Klepierre"),
+    _eu("RCO.PA", "Rémy Cointreau", "XPAR", segment="smid", query_en="Remy Cointreau"),
+    _eu("SW.PA", "Sodexo", "XPAR", segment="smid"),
+    _eu("TEP.PA", "Teleperformance", "XPAR", segment="smid"),
+    _eu("UBI.PA", "Ubisoft", "XPAR", segment="smid"),
+    _eu("VK.PA", "Vallourec", "XPAR", segment="smid"),
+    _eu("AF.PA", "Air France-KLM", "XPAR", segment="smid"),
+    _eu("ADP.PA", "Aéroports de Paris", "XPAR", segment="smid", query_en="Aeroports de Paris ADP", query_fr="Groupe ADP"),
+    _eu("BOL.PA", "Bolloré", "XPAR", segment="smid", query_en="Bollore"),
+    _eu("COFA.PA", "Coface", "XPAR", segment="smid"),
+    _eu("SCR.PA", "SCOR", "XPAR", segment="smid", query_en="SCOR reinsurance", query_fr="SCOR réassureur"),
+    _eu("ERA.PA", "Eramet", "XPAR", segment="smid"),
+    _eu("OVH.PA", "OVHcloud", "XPAR", segment="smid"),
+    _eu("SOI.PA", "Soitec", "XPAR", segment="smid"),
+    _eu("AYV.PA", "Ayvens", "XPAR", segment="smid"),
+    _eu("FDJ.PA", "FDJ United", "XPAR", segment="smid"),
+    _eu("DIM.PA", "Sartorius Stedim Biotech", "XPAR", segment="smid"),
+    _eu("WLN.PA", "Worldline", "XPAR", segment="smid"),
+    _eu("VIRI.PA", "Viridien", "XPAR", segment="smid"),
+    _eu("TFI.PA", "TF1", "XPAR", segment="smid", query_en="TF1 group"),
+    _eu("VRLA.PA", "Verallia", "XPAR", segment="smid"),
+    _eu("ICAD.PA", "Icade", "XPAR", segment="smid"),
+    _eu("PLX.PA", "Pluxee", "XPAR", segment="smid"),
+    _eu("ELIOR.PA", "Elior", "XPAR", segment="smid", query_en="Elior Group"),
+    _eu("STF.PA", "STEF", "XPAR", segment="smid", query_en="STEF transport"),
+    # Germany
+    _eu("BAS.DE", "BASF", "XETR"), _eu("BAYN.DE", "Bayer", "XETR"), _eu("BMW.DE", "BMW", "XETR"),
+    _eu("VOW3.DE", "Volkswagen", "XETR"), _eu("ADS.DE", "Adidas", "XETR"), _eu("IFX.DE", "Infineon", "XETR"),
+    _eu("MUV2.DE", "Munich Re", "XETR"), _eu("DBK.DE", "Deutsche Bank", "XETR"), _eu("DB1.DE", "Deutsche Börse", "XETR", query_en="Deutsche Boerse"),
+    _eu("RHM.DE", "Rheinmetall", "XETR"), _eu("EOAN.DE", "E.ON", "XETR"), _eu("RWE.DE", "RWE", "XETR"),
+    _eu("HEI.DE", "Heidelberg Materials", "XETR"), _eu("MTX.DE", "MTU Aero Engines", "XETR"), _eu("DHL.DE", "DHL Group", "XETR"),
+    _eu("VNA.DE", "Vonovia", "XETR"), _eu("SHL.DE", "Siemens Healthineers", "XETR"), _eu("ENR.DE", "Siemens Energy", "XETR"),
+    # Netherlands / Belgium
+    _eu("ADYEN.AS", "Adyen", "XAMS"), _eu("PRX.AS", "Prosus", "XAMS"), _eu("HEIA.AS", "Heineken", "XAMS"),
+    _eu("PHIA.AS", "Philips", "XAMS", query_en="Koninklijke Philips"), _eu("WKL.AS", "Wolters Kluwer", "XAMS"),
+    _eu("AD.AS", "Ahold Delhaize", "XAMS"), _eu("ASM.AS", "ASM International", "XAMS"), _eu("AKZA.AS", "Akzo Nobel", "XAMS"),
+    _eu("ABI.BR", "AB InBev", "XBRU", query_en="Anheuser-Busch InBev"), _eu("KBC.BR", "KBC Group", "XBRU"),
+    _eu("UCB.BR", "UCB", "XBRU", query_en="UCB pharma"), _eu("SOLB.BR", "Solvay", "XBRU", segment="smid"),
+    _eu("ACKB.BR", "Ackermans & van Haaren", "XBRU", segment="smid"),
+    # Italy / Spain / Portugal
+    _eu("UCG.MI", "UniCredit", "XMIL"), _eu("G.MI", "Generali", "XMIL", query_en="Assicurazioni Generali"), _eu("ENI.MI", "Eni", "XMIL", query_en="Eni SpA"),
+    _eu("PRY.MI", "Prysmian", "XMIL"), _eu("MONC.MI", "Moncler", "XMIL"), _eu("LDO.MI", "Leonardo", "XMIL", query_en="Leonardo SpA"),
+    _eu("CPR.MI", "Campari", "XMIL", segment="smid"), _eu("PST.MI", "Poste Italiane", "XMIL"),
+    _eu("TEF.MC", "Telefónica", "XMAD", query_en="Telefonica"), _eu("BBVA.MC", "BBVA", "XMAD"), _eu("CABK.MC", "CaixaBank", "XMAD"),
+    _eu("REP.MC", "Repsol", "XMAD"), _eu("AENA.MC", "Aena", "XMAD"), _eu("FER.MC", "Ferrovial", "XMAD"),
+    _eu("AMS.MC", "Amadeus", "XMAD", query_en="Amadeus IT"), _eu("GRF.MC", "Grifols", "XMAD", segment="smid"),
+    _eu("EDP.LS", "EDP", "XLIS", query_en="EDP Energias de Portugal"), _eu("GALP.LS", "Galp", "XLIS", query_en="Galp Energia"),
+    _eu("JMT.LS", "Jerónimo Martins", "XLIS", query_en="Jeronimo Martins"),
+    # Switzerland
+    _eu("UBSG.SW", "UBS", "XSWX", query_en="UBS Group"), _eu("ZURN.SW", "Zurich Insurance", "XSWX"), _eu("ABBN.SW", "ABB", "XSWX", query_en="ABB Ltd"),
+    _eu("CFR.SW", "Richemont", "XSWX"), _eu("LONN.SW", "Lonza", "XSWX"), _eu("SIKA.SW", "Sika", "XSWX", query_en="Sika AG"),
+    _eu("HOLN.SW", "Holcim", "XSWX"), _eu("GIVN.SW", "Givaudan", "XSWX"), _eu("GEBN.SW", "Geberit", "XSWX"),
+    _eu("SREN.SW", "Swiss Re", "XSWX"),
+    # United Kingdom
+    _eu("BP.L", "BP", "XLON", query_en="BP plc"), _eu("GSK.L", "GSK", "XLON", query_en="GSK plc"), _eu("RIO.L", "Rio Tinto", "XLON"),
+    _eu("BATS.L", "British American Tobacco", "XLON"), _eu("DGE.L", "Diageo", "XLON"), _eu("REL.L", "RELX", "XLON"),
+    _eu("LSEG.L", "London Stock Exchange Group", "XLON"), _eu("BARC.L", "Barclays", "XLON"), _eu("LLOY.L", "Lloyds Banking Group", "XLON"),
+    _eu("RR.L", "Rolls-Royce", "XLON", query_en="Rolls-Royce Holdings"), _eu("BA.L", "BAE Systems", "XLON"), _eu("GLEN.L", "Glencore", "XLON"),
+    _eu("TSCO.L", "Tesco", "XLON"), _eu("NG.L", "National Grid", "XLON"),
+    # Nordics
+    _eu("VOLV-B.ST", "Volvo", "XSTO", query_en="AB Volvo"), _eu("ATCO-A.ST", "Atlas Copco", "XSTO"), _eu("ERIC-B.ST", "Ericsson", "XSTO"),
+    _eu("INVE-B.ST", "Investor AB", "XSTO"), _eu("HM-B.ST", "H&M", "XSTO", query_en="H&M Hennes Mauritz"), _eu("ASSA-B.ST", "Assa Abloy", "XSTO"),
+    _eu("EQNR.OL", "Equinor", "XOSL"), _eu("DNB.OL", "DNB Bank", "XOSL"), _eu("NHY.OL", "Norsk Hydro", "XOSL"), _eu("MOWI.OL", "Mowi", "XOSL"),
+    _eu("NOKIA.HE", "Nokia", "XHEL"), _eu("NESTE.HE", "Neste", "XHEL"), _eu("KNEBV.HE", "Kone", "XHEL"), _eu("SAMPO.HE", "Sampo", "XHEL"),
+    _eu("MAERSK-B.CO", "A.P. Moller-Maersk", "XCSE", query_en="Maersk"), _eu("DSV.CO", "DSV", "XCSE", query_en="DSV logistics"),
+    _eu("ORSTED.CO", "Ørsted", "XCSE", query_en="Orsted"), _eu("CARL-B.CO", "Carlsberg", "XCSE"), _eu("VWS.CO", "Vestas", "XCSE"),
+]
+
 EU_INDICES = [
     _t("^STOXX50E", "Euro Stoxx 50", "EU", "XETR", kind="index"),
     _t("^FCHI", "CAC 40", "EU", "XPAR", kind="index"),
@@ -185,9 +300,15 @@ FX_COMMOD = [
     _t("EURUSD=X", "EUR/USD", "EU", "XLON", kind="fx"),
     _t("BZ=F", "Brent", "US", "XNYS", kind="commodity"),
     _t("GC=F", "Gold", "US", "XNYS", kind="commodity"),
+    # EUR crosses: displayed, and used to convert market caps and financials into EUR (COMPS, EQS)
+    _t("EURGBP=X", "EUR/GBP", "EU", "XLON", kind="fx"),
+    _t("EURCHF=X", "EUR/CHF", "EU", "XLON", kind="fx"),
+    _t("EURSEK=X", "EUR/SEK", "EU", "XLON", kind="fx"),
+    _t("EURNOK=X", "EUR/NOK", "EU", "XLON", kind="fx"),
+    _t("EURDKK=X", "EUR/DKK", "EU", "XLON", kind="fx"),
 ]
 
-UNIVERSE = US_WATCH + US_OVERVIEW_EXTRA + EU_WATCH + EU_SMID + EU_INDICES + FX_COMMOD
+UNIVERSE = US_WATCH + US_OVERVIEW_EXTRA + EU_WATCH + EU_SMID + EU_MORE + EU_INDICES + FX_COMMOD
 
 # Other names people type in the command bar (search helper on the site). Not data.
 ALIASES = {
@@ -205,18 +326,28 @@ for _u in UNIVERSE:
 BY_TICKER = {t["ticker"]: t for t in UNIVERSE}
 
 # Tickers a visitor can put in the watchlist (risk metrics are computed for these)
-WATCHLIST_UNIVERSE = [t["ticker"] for t in US_WATCH + EU_WATCH + EU_SMID]
+WATCHLIST_UNIVERSE = [t["ticker"] for t in US_WATCH + EU_WATCH + EU_SMID + EU_MORE]
+EU_STOCKS = EU_WATCH + EU_SMID + EU_MORE
 # news every hour for these; small & mid caps only in the 08:30 and 17:40 runs (Google rate limits)
 NEWS_HOURLY = [t["ticker"] for t in US_WATCH + EU_WATCH]
 DEFAULT_WATCHLIST = [t["ticker"] for t in US_WATCH] + ["MC.PA", "ASML.AS", "SAP.DE"]
 
-BENCHMARK = {"US": "SPY", "EU": "^STOXX50E"}
+BENCHMARK = {"US": "SPY", "EU": "^STOXX50E", "EU_SMID": "^STOXX"}
+
+
+def benchmark_for(info):
+    """SPY for US; Euro Stoxx 50 for European large caps; STOXX Europe 600 (broader, includes mid caps)
+    for European small & mid caps, whose beta against 50 mega caps is not meaningful."""
+    if info["region"] == "US":
+        return BENCHMARK["US"]
+    return BENCHMARK["EU_SMID"] if info.get("segment") == "smid" else BENCHMARK["EU"]
 RISK_FREE_SERIES = {"US": "DGS3MO", "EU": "ECBDFR"}
 
 # Expected quote currency per exchange suffix (used to label prices and to
 # detect London quotes in pence). Yahoo's own currency field wins when present.
 SUFFIX_CURRENCY = {".PA": "EUR", ".DE": "EUR", ".AS": "EUR", ".MC": "EUR", ".MI": "EUR",
-                   ".SW": "CHF", ".L": "GBp", ".CO": "DKK"}
+                   ".SW": "CHF", ".L": "GBp", ".CO": "DKK", ".BR": "EUR", ".ST": "SEK", ".OL": "NOK",
+                   ".HE": "EUR", ".LS": "EUR"}
 
 # --- Sources ---------------------------------------------------------------------
 FRED_URL = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}"
@@ -248,6 +379,18 @@ def sec_user_agent():
         raise RuntimeError("SEC_CONTACT_EMAIL is not set (required by SEC EDGAR fair-access policy)")
     return f"Atlas Terminal (student project) {email}"
 
+
+# Company pages (Yahoo) and ESEF reports are refreshed by rotation in the 08:30 / 17:40 runs
+COMPANY_PER_RUN = 80          # ~5 Yahoo calls each
+COMPANY_MAX_AGE_H = 20        # a company page younger than this is not refetched
+ESEF_PER_RUN = 25
+ESEF_MAX_AGE_DAYS = 30        # annual reports change once a year
+# Manual fixes for the ESEF name search: {ticker: {"search": "...", "lei": "..."}}
+ESEF_OVERRIDES = {
+    "MC.PA": {"search": "LVMH"}, "SK.PA": {"search": "SEB S.A"}, "OR.PA": {"search": "L'OREAL"},
+    "RMS.PA": {"search": "HERMES INTERNATIONAL"}, "ORA.PA": {"search": "ORANGE"}, "EN.PA": {"search": "BOUYGUES"},
+    "CS.PA": {"search": "AXA"}, "DG.PA": {"search": "VINCI"}, "AI.PA": {"search": "AIR LIQUIDE"},
+}
 
 FINBERT_MODEL = "ProsusAI/finbert"
 TRANSLATE_MODEL = "Helsinki-NLP/opus-mt-tc-big-en-fr"   # open-source EN->FR machine translation (larger, more accurate), CPU

@@ -33,7 +33,8 @@ BASE_DIMS = {"concept", "entity", "period", "unit", "language"}
 def norm_name(s):
     import unicodedata
     s = unicodedata.normalize("NFD", s or "").encode("ascii", "ignore").decode().lower()
-    s = re.sub(r"\b(sa|se|s a|nv|n v|ag|spa|s p a|plc|ab|asa|oyj|a s|group|groupe|holding|holdings|company|co)\b", " ", s)
+    s = re.sub(r"[^a-z0-9]+", " ", s)                      # "A/S" -> "a s", "N.V." -> "n v"
+    s = re.sub(r"\b(sa|se|s a|nv|n v|ag|spa|s p a|plc|ab|asa|oyj|a s|as|group|groupe|holding|holdings|company|co)\b", " ", s)
     return re.sub(r"[^a-z0-9]+", "", s)
 
 
@@ -104,13 +105,19 @@ def table(years):
 
 
 def pick_entity(candidates, country, wanted_name):
-    """candidates: [(lei, name, [filings])]. Keep those that file in the company's country, prefer the
-    exact (normalised) name; more than one plausible match is reported as ambiguous, never guessed."""
+    """candidates: [(lei, name, [filings])]. Prefer filers in the company's country; a company registered
+    abroad (e.g. Airbus SE, Dutch) is accepted only on an exact normalised name match. Several plausible
+    matches are reported as ambiguous, never guessed."""
+    wanted = norm_name(wanted_name)
     in_country = [c for c in candidates if any((f.get("country") or "").upper() == country for f in c[2])]
-    if not in_country:
+    exact_any = [c for c in candidates if norm_name(c[1]) == wanted and c[2]]
+    if in_country:
+        exact = [c for c in in_country if norm_name(c[1]) == wanted]
+        pool = exact or in_country
+    elif exact_any:
+        pool = exact_any
+    else:
         return None, "no ESEF filer with this name in " + country
-    exact = [c for c in in_country if norm_name(c[1]) == norm_name(wanted_name)]
-    pool = exact or in_country
     if len(pool) > 1:
         return None, "ambiguous: " + "; ".join(c[1] for c in pool[:4])
     return pool[0], None

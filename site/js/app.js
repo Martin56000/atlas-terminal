@@ -15,9 +15,10 @@
     auto: LS.get("auto", true), watchlist: LS.get("watchlist", null), translate: LS.get("translate", true),
     tab: "MKTS", ticker: "AAPL", range: LS.get("range", "1Y"), newsTicker: "ALL", faTicker: null,
     eqs: Object.assign({ region: "EU", segment: "ALL", country: "ALL", sort: "pct", dir: -1 }, LS.get("eqs", {})),
+    comps: { sector: null, region: LS.get("compsRegion", "ALL") }, deals: { ticker: "ALL" },
   };
-  const FKEYS = { MKTS: "F1", QUOTE: "F2", FA: "F3", RISK: "F4", NEWS: "F5", ECO: "F6", EQS: "F7" };
-  const CORE = ["meta.json", "quotes.json", "risk.json", "macro.json", "news.json", "validation.json"];
+  const FKEYS = { MKTS: "F1", QUOTE: "F2", DES: "F3", FA: "F4", RISK: "F5", NEWS: "F6", ECO: "F7", EQS: "F8", COMPS: "F9", DEALS: "F10" };
+  const CORE = ["meta.json", "quotes.json", "risk.json", "macro.json", "news.json", "validation.json", "companies.json", "deals.json"];
 
   let I18N = {};
   const D = {};          // dataset name -> {ok, env} | {ok:false, error}
@@ -238,11 +239,12 @@
     return macroStrip() +
       quotesPanel(t("mkts.us"), ["SPY", "QQQ", "DIA", "IWM", "^VIX"], ["US"], "span-4") +
       quotesPanel(t("mkts.eu"), m.universe.filter(u => u.kind === "index" && u.region === "EU").map(u => u.ticker), ["EU"], "span-4") +
-      quotesPanel(t("mkts.fx"), ["EURUSD=X", "BZ=F", "GC=F"], ["US", "EU"], "span-4") +
+      quotesPanel(t("mkts.fx"), ["EURUSD=X", "EURGBP=X", "EURCHF=X", "BZ=F", "GC=F"], ["US", "EU"], "span-4") +
       panel({ title: `${t("mkts.watchlist")} ${delayed()}`, tools: `<button class="btn" data-action="edit-wl">${t("wl.edit")}</button>`,
         updated: regs.length ? regs.map(r => r.fetched_at).sort().pop() : null, source: "Yahoo Finance (yfinance)",
         stale: wl.some(tk => q && q.data[tk] && quoteStale(tk, q.data[tk].fetched_at)),
-        body: wl.length ? `<table class="t">${head}${groups}</table>` : `<div class="note">${t("wl.empty")}</div>` });
+        body: wl.length ? `<table class="t">${head}${groups}</table>` : `<div class="note">${t("wl.empty")}</div>` }) +
+      earningsPanel();
   }
   function firstRunNotice() {
     const x = D["meta.json"];
@@ -352,6 +354,13 @@
     const m = meta(); if (!m) return firstRunNotice();
     const list = m.watchlist_universe;
     const tk = list.includes(S.ticker) ? S.ticker : (S.faTicker || "AAPL");
+    const html = await renderFAsec();
+    return (UNI[tk] && UNI[tk].region === "EU" && UNI[tk].kind === "stock") ? html + await esefPanel(tk) : html;
+  }
+  async function renderFAsec() {
+    const m = meta(); if (!m) return firstRunNotice();
+    const list = m.watchlist_universe;
+    const tk = list.includes(S.ticker) ? S.ticker : (S.faTicker || "AAPL");
     const name = "fundamentals/" + C.safeName(tk) + ".json";
     if (!FILES[name]) await load(name, FILES);
     const x = ds(name, FILES);
@@ -411,8 +420,8 @@
         <td class="down">${pct(r.max_drawdown, 1)}</td><td>${pct(r.rf, 2, false)} <span class="note">${esc(r.rf_series || "")}</span></td>
         <td class="note">${fmtDate(r.start)} → ${fmtDate(r.end)}</td><td>${r.n_returns}</td></tr>`;
     }).join("");
-    const table = `<table class="t"><tr><th>${t("col.ticker")}</th><th class="l nm">${t("col.name")}</th><th>${t("risk.vol")}</th><th>${t("risk.ret")}</th>
-      <th>${t("risk.sharpe")}</th><th>${t("risk.beta")}</th><th>${t("risk.mdd")}</th><th>${t("risk.rf")}</th><th>${t("risk.window")}</th><th>${t("risk.n")}</th></tr>${rows}</table>
+    const table = `<table class="t"><tr><th>${t("col.ticker")}</th><th class="l nm">${t("col.name")}</th>${th("vol", t("risk.vol"))}${th("ret", t("risk.ret"))}
+      ${th("sharpe", t("risk.sharpe"))}${th("beta", t("risk.beta"))}${th("mdd", t("risk.mdd"))}${th("rf", t("risk.rf"))}<th>${t("risk.window")}</th><th>${t("risk.n")}</th></tr>${rows}</table>
       <p class="note">${t("risk.defs")}</p>`;
     const cm = C.correlationMatrix(R.returns, wl);
     const short = tk => esc(tk.replace(/\..*$/, ""));
@@ -420,8 +429,8 @@
       ${cm.tickers.map((a, i) => `<tr><th style="text-align:right">${short(a)}</th>${cm.matrix[i].map((v, j) =>
         `<td style="background:${heatColor(v)}" title="${esc(a)} / ${esc(cm.tickers[j])}: ${num(v, 2)}">${isNum(v) ? num(v, 2).replace(/^0([.,])/, "$1").replace(/^-0([.,])/, "-$1") : "—"}</td>`).join("")}</tr>`).join("")}
       </table></div><div class="legend-bar">−1 <i></i> +1 · ${t("risk.common_days", { n: cm.n })}</div>` : `<div class="note">${t("risk.need2")}</div>`;
-    return panel({ title: t("risk.title"), body: table, meta: x.meta, source: t("risk.source"), stale: dailyStale(x.meta.fetched_at) }) +
-      panel({ title: t("risk.corr"), cls: "span-8", body: heat, meta: x.meta, source: t("risk.source") }) +
+    return panel({ title: t("risk.title"), body: table, meta: x.meta, source: t("risk.source"), stale: dailyStale(x.meta.fetched_at), tools: csvBtn() }) +
+      panel({ title: t("risk.corr"), cls: "span-8", body: heat, meta: x.meta, source: t("risk.source"), tools: csvBtn() }) +
       validationPanel();
   }
   function validationPanel() {
@@ -535,19 +544,21 @@
 
   // ------------------------------------------------------------------ EQS (equity screener)
   const EQS_COLS = [
-    ["ticker", "col.ticker", "l"], ["name", "col.name", "l nm"], ["country", "col.country", "l"], ["segment", "col.segment", "l"],
-    ["last", "col.last"], ["pct", "col.pct"], ["perf", "col.perf1y"], ["vol", "risk.vol"], ["beta", "risk.beta"],
-    ["mdd", "risk.mdd"], ["sharpe", "risk.sharpe"],
+    ["ticker", "col.ticker", "l"], ["name", "col.name", "l nm"], ["country", "col.country", "l"], ["segment", "col.segment", "l", "size"],
+    ["mcap", "col.mcap", "", "mcap"], ["last", "col.last"], ["pct", "col.pct"], ["perf", "col.perf1y", "", "perf1y"], ["vol", "risk.vol", "", "vol"],
+    ["beta", "risk.beta", "", "beta"], ["mdd", "risk.mdd", "", "mdd"], ["sharpe", "risk.sharpe", "", "sharpe"], ["pe", "comps.pe", "", "pe"],
+    ["next", "col.next_earnings", "", "next_earnings"],
   ];
   function eqsRows() {
     const m = meta(), q = quotesEnv(), r = ds("risk.json");
     const metrics = r.ok ? r.data.metrics : {};
     const wl = new Set(watchlist());
     return m.watchlist_universe.map(tk => {
-      const u = UNI[tk], x = q && q.data[tk], k = metrics[tk] || {};
+      const u = UNI[tk], x = q && q.data[tk], k = metrics[tk] || {}, cr = compRow(tk) || {};
       const okq = x && x.status === "ok", okr = k.status === "ok";
       return {
-        ticker: tk, name: u.name, country: u.country, segment: u.region === "US" ? "us" : u.segment, region: u.region,
+        ticker: tk, name: u.name, country: u.country, segment: cr.size || "na", region: u.region,
+        mcap: isNum(cr.market_cap_eur) ? cr.market_cap_eur : null, pe: isNum(cr.pe) ? cr.pe : null, next: cr.next_earnings || null,
         last: okq ? x.last : null, currency: okq ? x.currency : "", pct: okq ? x.pct : null, quoteErr: okq ? null : (x ? x.error : t("err.no_quote")),
         perf: okr ? k.perf_window : null, vol: okr ? k.ann_vol : null, beta: okr ? k.beta : null, mdd: okr ? k.max_drawdown : null,
         sharpe: okr ? k.sharpe : null, inWl: wl.has(tk), stale: okq && quoteStale(tk, x.fetched_at),
@@ -572,32 +583,313 @@
     });
     const sel = (name, options, cur) => `<select data-eqs="${name}">${options.map(([v, l]) => `<option value="${esc(v)}" ${v === cur ? "selected" : ""}>${esc(l)}</option>`).join("")}</select>`;
     const tools = sel("region", [["ALL", t("eqs.all_regions")], ["US", t("region.US")], ["EU", t("region.EU")]], f.region) +
-      sel("segment", [["ALL", t("eqs.all_sizes")], ["large", t("seg.large")], ["smid", t("seg.smid")], ["us", t("seg.us")]], f.segment) +
+      sel("segment", [["ALL", t("eqs.all_sizes")], ["large", t("size.large")], ["mid", t("size.mid")], ["small", t("size.small")], ["na", t("size.na")]], f.segment) +
       sel("country", [["ALL", t("eqs.all_countries")]].concat(countries.map(c => [c, t("country." + c)])), f.country);
     const arrow = k => (k === f.sort ? (f.dir > 0 ? " ▲" : " ▼") : "");
-    const head = `<tr><th></th>${EQS_COLS.map(([k, lbl, c]) => `<th class="${c || ""} sortable" data-sort="${k}" title="${esc(t("eqs.sort"))}">${t(lbl)}${arrow(k)}</th>`).join("")}</tr>`;
+    const head = `<tr><th></th>${EQS_COLS.map(([k, lbl, c, d]) => {
+      const def = d && I18N["def." + d];
+      return `<th class="${c || ""} sortable${def ? " def" : ""}" data-sort="${k}" title="${esc((def ? def + " — " : "") + t("eqs.sort"))}">${t(lbl)}${arrow(k)}</th>`;
+    }).join("")}</tr>`;
     const body = rows.map(r => `<tr class="click" data-goto="${esc(r.ticker)}">
       <td><button class="star ${r.inWl ? "on" : ""}" data-star="${esc(r.ticker)}" title="${esc(t(r.inWl ? "eqs.remove_wl" : "eqs.add_wl"))}">${r.inWl ? "★" : "☆"}</button></td>
-      <td class="tk l">${esc(r.ticker)}</td><td class="nm">${esc(r.name)}</td><td class="l">${esc(r.country)}</td><td class="l note">${t("seg." + r.segment)}</td>
+      <td class="tk l">${esc(r.ticker)}</td><td class="nm">${esc(r.name)}</td><td class="l">${esc(r.country)}</td><td class="l note">${t("size." + r.segment)}</td>
+      <td>${bn(r.mcap)}</td>
       ${r.last == null ? `<td class="na" colspan="2" title="${esc(r.quoteErr || "")}">${t("unavailable")}</td>`
         : `<td>${num(r.last, r.last < 10 ? 4 : 2)} <span class="note">${esc(r.currency)}</span>${r.stale ? ` <span class="stale">${t("stale")}</span>` : ""}</td><td class="${cls(r.pct)}">${pct(r.pct)}</td>`}
       <td class="${cls(r.perf)}">${pct(r.perf, 1)}</td><td>${pct(r.vol, 1, false)}</td><td>${num(r.beta, 2)}</td>
-      <td class="${isNum(r.mdd) ? "down" : ""}">${pct(r.mdd, 1)}</td><td class="${cls(r.sharpe)}">${num(r.sharpe, 2)}</td></tr>`).join("");
+      <td class="${isNum(r.mdd) ? "down" : ""}">${pct(r.mdd, 1)}</td><td class="${cls(r.sharpe)}">${num(r.sharpe, 2)}</td>
+      <td>${mult(r.pe)}</td><td class="note">${r.next ? fmtDate(r.next) : "—"}</td></tr>`).join("");
     const q = quotesEnv(), regs = q ? Object.values(q._meta.regions || {}) : [];
     const r = ds("risk.json");
-    return panel({ title: `EQS — ${t("eqs.title")} ${delayed()}`, tools,
+    return panel({ title: `EQS — ${t("eqs.title")} ${delayed()}`, tools: tools + csvBtn(),
       updated: regs.length ? regs.map(x => x.fetched_at).sort().pop() : null,
       source: "Yahoo Finance (yfinance) · " + t("risk.source"),
       body: `<div class="note">${t("eqs.count", { n: rows.length })} · ${t("eqs.help")}</div><table class="t">${head}${body}</table>
         <p class="note">${t("eqs.defs")}${r.ok ? " " + t("eqs.risk_asof", { d: fmtDT(r.meta.fetched_at) }) : ""}</p>` });
   }
 
+  // ------------------------------------------------------------------ shared: definitions, CSV, companies index
+  // header cell with the metric's definition on hover (glossary in HELP)
+  function th(defKey, label, extra) {
+    const d = I18N["def." + defKey];
+    return `<th class="${extra || ""}${d ? " def" : ""}"${d ? ` title="${esc(d)}"` : ""}>${label}</th>`;
+  }
+  const csvBtn = () => `<button class="btn" data-csv title="${esc(t("csv.tip"))}">CSV</button>`;
+  function exportCsv(btn) {
+    const panelEl = btn.closest(".panel");
+    const table = panelEl && panelEl.querySelector("table.t, table.heat");
+    if (!table) return;
+    const sep = S.numfmt === "fr" ? ";" : ",";
+    const cell = c => {
+      const s = c.innerText.replace(/[★☆▲▼↗]/g, "").replace(/\s+/g, " ").trim();
+      return /[";,\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+    };
+    const lines = [...table.rows].map(r => [...r.cells].map(cell).join(sep));
+    const tEl = panelEl.querySelector(".ph-title");
+    const title = tEl ? [...tEl.childNodes].filter(n => n.nodeType === 3).map(n => n.textContent).join(" ").trim() || tEl.innerText : "atlas";
+    const name = "atlas-" + title.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "").slice(0, 40) + ".csv";
+    const blob = new Blob(["﻿" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" });   // BOM so Excel reads UTF-8
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+  const companies = () => ds("companies.json");
+  const compRow = tk => { const c = companies(); return c.ok ? c.data.rows[tk] : null; };
+  const bn = v => (isNum(v) ? num(v / 1e9, v >= 1e11 ? 0 : 1) : "—");       // EUR billions
+  const mult = v => (isNum(v) ? num(v, 1) + "x" : "—");
+
+  // ------------------------------------------------------------------ earnings calendar (MKTS)
+  function earningsPanel() {
+    const c = companies();
+    if (!c.ok) return panel({ title: t("cal.title"), cls: "span-12", body: dsUnavailable(c), meta: c.meta, source: "Yahoo Finance" });
+    const today = new Date().toISOString().slice(0, 10);
+    const horizon = new Date(Date.now() + 45 * 864e5).toISOString().slice(0, 10);
+    const wl = watchlist();
+    const rows = wl.map(tk => [tk, c.data.rows[tk]]).filter(([, r]) => r && r.status === "ok" && r.next_earnings && r.next_earnings >= today && r.next_earnings <= horizon)
+      .sort((a, b) => a[1].next_earnings.localeCompare(b[1].next_earnings));
+    const body = rows.length ? `<table class="t"><tr><th>${t("col.date")}</th><th>${t("col.ticker")}</th><th class="l nm">${t("col.name")}</th>
+        ${th("eps_est", t("cal.eps_est"))}${th("n_analysts", t("cal.n"))}</tr>
+      ${rows.map(([tk, r]) => `<tr class="click" data-goto-des="${esc(tk)}"><td>${fmtDate(r.next_earnings, { weekday: "short" })}</td><td class="tk l">${esc(tk)}</td>
+        <td class="nm">${esc((UNI[tk] || {}).name)}</td><td>${num(r.eps_estimate_next)}</td><td>${r.n_analysts || "—"}</td></tr>`).join("")}</table>`
+      : `<div class="note">${t("cal.none")}</div>`;
+    return panel({ title: t("cal.title"), cls: "span-12", body: body + `<p class="note">${t("cal.note")}</p>`, meta: c.meta, source: "Yahoo Finance (calendarEvents)", tools: csvBtn() });
+  }
+
+  // ------------------------------------------------------------------ DES (company page)
+  async function companyOf(tk) {
+    const name = "company/" + C.safeName(tk) + ".json";
+    if (!FILES[name]) await load(name, FILES);
+    return ds(name, FILES);
+  }
+  async function esefOf(tk) {
+    const name = "esef/" + C.safeName(tk) + ".json";
+    if (!FILES[name]) await load(name, FILES);
+    return ds(name, FILES);
+  }
+  function factSentence(f, ccy) {
+    const p = (v, d = 1) => pct(v, d);
+    switch (f.key) {
+      case "rev_growth_fy": return t("fact.rev_growth_fy", { v: p(f.v), fy: fmtDate(f.fy) });
+      case "net_margin_fy": return t("fact.net_margin_fy", { v: pct(f.v, 1, false), d: signed(f.delta_pts, 1) });
+      case "rev_growth_q": return t("fact.rev_growth_q", { v: p(f.v), q: fmtDate(f.q) });
+      case "eps_beats": return t("fact.eps_beats", { beats: f.beats, n: f.n });
+      case "consensus_fy":
+      case "consensus_next_fy":
+        return t("fact." + f.key, { n: f.n, eps: p(f.eps_growth), end: fmtDate(f.end) }) +
+          (isNum(f.rev_growth) ? t("fact.rev_part", { rev: p(f.rev_growth) }) : "") + ".";
+      case "eps_revision_30d": return t("fact.eps_revision_30d", { v: p(f.v) });
+      case "target_upside": return t("fact.target_upside", { mean: num(f.mean), n: f.n, v: p(f.v) });
+      case "reco_split": return t("fact.reco_split", { buy: f.buy, hold: f.hold, sell: f.sell });
+      case "leverage": return t("fact.leverage", { v: num(f.v, 1), fy: fmtDate(f.fy) });
+      case "net_cash": return t("fact.net_cash", { v: compact(f.v) + " " + (ccy || ""), fy: fmtDate(f.fy) });
+      case "next_earnings": return t("fact.next_earnings", { date: fmtDate(f.date, { weekday: "long", day: "numeric", month: "long", year: "numeric" }) });
+      default: return null;
+    }
+  }
+  function kv(label, value, defKey) {
+    const d = defKey && I18N["def." + defKey];
+    return `<div class="kv2"><span class="${d ? "def" : ""}"${d ? ` title="${esc(d)}"` : ""}>${label}</span><b>${value}</b></div>`;
+  }
+  function finTable(rows, ccy, quarterly) {
+    if (!rows || !rows.length) return `<div class="note">${t(quarterly ? "des.no_quarters" : "des.no_statements")}</div>`;
+    const money = v => (isNum(v) ? compact(v) : "—");
+    const line = (label, fn, defKey) => `<tr>${th(defKey || "", label, "l").replace("<th", "<td").replace("</th>", "</td>")}${rows.map(r => `<td>${fn(r)}</td>`).join("")}</tr>`;
+    const head = `<tr><th class="l">${t(quarterly ? "fa.quarter_end" : "fa.year_end")} (${esc(ccy || "")})</th>${rows.map(r => `<th>${fmtDate(r.end)}</th>`).join("")}</tr>`;
+    const body = quarterly
+      ? line(t("fa.revenue"), r => money(r.revenue)) + line(t("des.ebitda"), r => money(r.ebitda), "ebitda") +
+        line(t("fa.net_income"), r => money(r.net_income)) + line(t("fa.net_margin"), r => pct(r.net_margin, 1, false), "net_margin") +
+        line(t("fa.eps"), r => num(r.eps_diluted), "eps")
+      : line(t("fa.revenue"), r => money(r.revenue)) + line(t("des.growth"), r => `<span class="${cls(r.revenue_growth)}">${pct(r.revenue_growth, 1)}</span>`, "growth") +
+        line(t("des.ebitda"), r => money(r.ebitda), "ebitda") + line(t("des.ebit_margin"), r => pct(r.ebit_margin, 1, false), "ebit_margin") +
+        line(t("fa.net_income"), r => money(r.net_income)) + line(t("fa.net_margin"), r => pct(r.net_margin, 1, false), "net_margin") +
+        line(t("fa.eps"), r => num(r.eps_diluted), "eps") + line(t("des.fcf"), r => money(r.fcf), "fcf") +
+        line(t("des.net_debt"), r => money(r.net_debt), "net_debt") + line(t("des.nd_ebitda"), r => (isNum(r.net_debt_to_ebitda) ? num(r.net_debt_to_ebitda, 1) + "x" : "—"), "nd_ebitda") +
+        line(t("des.roe"), r => pct(r.roe, 1, false), "roe");
+    return `<table class="t">${head}${body}</table>`;
+  }
+  async function renderDES() {
+    const m = meta(); if (!m) return firstRunNotice();
+    const stocks = m.watchlist_universe.filter(tk => UNI[tk] && UNI[tk].kind === "stock");
+    const tk = stocks.includes(S.ticker) ? S.ticker : (stocks.includes("MC.PA") ? "MC.PA" : stocks[0]);
+    const info = UNI[tk] || {};
+    const [x, es] = await Promise.all([companyOf(tk), info.region === "EU" ? esefOf(tk) : Promise.resolve(null)]);
+    const tools = tickerSelect(tk, stocks, "des-ticker");
+    const src = "Yahoo Finance (yfinance)";
+    if (!x.ok) {
+      return panel({ title: `DES — ${esc(tk)} ${esc(info.name || "")}`, tools, meta: x.meta, source: src,
+        body: dsUnavailable(x) + `<p class="note">${t("des.rotation_note")}</p>` });
+    }
+    const c = x.data, pf = c.profile || {}, va = c.valuation || {}, tg = c.targets || {}, cal = c.calendar || {};
+    const q = quotesEnv(), qq = q && q.data[tk];
+    const cr = compRow(tk) || {};
+    const ccy = pf.financial_currency || pf.currency;
+    const price = qq && qq.status === "ok" ? qq.last : tg.current_price;
+    // header
+    const head = `<div class="qhead"><span class="px">${num(price)} <span class="note">${esc(qq ? qq.currency : pf.currency || "")}</span></span>
+      ${qq && qq.status === "ok" ? `<span class="ch ${cls(qq.pct)}">${pct(qq.pct)}</span>${delayed()}` : ""}
+      <span class="kv">${t("des.sector")} <b>${esc(pf.sector || "—")}</b> · <b>${esc(pf.industry || "—")}</b></span>
+      <span class="kv">${t("col.country")} <b>${esc(pf.country || info.country || "—")}</b></span>
+      ${pf.employees ? `<span class="kv">${t("des.employees")} <b>${num(pf.employees, 0)}</b></span>` : ""}
+      ${isNum(cr.market_cap_eur) ? `<span class="kv">${t("term.mcap")} <b>${bn(cr.market_cap_eur)} ${t("unit.bn")} €</b> <span class="note">(${t("size." + cr.size)})</span></span>` : ""}
+      ${pf.website ? `<a class="kv" href="${esc(safeUrl(pf.website))}" target="_blank" rel="noopener">${esc(pf.website.replace(/^https?:\/\/(www\.)?/, ""))} ↗</a>` : ""}</div>`;
+    // factual commentary
+    const sentences = (cr.facts || []).map(f => factSentence(f, ccy)).filter(Boolean);
+    const comment = sentences.length ? `<ul class="facts">${sentences.map(s => `<li>${esc(s)}</li>`).join("")}</ul>` : `<div class="note">${t("des.no_facts")}</div>`;
+    const summaryPanel = panel({ title: `DES — ${esc(tk)} ${esc(pf.name || info.name || "")}`, tools, meta: x.meta, source: src,
+      body: head + `<div class="sub">${t("des.key_points")}</div>` + comment + `<p class="note">${t("des.facts_note")}</p>` });
+    // results
+    const resultsPanel = panel({ title: t("des.results_annual"), cls: "span-8", meta: x.meta, source: src + " — " + t("des.statements_src"), tools: csvBtn(),
+      body: finTable(c.annual, ccy, false) + (c.statements_error ? `<div class="note down">${esc(c.statements_error)}</div>` : "") });
+    const quartersPanel = panel({ title: t("des.results_quarterly"), cls: "span-4", meta: x.meta, source: src, tools: csvBtn(),
+      body: finTable((c.quarterly || []).slice(-4), ccy, true) });
+    // consensus
+    const per = { "0q": t("des.p_0q"), "+1q": t("des.p_1q"), "0y": t("des.p_0y"), "+1y": t("des.p_1y") };
+    const est = (c.estimates || []).filter(e => per[e.period] && (isNum(e.eps_avg) || isNum(e.rev_avg)));
+    const estBody = est.length ? `<table class="t"><tr><th class="l">${t("des.period")}</th><th>${t("des.end")}</th>${th("eps_est", t("des.eps_avg"))}<th>${t("des.range")}</th>
+        ${th("n_analysts", t("cal.n"))}${th("growth", t("des.eps_growth"))}${th("rev_est", t("des.rev_avg"))}${th("growth", t("des.rev_growth"))}</tr>
+      ${est.map(e => `<tr><td class="l">${per[e.period]}</td><td>${fmtDate(e.end_date)}</td><td>${num(e.eps_avg)}</td>
+        <td class="note">${isNum(e.eps_low) || isNum(e.eps_high) ? `${num(e.eps_low)} – ${num(e.eps_high)}` : "—"}</td><td>${e.eps_n || "—"}</td><td class="${cls(e.eps_growth)}">${pct(e.eps_growth, 1)}</td>
+        <td>${compact(e.rev_avg)}</td><td class="${cls(e.rev_growth)}">${pct(e.rev_growth, 1)}</td></tr>`).join("")}</table>`
+      : `<div class="note">${t("des.no_consensus")}</div>`;
+    const consensusPanel = panel({ title: t("des.consensus"), cls: "span-8", meta: x.meta, source: src + " — earningsTrend", tools: csvBtn(),
+      body: estBody + `<p class="note">${t("des.consensus_note")}</p>` });
+    // targets & recommendations
+    const rec = (c.recommendations || []).find(r => r.period === "0m");
+    const recBar = rec ? (() => {
+      const parts = [["strongBuy", "#3fd16b"], ["buy", "#2f9d52"], ["hold", "#8d877b"], ["sell", "#c9552f"], ["strongSell", "#ff4d4d"]];
+      const tot = parts.reduce((s, [k]) => s + (rec[k] || 0), 0);
+      if (!tot) return "";
+      return `<div class="recbar">${parts.map(([k, col]) => rec[k] ? `<span style="flex:${rec[k]};background:${col}" title="${esc(t("reco." + k))}: ${rec[k]}">${rec[k]}</span>` : "").join("")}</div>
+        <div class="note">${parts.map(([k]) => `${t("reco." + k)} ${rec[k] || 0}`).join(" · ")}</div>`;
+    })() : "";
+    const upside = isNum(tg.mean) && isNum(price) ? tg.mean / price - 1 : null;
+    const targetsPanel = panel({ title: t("des.targets"), cls: "span-4", meta: x.meta, source: src + " — financialData, recommendationTrend",
+      body: (isNum(tg.mean) ? kv(t("des.target_mean"), `${num(tg.mean)} <span class="${cls(upside)}">(${pct(upside, 1)})</span>`, "target") +
+        kv(t("des.target_range"), `${num(tg.low)} – ${num(tg.high)}`) + kv(t("cal.n"), tg.n_analysts || "—", "n_analysts") +
+        kv(t("des.reco"), tg.reco_key ? t("reco.key." + tg.reco_key) : "—", "reco") : `<div class="note">${t("des.no_targets")}</div>`) + recBar });
+    // surprises
+    const sur = (c.surprises || []).slice(-4);
+    const surBody = sur.length ? `<table class="t"><tr><th class="l">${t("des.quarter")}</th>${th("eps_est", t("des.eps_est"))}${th("eps", t("des.eps_act"))}${th("surprise", t("des.surprise"))}</tr>
+      ${sur.map(s => `<tr><td class="l">${fmtDate(s.quarter)}</td><td>${num(s.eps_estimate)}</td><td>${num(s.eps_actual)}</td>
+        <td class="${cls(s.surprise_pct)}">${pct(s.surprise_pct, 1)}</td></tr>`).join("")}</table>` : `<div class="note">${t("des.no_surprises")}</div>`;
+    const surprisesPanel = panel({ title: t("des.surprises"), cls: "span-4", meta: x.meta, source: src + " — earningsHistory", body: surBody });
+    // calendar & valuation
+    const calPanel = panel({ title: t("des.calendar"), cls: "span-4", meta: x.meta, source: src + " — calendarEvents",
+      body: kv(t("des.next_results"), (() => {
+          const today = new Date().toISOString().slice(0, 10);
+          const up = (cal.earnings_dates || []).filter(d => d >= today);
+          const past = (cal.earnings_dates || []).filter(d => d < today);
+          return up.length ? up.map(d => fmtDate(d)).join(" / ") : (past.length ? `— <span class="note">(${t("des.last_known")} ${fmtDate(past[past.length - 1])})</span>` : "—");
+        })()) +
+        kv(t("des.eps_expected"), cal.eps_avg != null ? `${num(cal.eps_avg)}${isNum(cal.eps_low) ? ` <span class="note">(${num(cal.eps_low)} – ${num(cal.eps_high)})</span>` : ""}` : "—", "eps_est") +
+        kv(t("des.rev_expected"), compact(cal.revenue_avg), "rev_est") + kv(t("des.ex_div"), fmtDate(cal.ex_dividend)) });
+    const valPanel = panel({ title: t("des.valuation"), cls: "span-4", meta: x.meta, source: t("des.val_src"),
+      body: kv(t("comps.pe"), mult(cr.pe), "pe") + kv(t("comps.ev_ebitda"), mult(cr.ev_ebitda), "ev_ebitda") + kv(t("comps.ev_sales"), mult(cr.ev_sales), "ev_sales") +
+        kv(t("des.pe_fwd_yahoo"), mult(va.forward_pe), "pe_fwd") + kv(t("des.pb_yahoo"), mult(va.price_to_book), "pb") +
+        kv(t("des.div_yield"), pct(va.dividend_yield, 2, false), "div_yield") + kv(t("des.beta_yahoo"), num(va.beta_yahoo), "beta") +
+        `<p class="note">${t("des.val_note")}</p>` });
+    // official report (ESEF) + profile
+    let esefBlock = "";
+    if (es) {
+      esefBlock = es.ok
+        ? `<p>${t("des.esef_ok", { entity: esc(es.data.entity || ""), date: fmtDate(es.data.period_end) })} ${es.data.viewer_url ? `<a href="${esc(safeUrl(es.data.viewer_url))}" target="_blank" rel="noopener">${t("des.esef_open")} ↗</a>` : ""} · <a href="#FA/${encodeURIComponent(tk)}" data-tab-fa="${esc(tk)}">${t("des.esef_fa")}</a></p>`
+        : `<p class="note">${t("des.esef_ko")}: ${esc(es.error)}</p>`;
+    }
+    const profilePanel = panel({ title: t("des.profile"), cls: "span-12", meta: x.meta, source: src + " — assetProfile",
+      body: esefBlock + (pf.summary ? ((S.lang === "fr" && S.translate && pf.summary_fr)
+        ? `<p class="summary" lang="fr" title="${esc(pf.summary)}">${esc(pf.summary_fr)}</p><p class="note">${t("des.summary_note_fr")}</p>`
+        : `<p class="summary" lang="en">${esc(pf.summary)}</p><p class="note">${t("des.summary_note")}</p>`) : "") });
+    return summaryPanel + resultsPanel + quartersPanel + consensusPanel + targetsPanel + surprisesPanel + calPanel + valPanel + profilePanel;
+  }
+
+  // ------------------------------------------------------------------ ESEF in FA
+  async function esefPanel(tk) {
+    const x = await esefOf(tk);
+    const src = "ESEF (filings.xbrl.org)";
+    if (!x.ok) return panel({ title: t("esef.title"), cls: "span-12", body: dsUnavailable(x) + `<p class="note">${t("esef.note_missing")}</p>`, meta: x.meta, source: src });
+    const e = x.data, rows = e.rows || [];
+    const money = v => (isNum(v) ? compact(v) : "—");
+    const line = (label, fn, defKey) => `<tr><td class="l${I18N["def." + defKey] ? " def" : ""}"${I18N["def." + defKey] ? ` title="${esc(t("def." + defKey))}"` : ""}>${label}</td>${rows.map(r => `<td>${fn(r)}</td>`).join("")}</tr>`;
+    const table = `<table class="t"><tr><th class="l">${t("fa.year_end")} (${esc(e.currency || "")})</th>${rows.map(r => `<th>${fmtDate(r.end)}</th>`).join("")}</tr>
+      ${line(t("fa.revenue"), r => money(r.revenue))}${line(t("des.growth"), r => `<span class="${cls(r.revenue_growth)}">${pct(r.revenue_growth, 1)}</span>`, "growth")}
+      ${line(t("esef.ebit"), r => money(r.ebit), "ebit_margin")}${line(t("des.ebit_margin"), r => pct(r.ebit_margin, 1, false), "ebit_margin")}
+      ${line(t("fa.net_income"), r => money(r.net_income))}${line(t("fa.net_margin"), r => pct(r.net_margin, 1, false), "net_margin")}
+      ${line(t("fa.eps"), r => num(r.eps_diluted), "eps")}${line(t("esef.ocf"), r => money(r.op_cash_flow))}${line(t("esef.capex"), r => money(r.capex))}
+      ${line(t("des.fcf"), r => money(r.fcf), "fcf")}${line(t("esef.cash"), r => money(r.cash))}${line(t("esef.equity"), r => money(r.equity))}
+      ${line(t("esef.dividends"), r => money(r.dividends_paid))}</table>`;
+    return panel({ title: `${t("esef.title")} — ${esc(e.entity || tk)}`, cls: "span-12", meta: x.meta, source: src, tools: csvBtn(),
+      body: table + `<p class="note">${t("esef.note", { lei: esc(e.lei), n: e.n_reports })} ${e.viewer_url ? `<a href="${esc(safeUrl(e.viewer_url))}" target="_blank" rel="noopener">${t("des.esef_open")} ↗</a>` : ""}</p>` });
+  }
+
+  // ------------------------------------------------------------------ COMPS
+  function renderCOMPS() {
+    const m = meta(); if (!m) return firstRunNotice();
+    const c = companies();
+    if (!c.ok) return panel({ title: "COMPS", body: dsUnavailable(c), meta: c.meta, source: "Yahoo Finance" });
+    const rows = c.data.rows;
+    const sectors = [...new Set(Object.values(rows).filter(r => r.status === "ok" && r.sector).map(r => r.sector))].sort();
+    const mine = rows[S.ticker] && rows[S.ticker].sector;
+    if (!S.comps.sector || !sectors.includes(S.comps.sector)) S.comps.sector = mine || sectors[0];
+    const sel = (name, options, cur) => `<select data-comps="${name}">${options.map(([v, l]) => `<option value="${esc(v)}" ${v === cur ? "selected" : ""}>${esc(l)}</option>`).join("")}</select>`;
+    const tools = sel("sector", sectors.map(s => [s, s]), S.comps.sector) +
+      sel("region", [["ALL", t("eqs.all_regions")], ["US", t("region.US")], ["EU", t("region.EU")]], S.comps.region) + csvBtn();
+    const list = Object.entries(rows).filter(([tk, r]) => r.status === "ok" && r.sector === S.comps.sector && (S.comps.region === "ALL" || (UNI[tk] || {}).region === S.comps.region))
+      .sort((a, b) => (b[1].market_cap_eur || 0) - (a[1].market_cap_eur || 0));
+    const cols = [["market_cap_eur", "col.mcap", "mcap", bn], ["ev_eur", "comps.ev", "ev", bn], ["pe", "comps.pe", "pe", mult], ["ev_ebitda", "comps.ev_ebitda", "ev_ebitda", mult],
+      ["ev_sales", "comps.ev_sales", "ev_sales", mult], ["ebit_margin", "comps.ebit_m", "ebit_margin", v => pct(v, 1, false)], ["net_margin", "comps.net_m", "net_margin", v => pct(v, 1, false)],
+      ["revenue_growth", "comps.growth", "growth", v => pct(v, 1)], ["roe", "des.roe", "roe", v => pct(v, 1, false)], ["net_debt_to_ebitda", "comps.nd", "nd_ebitda", v => (isNum(v) ? num(v, 1) + "x" : "—")],
+      ["dividend_yield", "comps.dy", "div_yield", v => pct(v, 1, false)]];
+    const med = k => C.median(list.map(([, r]) => r[k]).filter(isNum));
+    const head = `<tr><th class="l">${t("col.ticker")}</th><th class="l nm">${t("col.name")}</th><th class="l">${t("col.country")}</th>${th("size", t("col.segment"), "l")}${th("fy", t("comps.fy"))}
+      ${cols.map(([, lbl, d]) => th(d, t(lbl))).join("")}</tr>`;
+    const body = list.map(([tk, r]) => `<tr class="click ${tk === S.ticker ? "hl" : ""}" data-goto-des="${esc(tk)}"><td class="tk l">${esc(tk)}</td><td class="nm">${esc((UNI[tk] || {}).name)}</td>
+      <td class="l">${esc((UNI[tk] || {}).country || "")}</td><td class="l note">${r.size ? t("size." + r.size) : "—"}</td><td class="note">${fmtDate(r.fy)}</td>
+      ${cols.map(([k, , , f]) => `<td class="${k === "revenue_growth" ? cls(r[k]) : ""}">${f(r[k])}</td>`).join("")}</tr>`).join("");
+    const medRow = `<tr class="med"><td class="l" colspan="5">${t("comps.median", { n: list.length })}</td>${cols.map(([k, , , f]) => `<td>${f(med(k))}</td>`).join("")}</tr>`;
+    return panel({ title: `COMPS — ${esc(S.comps.sector || "")}`, tools, meta: c.meta, source: c.meta.source,
+      body: list.length ? `<table class="t">${head}${body}${medRow}</table><p class="note">${t("comps.note")}</p>` : `<div class="note">${t("comps.empty")}</div>` });
+  }
+
+  // ------------------------------------------------------------------ DEALS
+  function renderDEALS() {
+    const m = meta(); if (!m) return firstRunNotice();
+    const x = ds("deals.json");
+    if (!x.ok) return panel({ title: "DEALS", body: dsUnavailable(x), meta: x.meta, source: "SEC EDGAR" });
+    const f = S.deals.ticker;
+    const tools = `<select data-deals="ticker"><option value="ALL">${t("deals.all")}</option>${m.watchlist_universe.map(tk => `<option value="${esc(tk)}" ${f === tk ? "selected" : ""}>${esc(tk)}</option>`).join("")}</select>`;
+    const sec = x.data.sec.filter(d => f === "ALL" || d.ticker === f).slice(0, 80);
+    const secBody = sec.length ? `<table class="t"><tr><th class="l">${t("fa.filed")}</th><th class="l">${t("col.ticker")}</th><th class="l">${t("fa.form")}</th><th class="l">${t("deals.type")}</th><th></th></tr>
+      ${sec.map(d => `<tr><td class="l">${fmtDate(d.filed)}</td><td class="tk l">${esc(d.ticker)}</td><td class="l">${esc(d.form)}</td>
+        <td class="l">${d.kinds.map(k => esc(t("deal." + k))).join(", ")}</td><td class="l"><a href="${esc(safeUrl(d.url))}" target="_blank" rel="noopener">${t("open")} ↗</a></td></tr>`).join("")}</table>`
+      : `<div class="note">${t("deals.none_sec")}</div>`;
+    const news = x.data.news.filter(d => f === "ALL" || d.ticker === f).slice(0, 80);
+    const newsBody = news.length ? news.map(h => {
+      const useFr = S.lang === "fr" && S.translate && h.title_fr;
+      return `<div class="news-item"><span class="when">${fmtDT(h.published)}<span class="src">${esc(h.publisher || "—")}<span class="feed">${esc(h.feed || "")}</span></span></span>
+        <span><b class="tk">${esc(h.ticker)}</b> <a href="${esc(safeUrl(h.link))}" target="_blank" rel="noopener" title="${esc(h.title)}">${esc(useFr ? h.title_fr : h.title)}</a>${useFr ? ` <span class="mt">${t("news.mt")}</span>` : ""}</span>
+        <span class="sent" title="${esc(t("deals.kw_tip"))}">${esc(h.keyword)}</span></div>`;
+    }).join("") : `<div class="note">${t("deals.none_news")}</div>`;
+    return panel({ title: t("deals.sec_title"), cls: "span-6", tools, meta: x.meta, source: "SEC EDGAR (submissions)",
+        body: secBody + `<p class="note">${t("deals.sec_note")}</p>` }) +
+      panel({ title: t("deals.news_title"), cls: "span-6", meta: x.meta, source: t("deals.news_src"),
+        body: newsBody + `<p class="note">${t("deals.news_note")}</p>` });
+  }
+
+  // ------------------------------------------------------------------ glossary (HELP)
+  function glossaryPanel() {
+    const keys = Object.keys(I18N).filter(k => k.startsWith("def.")).sort((a, b) => t("term." + a.slice(4)).localeCompare(t("term." + b.slice(4))));
+    return panel({ title: t("help.glossary"), updated: null, source: "Atlas Terminal",
+      body: `<table class="t gloss">${keys.map(k => `<tr><td class="l tk">${esc(t("term." + k.slice(4)))}</td><td class="l">${esc(t(k))}</td></tr>`).join("")}</table>` });
+  }
+
   // ------------------------------------------------------------------ HELP
   function renderHELP() {
     const cmds = [["AAPL", "help.quote"], ["AAPL FA", "help.fa"], ["MC.PA RISK", "help.risk"], ["NVDA NEWS", "help.news"],
+      ["MC.PA DES", "help.des"], ["MC.PA COMPS", "help.comps"], ["DEALS", "help.deals"],
       ["MKTS", "help.mkts"], ["EQS", "help.eqs"], ["ECO", "help.eco"], ["LANG FR / LANG EN", "help.lang"], ["HELP", "help.help"]];
     return panel({ title: "HELP", updated: null, source: "Atlas Terminal",
-      body: `<div class="help-list">${cmds.map(([c, k]) => `<code>${c}</code> — ${t(k)}`).join("<br>")}</div><p class="note">${t("help.more")}</p>` });
+      body: `<div class="help-list">${cmds.map(([c, k]) => `<code>${c}</code> — ${t(k)}`).join("<br>")}</div>` }) + glossaryPanel();
   }
 
   // ------------------------------------------------------------------ render loop
@@ -605,14 +897,14 @@
   async function render() {
     const seq = ++renderSeq;
     renderTabs(); renderClocks();
-    const fn = { MKTS: renderMKTS, QUOTE: renderQUOTE, FA: renderFA, RISK: renderRISK, NEWS: renderNEWS, ECO: renderECO, EQS: renderEQS, HELP: renderHELP }[S.tab];
+    const fn = { MKTS: renderMKTS, QUOTE: renderQUOTE, FA: renderFA, RISK: renderRISK, NEWS: renderNEWS, ECO: renderECO, EQS: renderEQS, DES: renderDES, COMPS: renderCOMPS, DEALS: renderDEALS, HELP: renderHELP }[S.tab];
     let out = await fn();
     if (seq !== renderSeq) return;            // a newer render started meanwhile
     if (typeof out === "string") out = { html: out };
     destroyCharts();
     $("#main").innerHTML = out.html;
     if (out.after) out.after();
-    const hash = "#" + S.tab + (["QUOTE", "FA"].includes(S.tab) ? "/" + encodeURIComponent(S.ticker) : "");
+    const hash = "#" + S.tab + (["QUOTE", "FA", "DES", "COMPS"].includes(S.tab) ? "/" + encodeURIComponent(S.ticker) : "");
     if (location.hash !== hash) history.replaceState(null, "", hash);
   }
   function go(tab, ticker) {
@@ -695,6 +987,8 @@
     if (res.type === "tab") return go(res.tab);
     if (res.type === "ticker") {
       if (res.tab === "NEWS") S.newsTicker = watchlist().includes(res.ticker) ? res.ticker : "ALL";
+      if (res.tab === "DEALS") S.deals.ticker = res.ticker;
+      if (res.tab === "COMPS") S.comps.sector = null;   // the ticker's own sector
       return go(res.tab, res.ticker);
     }
   }
@@ -762,6 +1056,12 @@
         LS.set("watchlist", S.watchlist);
         return render();
       }
+      const csv = e.target.closest("[data-csv]");
+      if (csv) { e.stopPropagation(); return exportCsv(csv); }
+      const des = e.target.closest("[data-goto-des]");
+      if (des) return go("DES", des.dataset.gotoDes);
+      const fa = e.target.closest("[data-tab-fa]");
+      if (fa) { e.preventDefault(); return go("FA", fa.dataset.tabFa); }
       const th = e.target.closest("[data-sort]");
       if (th) {
         const k = th.dataset.sort;
@@ -789,6 +1089,9 @@
       const el = e.target;
       if (el.dataset.action === "quote-ticker") go("QUOTE", el.value);
       if (el.dataset.action === "fa-ticker") go("FA", el.value);
+      if (el.dataset.action === "des-ticker") go("DES", el.value);
+      if (el.dataset.comps) { S.comps[el.dataset.comps] = el.value; if (el.dataset.comps === "region") LS.set("compsRegion", el.value); render(); }
+      if (el.dataset.deals) { S.deals[el.dataset.deals] = el.value; render(); }
       if (el.dataset.action === "news-ticker") { S.newsTicker = el.value; render(); }
       if (el.dataset.eqs) {
         S.eqs[el.dataset.eqs] = el.value;

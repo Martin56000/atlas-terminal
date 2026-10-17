@@ -69,3 +69,19 @@ def attach(items, cache):
         tr = cache.get(h["link"]) if h["lang"] == "en" else None
         h["title_fr"] = fix_terms(tr) if tr else None   # also fixes translations cached before the glossary
     return items
+
+
+def split_sentences(text):
+    import re
+    parts = re.split(r"(?<=[.!?])\s+(?=[A-Z0-9])", (text or "").strip())
+    return [p for p in parts if p]
+
+
+def translate_text(text, tr=None):
+    """Long text -> French, sentence by sentence (the model handles ~one sentence well)."""
+    sents = split_sentences(text)
+    if not sents:
+        return None
+    tr = tr or translator()
+    out = tr(sents, batch_size=8, max_length=256)
+    return fix_terms(" ".join((r.get("translation_text") or "").strip() for r in out))

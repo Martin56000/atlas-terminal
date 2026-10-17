@@ -226,7 +226,7 @@ EU_MORE = [
     _eu("OVH.PA", "OVHcloud", "XPAR", segment="smid"),
     _eu("SOI.PA", "Soitec", "XPAR", segment="smid"),
     _eu("AYV.PA", "Ayvens", "XPAR", segment="smid"),
-    _eu("FDJ.PA", "FDJ United", "XPAR", segment="smid"),
+    _eu("FDJU.PA", "FDJ United", "XPAR", segment="smid", query_en="FDJ United"),
     _eu("DIM.PA", "Sartorius Stedim Biotech", "XPAR", segment="smid"),
     _eu("WLN.PA", "Worldline", "XPAR", segment="smid"),
     _eu("VIRI.PA", "Viridien", "XPAR", segment="smid"),
@@ -381,7 +381,7 @@ def sec_user_agent():
 
 
 # Company pages (Yahoo) and ESEF reports are refreshed by rotation in the 08:30 / 17:40 runs
-COMPANY_PER_RUN = 80          # ~5 Yahoo calls each
+COMPANY_PER_RUN = 100         # ~5 Yahoo calls each
 COMPANY_MAX_AGE_H = 20        # a company page younger than this is not refetched
 ESEF_PER_RUN = 25
 ESEF_MAX_AGE_DAYS = 30        # annual reports change once a year

@@ -70,9 +70,17 @@ test("translations: FR and EN have the same keys and cover every key used", () =
   for (const m of app.matchAll(/"((?:fa|sent|cmd|help)\.[a-z0-9_]+)"/g)) used.add(m[1]);
   for (const m of html.matchAll(/data-i18n(?:-placeholder|-title)?="([^"]+)"/g)) used.add(m[1]);
   C.TABS.forEach(x => used.add("tab." + x));                                                // t("tab." + tab)
-  ["FR", "DE", "NL", "CH", "GB", "DK", "ES", "IT", "US"].forEach(x => used.add("country." + x)); // t("country." + c)
+  ["FR", "DE", "NL", "CH", "GB", "DK", "ES", "IT", "US", "BE", "SE", "NO", "FI", "PT"].forEach(x => used.add("country." + x)); // t("country." + c)
   ["large", "smid", "us"].forEach(x => used.add("seg." + x));                              // t("seg." + segment)
   ["index", "etf", "fx", "commodity", "stock"].forEach(x => used.add("kind." + x));        // t("kind." + kind)
+  ["large", "mid", "small", "na"].forEach(x => used.add("size." + x));                    // t("size." + size)
+  ["strongBuy", "buy", "hold", "sell", "strongSell"].forEach(x => used.add("reco." + x));
+  ["strong_buy", "buy", "hold", "underperform", "sell", "none"].forEach(x => used.add("reco.key." + x));
+  ["material_agreement", "acquisition_completed", "stake_13d", "tender_third", "tender_issuer", "tender_response",
+   "merger_registration", "merger_proxy", "merger_communication"].forEach(x => used.add("deal." + x));
+  for (const k of Object.keys(fr).filter(k => k.startsWith("def."))) used.add("term." + k.slice(4)); // every definition has a term
+  ["rev_growth_fy", "net_margin_fy", "rev_growth_q", "eps_beats", "consensus_fy", "consensus_next_fy", "rev_part",
+   "eps_revision_30d", "target_upside", "reco_split", "leverage", "net_cash", "next_earnings"].forEach(x => used.add("fact." + x));
   ["positive", "neutral", "negative"].forEach(x => used.add("sent." + x));                 // t("sent." + label)
   ["US", "EU"].forEach(x => used.add("region." + x));                                      // t("region." + r)
   const missing = [...used].filter(k => !k.endsWith(".") && !(k in fr)); // "tab." etc. = dynamic prefixes, checked above
@@ -108,7 +116,7 @@ test("suggest: names, tickers, accents, aliases", () => {
 });
 
 test("suggest: functions after a ticker, commands", () => {
-  assert.deepEqual(C.suggest("TTE.PA ", UNI).map(s => s.value), ["TTE.PA QUOTE", "TTE.PA FA", "TTE.PA RISK", "TTE.PA NEWS"]);
+  assert.deepEqual(C.suggest("TTE.PA ", UNI).map(s => s.value), ["TTE.PA QUOTE", "TTE.PA DES", "TTE.PA FA", "TTE.PA RISK", "TTE.PA NEWS", "TTE.PA COMPS", "TTE.PA DEALS"]);
   assert.deepEqual(C.suggest("total f", UNI).map(s => s.value), ["TTE.PA FA"]); // exact name/alias works too
   assert.deepEqual(C.suggest("TTE.PA f", UNI).map(s => s.value), ["TTE.PA FA"]);
   assert.ok(C.suggest("EC", UNI).some(s => s.kind === "cmd" && s.value === "ECO"));
@@ -122,4 +130,18 @@ test("parseCommand accepts names and unambiguous base tickers, refuses ambiguity
   assert.equal(C.parseCommand("air", UNI).ticker, "AIR.PA");       // AIR is Airbus's own ticker
   assert.equal(C.parseCommand("sa", UNI).type, "error");           // Sanofi or Santander: never guessed
   assert.equal(C.parseCommand("SAN", UNI).type, "error");          // SAN.PA or SAN.MC
+});
+
+test("median for the comps table", () => {
+  assert.equal(C.median([3, 1, 2]), 2);
+  assert.equal(C.median([4, 1, 3, 2]), 2.5);
+  assert.equal(C.median([null, NaN, 5]), 5);
+  assert.equal(C.median([]), null);
+});
+
+test("new tabs reachable from the command bar", () => {
+  const U = [{ ticker: "MC.PA", name: "LVMH", aliases: [] }];
+  assert.deepEqual(C.parseCommand("lvmh des", U), { type: "ticker", ticker: "MC.PA", tab: "DES" });
+  assert.deepEqual(C.parseCommand("MC.PA COMPS", U), { type: "ticker", ticker: "MC.PA", tab: "COMPS" });
+  assert.deepEqual(C.parseCommand("deals", U), { type: "tab", tab: "DEALS" });
 });

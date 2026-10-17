@@ -187,3 +187,60 @@ def test_sector_medians_and_size():
     m = comps.sector_medians(rows)
     assert m["S"]["pe"] == 15 and m["S"]["pe_n"] == 2 and m["S"]["n"] == 3
     assert (comps.size_class(15e9), comps.size_class(5e9), comps.size_class(1e9), comps.size_class(None)) == ("large", "mid", "small", None)
+
+
+def test_ma_detection_real_headlines_17_oct_2026():
+    """Real headlines collected on 16-17 Oct 2026."""
+    not_ma = [
+        "Nexans cède 0,39%",                                                   # 'cède' = the share falls
+        "L'action Derichebourg cède 12,8 % sur un mois, le RSI tombé à 31",
+        "13,346 Shares of HSBC Holdings plc $HSBC Acquired by Signal Advisors Wealth LLC",
+        "7,655 Shares of Ferrari N.V. $RACE Acquired by Triasima Portfolio Management Inc.",
+        "Krones Aktiengesellschaft (KRN) announces an acquisition of insider shares",
+        "Lectra : Acquisition d'actions propres",
+        "Curated Wealth Partners LLC Sells 279,304 Shares of JPMorgan Chase & Co. $JPM",
+        "Games Workshop non-executive director acquires shares",
+        "Three executives acquire GSK (NYSE: GSK) depositary shares at $46.95 each.",
+        "46,177 JPMorgan Chase & Co. $JPM Shares Acquired by West Wealth Group LLC",
+    ]
+    ma = [
+        "OPA sur Fnac Darty : EP Group notifie l'offre à 35 € à Bruxelles",
+        "Spie a annoncé l'acquisition de Clauser alors que l'action Spie se situe 22,43% en dessous",
+        "Wavestone rachète le cabinet Sand Cherry pour se renforcer aux États-Unis",
+        "Quadient signe un accord pour céder son réseau de casiers britanniques pour 65 millions d'euros",
+        "Vicat in negotiations to acquire 48 concrete plants from Cemex in the South-East",
+        "Interpump Group acquires 100% of Alfa Valvole",
+        "AkzoNobel sets November 30 merger vote: what it means for AkzoNobel stock",
+        "Credit Agricole agrees to acquire IKB: what it means for Credit Agricole stock",
+        "ASSA ABLOY (ASSA_B) To Divest HID PKI Unit to Vista; 2025 Sales $58M",
+        "E.ON completes OVO takeover. E.ON stock gains 1.59 percent",
+    ]
+    assert [t for t in not_ma if deals.ma_match(t)] == []
+    assert [t for t in ma if not deals.ma_match(t)] == []
+
+
+def test_esef_entity_registered_abroad_and_legal_suffixes():
+    nl = [{"country": "NL"}]
+    dk = [{"country": "DK"}]
+    chosen, _ = esef.pick_entity([("A1", "Airbus SE", nl)], "FR", "Airbus")          # Dutch SE listed in Paris
+    assert chosen[0] == "A1"
+    chosen, _ = esef.pick_entity([("N1", "NOVO NORDISK A/S", dk), ("N2", "Novo Nordisk Fonden", dk)], "DK", "Novo Nordisk")
+    assert chosen[0] == "N1"                                                         # "A/S" is a legal suffix
+    chosen, err = esef.pick_entity([("X", "Airbus Leasing GmbH", [{"country": "DE"}])], "FR", "Airbus")
+    assert chosen is None                                                            # abroad + not exact: refused
+
+
+def test_rotation_order(tmp_path, monkeypatch):
+    from pipeline import run, store
+    monkeypatch.setattr(store, "DATA_DIR", str(tmp_path))
+    from datetime import datetime, timedelta, timezone
+    now = datetime.now(timezone.utc)
+
+    def put(t, hours_ago, status="ok"):
+        ts = (now - timedelta(hours=hours_ago)).isoformat()
+        store.write(f"esef/{t}.json", {"_meta": {"fetched_at": ts, "status": status}, "data": None})
+    put("OLD", 800)            # older than 30 days -> due
+    put("FRESH", 10)           # recent -> not due
+    put("FAILED", 30, "error")  # failed 30 h ago -> retried after 24 h
+    order = run.rotation("esef", ["NEW", "OLD", "FRESH", "FAILED"], 10, 30 * 24)
+    assert order == ["NEW", "OLD", "FAILED"]

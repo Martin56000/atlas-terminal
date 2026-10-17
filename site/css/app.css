@@ -173,3 +173,20 @@ input[type=checkbox] { accent-color: var(--amber); }
 .star.on { color: var(--key); }
 .ph-tools select { max-width: 180px; }
 .ok-badge { color: var(--up); } .ko-badge { color: var(--err); }
+
+/* definitions on hover */
+.def { text-decoration: underline dotted var(--muted); text-underline-offset: 3px; cursor: help; }
+/* company page */
+.sub { color: var(--key); font-weight: 600; margin: 6px 0 2px; text-transform: uppercase; font-size: 11px; letter-spacing: .5px; }
+.facts { margin: 4px 0 6px; padding-left: 18px; color: var(--ink); line-height: 1.7; }
+.facts li::marker { color: var(--amber); }
+.kv2 { display: flex; justify-content: space-between; gap: 10px; padding: 3px 0; border-bottom: 1px solid #141414; color: var(--muted); }
+.kv2 b { color: var(--ink); font-weight: 500; text-align: right; }
+.recbar { display: flex; height: 18px; margin: 8px 0 4px; border: 1px solid var(--line-strong); }
+.recbar span { display: grid; place-items: center; color: #000; font-size: 11px; font-weight: 600; min-width: 14px; }
+.summary { color: var(--ink); line-height: 1.6; max-width: 110ch; }
+.t tr.hl td { background: #2a1a00; }
+.t tr.med td { color: var(--key); border-top: 1px solid var(--amber-dim); font-weight: 600; }
+.gloss td { white-space: normal; vertical-align: top; }
+.gloss td:first-child { white-space: nowrap; }
+@media (max-width: 1500px) { .tab .note { display: none; } }

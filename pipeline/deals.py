@@ -14,13 +14,22 @@ DEAL_ITEMS = {"1.01": "material_agreement", "2.01": "acquisition_completed"}
 MA_PATTERNS = [
     r"\bacquir(e|es|ed|ing)\b", r"\bacquisitions?\b", r"\bmergers?\b", r"\btakeover\b", r"\bbuyout\b",
     r"\btender offer\b", r"\bbid for\b", r"\bto buy\b.*\b(stake|unit|business|company|rival|maker|firm)\b",
-    r"\bdivest(s|ed|iture|ment)?\b", r"\bspin[- ]?off\b", r"\bstake in\b",
-    r"\brach[eè]te?s?\b", r"\brachat de\b", r"\bfusion\b", r"\bOPA\b", r"\bOPE\b", r"\boffre publique\b",
-    r"\bcession\b", r"\bc[eè]de\b", r"\bprise de contr[oô]le\b", r"\brapprochement\b", r"\bentr[eé]e au capital\b",
+    r"\bdivest(s|ed|iture|ment)?\b", r"\bspin[- ]?off\b", r"\btakes? a stake\b",
+    r"\brach[eè]te\b", r"\brach[eè]tent\b", r"\brachat de\b", r"\bfusion\b", r"\bOPA\b", r"\bOPE\b", r"\boffre publique\b",
+    r"\bcession\b", r"\bc[eé]der son\b", r"\bc[eé]der sa\b", r"\bc[eé]der ses\b", r"\bprise de contr[oô]le\b",
+    r"\brapprochement\b", r"\bentr[eé]e au capital\b",
 ]
+# Not M&A: share buybacks, portfolio managers buying/selling N shares, "cède x %" (= the share price falls)
+_EXCLUDE = re.compile(
+    r"\b(buyback|share repurchase|repurchase program|treasury shares|insider shares|insider|rachats? d'actions|programme de rachat|actions propres|acquisition d'actions)\b"
+    r"|\b\d[\d,.\u202f\u00a0 ]*\s+(new\s+)?(shares|actions)\b"
+    r"|\b(position|holdings?|stake) (in|of)\b.*\b(LLC|Inc\.?|L\.?P\.?|Management|Advisors?|Partners|Capital|Wealth)\b"
+    r"|\b(LLC|Management|Advisors?|Partners|Capital|Wealth)\b.*\b(acquires?|buys|sells|position|stake)\b"
+    r"|\bshares (acquired|bought|sold|purchased)\b|\b(acquires?|buys?|sells?|purchases?) (\w+ )?shares\b"
+    r"|\$[A-Z]{1,5}\b.*\bshares\b|\bshares\b.*\$[A-Z]{1,5}\b"
+    r"|\bdepositary shares\b|\b(executives?|directors?|insiders?|CEO|CFO|chairman|dirigeants?)\b.*\b(acquires?|buys?|sells?|ach[eè]tent|ach[eè]te)\b",
+    re.IGNORECASE)
 _MA_RE = [re.compile(p, re.IGNORECASE) for p in MA_PATTERNS]
-# share buybacks are not M&A
-_EXCLUDE = re.compile(r"\b(buyback|share repurchase|rachat d'actions|rachats d'actions|programme de rachat)\b", re.IGNORECASE)
 
 
 def ma_match(title):

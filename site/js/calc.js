@@ -1,7 +1,7 @@
 /* Pure helpers shared by the site and the Node tests. No DOM, no data. */
 (function (root) {
   "use strict";
-  const TABS = ["MKTS", "QUOTE", "FA", "RISK", "NEWS", "ECO", "EQS"];
+  const TABS = ["MKTS", "QUOTE", "DES", "FA", "RISK", "NEWS", "ECO", "EQS", "COMPS", "DEALS"];
 
   function safeName(t) { return t.replace(/[^A-Za-z0-9.\-]/g, "_"); }
 
@@ -52,8 +52,8 @@
     return { tickers: avail, matrix, n: dates.length };
   }
 
-  const TICKER_FNS = ["QUOTE", "FA", "RISK", "NEWS"];
-  const COMMANDS = ["MKTS", "EQS", "ECO", "RISK", "NEWS", "QUOTE", "FA", "HELP", "LANG FR", "LANG EN"];
+  const TICKER_FNS = ["QUOTE", "DES", "FA", "RISK", "NEWS", "COMPS", "DEALS"];
+  const COMMANDS = ["MKTS", "EQS", "COMPS", "DEALS", "ECO", "RISK", "NEWS", "QUOTE", "DES", "FA", "HELP", "LANG FR", "LANG EN"];
 
   // lower-case, accents and punctuation removed: "L'Oréal" -> "loreal", "Hermès" -> "hermes"
   function norm(s) {
@@ -165,7 +165,14 @@
     return { minutes: Number(get("hour")) * 60 + Number(get("minute")), weekday: get("weekday") };
   }
 
-  const api = { TABS, safeName, sma, pearson, correlationMatrix, parseCommand, suggest, resolveTicker, norm, isOpen, sessionsClosedSince, parisMinutes };
+  function median(vals) {
+    const v = vals.filter(x => typeof x === "number" && isFinite(x)).sort((a, b) => a - b);
+    if (!v.length) return null;
+    const m = Math.floor(v.length / 2);
+    return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2;
+  }
+
+  const api = { median, TABS, safeName, sma, pearson, correlationMatrix, parseCommand, suggest, resolveTicker, norm, isOpen, sessionsClosedSince, parisMinutes };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.AtlasCalc = api;
 })(this);

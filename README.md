@@ -51,5 +51,8 @@ tourne à chaque chargement quotidien ; son résultat est affiché dans l'onglet
 
 - [x] Phase 1 : MKTS, QUOTE, FA, RISK, NEWS, ECO, roue crantée FR/EN, actions européennes
 - [x] Small & mid caps européennes (65 valeurs, 8 pays) + indices SBF 120, STOXX 600, MDAX, SDAX, FTSE 250 + onglet EQS (filtre)
-- [ ] Phase 2 : DEALS, COMPS
-- [ ] Phase 3 : DCF, HELP détaillé
+- [x] 263 valeurs (SBF 120 complet + grandes et moyennes valeurs européennes), bêta STOXX 600 pour small & mid caps
+- [x] Fiche société DES (profil, résultats, consensus, objectifs, surprises, commentaire factuel), rapports ESEF dans FA
+- [x] Phase 2 : DEALS (dépôts SEC + titres M&A), COMPS (multiples en € par secteur)
+- [x] Glossaire HELP + définitions au survol, export CSV, calendrier des résultats
+- [ ] Phase 3 : DCF

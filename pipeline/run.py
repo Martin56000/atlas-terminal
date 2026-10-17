@@ -260,14 +260,17 @@ def _age_hours(env):
     return (schedule.utcnow() - datetime.fromisoformat(ts)).total_seconds() / 3600
 
 
-def rotation(prefix, tickers, n, max_age_h):
-    """Never-fetched first (universe order), then the oldest beyond max_age_h."""
+def rotation(prefix, tickers, n, max_age_h, error_age_h=24):
+    """Never-fetched first (universe order), then the oldest beyond their age limit
+    (failed fetches are retried after error_age_h, successful ones after max_age_h)."""
     never, old = [], []
     for t in tickers:
-        age = _age_hours(store.read(f"{prefix}/{safe_name(t)}.json"))
+        env = store.read(f"{prefix}/{safe_name(t)}.json")
+        age = _age_hours(env)
+        limit = error_age_h if (env or {}).get("_meta", {}).get("status") == "error" else max_age_h
         if age is None:
             never.append(t)
-        elif age >= max_age_h:
+        elif age >= limit:
             old.append((-age, t))
     return (never + [t for _, t in sorted(old)])[:n]
 
@@ -280,8 +283,40 @@ def task_company():
     log(f"company pages (Yahoo): {len(todo)} of {len(stocks)}")
     src = "Yahoo Finance via yfinance (profile, statements, analyst estimates)"
     for t in todo:
-        store.run_dataset(f"company/{safe_name(t)}.json", src, lambda t=t: company.fetch(t))
+        prev_pf = (((store.read(f"company/{safe_name(t)}.json") or {}).get("data") or {}).get("profile") or {})
+
+        def fetch_keep(t=t, prev_pf=prev_pf):
+            d = company.fetch(t)
+            if prev_pf.get("summary_fr") and prev_pf.get("summary") == d["profile"].get("summary"):
+                d["profile"]["summary_fr"] = prev_pf["summary_fr"]
+            return d
+        store.run_dataset(f"company/{safe_name(t)}.json", src, fetch_keep)
         time.sleep(0.3)
+
+
+def task_translate_profiles(budget_s=240):
+    """Machine-translate company descriptions once (kept in the company page), newest pages first."""
+    import time
+    from . import translate
+    start, done = time.monotonic(), 0
+    for t in config.WATCHLIST_UNIVERSE:
+        if time.monotonic() - start > budget_s:
+            break
+        name = f"company/{safe_name(t)}.json"
+        env = store.read(name)
+        if not env or env["_meta"]["status"] != "ok":
+            continue
+        pf = env["data"].get("profile") or {}
+        if not pf.get("summary") or pf.get("summary_fr"):
+            continue
+        try:
+            pf["summary_fr"] = translate.translate_text(pf["summary"])
+            store.write(name, env)
+            done += 1
+        except Exception:  # noqa: BLE001
+            traceback.print_exc()
+            break
+    log(f"profile translations: {done}")
 
 
 def task_esef():
@@ -401,6 +436,7 @@ def main(argv=None):
     if heavy:
         _safe(task_company, "company_task_error.json", "company pages")
         _safe(task_esef, "esef_task_error.json", "ESEF")
+        _safe(task_translate_profiles, "translate_task_error.json", "profile translation")
     if "daily" in tasks or "eu_close" in tasks:      # all tickers, small & mid caps included
         task_news()
         state["news_at"] = store.now_iso()

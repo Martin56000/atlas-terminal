@@ -145,3 +145,16 @@ def test_translation_time_budget_and_newest_first():
     translate.translate_new(items, cache, tr=fake_tr, budget_s=None, batch=2)
     assert seen[:2] == ["T4", "T3"]                          # newest headlines first
     assert len(cache) == 5
+
+
+def test_translate_long_text_sentence_by_sentence():
+    from pipeline import translate
+    calls = []
+
+    def fake_tr(sents, batch_size, max_length):
+        calls.append(list(sents))
+        return [{"translation_text": "FR(" + s + ")"} for s in sents]
+    out = translate.translate_text("Vicat makes cement. It was founded in 1853. The stock is listed.", tr=fake_tr)
+    assert calls == [["Vicat makes cement.", "It was founded in 1853.", "The stock is listed."]]
+    assert out == "FR(Vicat makes cement.) FR(It was founded in 1853.) FR(The stock is listed.)"
+    assert translate.translate_text("", tr=fake_tr) is None

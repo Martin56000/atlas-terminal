@@ -648,9 +648,9 @@
     const wl = watchlist();
     const rows = wl.map(tk => [tk, c.data.rows[tk]]).filter(([, r]) => r && r.status === "ok" && r.next_earnings && r.next_earnings >= today && r.next_earnings <= horizon)
       .sort((a, b) => a[1].next_earnings.localeCompare(b[1].next_earnings));
-    const body = rows.length ? `<table class="t"><tr><th>${t("col.date")}</th><th>${t("col.ticker")}</th><th class="l nm">${t("col.name")}</th>
+    const body = rows.length ? `<table class="t"><tr><th class="l">${t("cal.date")}</th><th class="l">${t("col.ticker")}</th><th class="l nm">${t("col.name")}</th>
         ${th("eps_est", t("cal.eps_est"))}${th("n_analysts", t("cal.n"))}</tr>
-      ${rows.map(([tk, r]) => `<tr class="click" data-goto-des="${esc(tk)}"><td>${fmtDate(r.next_earnings, { weekday: "short" })}</td><td class="tk l">${esc(tk)}</td>
+      ${rows.map(([tk, r]) => `<tr class="click" data-goto-des="${esc(tk)}"><td class="l">${fmtDate(r.next_earnings, { weekday: "short" })}</td><td class="tk l">${esc(tk)}</td>
         <td class="nm">${esc((UNI[tk] || {}).name)}</td><td>${num(r.eps_estimate_next)}</td><td>${r.n_analysts || "—"}</td></tr>`).join("")}</table>`
       : `<div class="note">${t("cal.none")}</div>`;
     return panel({ title: t("cal.title"), cls: "span-12", body: body + `<p class="note">${t("cal.note")}</p>`, meta: c.meta, source: "Yahoo Finance (calendarEvents)", tools: csvBtn() });

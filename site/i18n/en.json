@@ -141,7 +141,7 @@
   "eco.ecb": "ECB deposit rate (%)",
   "eco.eurusd": "EUR/USD",
   "help.quote": "chart and quote for the ticker",
-  "help.fa": "SEC fundamentals for the ticker",
+  "help.fa": "official accounts: SEC (US) or ESEF annual report (Europe)",
   "help.risk": "risk (ticker must be in the watchlist)",
   "help.news": "news and sentiment for the ticker",
   "help.mkts": "market overview",
@@ -409,5 +409,6 @@
   "comps.net_m": "Net margin",
   "comps.growth": "Rev. growth",
   "comps.nd": "ND/EBITDA",
-  "comps.dy": "Div. yield"
+  "comps.dy": "Div. yield",
+  "cal.date": "Date"
 }

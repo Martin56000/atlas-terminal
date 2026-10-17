@@ -141,7 +141,7 @@
   "eco.ecb": "Taux de dépôt BCE (%)",
   "eco.eurusd": "EUR/USD",
   "help.quote": "graphique et cotation du ticker",
-  "help.fa": "fondamentaux SEC du ticker",
+  "help.fa": "comptes officiels : SEC (US) ou rapport annuel ESEF (Europe)",
   "help.risk": "risque (le ticker doit être dans la watchlist)",
   "help.news": "news et sentiment du ticker",
   "help.mkts": "vue d'ensemble des marchés",
@@ -409,5 +409,6 @@
   "comps.net_m": "Marge nette",
   "comps.growth": "Croiss. CA",
   "comps.nd": "DN/EBITDA",
-  "comps.dy": "Rdt div."
+  "comps.dy": "Rdt div.",
+  "cal.date": "Date"
 }

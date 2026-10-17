@@ -1,5 +1,5 @@
 {
-  "cmd.placeholder": "Command: AAPL · AAPL FA · MC.PA RISK · ECO · LANG FR · HELP  (press /)",
+  "cmd.placeholder": "Type a name or a ticker: total, TTE, lvmh, AAPL FA, ECO, EQS…  (press /)",
   "cmd.unknown": "Unknown ticker or command: {arg}. Type HELP.",
   "cmd.unknown_fn": "Unknown function: {arg}. Use QUOTE, FA, RISK or NEWS.",
   "cmd.bad_lang": "Unknown language. Use LANG FR or LANG EN.",
@@ -176,5 +176,13 @@
   "country.DK": "Denmark",
   "country.ES": "Spain",
   "country.IT": "Italy",
-  "country.US": "United States"
+  "country.US": "United States",
+  "sugg.function": "function",
+  "sugg.command": "command",
+  "sugg.hint": "↑↓ select · Enter open · Tab complete · Esc close",
+  "kind.index": "Index",
+  "kind.etf": "ETF",
+  "kind.fx": "FX",
+  "kind.commodity": "Commodity",
+  "kind.stock": "Stock"
 }

@@ -52,21 +52,99 @@
     return { tickers: avail, matrix, n: dates.length };
   }
 
+  const TICKER_FNS = ["QUOTE", "FA", "RISK", "NEWS"];
+  const COMMANDS = ["MKTS", "EQS", "ECO", "RISK", "NEWS", "QUOTE", "FA", "HELP", "LANG FR", "LANG EN"];
+
+  // lower-case, accents and punctuation removed: "L'Oréal" -> "loreal", "Hermès" -> "hermes"
+  function norm(s) {
+    return String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9^=.\- ]/g, "");
+  }
+  const base = t => t.toUpperCase().replace(/^\^/, "").split(/[.=]/)[0];
+
+  // universe: array of strings (tickers) or objects {ticker, name, aliases, segment}
+  function asItems(universe) {
+    return universe.map(u => (typeof u === "string" ? { ticker: u, name: "", aliases: [] } : u));
+  }
+
+  function scoreItem(u, q) {
+    const nq = norm(q), uq = q.toUpperCase(), tk = u.ticker.toUpperCase();
+    if (!nq) return 0;
+    const names = [u.name].concat(u.aliases || []).map(norm).filter(Boolean);
+    if (tk === uq) return 100;
+    if (base(tk) === uq.replace(/^\^/, "")) return 95;
+    if (names.some(n => n === nq || n.replace(/ /g, "") === nq.replace(/ /g, ""))) return 90;
+    if (tk.startsWith(uq) || base(tk).startsWith(uq.replace(/^\^/, ""))) return 80;
+    if (names.some(n => n.startsWith(nq) || n.replace(/ /g, "").startsWith(nq.replace(/ /g, "")))) return 70;
+    if (names.some(n => n.split(" ").some(w => w.startsWith(nq)))) return 60;
+    if (nq.length >= 3 && (tk.includes(uq) || names.some(n => n.includes(nq)))) return 30;
+    return 0;
+  }
+
+  // Ranked suggestions for the command bar.
+  function suggest(input, universe, limit) {
+    limit = limit || 8;
+    const raw = String(input || "");
+    const parts = raw.trim().split(/\s+/).filter(Boolean);
+    if (!parts.length) return [];
+    const items = asItems(universe);
+    // "<ticker> <partial function>" -> functions for that ticker
+    if (parts.length >= 1 && (parts.length === 2 || /\s$/.test(raw))) {
+      const t = resolveTicker(parts[0], items);
+      if (t) {
+        const fn = (parts[1] || "").toUpperCase();
+        return TICKER_FNS.filter(f => f.startsWith(fn)).map(f => ({ kind: "fn", value: `${t} ${f}`, ticker: t, fn: f }));
+      }
+    }
+    const q = parts.join(" ");
+    const uq = q.toUpperCase();
+    const cmds = COMMANDS.filter(c => c.startsWith(uq) && c !== uq).map(c => ({ kind: "cmd", value: c, score: 85 }));
+    const tickers = items.map(u => ({ kind: "ticker", value: u.ticker, ticker: u.ticker, name: u.name, item: u, score: scoreItem(u, q) }))
+      .filter(x => x.score > 0)
+      .sort((a, b) => b.score - a.score
+        || (a.item.segment === "large" ? 0 : 1) - (b.item.segment === "large" ? 0 : 1)
+        || a.ticker.length - b.ticker.length || a.ticker.localeCompare(b.ticker));
+    return cmds.concat(tickers).sort((a, b) => b.score - a.score).slice(0, limit);
+  }
+
+  // Exact ticker, exact base ticker when unique (TTE -> TTE.PA), or exact company name / alias.
+  function resolveTicker(word, universe) {
+    const items = asItems(universe);
+    const w = String(word || "").toUpperCase();
+    const exact = items.find(u => u.ticker.toUpperCase() === w);
+    if (exact) return exact.ticker;
+    const byBase = items.filter(u => base(u.ticker) === w.replace(/^\^/, ""));
+    if (byBase.length === 1) return byBase[0].ticker;
+    const n = norm(word).replace(/ /g, "");
+    const byName = items.filter(u => [u.name].concat(u.aliases || []).some(x => norm(x).replace(/ /g, "") === n));
+    return byName.length === 1 ? byName[0].ticker : null;
+  }
+
   function parseCommand(input, universe) {
     const parts = String(input || "").trim().toUpperCase().split(/\s+/).filter(Boolean);
     if (!parts.length) return { type: "none" };
     const [a, b] = parts;
-    if (a === "HELP") return { type: "help" };
+    if (a === "HELP" && !b) return { type: "help" };
     if (a === "LANG") {
       if (b === "FR" || b === "EN") return { type: "lang", lang: b.toLowerCase() };
       return { type: "error", key: "cmd.bad_lang" };
     }
     if (TABS.includes(a) && !b) return { type: "tab", tab: a };
-    const ticker = universe.find(t => t.toUpperCase() === a);
-    if (!ticker) return { type: "error", key: "cmd.unknown", arg: parts.join(" ") };
-    if (!b) return { type: "ticker", ticker, tab: "QUOTE" };
-    if (TABS.includes(b) && !["MKTS", "ECO", "EQS"].includes(b)) return { type: "ticker", ticker, tab: b };
-    return { type: "error", key: "cmd.unknown_fn", arg: b };
+    // 1) the whole text (minus a trailing function) as ticker or full name: "total energies fa", "air liquide"
+    const last = parts[parts.length - 1];
+    const hasFn = parts.length > 1 && TICKER_FNS.includes(last);
+    const words = String(input).trim().split(/\s+/).slice(0, hasFn ? -1 : undefined).join(" ");
+    let ticker = resolveTicker(words, universe), fn = hasFn ? last : undefined;
+    // 2) first word as ticker, second as function: "AAPL FA", "AAPL XYZ" (-> unknown function)
+    if (!ticker && resolveTicker(a, universe)) { ticker = resolveTicker(a, universe); fn = b; }
+    // 3) a single clear match ("tot" -> TotalEnergies); ambiguous input ("sa") is never guessed
+    if (!ticker) {
+      const best = suggest(words, universe, 10).filter(s => s.kind === "ticker").slice(0, 2);
+      if (best.length && best[0].score >= 70 && !(best[1] && best[1].score === best[0].score)) ticker = best[0].ticker;
+      if (!ticker) return { type: "error", key: "cmd.unknown", arg: parts.join(" ") };
+    }
+    if (!fn) return { type: "ticker", ticker, tab: "QUOTE" };
+    if (TICKER_FNS.includes(fn)) return { type: "ticker", ticker, tab: fn };
+    return { type: "error", key: "cmd.unknown_fn", arg: fn };
   }
 
   // sessions: [[openISO, closeISO], ...]
@@ -87,7 +165,7 @@
     return { minutes: Number(get("hour")) * 60 + Number(get("minute")), weekday: get("weekday") };
   }
 
-  const api = { TABS, safeName, sma, pearson, correlationMatrix, parseCommand, isOpen, sessionsClosedSince, parisMinutes };
+  const api = { TABS, safeName, sma, pearson, correlationMatrix, parseCommand, suggest, resolveTicker, norm, isOpen, sessionsClosedSince, parisMinutes };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.AtlasCalc = api;
 })(this);

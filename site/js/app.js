@@ -617,11 +617,70 @@
   }
 
   // ------------------------------------------------------------------ command bar
+  // ---- search helper (suggestions under the command bar)
+  let SUG = [], SUGI = -1;
+  function suggLabel(s) {
+    if (s.kind === "ticker") {
+      const u = UNI[s.ticker] || {};
+      const where = [u.country, u.kind === "stock" ? t("seg." + (u.region === "US" ? "us" : u.segment)) : t("kind." + (u.kind || "stock"))].filter(Boolean).join(" · ");
+      return `<b>${esc(s.ticker)}</b><span>${esc(u.name || "")}</span><span class="meta">${esc(where)}</span>`;
+    }
+    if (s.kind === "fn") return `<b>${esc(s.value)}</b><span>${t("tab." + s.fn)} — ${esc((UNI[s.ticker] || {}).name || "")}</span><span class="meta">${t("sugg.function")}</span>`;
+    const tab = s.value.split(" ")[0];
+    const desc = s.value.startsWith("LANG") ? t("help.lang") : (C.TABS.includes(tab) ? t("tab." + tab) : t("help.help"));
+    return `<b>${esc(s.value)}</b><span>${esc(desc)}</span><span class="meta">${t("sugg.command")}</span>`;
+  }
+  function renderSugg() {
+    const box = $("#cmdSugg"), input = $("#cmd");
+    if (!SUG.length) { box.hidden = true; input.setAttribute("aria-expanded", "false"); return; }
+    box.innerHTML = SUG.map((s, i) => `<li role="option" id="sugg-${i}" data-sugg="${i}" class="${i === SUGI ? "on" : ""}" aria-selected="${i === SUGI}">${suggLabel(s)}</li>`).join("") +
+      `<li class="hint">${t("sugg.hint")}</li>`;
+    box.hidden = false;
+    input.setAttribute("aria-expanded", "true");
+    if (SUGI >= 0) { input.setAttribute("aria-activedescendant", "sugg-" + SUGI); const el = $("#sugg-" + SUGI); if (el) el.scrollIntoView({ block: "nearest" }); }
+    else input.removeAttribute("aria-activedescendant");
+  }
+  function updateSugg() {
+    const m = meta();
+    SUG = m ? C.suggest($("#cmd").value, m.universe, 8) : [];
+    SUGI = -1;
+    renderSugg();
+  }
+  function closeSugg() { SUG = []; SUGI = -1; renderSugg(); }
+  function runText(text) {
+    $("#cmd").value = text;
+    closeSugg();
+    onCommand(new Event("submit"));
+  }
+  function pickSugg(i) {
+    const s = SUG[i];
+    if (s) runText(s.value);
+  }
+  function onCmdKey(e) {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      if (!SUG.length) { updateSugg(); if (!SUG.length) return; }
+      e.preventDefault();
+      SUGI = e.key === "ArrowDown" ? (SUGI + 1) % SUG.length : (SUGI <= 0 ? SUG.length - 1 : SUGI - 1);
+      renderSugg();
+    } else if (e.key === "Enter" && SUGI >= 0) {
+      e.preventDefault(); pickSugg(SUGI);
+    } else if (e.key === "Tab" && SUG.length) {
+      // complete the text without running it: "TTE" -> "TTE.PA " (then functions are proposed)
+      e.preventDefault();
+      const s = SUG[Math.max(SUGI, 0)];
+      $("#cmd").value = s.kind === "ticker" ? s.value + " " : s.value;
+      updateSugg();
+    } else if (e.key === "Escape") {
+      closeSugg();
+    }
+  }
+
   function onCommand(e) {
     e.preventDefault();
+    closeSugg();
     const input = $("#cmd");
     const m = meta();
-    const res = C.parseCommand(input.value, m ? m.universe.map(u => u.ticker) : []);
+    const res = C.parseCommand(input.value, m ? m.universe : []);
     if (res.type === "none") return;
     if (res.type === "error") { $("#cmdMsg").textContent = t(res.key, { arg: res.arg || "" }); return; }
     input.value = "";
@@ -672,6 +731,15 @@
   // ------------------------------------------------------------------ events
   function bind() {
     $("#cmdForm").addEventListener("submit", onCommand);
+    $("#cmd").addEventListener("input", updateSugg);
+    $("#cmd").addEventListener("keydown", onCmdKey);
+    $("#cmd").addEventListener("focus", () => { if ($("#cmd").value.trim()) updateSugg(); });
+    $("#cmd").addEventListener("blur", () => setTimeout(closeSugg, 150));
+    // mousedown (not click) so it fires before the input loses focus
+    $("#cmdSugg").addEventListener("mousedown", e => {
+      const li = e.target.closest("[data-sugg]");
+      if (li) { e.preventDefault(); pickSugg(Number(li.dataset.sugg)); }
+    });
     $("#gearBtn").addEventListener("click", () => { renderSettings(); openDialog("#settings"); });
     document.addEventListener("keydown", e => {
       if (e.key === "Escape") closeDialogs();

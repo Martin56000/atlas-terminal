@@ -31,7 +31,16 @@ button { font-family: inherit; }
 .cmd-prompt { padding: 0 8px; color: var(--amber); }
 .cmd input { flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; color: var(--key); font: inherit; font-size: 14px; padding: 6px 0; text-transform: uppercase; }
 .cmd input::placeholder { color: #6b5a3c; text-transform: none; }
-.cmd-go { background: var(--amber); color: #000; border: 0; padding: 6px 12px; font-weight: 600; cursor: pointer; }
+.cmd { position: relative; }
+.sugg { position: absolute; top: calc(100% + 2px); left: -1px; right: -1px; margin: 0; padding: 0; list-style: none; background: #050505; border: 1px solid var(--amber); z-index: 40; max-height: 60vh; overflow-y: auto; }
+.sugg[hidden] { display: none; }
+.sugg li { display: grid; grid-template-columns: minmax(90px, auto) 1fr auto; gap: 12px; padding: 5px 10px; cursor: pointer; color: var(--ink); align-items: baseline; }
+.sugg li b { color: var(--key); font-weight: 600; }
+.sugg li .meta { color: var(--muted); font-size: 11px; white-space: nowrap; }
+.sugg li.on, .sugg li:hover { background: #2a1a00; }
+.sugg li.on b { color: var(--amber); }
+.sugg .hint { display: block; padding: 4px 10px; color: var(--muted); font-size: 11px; border-top: 1px solid var(--line); cursor: default; grid-template-columns: 1fr; }
+.cmd-go {background: var(--amber); color: #000; border: 0; padding: 6px 12px; font-weight: 600; cursor: pointer; }
 .clocks { display: flex; gap: 12px; color: var(--muted); white-space: nowrap; font-size: 12px; }
 .clocks b { color: var(--ink); font-weight: 500; }
 .mkt { display: inline-block; padding: 0 4px; border: 1px solid var(--line-strong); margin-left: 4px; font-size: 11px; }

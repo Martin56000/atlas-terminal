@@ -17,8 +17,10 @@
   <div class="brand">ATLAS<span>TERMINAL</span></div>
   <form class="cmd" id="cmdForm" autocomplete="off">
     <span class="cmd-prompt">&gt;</span>
-    <input id="cmd" type="text" spellcheck="false" aria-label="Command" data-i18n-placeholder="cmd.placeholder">
+    <input id="cmd" type="text" spellcheck="false" aria-label="Command" data-i18n-placeholder="cmd.placeholder"
+      role="combobox" aria-autocomplete="list" aria-controls="cmdSugg" aria-expanded="false">
     <button type="submit" class="cmd-go">GO</button>
+    <ul class="sugg" id="cmdSugg" role="listbox" hidden></ul>
   </form>
   <div class="clocks" id="clocks"></div>
   <button class="gear" id="gearBtn" aria-label="Settings" data-i18n-title="settings.title">

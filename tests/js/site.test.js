@@ -72,8 +72,54 @@ test("translations: FR and EN have the same keys and cover every key used", () =
   C.TABS.forEach(x => used.add("tab." + x));                                                // t("tab." + tab)
   ["FR", "DE", "NL", "CH", "GB", "DK", "ES", "IT", "US"].forEach(x => used.add("country." + x)); // t("country." + c)
   ["large", "smid", "us"].forEach(x => used.add("seg." + x));                              // t("seg." + segment)
+  ["index", "etf", "fx", "commodity", "stock"].forEach(x => used.add("kind." + x));        // t("kind." + kind)
   ["positive", "neutral", "negative"].forEach(x => used.add("sent." + x));                 // t("sent." + label)
   ["US", "EU"].forEach(x => used.add("region." + x));                                      // t("region." + r)
   const missing = [...used].filter(k => !k.endsWith(".") && !(k in fr)); // "tab." etc. = dynamic prefixes, checked above
   assert.deepEqual(missing, [], "missing translation keys: " + missing.join(", "));
+});
+
+// ---------------- search helper
+const UNI = [
+  { ticker: "TTE.PA", name: "TotalEnergies", aliases: ["Total", "Total Energies"], segment: "large" },
+  { ticker: "MC.PA", name: "LVMH", aliases: [], segment: "large" },
+  { ticker: "AIR.PA", name: "Airbus", aliases: [], segment: "large" },
+  { ticker: "AI.PA", name: "Air Liquide", aliases: [], segment: "large" },
+  { ticker: "RMS.PA", name: "Hermès", aliases: [], segment: "large" },
+  { ticker: "OR.PA", name: "L'Oréal", aliases: [], segment: "large" },
+  { ticker: "SAN.PA", name: "Sanofi", aliases: [], segment: "large" },
+  { ticker: "SAN.MC", name: "Banco Santander", aliases: ["Santander"], segment: "large" },
+  { ticker: "GOOGL", name: "Alphabet", aliases: ["Google"], segment: "large" },
+  { ticker: "^FCHI", name: "CAC 40", aliases: ["CAC"], segment: "large" },
+  { ticker: "VCT.PA", name: "Vicat", aliases: [], segment: "smid" },
+];
+
+test("suggest: names, tickers, accents, aliases", () => {
+  assert.equal(C.suggest("total", UNI)[0].value, "TTE.PA");
+  assert.equal(C.suggest("TTE", UNI)[0].value, "TTE.PA");
+  assert.equal(C.suggest("tte", UNI)[0].value, "TTE.PA");
+  assert.equal(C.suggest("hermes", UNI)[0].value, "RMS.PA");      // accent-insensitive
+  assert.equal(C.suggest("loreal", UNI)[0].value, "OR.PA");       // apostrophe and accent ignored
+  assert.equal(C.suggest("google", UNI)[0].value, "GOOGL");       // alias
+  assert.equal(C.suggest("cac", UNI)[0].value, "^FCHI");
+  const air = C.suggest("air", UNI).map(s => s.value);
+  assert.ok(air.includes("AIR.PA") && air.includes("AI.PA"));
+  assert.deepEqual(C.suggest("zzzz", UNI), []);
+});
+
+test("suggest: functions after a ticker, commands", () => {
+  assert.deepEqual(C.suggest("TTE.PA ", UNI).map(s => s.value), ["TTE.PA QUOTE", "TTE.PA FA", "TTE.PA RISK", "TTE.PA NEWS"]);
+  assert.deepEqual(C.suggest("total f", UNI).map(s => s.value), ["TTE.PA FA"]); // exact name/alias works too
+  assert.deepEqual(C.suggest("TTE.PA f", UNI).map(s => s.value), ["TTE.PA FA"]);
+  assert.ok(C.suggest("EC", UNI).some(s => s.kind === "cmd" && s.value === "ECO"));
+});
+
+test("parseCommand accepts names and unambiguous base tickers, refuses ambiguity", () => {
+  assert.deepEqual(C.parseCommand("total", UNI), { type: "ticker", ticker: "TTE.PA", tab: "QUOTE" });
+  assert.deepEqual(C.parseCommand("TTE", UNI), { type: "ticker", ticker: "TTE.PA", tab: "QUOTE" });
+  assert.deepEqual(C.parseCommand("total energies fa", UNI), { type: "ticker", ticker: "TTE.PA", tab: "FA" });
+  assert.deepEqual(C.parseCommand("lvmh risk", UNI), { type: "ticker", ticker: "MC.PA", tab: "RISK" });
+  assert.equal(C.parseCommand("air", UNI).ticker, "AIR.PA");       // AIR is Airbus's own ticker
+  assert.equal(C.parseCommand("sa", UNI).type, "error");           // Sanofi or Santander: never guessed
+  assert.equal(C.parseCommand("SAN", UNI).type, "error");          // SAN.PA or SAN.MC
 });

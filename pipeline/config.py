@@ -188,6 +188,20 @@ FX_COMMOD = [
 ]
 
 UNIVERSE = US_WATCH + US_OVERVIEW_EXTRA + EU_WATCH + EU_SMID + EU_INDICES + FX_COMMOD
+
+# Other names people type in the command bar (search helper on the site). Not data.
+ALIASES = {
+    "GOOGL": ["Google"], "META": ["Facebook"], "JPM": ["JP Morgan"], "SPY": ["S&P 500", "SP500"],
+    "QQQ": ["Nasdaq 100", "Nasdaq"], "DIA": ["Dow Jones"], "IWM": ["Russell 2000"], "^VIX": ["VIX"],
+    "MC.PA": ["Moet Hennessy Louis Vuitton"], "TTE.PA": ["Total", "Total Energies"], "RMS.PA": ["Hermes International"],
+    "SU.PA": ["Schneider"], "NOVO-B.CO": ["Novo"], "SAN.MC": ["Santander"], "ISP.MI": ["Intesa"],
+    "SK.PA": ["Groupe SEB"], "GTT.PA": ["GTT"], "BESI.AS": ["Besi"], "ALLDL.PA": ["LDLC"], "LACR.PA": ["Lacroix"],
+    "^FCHI": ["CAC"], "^GDAXI": ["DAX 40"], "^STOXX50E": ["Eurostoxx", "SX5E"], "^STOXX": ["Stoxx 600", "SXXP"],
+    "^SBF120": ["SBF"], "^FTSE": ["Footsie"], "EURUSD=X": ["EURUSD", "Euro dollar"],
+    "BZ=F": ["Petrole", "Oil", "Brent crude"], "GC=F": ["Or", "Gold"],
+}
+for _u in UNIVERSE:
+    _u["aliases"] = ALIASES.get(_u["ticker"], [])
 BY_TICKER = {t["ticker"]: t for t in UNIVERSE}
 
 # Tickers a visitor can put in the watchlist (risk metrics are computed for these)

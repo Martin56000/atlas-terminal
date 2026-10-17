@@ -53,7 +53,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/huggingface
-          key: hf-models-finbert-opusmt-v2
+          key: hf-models-finbert-opusmt-tcbig-v3
 
       - name: Restore previous data (branch "data")
         run: |

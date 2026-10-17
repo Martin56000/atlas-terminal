@@ -228,7 +228,7 @@ def task_news(tickers=None):
     except Exception as e:  # noqa: BLE001
         traceback.print_exc()
         sentiment_error = f"{type(e).__name__}: {e}"[:300]
-    tcache = store.read("translation_cache.json") or {}
+    tcache = store.read("translation_cache_tcbig.json") or {}
     translation_error = None
     try:
         translate.translate_new(all_items, tcache)
@@ -244,9 +244,9 @@ def task_news(tickers=None):
                    "en": en, "fr": fr, "avg": sentiment.average(en)}
     live_links = {h["link"] for v in data.values() for h in (v.get("en") or [])}
     store.write("sentiment_cache.json", {k: v for k, v in cache.items() if k in live_links})
-    store.write("translation_cache.json", {k: v for k, v in tcache.items() if k in live_links})
+    store.write("translation_cache_tcbig.json", {k: v for k, v in tcache.items() if k in live_links})
     store.write("news.json", store.envelope_ok(
-        "Yahoo Finance news + Google News RSS; sentiment: ProsusAI/finbert; translation: Helsinki-NLP/opus-mt-en-fr",
+        "Yahoo Finance news + Google News RSS; sentiment: ProsusAI/finbert; translation: Helsinki-NLP/opus-mt-tc-big-en-fr",
         data, {"sentiment_error": sentiment_error, "translation_error": translation_error}))
 
 

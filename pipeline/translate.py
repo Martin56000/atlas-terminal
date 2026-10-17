@@ -1,4 +1,4 @@
-"""Machine translation of English headlines into French (Helsinki-NLP/opus-mt-en-fr, CPU).
+"""Machine translation of English headlines into French (Helsinki-NLP/opus-mt-tc-big-en-fr, CPU).
 Each headline is translated once (cache keyed by link). The original title is always kept;
 sentiment is still scored on the original English title."""
 from . import config
@@ -21,7 +21,7 @@ def translator():
             for i in range(0, len(titles), batch_size):
                 enc = tok(titles[i:i + batch_size], return_tensors="pt", padding=True, truncation=True, max_length=max_length)
                 with torch.no_grad():
-                    gen = model.generate(**enc, max_new_tokens=128, num_beams=2)
+                    gen = model.generate(**enc, max_new_tokens=128, num_beams=4)
                 out += [{"translation_text": s} for s in tok.batch_decode(gen, skip_special_tokens=True)]
             return out
         _pipe = run

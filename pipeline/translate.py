@@ -7,10 +7,24 @@ _pipe = None
 
 
 def translator():
+    """Seq2seq model called directly (transformers v5 removed the 'translation' pipeline)."""
     global _pipe
     if _pipe is None:
-        from transformers import pipeline
-        _pipe = pipeline("translation", model=config.TRANSLATE_MODEL, device=-1)
+        import torch
+        from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+        tok = AutoTokenizer.from_pretrained(config.TRANSLATE_MODEL)
+        model = AutoModelForSeq2SeqLM.from_pretrained(config.TRANSLATE_MODEL)
+        model.eval()
+
+        def run(titles, batch_size=16, max_length=256):
+            out = []
+            for i in range(0, len(titles), batch_size):
+                enc = tok(titles[i:i + batch_size], return_tensors="pt", padding=True, truncation=True, max_length=max_length)
+                with torch.no_grad():
+                    gen = model.generate(**enc, max_new_tokens=128, num_beams=2)
+                out += [{"translation_text": s} for s in tok.batch_decode(gen, skip_special_tokens=True)]
+            return out
+        _pipe = run
     return _pipe
 
 

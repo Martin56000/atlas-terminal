@@ -1,0 +1,103 @@
+name: Update data and deploy
+
+on:
+  schedule:
+    # every 15 min on weekdays, 06:00-17:59 UTC = covers 08:30-18:45 Paris in summer and winter.
+    # The job itself decides what to fetch (pipeline/schedule.py); outside the windows it does nothing.
+    - cron: "*/15 6-17 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Update everything now"
+        type: boolean
+        default: true
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: atlas-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies (CPU-only torch for FinBERT)
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements.txt
+
+      - name: Unit tests (Python)
+        run: python -m pytest -q
+
+      - name: Unit tests (site)
+        run: node --test tests/js/site.test.js
+
+      - name: Cache FinBERT model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: finbert-prosusai-v1
+
+      - name: Restore previous data (branch "data")
+        run: |
+          if git ls-remote --exit-code --heads origin data >/dev/null 2>&1; then
+            git clone --quiet --depth 1 --branch data \
+              "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" site/data
+            rm -rf site/data/.git
+          else
+            mkdir -p site/data
+          fi
+
+      - name: Run update job
+        id: pipeline
+        if: github.event_name != 'push'
+        env:
+          SEC_CONTACT_EMAIL: ${{ secrets.SEC_CONTACT_EMAIL }}
+          FORCE: ${{ github.event_name == 'workflow_dispatch' && inputs.force }}
+        run: |
+          if [ "$FORCE" = "true" ]; then python -m pipeline.run --force; else python -m pipeline.run; fi
+
+      - name: Save data (single-commit branch "data")
+        if: steps.pipeline.outputs.ran == 'true'
+        run: |
+          cd site/data
+          git init -q -b data
+          git add -A
+          git -c user.name="atlas-bot" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "data $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" data
+          rm -rf .git
+
+      - name: Configure Pages
+        if: steps.pipeline.outputs.ran == 'true' || github.event_name != 'schedule'
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload site
+        if: steps.pipeline.outputs.ran == 'true' || github.event_name != 'schedule'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        if: steps.pipeline.outputs.ran == 'true' || github.event_name != 'schedule'
+        uses: actions/deploy-pages@v4

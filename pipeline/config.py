@@ -296,6 +296,18 @@ EU_INDICES = [
     _t("^FTMC", "FTSE 250", "EU", "XLON", kind="index", segment="smid"),
 ]
 
+# World indices for WEI (zone: AMER / EMEA / APAC). Grouped with the EU quotes so they refresh
+# every 15 minutes during the Paris day (Asian closes are captured by the 08:30 run).
+WORLD_INDICES = [
+    _t("^GSPC", "S&P 500", "EU", "XNYS", kind="index"), _t("^DJI", "Dow Jones Industrial", "EU", "XNYS", kind="index"),
+    _t("^IXIC", "Nasdaq Composite", "EU", "XNYS", kind="index"), _t("^RUT", "Russell 2000", "EU", "XNYS", kind="index"),
+    _t("^N225", "Nikkei 225", "EU", "XTKS", kind="index"), _t("^HSI", "Hang Seng", "EU", "XHKG", kind="index"),
+    _t("000001.SS", "Shanghai Composite", "EU", "XSHG", kind="index"), _t("^AXJO", "S&P/ASX 200", "EU", "XASX", kind="index"),
+    _t("^KS11", "KOSPI", "EU", "XKRX", kind="index"),
+]
+ZONE = {"^GSPC": "AMER", "^DJI": "AMER", "^IXIC": "AMER", "^RUT": "AMER", "^N225": "APAC", "^HSI": "APAC",
+        "000001.SS": "APAC", "^AXJO": "APAC", "^KS11": "APAC"}
+
 FX_COMMOD = [
     _t("EURUSD=X", "EUR/USD", "EU", "XLON", kind="fx"),
     _t("BZ=F", "Brent", "US", "XNYS", kind="commodity"),
@@ -308,7 +320,7 @@ FX_COMMOD = [
     _t("EURDKK=X", "EUR/DKK", "EU", "XLON", kind="fx"),
 ]
 
-UNIVERSE = US_WATCH + US_OVERVIEW_EXTRA + EU_WATCH + EU_SMID + EU_MORE + EU_INDICES + FX_COMMOD
+UNIVERSE = US_WATCH + US_OVERVIEW_EXTRA + EU_WATCH + EU_SMID + EU_MORE + EU_INDICES + WORLD_INDICES + FX_COMMOD
 
 # Other names people type in the command bar (search helper on the site). Not data.
 ALIASES = {
@@ -320,9 +332,15 @@ ALIASES = {
     "^FCHI": ["CAC"], "^GDAXI": ["DAX 40"], "^STOXX50E": ["Eurostoxx", "SX5E"], "^STOXX": ["Stoxx 600", "SXXP"],
     "^SBF120": ["SBF"], "^FTSE": ["Footsie"], "EURUSD=X": ["EURUSD", "Euro dollar"],
     "BZ=F": ["Petrole", "Oil", "Brent crude"], "GC=F": ["Or", "Gold"],
+    "^GSPC": ["SPX", "SP 500"], "^DJI": ["INDU", "Dow"], "^IXIC": ["CCMP", "Nasdaq Composite"], "^N225": ["NKY", "Nikkei"],
+    "^HSI": ["Hang Seng"], "000001.SS": ["SHCOMP", "Shanghai"], "^AXJO": ["AS51", "ASX"], "^KS11": ["KOSPI"],
 }
+
+# Intraday 5-minute bars (GIP) only for these, to keep the number of Yahoo requests reasonable
+INTRADAY = [t["ticker"] for t in US_WATCH + EU_WATCH + EU_INDICES[:8]] + ["EURUSD=X", "^GSPC"]
 for _u in UNIVERSE:
     _u["aliases"] = ALIASES.get(_u["ticker"], [])
+    _u["zone"] = ZONE.get(_u["ticker"], "AMER" if _u["region"] == "US" else "EMEA")
 BY_TICKER = {t["ticker"]: t for t in UNIVERSE}
 
 # Tickers a visitor can put in the watchlist (risk metrics are computed for these)

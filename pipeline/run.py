@@ -17,7 +17,7 @@ from . import config, metrics, schedule, store
 from .market import safe_name
 
 US_QUOTES = [t["ticker"] for t in config.US_WATCH + config.US_OVERVIEW_EXTRA] + ["BZ=F", "GC=F"]
-EU_QUOTES = [t["ticker"] for t in config.EU_STOCKS + config.EU_INDICES + config.FX_COMMOD if t["region"] == "EU"]
+EU_QUOTES = [t["ticker"] for t in config.EU_STOCKS + config.EU_INDICES + config.WORLD_INDICES + config.FX_COMMOD if t["region"] == "EU"]
 ALL = [t["ticker"] for t in config.UNIVERSE]
 
 
@@ -380,6 +380,50 @@ def task_deals():
                                                 {"sec": sec[:200], "news": deals.news_deals(news)}))
 
 
+def task_perf():
+    """1W / 1M / 3M / YTD / 1Y performance and 52-week range for every ticker (WEI, MOST, EQS)."""
+    out = {}
+    for u in config.UNIVERSE:
+        env = store.read(f"history/{safe_name(u['ticker'])}.json")
+        d = (env or {}).get("data")
+        if not d or (env["_meta"].get("status") != "ok"):
+            continue
+        closes = d["adj_close"] if u["kind"] == "stock" else d["close"]
+        pts = [(dt, c) for dt, c in zip(d["dates"], closes) if c is not None]
+        out[u["ticker"]] = metrics.perf_stats([p[0] for p in pts], [p[1] for p in pts])
+    store.write("perf.json", store.envelope_ok("Computed from Yahoo Finance daily closes (adjusted for stocks)", out))
+
+
+def task_intraday(tickers, currencies):
+    from .market import fetch_intraday
+    todo = [t for t in tickers if t in config.INTRADAY]
+    if not todo:
+        return
+    prev = (store.read("intraday.json") or {}).get("data") or {}
+    try:
+        prev.update(fetch_intraday(todo, currencies))
+        store.write("intraday.json", store.envelope_ok("Yahoo Finance 5-minute bars via yfinance (delayed)", prev))
+    except Exception as e:  # noqa: BLE001
+        traceback.print_exc()
+        store.write("intraday.json", store.envelope_error("Yahoo Finance 5-minute bars", e, store.read("intraday.json")))
+
+
+def track_failures(state):
+    """Remember since when each ticker / macro series has been failing (STATUS tab, alerts)."""
+    from .health import update_fail_since
+    now = store.now_iso()
+    for t, q in ((store.read("quotes.json") or {}).get("data") or {}).items():
+        if t in config.BY_TICKER:
+            update_fail_since(state, t, q.get("status") != "ok", q.get("error"), now)
+    for t in list((state.get("fail_since") or {})):
+        if t not in config.BY_TICKER and not t.startswith("macro:"):
+            state["fail_since"].pop(t)            # ticker removed from the universe
+    menv = store.read("macro.json") or {}
+    errs = (menv.get("_meta") or {}).get("errors") or {}
+    for sid in config.FRED_SERIES + ["HICP_EA", "ECBDFR"]:
+        update_fail_since(state, "macro:" + sid, sid in errs, errs.get(sid), now)
+
+
 def task_validate():
     from . import validate
     log("cross-check AAPL / MC.PA")
@@ -429,10 +473,16 @@ def main(argv=None):
         task_quotes(EU_QUOTES, "EU", currencies)
         task_risk()
         state["eu_close"] = today
+    if "daily" in tasks or "eu_close" in tasks:
+        _safe(task_perf, "perf.json", "daily closes")
     if "quotes_us" in tasks and "daily" not in tasks:
         task_quotes(US_QUOTES, "US", currencies)
     if "quotes_eu" in tasks and "daily" not in tasks and "eu_close" not in tasks:
         task_quotes(EU_QUOTES, "EU", currencies)
+    if "quotes_us" in tasks or "daily" in tasks:
+        task_intraday(US_QUOTES, currencies)
+    if "quotes_eu" in tasks or "daily" in tasks or "eu_close" in tasks:
+        task_intraday(EU_QUOTES, currencies)
     heavy = "daily" in tasks or "eu_close" in tasks
     if heavy:
         _safe(task_company, "company_task_error.json", "company pages")
@@ -461,8 +511,11 @@ def main(argv=None):
         "benchmark": config.BENCHMARK,
         "esef_countries": sorted(__import__("pipeline.esef", fromlist=["x"]).ESEF_COUNTRIES),
     })
+    track_failures(state)
     store.write("meta.json", meta)
     store.write("state.json", state)
+    from . import health
+    store.write("status.json", health.compute())
     log("done")
     return 0
 

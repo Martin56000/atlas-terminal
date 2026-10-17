@@ -18,6 +18,8 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  issues: write     # health alerts (GitHub e-mails the repository owner)
+  actions: write    # keep the scheduled workflow enabled
 
 concurrency:
   group: atlas-update
@@ -76,6 +78,26 @@ jobs:
           FORCE: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.force) }}
         run: |
           if [ "$FORCE" = "true" ]; then python -m pipeline.run --force; else python -m pipeline.run; fi
+
+      # Health of every source -> status.json (STATUS tab) + a GitHub issue assigned to the owner when
+      # something has been failing for too long (GitHub sends an e-mail); closed automatically when fixed.
+      - name: Health check and e-mail alert
+        if: always() && steps.pipeline.outcome != 'skipped'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          FAILED: ${{ steps.pipeline.outcome == 'failure' }}
+        run: |
+          if [ "$FAILED" = "true" ]; then python -m pipeline.health --github --pipeline-failed; else python -m pipeline.health --github; fi
+
+      # GitHub pauses scheduled workflows after 60 days without repository activity: re-enable every run.
+      - name: Keep the schedule alive
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          curl -s -o /dev/null -w "enable workflow: HTTP %{http_code}\n" -X PUT \
+            -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/update.yml/enable" || true
 
       # Heavy, slowly-changing files (5-year histories, company pages, ESEF, SEC) live in "data-daily",
       # pushed only after the 08:30 / 17:40 runs; everything else in "data", pushed every run.

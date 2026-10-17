@@ -168,3 +168,27 @@ def fetch_quotes(tickers, currencies):
             "volume": None if pd.isna(frame["Volume"].iloc[-1]) else int(frame["Volume"].iloc[-1]),
         }
     return out
+
+
+def fetch_intraday(tickers, currencies):
+    """Today's 5-minute bars (delayed) for a short list of tickers (GIP)."""
+    df = _download(tickers, period="1d", interval="5m")
+    out = {}
+    for t in tickers:
+        if isinstance(df.columns, pd.MultiIndex):
+            if t not in df.columns.get_level_values(0):
+                continue
+            sub = df[t]
+        else:
+            sub = df
+        if "Close" not in sub.columns:
+            continue
+        sub = sub.dropna(subset=["Close"])
+        if sub.empty:
+            continue
+        idx = pd.to_datetime(sub.index)
+        idx = idx.tz_convert("UTC") if idx.tz is not None else idx.tz_localize("UTC")
+        k = 0.01 if currencies.get(t) == "GBp" else 1.0
+        out[t] = {"date": idx[-1].strftime("%Y-%m-%d"), "t": [x.isoformat() for x in idx],
+                  "p": [round(float(v) * k, 6) for v in sub["Close"].tolist()]}
+    return out

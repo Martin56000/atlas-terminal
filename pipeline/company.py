@@ -247,4 +247,14 @@ def fetch(ticker):
     except Exception as e:  # noqa: BLE001
         data["annual"], data["quarterly"] = [], []
         data["statements_error"] = f"{type(e).__name__}: {e}"[:200]
+    try:  # dividend history (last 10 years), per share, in the quote currency
+        dv = t.dividends
+        if dv is not None and len(dv):
+            k = 0.01 if data["profile"].get("currency") == "GBp" else 1.0
+            dv = dv[dv.index >= dv.index.max() - __import__("pandas").DateOffset(years=10)]
+            data["dividends"] = [[d.strftime("%Y-%m-%d"), round(float(v) * k, 6)] for d, v in dv.items()]
+        else:
+            data["dividends"] = []
+    except Exception as e:  # noqa: BLE001
+        data["dividends"], data["dividends_error"] = [], f"{type(e).__name__}: {e}"[:200]
     return data

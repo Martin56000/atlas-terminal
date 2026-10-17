@@ -84,3 +84,21 @@ def risk_metrics(prices: pd.Series, bench_prices: pd.Series, rf: float, window: 
         # simple total return over the window (adjusted closes, dividends included): P_end / P_start - 1
         "perf_window": float(p.iloc[-1] / p.iloc[0] - 1) if len(p) >= 2 else None,
     }
+
+
+def perf_stats(dates, closes):
+    """Simple returns over standard horizons from completed daily closes (oldest first).
+    1W = 5 sessions, 1M = 21, 3M = 63, 1Y = 252; YTD = vs the last close of the previous year."""
+    out = {}
+    if not closes:
+        return out
+    last = closes[-1]
+    for key, n in (("w1", 5), ("m1", 21), ("m3", 63), ("y1", 252)):
+        out[key] = (last / closes[-1 - n] - 1) if len(closes) > n and closes[-1 - n] else None
+    year = dates[-1][:4]
+    prev = [c for d, c in zip(dates, closes) if d[:4] < year]
+    out["ytd"] = (last / prev[-1] - 1) if prev and prev[-1] else None
+    window = closes[-252:]
+    out["hi52"], out["lo52"] = max(window), min(window)
+    out["last_close"], out["last_date"] = last, dates[-1]
+    return out

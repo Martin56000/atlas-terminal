@@ -1,7 +1,7 @@
 # torch is installed separately (CPU-only wheel), see .github/workflows/update.yml
 yfinance>=1.7.0
 feedparser==6.0.14
-exchange_calendars==4.13.2
+exchange_calendars>=4.13.2   # not pinned: holiday rules get updated
 pandas==3.0.5
 numpy==2.5.3
 requests==2.34.2

@@ -124,7 +124,7 @@
   "news.fr_section": "Presse française (non notée par FinBERT)",
   "news.partial": "Flux en erreur",
   "news.sent_error": "Modèle de sentiment indisponible",
-  "news.method": "Titres anglais traduits automatiquement (Helsinki-NLP opus-mt-en-fr), titre original au survol ; désactivable dans les réglages. Sentiment calculé par FinBERT (ProsusAI/finbert) sur le titre anglais d'origine. Moyenne : positif = +1, neutre = 0, négatif = −1.",
+  "news.method": "Titres anglais traduits automatiquement (Helsinki-NLP opus-mt-tc-big-en-fr), titre original au survol ; désactivable dans les réglages. Sentiment calculé par FinBERT (ProsusAI/finbert) sur le titre anglais d'origine. Moyenne : positif = +1, neutre = 0, négatif = −1.",
   "sent.positive": "positif",
   "sent.neutral": "neutre",
   "sent.negative": "négatif",

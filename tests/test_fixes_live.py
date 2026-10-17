@@ -121,3 +121,27 @@ def test_translation_only_new_english_headlines():
     translate.attach(items, cache)
     assert [i["title_fr"] for i in items] == ["Ancien titre", "FR: Apple rises", None]
     assert items[1]["title"] == "Apple rises"              # original always kept
+
+
+def test_translation_glossary_stock_means_share():
+    from pipeline import translate
+    assert translate.fix_terms("Le stock de LVMH se dirige vers la prochaine session") == "L'action LVMH se dirige vers la prochaine session"
+    assert translate.fix_terms("Chute de 9,5% en un mois: le stock Vicat rebondit") == "Chute de 9,5% en un mois: l'action Vicat rebondit"
+    assert translate.fix_terms("stocker des données") == "stocker des données"   # whole words only
+
+
+def test_translation_time_budget_and_newest_first():
+    from pipeline import translate
+    seen = []
+
+    def fake_tr(titles, batch_size, max_length):
+        seen.extend(titles)
+        return [{"translation_text": t.lower()} for t in titles]
+
+    items = [{"title": f"T{i}", "link": f"l{i}", "lang": "en", "published": f"2026-10-{10 + i:02d}"} for i in range(5)]
+    cache = {}
+    translate.translate_new(items, cache, tr=fake_tr, budget_s=-1, batch=2)   # budget already spent
+    assert cache == {}
+    translate.translate_new(items, cache, tr=fake_tr, budget_s=None, batch=2)
+    assert seen[:2] == ["T4", "T3"]                          # newest headlines first
+    assert len(cache) == 5

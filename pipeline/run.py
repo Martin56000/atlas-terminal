@@ -231,7 +231,7 @@ def task_news(tickers=None):
     tcache = store.read("translation_cache_tcbig.json") or {}
     translation_error = None
     try:
-        translate.translate_new(all_items, tcache)
+        translate.translate_new(all_items, tcache, budget_s=config.TRANSLATE_BUDGET_S)
     except Exception as e:  # noqa: BLE001
         traceback.print_exc()
         translation_error = f"{type(e).__name__}: {e}"[:300]

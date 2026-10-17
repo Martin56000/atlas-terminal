@@ -251,6 +251,7 @@ def sec_user_agent():
 
 FINBERT_MODEL = "ProsusAI/finbert"
 TRANSLATE_MODEL = "Helsinki-NLP/opus-mt-tc-big-en-fr"   # open-source EN->FR machine translation (larger, more accurate), CPU
+TRANSLATE_BUDGET_S = 600   # max translation time per run; the rest is translated in the next runs
 
 # --- Schedule (all weekdays; owner uses the site 09:00-18:30 Europe/Paris) ---------
 PARIS = "Europe/Paris"

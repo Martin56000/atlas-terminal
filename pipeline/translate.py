@@ -28,20 +28,44 @@ def translator():
     return _pipe
 
 
-def translate_new(headlines, cache, tr=None):
-    """Translate English headlines whose link is not in cache. Mutates and returns cache."""
+# In finance headlines "stock" means a share, which MT models often render literally as "stock".
+GLOSSARY = [
+    (r"\bLes stocks de\b", "Les actions"), (r"\bles stocks de\b", "les actions"),
+    (r"\bLe stock de\b", "L'action"), (r"\ble stock de\b", "l'action"),
+    (r"\bLe stock\b", "L'action"), (r"\ble stock\b", "l'action"),
+    (r"\bdu stock\b", "de l'action"),
+]
+
+
+def fix_terms(text):
+    import re
+    for pat, rep in GLOSSARY:
+        text = re.sub(pat, rep, text)
+    return text
+
+
+def translate_new(headlines, cache, tr=None, budget_s=None, batch=16):
+    """Translate English headlines whose link is not in cache, newest first, within a time budget
+    (the rest stays in English and is translated in the next runs). Mutates and returns cache."""
+    import time
     todo = [h for h in headlines if h["lang"] == "en" and h["link"] not in cache]
+    todo.sort(key=lambda h: h.get("published") or "", reverse=True)
     if todo:
         tr = tr or translator()
-        results = tr([h["title"] for h in todo], batch_size=16, max_length=256)
-        for h, r in zip(todo, results):
-            text = (r.get("translation_text") or "").strip()
-            if text:
-                cache[h["link"]] = text
+        start = time.monotonic()
+        for i in range(0, len(todo), batch):
+            if budget_s is not None and time.monotonic() - start > budget_s:
+                break
+            chunk = todo[i:i + batch]
+            for h, r in zip(chunk, tr([h["title"] for h in chunk], batch_size=batch, max_length=256)):
+                text = (r.get("translation_text") or "").strip()
+                if text:
+                    cache[h["link"]] = fix_terms(text)
     return cache
 
 
 def attach(items, cache):
     for h in items:
-        h["title_fr"] = cache.get(h["link"]) if h["lang"] == "en" else None
+        tr = cache.get(h["link"]) if h["lang"] == "en" else None
+        h["title_fr"] = fix_terms(tr) if tr else None   # also fixes translations cached before the glossary
     return items

@@ -67,10 +67,10 @@ jobs:
 
       - name: Run update job
         id: pipeline
-        if: github.event_name != 'push'
         env:
           SEC_CONTACT_EMAIL: ${{ secrets.SEC_CONTACT_EMAIL }}
-          FORCE: ${{ github.event_name == 'workflow_dispatch' && inputs.force }}
+          # a code push or a manual run with "force" refreshes everything; the schedule decides by itself
+          FORCE: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.force) }}
         run: |
           if [ "$FORCE" = "true" ]; then python -m pipeline.run --force; else python -m pipeline.run; fi
 

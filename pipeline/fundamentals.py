@@ -16,7 +16,7 @@ US_GAAP = {
     "cost_of_revenue": ["CostOfRevenue", "CostOfGoodsAndServicesSold"],
 }
 IFRS = {
-    "revenue": ["Revenue", "RevenueFromContractsWithCustomers"],
+    "revenue": ["Revenue", "RevenueFromContractsWithCustomers", "RevenueFromSaleOfGoods"],
     "net_income": ["ProfitLossAttributableToOwnersOfParent", "ProfitLoss"],
     "eps_diluted": ["DilutedEarningsLossPerShare", "BasicAndDilutedEarningsLossPerShare"],
     "gross_profit": ["GrossProfit"],
@@ -117,12 +117,13 @@ def build_table(taxonomy_facts, concepts, n, period_fn, ticker):
 
     ends = sorted(rev or ni, reverse=True)[:n]
     rows = []
+    gross_src = gp_tag
     for end in sorted(ends):
         r = rev.get(end)
         i = ni.get(end)
         e = eps.get(end)
         g = gp.get(end)
-        gross_src = gp_tag if g else None
+        gross_src = gp_tag if g else gross_src
         if g is None and r is not None and cost.get(end) is not None:
             g = {"val": r["val"] - cost[end]["val"], "derived": r["derived"] or cost[end]["derived"]}
             gross_src = f"{rev_tag} - {cost_tag}"
@@ -142,6 +143,27 @@ def build_table(taxonomy_facts, concepts, n, period_fn, ticker):
         })
     return {"rows": rows, "unit": unit, "eps_unit": eps_unit,
             "tags": {"revenue": rev_tag, "net_income": ni_tag, "eps_diluted": eps_tag, "gross_profit": gross_src}}
+
+
+def latest_end(table):
+    return table["rows"][-1]["end"] if table["rows"] else ""
+
+
+def choose_foreign_table(facts, ticker):
+    ifrs = build_table(facts.get("ifrs-full", {}), IFRS, 4, annual_values, ticker)
+    gaap = build_table(facts.get("us-gaap", {}), US_GAAP, 4, annual_values, ticker)
+    if latest_end(gaap) > latest_end(ifrs):
+        return "annual_usgaap_20f", gaap
+    return "annual_ifrs_20f", ifrs
+
+
+def is_recent(table, today=None, max_age_days=800):
+    """Last period must end within ~2 years, otherwise the data is too old to show as current."""
+    end = latest_end(table)
+    if not end:
+        return False
+    today = today or date.today()
+    return (today - _d(end)).days <= max_age_days
 
 
 def recent_filings(submissions, forms, cik, n=15):
@@ -200,8 +222,13 @@ def fetch_company(client, ticker, ciks):
         table = build_table(facts.get("us-gaap", {}), US_GAAP, 8, quarterly_with_q4, ticker)
         kind, forms = "quarterly_us_gaap", US_FORMS
     else:
-        table = build_table(facts.get("ifrs-full", {}), IFRS, 4, annual_values, ticker)
-        kind, forms = "annual_ifrs_20f", FOREIGN_FORMS
+        # 20-F filers report in IFRS (most) or US GAAP (e.g. ASML): keep the most recent one
+        kind, table = choose_foreign_table(facts, ticker)
+        forms = FOREIGN_FORMS
+    if not is_recent(table):
+        last = table["rows"][-1]["end"] if table["rows"] else None
+        return {"kind": "na", "reason": "no_recent_sec_data", "last_period": last, "cik": cik, "sec_ticker": sec_ticker,
+                "filings": recent_filings(subs, forms, cik)}
     return {"kind": kind, "cik": cik, "sec_ticker": sec_ticker, "entity": subs.get("name"),
             "fiscal_year_end": subs.get("fiscalYearEnd"), **table,
             "filings": recent_filings(subs, forms, cik)}

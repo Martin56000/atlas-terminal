@@ -73,8 +73,27 @@ def merge_latest(items, n):
     return out
 
 
-def fetch_for_ticker(ticker):
+RSS_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+    "Accept": "application/rss+xml, application/xml;q=0.9, */*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.8,fr;q=0.6",
+}
+RSS_COOKIES = {"CONSENT": "YES+"}  # avoids the EU cookie-consent interstitial
+
+
+def fetch_rss(url):
     import feedparser
+    import requests
+    r = requests.get(url, headers=RSS_HEADERS, cookies=RSS_COOKIES, timeout=30)
+    r.raise_for_status()
+    body = r.content
+    if b"<rss" not in body[:2000] and b"<feed" not in body[:2000]:
+        ctype = r.headers.get("content-type", "?")
+        raise ValueError(f"not an RSS feed (HTTP {r.status_code}, {ctype}, {len(body)} bytes, starts: {body[:80]!r})")
+    return feedparser.parse(body)
+
+
+def fetch_for_ticker(ticker):
     import yfinance as yf
     info = config.BY_TICKER[ticker]
     errors = []
@@ -84,19 +103,19 @@ def fetch_for_ticker(ticker):
         en_items += parse_yahoo_news(yf.Ticker(ticker).news)
     except Exception as e:  # noqa: BLE001
         errors.append(f"Yahoo: {e}")
-    q_en = urllib.parse.quote_plus(info["query_en"] or ticker)
-    parsed = feedparser.parse(config.GOOGLE_NEWS_EN.format(q=q_en))
-    if parsed.get("bozo") and not parsed.entries:
-        errors.append(f"Google News EN: {parsed.get('bozo_exception')}")
-    en_items += parse_google_feed(parsed, "Google News EN", "en")
+    try:
+        q_en = urllib.parse.quote_plus(info["query_en"] or ticker)
+        en_items += parse_google_feed(fetch_rss(config.GOOGLE_NEWS_EN.format(q=q_en)), "Google News EN", "en")
+    except Exception as e:  # noqa: BLE001
+        errors.append(f"Google News EN: {type(e).__name__}: {e}"[:300])
 
     fr_items = []
     if info["query_fr"]:
-        q_fr = urllib.parse.quote_plus(info["query_fr"])
-        parsed = feedparser.parse(config.GOOGLE_NEWS_FR.format(q=q_fr))
-        if parsed.get("bozo") and not parsed.entries:
-            errors.append(f"Google News FR: {parsed.get('bozo_exception')}")
-        fr_items = parse_google_feed(parsed, "Google News FR", "fr")
+        try:
+            q_fr = urllib.parse.quote_plus(info["query_fr"])
+            fr_items = parse_google_feed(fetch_rss(config.GOOGLE_NEWS_FR.format(q=q_fr)), "Google News FR", "fr")
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"Google News FR: {type(e).__name__}: {e}"[:300])
 
     return {
         "en": merge_latest(en_items, config.NEWS_PER_LANG),

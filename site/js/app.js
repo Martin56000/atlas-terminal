@@ -359,7 +359,8 @@
     const f = x.data;
     if (f.kind === "na") {
       return panel({ title: `FA — ${esc(tk)}`, tools, meta: x.meta, source: src,
-        body: `<div class="unavail"><b>${t(f.reason === "etf" ? "fa.na_etf" : "fa.na_nosource")}</b></div>` });
+        body: `<div class="unavail"><b>${t(f.reason === "etf" ? "fa.na_etf" : f.reason === "no_recent_sec_data" ? "fa.na_stale" : "fa.na_nosource")}</b>
+          ${f.last_period ? `<span class="note">${t("fa.last_period")}: ${fmtDate(f.last_period)}</span>` : ""}</div>` });
     }
     const quarterly = f.kind === "quarterly_us_gaap";
     const rows = f.rows || [];
@@ -376,7 +377,7 @@
       ${tr(t("fa.net_margin"), r => `<span class="${cls(r.net_margin)}">${pct(r.net_margin, 1, false)}</span>`)}
     </table>` : `<div class="unavail">${t("fa.no_rows")}</div>`;
     const tags = Object.entries(f.tags || {}).map(([k, v]) => `${esc(k)}: <b>${esc(v || "—")}</b>`).join(" · ");
-    const notes = `<p class="note">${quarterly ? t("fa.q4_note") : t("fa.ifrs_note")}<br>${t("fa.tags")}: ${tags}<br>
+    const notes = `<p class="note">${quarterly ? t("fa.q4_note") : t(f.kind === "annual_usgaap_20f" ? "fa.usgaap20f_note" : "fa.ifrs_note")}<br>${t("fa.tags")}: ${tags}<br>
       ${esc(f.entity || "")} · CIK ${esc(f.cik)} · ${t("fa.fye")} ${esc(f.fiscal_year_end || "—")}${f.sec_ticker !== tk ? ` · ADR ${esc(f.sec_ticker)}` : ""}</p>`;
     const filings = (f.filings || []).map(fl => `<tr><td class="tk">${esc(fl.form)}</td><td>${fmtDate(fl.filed)}</td>
       <td>${fmtDate(fl.report_date)}</td><td class="l note">${esc(fl.items || "")}</td><td class="l"><a href="${esc(safeUrl(fl.url))}" target="_blank" rel="noopener">${t("open")} ↗</a></td></tr>`).join("");

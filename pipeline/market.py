@@ -41,6 +41,19 @@ def _download(tickers, **kw):
     return with_retries(go)
 
 
+def frames(tickers, **kw):
+    """One batched download, then a single individual retry for tickers that came back empty
+    (Yahoo occasionally drops one symbol from a batch)."""
+    df = _download(tickers, **kw)
+    out = {t: split_frame(df, t) for t in tickers}
+    for t in [t for t, f in out.items() if f is None]:
+        try:
+            out[t] = split_frame(_download([t], **kw), t)
+        except Exception:  # noqa: BLE001
+            out[t] = None
+    return out
+
+
 def split_frame(df, ticker):
     """Extract one ticker's OHLCV frame from a yf.download result."""
     if isinstance(df.columns, pd.MultiIndex):
@@ -106,10 +119,10 @@ def fetch_currencies(tickers):
 def fetch_history(tickers, currencies, now=None):
     """5-year daily history. Re-downloaded in full every day because adjusted
     closes are rescaled retroactively after each dividend or split."""
-    df = _download(tickers, period=f"{config.HISTORY_YEARS}y", interval="1d")
+    got = frames(tickers, period=f"{config.HISTORY_YEARS}y", interval="1d")
     out = {}
     for t in tickers:
-        frame = split_frame(df, t)
+        frame = got[t]
         if frame is None:
             out[t] = {"status": "error", "error": "no data returned by Yahoo Finance for this ticker"}
             continue
@@ -130,11 +143,11 @@ def fetch_history(tickers, currencies, now=None):
 
 def fetch_quotes(tickers, currencies):
     """Latest delayed quote = last daily bar (today's bar is in progress during the session)."""
-    df = _download(tickers, period="5d", interval="1d")
+    got = frames(tickers, period="5d", interval="1d")
     fetched = store.now_iso()
     out = {}
     for t in tickers:
-        frame = split_frame(df, t)
+        frame = got[t]
         if frame is None or len(frame) < 1:
             out[t] = {"status": "error", "error": "no quote returned by Yahoo Finance", "fetched_at": fetched}
             continue

@@ -111,8 +111,11 @@ SUFFIX_CURRENCY = {".PA": "EUR", ".DE": "EUR", ".AS": "EUR", ".MC": "EUR", ".MI"
 
 # --- Sources ---------------------------------------------------------------------
 FRED_URL = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}"
-FRED_SERIES = ["DFF", "DGS3MO", "DGS2", "DGS10", "CPIAUCSL", "UNRATE", "ECBDFR"]
-ECB_HICP_URL = "https://data-api.ecb.europa.eu/service/data/ICP/M.U2.N.000000.4.ANR?format=csvdata"
+FRED_SERIES = ["DFF", "DGS3MO", "DGS2", "DGS10", "CPIAUCSL", "UNRATE"]
+ECB_URL = "https://data-api.ecb.europa.eu/service/data/{key}?format=csvdata"
+# The ECB replaced the ICP dataset with HICP in Feb 2026; the most recent one wins.
+ECB_HICP_KEYS = ["HICP/M.U2.N.000000.4D0.ANR", "ICP/M.U2.N.000000.4.ANR"]
+ECB_DFR_KEY = "FM/D.U2.EUR.4F.KR.DFR.LEV"
 
 GOOGLE_NEWS_EN = "https://news.google.com/rss/search?q={q}+stock&hl=en-US&gl=US&ceid=US:en"
 GOOGLE_NEWS_FR = "https://news.google.com/rss/search?q={q}+action&hl=fr&gl=FR&ceid=FR:fr"

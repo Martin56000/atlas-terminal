@@ -49,10 +49,11 @@ def task_macro():
             data[sid] = macro.fetch_fred(sid)
         except Exception as e:  # noqa: BLE001
             errors[sid] = f"{type(e).__name__}: {e}"
-    try:
-        data["HICP_EA"] = macro.fetch_ecb_hicp()
-    except Exception as e:  # noqa: BLE001
-        errors["HICP_EA"] = f"{type(e).__name__}: {e}"
+    for sid, fn in (("HICP_EA", macro.fetch_ecb_hicp), ("ECBDFR", macro.fetch_ecb_deposit_rate)):
+        try:
+            data[sid] = fn()
+        except Exception as e:  # noqa: BLE001
+            errors[sid] = f"{type(e).__name__}: {e}"[:400]
     if not data:
         raise RuntimeError("all macro series failed: " + "; ".join(f"{k}: {v}" for k, v in errors.items()))
     store.write("macro.json", store.envelope_ok("FRED (fred.stlouisfed.org) + ECB Data Portal", data, {"errors": errors}))

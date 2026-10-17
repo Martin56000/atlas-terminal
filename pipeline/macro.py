@@ -1,12 +1,18 @@
 """Macro data: FRED public CSV (no key) and the ECB Data Portal (no key)."""
 import csv
 import io
+import time
 
 import requests
 
 from . import config
 
 KEEP_FROM = "2010-01-01"
+HEADERS = {
+    # FRED tends to hang on bare script user-agents from cloud IPs
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 AtlasTerminal",
+    "Accept": "text/csv,text/plain,*/*",
+}
 
 
 def parse_fred_csv(text, series_id):
@@ -16,7 +22,7 @@ def parse_fred_csv(text, series_id):
         raise ValueError(f"unexpected FRED response for {series_id}")
     header = [h.strip() for h in rows[0]]
     if series_id not in header:
-        raise ValueError(f"series {series_id} not found in FRED response header {header}")
+        raise ValueError(f"series {series_id} not found in FRED response header {header[:3]}")
     vi = header.index(series_id)
     out = []
     for r in rows[1:]:
@@ -42,6 +48,14 @@ def parse_ecb_csv(text):
     return out
 
 
+def most_recent(candidates):
+    """Pick the series whose last observation is the most recent (ECB keys get replaced over time)."""
+    ok = [c for c in candidates if c[1]]
+    if not ok:
+        raise ValueError("no candidate series returned data")
+    return max(ok, key=lambda c: c[1][-1][0])
+
+
 def yoy(points):
     """Monthly index -> year-over-year % change: X_t / X_{t-12} - 1 (in %)."""
     by_date = dict(points)
@@ -56,26 +70,60 @@ def yoy(points):
     return out
 
 
-def _get(url):
-    r = requests.get(url, timeout=30, headers={"User-Agent": "Atlas Terminal (student project)"})
-    r.raise_for_status()
-    return r.text
+def _get(url, attempts=3, timeout=60):
+    last = None
+    for i in range(attempts):
+        try:
+            r = requests.get(url, timeout=timeout, headers=HEADERS)
+            r.raise_for_status()
+            return r.text
+        except Exception as e:  # noqa: BLE001
+            last = e
+            if i < attempts - 1:
+                time.sleep(3 * (3 ** i))
+    raise last
 
 
-def _series(points):
+def _series(points, source):
     pts = [(d, v) for d, v in points if d >= KEEP_FROM]
     return {"dates": [d for d, _ in pts], "values": [round(v, 4) for _, v in pts],
-            "latest": {"date": points[-1][0], "value": points[-1][1]}}
+            "latest": {"date": points[-1][0], "value": points[-1][1]}, "source": source}
 
 
 def fetch_fred(series_id):
-    pts = parse_fred_csv(_get(config.FRED_URL.format(sid=series_id)), series_id)
-    data = _series(pts)
+    url = config.FRED_URL.format(sid=series_id) + "&cosd=2008-01-01"
+    pts = parse_fred_csv(_get(url), series_id)
+    data = _series(pts, f"FRED {series_id}")
     if series_id == "CPIAUCSL":
-        data["yoy"] = _series(yoy(pts))
+        data["yoy"] = _series(yoy(pts), "FRED CPIAUCSL, computed YoY")
     return data
 
 
+def _ecb_candidates(keys):
+    out, errors = [], []
+    for k in keys:
+        try:
+            out.append((k, parse_ecb_csv(_get(config.ECB_URL.format(key=k)))))
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"{k}: {type(e).__name__}: {e}")
+    if not out:
+        raise RuntimeError("; ".join(errors))
+    return out
+
+
 def fetch_ecb_hicp():
-    # Series already is the annual rate of change (%), monthly.
-    return _series(parse_ecb_csv(_get(config.ECB_HICP_URL)))
+    """Euro area HICP annual rate (%). The ECB replaced its ICP dataset by HICP in 2026."""
+    key, pts = most_recent(_ecb_candidates(config.ECB_HICP_KEYS))
+    return _series(pts, f"ECB {key}")
+
+
+def fetch_ecb_deposit_rate():
+    """ECB deposit facility rate (%), daily, from the ECB itself; FRED ECBDFR as fallback."""
+    try:
+        key, pts = most_recent(_ecb_candidates([config.ECB_DFR_KEY]))
+        return _series(pts, f"ECB {key}")
+    except Exception as ecb_err:  # noqa: BLE001
+        try:
+            return fetch_fred("ECBDFR")
+        except Exception as fred_err:  # noqa: BLE001
+            raise RuntimeError(f"ECB: {ecb_err} | FRED: {fred_err}") from fred_err

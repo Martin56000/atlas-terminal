@@ -103,3 +103,12 @@ def test_translation_never_changes_a_number():
     assert cache == {"l": ""}
     h = translate.attach([{"lang": "en", "link": "l", "title": "Q3 up 12%"}], cache)
     assert h[0]["title_fr"] is None
+
+
+def test_rotation_refetches_pages_missing_a_new_field(tmp_path, monkeypatch):
+    from pipeline import run
+    monkeypatch.setattr(store, "DATA_DIR", str(tmp_path))
+    fresh = datetime.now(UTC).isoformat()
+    store.write("company/A.json", {"_meta": {"status": "ok", "fetched_at": fresh}, "data": {"profile": {}}})
+    store.write("company/B.json", {"_meta": {"status": "ok", "fetched_at": fresh}, "data": {"dividends": []}})
+    assert run.rotation("company", ["A", "B"], 10, 20, required=("dividends",)) == ["A"]

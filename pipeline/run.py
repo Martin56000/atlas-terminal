@@ -260,13 +260,16 @@ def _age_hours(env):
     return (schedule.utcnow() - datetime.fromisoformat(ts)).total_seconds() / 3600
 
 
-def rotation(prefix, tickers, n, max_age_h, error_age_h=24):
+def rotation(prefix, tickers, n, max_age_h, error_age_h=24, required=()):
     """Never-fetched first (universe order), then the oldest beyond their age limit
-    (failed fetches are retried after error_age_h, successful ones after max_age_h)."""
+    (failed fetches are retried after error_age_h, successful ones after max_age_h).
+    A page saved before a field in `required` existed counts as never fetched."""
     never, old = [], []
     for t in tickers:
         env = store.read(f"{prefix}/{safe_name(t)}.json")
         age = _age_hours(env)
+        if age is not None and env["_meta"].get("status") == "ok" and any(k not in (env.get("data") or {}) for k in required):
+            age = None
         limit = error_age_h if (env or {}).get("_meta", {}).get("status") == "error" else max_age_h
         if age is None:
             never.append(t)
@@ -279,7 +282,7 @@ def task_company():
     import time
     from . import company, translate
     stocks = [t for t in config.WATCHLIST_UNIVERSE if config.BY_TICKER[t]["kind"] == "stock"]
-    todo = rotation("company", stocks, config.COMPANY_PER_RUN, config.COMPANY_MAX_AGE_H)
+    todo = rotation("company", stocks, config.COMPANY_PER_RUN, config.COMPANY_MAX_AGE_H, required=("dividends",))
     log(f"company pages (Yahoo): {len(todo)} of {len(stocks)}")
     src = "Yahoo Finance via yfinance (profile, statements, analyst estimates)"
     for t in todo:

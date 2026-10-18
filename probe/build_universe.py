@@ -12,7 +12,7 @@ import unicodedata
 
 # tickers whose Yahoo name shows they are not the intended company (round-1 review); right tickers are in round 2
 REJECT = {"MLAA.PA", "ALBI.PA"}
-RENAME = {"GPE.PA": "Groupe Pizzorno Environnement", "PARP.PA": "Groupe Partouche", "CRI.PA": "Belgrano (ex-Chargeurs)"}
+RENAME = {"GPE.PA": "Groupe Pizzorno Environnement", "PARP.PA": "Groupe Partouche", "CRI.PA": "Belgrano"}
 MIN_LAST_DATE = "2026-09-01"
 
 

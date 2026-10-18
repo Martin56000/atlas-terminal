@@ -158,7 +158,7 @@ def fold(s):
     return unicodedata.normalize("NFD", s or "").encode("ascii", "ignore").decode()
 
 
-ESEF_COUNTRIES = {"FR", "DE", "NL", "BE", "IT", "ES", "PT", "DK", "SE", "FI", "NO", "GB"}  # CH is outside ESEF
+ESEF_COUNTRIES = {"FR", "DE", "NL", "BE", "IT", "ES", "PT", "DK", "SE", "FI", "NO", "GB", "AT", "IE", "PL", "GR", "CZ"}  # CH is outside ESEF
 
 
 def fetch(info, known_lei=None, search=None):

@@ -30,7 +30,8 @@ for c in cands:
         sub = None
     r["ok"] = sub is not None and len(sub) >= 5
     r["last_date"] = sub.index[-1].strftime("%Y-%m-%d") if r["ok"] else None
-    if r["ok"]:
+    r["last_close"] = float(sub["Close"].iloc[-1]) if r["ok"] else None
+    if r["ok"] and not t.endswith("=X"):
         try:
             tk = yf.Ticker(t)
             fi = tk.fast_info

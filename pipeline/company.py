@@ -6,7 +6,8 @@ Everything here is either a Yahoo value (labelled as such) or a simple calculati
 from datetime import date, datetime, timezone
 
 MODULES = ["assetProfile", "price", "summaryDetail", "defaultKeyStatistics", "financialData",
-           "calendarEvents", "earningsTrend", "earningsHistory", "recommendationTrend"]
+           "calendarEvents", "earningsTrend", "earningsHistory", "recommendationTrend",
+           "majorHoldersBreakdown", "institutionOwnership", "fundOwnership", "insiderTransactions"]
 
 INCOME_ROWS = {"revenue": ["TotalRevenue", "OperatingRevenue"], "gross_profit": ["GrossProfit"],
                "ebit": ["OperatingIncome", "EBIT"], "ebitda": ["EBITDA", "NormalizedEBITDA"],
@@ -104,8 +105,28 @@ def parse_summary(js):
     for t in (r.get("recommendationTrend") or {}).get("trend") or []:
         recos.append({k: raw(t.get(k)) for k in ("strongBuy", "buy", "hold", "sell", "strongSell")} | {"period": t.get("period")})
     return {"profile": profile, "valuation": valuation, "targets": targets, "calendar": calendar,
+            "holders": parse_holders(r),
             "estimates": [e for e in estimates if any(v is not None for k, v in e.items() if k not in ("period", "end_date"))],
             "surprises": surprises, "recommendations": recos}
+
+
+def parse_holders(r):
+    """Shareholders as published by Yahoo (HDS): breakdown, top institutions and funds, insider trades."""
+    mh = r.get("majorHoldersBreakdown") or {}
+
+    def owners(mod):
+        out = []
+        for o in ((r.get(mod) or {}).get("ownershipList") or [])[:15]:
+            out.append({"name": o.get("organization"), "pct": raw(o.get("pctHeld")), "shares": raw(o.get("position")),
+                        "value": raw(o.get("value")), "date": as_date(o.get("reportDate")), "chg": raw(o.get("pctChange"))})
+        return [o for o in out if o["name"]]
+    trades = []
+    for x in ((r.get("insiderTransactions") or {}).get("transactions") or [])[:20]:
+        trades.append({"name": x.get("filerName"), "relation": x.get("filerRelation"), "text": x.get("transactionText"),
+                       "date": as_date(x.get("startDate")), "shares": raw(x.get("shares")), "value": raw(x.get("value"))})
+    return {"insiders_pct": raw(mh.get("insidersPercentHeld")), "institutions_pct": raw(mh.get("institutionsPercentHeld")),
+            "institutions_float_pct": raw(mh.get("institutionsFloatPercentHeld")), "institutions_n": raw(mh.get("institutionsCount")),
+            "institutions": owners("institutionOwnership"), "funds": owners("fundOwnership"), "insider_trades": trades}
 
 
 # ---------------- statements ------------------------------------------------------------------

@@ -244,3 +244,19 @@ def test_rotation_order(tmp_path, monkeypatch):
     put("FAILED", 30, "error")  # failed 30 h ago -> retried after 24 h
     order = run.rotation("esef", ["NEW", "OLD", "FRESH", "FAILED"], 10, 30 * 24)
     assert order == ["NEW", "OLD", "FAILED"]
+
+
+def test_parse_holders():
+    r = {"majorHoldersBreakdown": {"insidersPercentHeld": {"raw": 0.4791, "fmt": "47.91%"},
+                                   "institutionsPercentHeld": {"raw": 0.2012}, "institutionsCount": {"raw": 1234}},
+         "institutionOwnership": {"ownershipList": [
+             {"organization": "Norges Bank", "pctHeld": {"raw": 0.0112}, "position": {"raw": 5600000},
+              "value": {"raw": 2.2e9}, "reportDate": {"raw": 1751241600, "fmt": "2025-06-30"}, "pctChange": {"raw": 0.05}}]},
+         "insiderTransactions": {"transactions": [{"filerName": "X", "filerRelation": "Director", "transactionText": "Sale",
+                                                   "startDate": {"raw": 1751241600}, "shares": {"raw": 1000}}]}}
+    h = company.parse_holders(r)
+    assert h["insiders_pct"] == 0.4791 and h["institutions_n"] == 1234
+    assert h["institutions"][0] == {"name": "Norges Bank", "pct": 0.0112, "shares": 5600000, "value": 2.2e9,
+                                    "date": "2025-06-30", "chg": 0.05}
+    assert h["funds"] == [] and h["insider_trades"][0]["date"] == "2025-06-30"
+    assert company.parse_holders({})["institutions"] == []          # no module: empty, never invented

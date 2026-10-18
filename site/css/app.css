@@ -259,3 +259,41 @@ body { padding-bottom: 26px; }
 .lp .panel { grid-column: auto; }
 .main > .note { grid-column: span 12; }
 .t td.wrap { white-space: normal; max-width: 380px; }
+
+/* ===================== terminal keyboard keys, security line, action bar ===================== */
+.keys { display: flex; gap: 3px; }
+.keys button { font: inherit; font-size: 11px; font-weight: 600; border: 0; padding: 5px 6px; cursor: pointer; letter-spacing: .3px; }
+.ykey { background: var(--key); color: #000; }
+.gkey { background: var(--go); color: #000; }
+.keys button:hover { filter: brightness(1.15); }
+@media (max-width: 1100px) { .keys .ykey { display: none; } }
+@media (max-width: 700px) { .keys { display: none; } }
+.sechdr { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; padding: 6px 10px; background: #0c0c0c; border: 1px solid var(--line-strong);
+  border-left: 3px solid var(--amber); font-size: 12px; }
+.sechdr .sec { color: #fff; background: #1c3f8a; padding: 1px 6px; font-weight: 600; }
+.sechdr .sh-name { color: var(--amber); font-weight: 600; text-transform: uppercase; }
+.sechdr .sh-px { color: #fff; font-size: 17px; font-weight: 500; }
+.sechdr .sh-l { color: var(--amber-dim); }
+.sechdr .sh-i { color: var(--ink); }
+.menu { justify-content: space-between; }
+.menu-l, .menu-r { display: flex; flex-wrap: wrap; gap: 2px 14px; }
+.menu-r { gap: 4px; }
+.menu .act { background: #8a1414; color: #fff; border: 0; padding: 2px 8px; cursor: pointer; font: inherit; font-size: 11px; }
+.menu .act b { color: #ffd0d0; }
+.menu .act:hover { background: #b51c1c; }
+.gpstats { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 12px; color: var(--muted); padding: 0 0 6px; }
+.gpstats b { color: #fff; font-weight: 500; }
+.gpstats i { display: inline-block; width: 10px; height: 3px; margin-right: 5px; vertical-align: middle; }
+code.click { cursor: pointer; color: var(--field-ink); background: var(--field); padding: 0 5px; }
+.help-t td { white-space: normal; }
+
+/* IMAP heat map */
+.imap { display: flex; flex-wrap: wrap; gap: 6px; }
+.imap-sec { flex-basis: 220px; min-width: 200px; border: 1px solid var(--line-strong); background: #0a0a0a; }
+.imap-h { display: flex; justify-content: space-between; padding: 3px 6px; color: var(--amber); font-size: 11px; text-transform: uppercase; border-bottom: 1px solid var(--line); }
+.imap-tiles { display: flex; flex-wrap: wrap; gap: 2px; padding: 2px; }
+.imap-t { flex-basis: 64px; min-height: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer;
+  color: #fff; font-size: 11px; line-height: 1.25; padding: 2px; overflow: hidden; }
+.imap-t b { font-weight: 600; white-space: nowrap; }
+.imap-t:hover { outline: 1px solid #fff; }
+.sechdr { grid-column: span 12; }

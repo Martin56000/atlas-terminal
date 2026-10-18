@@ -17,11 +17,13 @@
     eqs: Object.assign({ region: "EU", segment: "ALL", country: "ALL", sort: "pct", dir: -1 }, LS.get("eqs", {})),
     comps: { sector: null, region: LS.get("compsRegion", "ALL") }, deals: { ticker: "ALL" },
     hp: LS.get("hp", "D"), most: { region: LS.get("mostRegion", "ALL") },
+    imap: Object.assign({ region: "EU", country: "ALL" }, LS.get("imap", {})), compWith: LS.get("compWith", ""), pendingSection: null,
   };
   // tab groups, coloured like the function-key families of a terminal keyboard
-  const TAB_GROUP = { LP: "g-home", MKTS: "g-mkt", WEI: "g-mkt", MOST: "g-mkt", FXC: "g-mkt", ECO: "g-mkt", EQS: "g-mkt",
-    QUOTE: "g-sec", GIP: "g-sec", HP: "g-sec", DES: "g-sec", FA: "g-sec", DVD: "g-sec", RISK: "g-sec", NEWS: "g-sec", COMPS: "g-sec", DEALS: "g-sec", STATUS: "g-sys" };
-  const TICKER_TABS = ["QUOTE", "GIP", "HP", "DES", "FA", "DVD", "COMPS"];
+  const TAB_GROUP = { LP: "g-home", MKTS: "g-mkt", WEI: "g-mkt", MOST: "g-mkt", IMAP: "g-mkt", FXC: "g-mkt", GLCO: "g-mkt", ECO: "g-mkt", EQS: "g-mkt",
+    QUOTE: "g-sec", GIP: "g-sec", HP: "g-sec", COMP: "g-sec", DES: "g-sec", FA: "g-sec", DVD: "g-sec", HDS: "g-sec", RISK: "g-sec", NEWS: "g-sec",
+    COMPS: "g-sec", DEALS: "g-sec", STATUS: "g-sys" };
+  const TICKER_TABS = ["QUOTE", "GIP", "HP", "COMP", "DES", "FA", "DVD", "HDS", "COMPS"];
   const CORE = ["meta.json", "quotes.json", "risk.json", "macro.json", "news.json", "validation.json", "companies.json", "deals.json", "perf.json", "intraday.json", "status.json"];
 
   let I18N = {};
@@ -299,7 +301,7 @@
     const tk = S.ticker, info = UNI[tk] || { name: tk };
     const h = await historyOf(tk);
     const q = quotesEnv(), x = q && q.data[tk];
-    const ranges = ["1M", "6M", "1Y", "5Y"].map(r => `<button class="btn ${S.range === r ? "on" : ""}" data-range="${r}">${r}</button>`).join("");
+    const ranges = RANGES.map(r => `<button class="btn ${S.range === r ? "on" : ""}" data-range="${r}">${r}</button>`).join("");
     const tools = tickerSelect(tk, m.universe.map(u => u.ticker), "quote-ticker") + ranges;
     let head = "";
     if (x && x.status === "ok") {
@@ -322,7 +324,20 @@
       d.dates.forEach((dt, i) => { if (dt > y0) { if (isNum(d.high[i]) && (hi === null || d.high[i] > hi)) hi = d.high[i]; if (isNum(d.low[i]) && (lo === null || d.low[i] < lo)) lo = d.low[i]; } });
       head += `<span class="kv">${t("quote.hi52")} <b>${num(hi)}</b></span><span class="kv">${t("quote.lo52")} <b>${num(lo)}</b></span>
         <span class="kv">${t("quote.exchange")} <b>${esc(info.exchange || "")}</b></span></div>`;
-      body = head + `<div class="chart" id="pxChart"></div><div class="chart" id="volChart"></div>
+      // GP-style statistics over the displayed range (computed here from the daily closes)
+      const cut = rangeStart(d.dates[d.dates.length - 1], S.range);
+      const idx = d.dates.map((dt, i) => i).filter(i => d.dates[i] > cut && isNum(d.close[i]));
+      let stats = "";
+      if (idx.length) {
+        const hiI = idx.reduce((a, i) => (d.close[i] > d.close[a] ? i : a), idx[0]), loI = idx.reduce((a, i) => (d.close[i] < d.close[a] ? i : a), idx[0]);
+        const avg = idx.reduce((a, i) => a + d.close[i], 0) / idx.length, dec = d.close[idx[idx.length - 1]] < 10 ? 4 : 2;
+        stats = `<div class="gpstats"><span><i style="background:${PAL.price}"></i>${t("gp.last")} <b>${num(d.close[idx[idx.length - 1]], dec)}</b></span>
+          <span>${t("gp.high")} <b>${num(d.close[hiI], dec)}</b> <span class="note">${fmtDate(d.dates[hiI])}</span></span>
+          <span>${t("gp.avg")} <b>${num(avg, dec)}</b></span>
+          <span>${t("gp.low")} <b>${num(d.close[loI], dec)}</b> <span class="note">${fmtDate(d.dates[loI])}</span></span>
+          <span>${t("gp.chg")} <b class="${cls(d.close[idx[idx.length - 1]] / d.close[idx[0]] - 1)}">${pct(d.close[idx[idx.length - 1]] / d.close[idx[0]] - 1)}</b> <span class="note">${S.range}</span></span></div>`;
+      }
+      body = head + stats + `<div class="chart" id="pxChart"></div><div class="chart" id="volChart"></div>
         <div class="note">${t("quote.chart_note")}</div>`;
     }
     const html = panel({ title: `<span class="sec">${esc(C.bbgCode(tk, info))}</span> ${esc(info.name)} <span class="note">${esc(tk)}</span>`, tools, body, meta: h.meta, source: "Yahoo Finance (yfinance)",
@@ -331,11 +346,8 @@
   }
   function drawQuoteCharts(d) {
     const ma50 = C.sma(d.close, 50), ma200 = C.sma(d.close, 200);
-    const months = { "1M": 1, "6M": 6, "1Y": 12, "5Y": 60 }[S.range] || 12;
-    const last = new Date(d.dates[d.dates.length - 1] + "T00:00:00Z");
-    last.setUTCMonth(last.getUTCMonth() - months);
-    const cut = last.toISOString().slice(0, 10);
-    let i0 = d.dates.findIndex(x => x >= cut); if (i0 < 0) i0 = 0;
+    const cut = rangeStart(d.dates[d.dates.length - 1], S.range);
+    let i0 = d.dates.findIndex(x => x > cut); if (i0 < 0) i0 = 0;
     const xs = d.dates.slice(i0).map(toTs);
     const dec = d.close[d.close.length - 1] < 10 ? 4 : 2;
     const f = v => num(v, dec);
@@ -411,7 +423,7 @@
     const c = v >= 0 ? mix(mid, pos, Math.min(1, v)) : mix(mid, neg, Math.min(1, -v));
     return `rgb(${c.join(",")})`;
   }
-  function renderRISK() {
+  async function renderRISK() {
     const m = meta(); if (!m) return firstRunNotice();
     const x = ds("risk.json");
     if (!x.ok) return panel({ title: t("risk.title"), body: dsUnavailable(x), meta: x.meta, source: t("risk.source") });
@@ -428,7 +440,11 @@
     const table = `<table class="t"><tr><th>${t("col.ticker")}</th><th class="l nm">${t("col.name")}</th>${th("vol", t("risk.vol"))}${th("ret", t("risk.ret"))}
       ${th("sharpe", t("risk.sharpe"))}${th("beta", t("risk.beta"))}${th("mdd", t("risk.mdd"))}${th("rf", t("risk.rf"))}<th>${t("risk.window")}</th><th>${t("risk.n")}</th></tr>${rows}</table>
       <p class="note">${t("risk.defs")}</p>`;
-    const cm = C.correlationMatrix(R.returns, wl);
+    // daily log returns over the risk window, from the same adjusted closes the pipeline uses
+    const hist = await Promise.all(wl.map(tk => historyOf(tk)));
+    const returns = {};
+    wl.forEach((tk, i) => { if (hist[i].ok) returns[tk] = C.windowReturns(hist[i].data.dates, hist[i].data.adj_close, R.window); });
+    const cm = C.correlationMatrix(returns, wl);
     const short = tk => esc(tk.replace(/\..*$/, ""));
     const heat = cm.tickers.length >= 2 ? `<div style="overflow-x:auto"><table class="heat"><tr><th></th>${cm.tickers.map(tk => `<th class="rot"><span>${short(tk)}</span></th>`).join("")}</tr>
       ${cm.tickers.map((a, i) => `<tr><th style="text-align:right">${short(a)}</th>${cm.matrix[i].map((v, j) =>
@@ -465,26 +481,32 @@
         <span>${title}</span>${sent}</div>`;
     }).join("");
   }
-  function renderNEWS() {
+  async function newsOf(tk) {
+    const name = "news/" + C.safeName(tk) + ".json";
+    if (!FILES[name]) await load(name, FILES);
+    return ds(name, FILES);
+  }
+  function newsBlock(tk, x) {
+    if (!x.ok) return `<div class="news-tk">${esc(tk)} <span class="note">${esc((UNI[tk] || {}).name)}</span></div>${dsUnavailable(x)}`;
+    const n = x.data, a = n.avg;
+    const avg = a ? `<span class="avg">${t("news.avg")}: <b class="${cls(a.score)}">${signed(a.score, 2)}</b> (${a.positive}+ / ${a.neutral}= / ${a.negative}− ${t("news.on_n", { n: a.n })})</span>` : `<span class="avg">${t("news.avg")}: —</span>`;
+    return `<div class="news-tk">${esc(tk)} <span class="note">${esc((UNI[tk] || {}).name)} · ${t("news.fetched")} ${fmtDT(n.fetched_at)}</span>${avg}</div>
+      ${newsList(n.en, "en")}${n.fr ? `<div class="note" style="margin-top:6px">${t("news.fr_section")}</div>${newsList(n.fr, "fr")}` : ""}
+      ${n.errors && n.errors.length ? `<div class="note">${t("news.partial")}: ${esc(n.errors.join(" | "))}</div>` : ""}`;
+  }
+  async function renderNEWS() {
     const m = meta(); if (!m) return firstRunNotice();
     const x = ds("news.json");
     const wl = watchlist();
-    const tools = `<select data-action="news-ticker"><option value="ALL">${t("news.all")}</option>${wl.map(tk => `<option value="${esc(tk)}" ${S.newsTicker === tk ? "selected" : ""}>${esc(tk)}</option>`).join("")}</select>`;
+    const extra = S.newsTicker !== "ALL" && !wl.includes(S.newsTicker) ? [S.newsTicker] : [];
+    const tools = `<select data-action="news-ticker"><option value="ALL">${t("news.all")}</option>${extra.concat(wl).map(tk => `<option value="${esc(tk)}" ${S.newsTicker === tk ? "selected" : ""}>${esc(tk)}</option>`).join("")}</select>`;
     if (!x.ok) return panel({ title: t("news.title"), tools, body: dsUnavailable(x), meta: x.meta, source: "Yahoo Finance + Google News RSS" });
     const list = S.newsTicker === "ALL" ? wl : [S.newsTicker];
-    const body = list.map(tk => {
-      const n = x.data[tk];
-      if (!n) return `<div class="news-tk">${esc(tk)}</div><div class="note">—</div>`;
-      if (n.status !== "ok") return `<div class="news-tk">${esc(tk)}</div>${unavailable((n.errors || []).join(" | "), x.meta.last_success)}`;
-      const a = n.avg;
-      const avg = a ? `<span class="avg">${t("news.avg")}: <b class="${cls(a.score)}">${signed(a.score, 2)}</b> (${a.positive}+ / ${a.neutral}= / ${a.negative}− ${t("news.on_n", { n: a.n })})</span>` : `<span class="avg">${t("news.avg")}: —</span>`;
-      return `<div class="news-tk">${esc(tk)} <span class="note">${esc((UNI[tk] || {}).name)}</span>${avg}</div>
-        ${newsList(n.en, "en")}${n.fr ? `<div class="note" style="margin-top:6px">${t("news.fr_section")}</div>${newsList(n.fr, "fr")}` : ""}
-        ${n.errors && n.errors.length ? `<div class="note">${t("news.partial")}: ${esc(n.errors.join(" | "))}</div>` : ""}`;
-    }).join("");
+    const files = await Promise.all(list.map(newsOf));
+    const body = list.map((tk, i) => newsBlock(tk, files[i])).join("");
     const sentErr = x.meta.sentiment_error ? `<div class="unavail">${t("news.sent_error")}: <span class="err">${esc(x.meta.sentiment_error)}</span></div>` : "";
     const trErr = x.meta.translation_error && S.lang === "fr" && S.translate ? `<div class="unavail">${t("news.translation_error")}: <span class="err">${esc(x.meta.translation_error)}</span></div>` : "";
-    return panel({ title: t("news.title"), tools, body: sentErr + trErr + body + `<p class="note">${t("news.method")}</p>`, meta: x.meta, stale: newsStale(x.meta.fetched_at) });
+    return panel({ title: t("news.title"), tools, body: sentErr + trErr + body + `<p class="note">${t("news.method")} ${t("news.rotation")}</p>`, meta: x.meta, stale: newsStale(x.meta.fetched_at) });
   }
 
   // ------------------------------------------------------------------ ECO
@@ -918,10 +940,13 @@
   function setMenu(items) { MENU = items || []; }
   function renderMenu() {
     const el = $("#menu"); if (!el) return;
-    el.innerHTML = MENU.length ? MENU.map((it, i) => `<button class="mi" data-menu="${i + 1}"><b>${i + 1})</b> ${esc(it.label)}</button>`).join("") : "";
-    el.hidden = !MENU.length;
+    el.innerHTML = `<span class="menu-l">${MENU.map((it, i) => `<button class="mi" data-menu="${i + 1}"><b>${i + 1})</b> ${esc(it.label)}</button>`).join("")}</span>
+      <span class="menu-r">${ACTIONS.map(a => `<button class="act" data-menu="${a.n}"><b>${a.n})</b> ${esc(a.label)}</button>`).join("")}</span>`;
+    el.hidden = !MENU.length && !ACTIONS.length;
   }
   function runMenu(n) {
+    const act = ACTIONS.find(a => a.n === n);
+    if (act) return act.go();
     const it = MENU[n - 1];
     if (!it) { $("#cmdMsg").textContent = t("cmd.bad_menu", { n }); return; }
     if (it.go) return it.go();
@@ -1168,6 +1193,7 @@
     }
     if (c === "WEI") return { title: "WEI", html: weiTable(true) };
     if (c === "FXC") return { title: "FXC", html: fxcTable(true) };
+    if (c === "GLCO") return { title: "GLCO", html: glcoTable() };
     if (c === "MOST") { const L = mostLists("ALL", 6); return { title: "MOST", html: L ? `<div class="sub">${t("most.up")}</div>${mostTable(L.up)}<div class="sub">${t("most.down")}</div>${mostTable(L.down)}` : "—" }; }
     const r = C.parseCommand(cmd, m ? m.universe : []);
     if (r.type !== "ticker") return { title: esc(cmd), html: `<div class="note">${t("lp.unknown")}</div>` };
@@ -1191,8 +1217,8 @@
         <button class="btn" data-goto-des="${esc(tk)}">${t("lp.open_full")}</button>` };
     }
     if (r.tab === "NEWS") {
-      const n = ds("news.json"), v = n.ok ? n.data[tk] : null;
-      return { title: `${code} CN`, html: v ? newsList((v.en || []).slice(0, 8), "en") : `<div class="note">${t("news.none")}</div>` };
+      const n = await newsOf(tk);
+      return { title: `${code} CN`, html: n.ok ? newsList((n.data.en || []).slice(0, 8), "en") : dsUnavailable(n) };
     }
     return { title: `${code} ${esc(r.tab)}`, html: `<div class="note">${t("lp.not_in_pane")}</div><button class="btn" data-lp-open="${esc(r.tab)}|${esc(tk)}">${t("lp.open_full")}</button>` };
   }
@@ -1207,13 +1233,206 @@
     return { html, after: () => panes.forEach(p => p.after && p.after()) };
   }
 
+  // ================================================================== security header line (top of every security screen)
+  const SEC_TABS = ["QUOTE", "GIP", "HP", "COMP", "DES", "FA", "DVD", "HDS"];
+  function secHeader(tk) {
+    const u = UNI[tk]; if (!u) return "";
+    const q = (quotesEnv() || { data: {} }).data[tk], p = perfOf(tk) || {}, cr = compRow(tk) || {};
+    const ok = q && q.status === "ok";
+    const dec = ok && q.last < 10 ? 4 : 2;
+    const item = (label, value) => `<span class="sh-i"><span class="sh-l">${label}</span> ${value}</span>`;
+    return `<div class="sechdr span-12">
+      <span class="sec">${esc(C.bbgCode(tk, u))}</span><b class="sh-name">${esc(u.name)}</b>
+      ${ok ? `<span class="sh-px" data-px="${esc(tk)}">${num(q.last, dec)}</span><span class="${cls(q.change)}">${arrowOf(q.change)}${signed(q.change, dec)} (${pct(q.pct)})</span>` : `<span class="na">${t("unavailable")}</span>`}
+      ${ok ? item(t("sh.at"), fmtDate(q.date)) : ""}
+      ${ok && isNum(q.volume) ? item(t("sh.vol"), compact(q.volume)) : ""}
+      ${isNum(p.hi52) ? item(t("sh.range52"), `${num(p.lo52, dec)} – ${num(p.hi52, dec)}`) : ""}
+      ${isNum(cr.market_cap_eur) ? item(t("sh.mcap"), bn(cr.market_cap_eur) + " " + t("unit.bn") + " €") : ""}
+      ${ok && q.currency ? item(t("sh.ccy"), esc(q.currency)) : ""}
+      ${item(t("sh.exch"), esc(u.exchange || ""))}
+      ${u.country ? item(t("sh.country"), esc(t("country." + u.country))) : ""}
+      ${ok ? delayed() : ""}</div>`;
+  }
+
+  // ================================================================== red action buttons (95-99), like the terminal's toolbars
+  function actionsFor(tab) {
+    const a = [];
+    const tk = S.ticker, u = UNI[tk] || {};
+    if (SEC_TABS.includes(tab) && u.kind === "stock") {
+      const inWl = watchlist().includes(tk);
+      a.push({ n: 95, label: t(inWl ? "act.wl_remove" : "act.wl_add"), go: () => toggleWatch(tk) });
+    }
+    if (document.querySelector("#main [data-csv]")) a.push({ n: 96, label: t("act.export"), go: () => exportCsv(document.querySelector("#main [data-csv]")) });
+    if (SEC_TABS.includes(tab) && tab !== "COMP") a.push({ n: 97, label: t("act.comp"), go: () => go("COMP", tk) });
+    a.push({ n: 98, label: t("act.settings"), go: () => { renderSettings(); openDialog("#settings"); } });
+    a.push({ n: 99, label: t("act.help"), go: () => go("HELP") });
+    return a;
+  }
+  let ACTIONS = [];
+  function toggleWatch(tk) {
+    const set = new Set(watchlist());
+    if (set.has(tk)) set.delete(tk); else set.add(tk);
+    S.watchlist = meta().watchlist_universe.filter(x => set.has(x));
+    LS.set("watchlist", S.watchlist);
+    render();
+  }
+
+  // ================================================================== IMAP — heat map by sector
+  function heatTile(v) {
+    if (!isNum(v)) return "#2a2a2a";
+    const k = Math.min(1, Math.abs(v) / 0.03);                  // full colour at +/-3 %
+    const base = [34, 34, 34], up = [22, 140, 62], dn = [190, 40, 40];
+    const c = base.map((x, i) => Math.round(x + ((v >= 0 ? up : dn)[i] - x) * k));
+    return `rgb(${c.join(",")})`;
+  }
+  // Yahoo's sector names, translated for display only (the data keeps Yahoo's label)
+  const sectorLabel = sct => (I18N["sector." + sct] !== undefined ? t("sector." + sct) : sct);
+  function renderIMAP() {
+    const m = meta(), q = quotesEnv(); if (!m || !q) return firstRunNotice();
+    const f = S.imap;
+    const stocks = m.watchlist_universe.map(tk => UNI[tk]).filter(u => u && u.kind === "stock" && (f.region === "ALL" || u.region === f.region)
+      && (f.country === "ALL" || u.country === f.country));
+    const groups = {};
+    let n = 0;
+    stocks.forEach(u => {
+      const x = q.data[u.ticker]; if (!x || x.status !== "ok" || !isNum(x.pct)) return;
+      const cr = compRow(u.ticker) || {};
+      const sec = cr.sector || t("imap.unclassified");
+      (groups[sec] = groups[sec] || []).push({ tk: u.ticker, pct: x.pct, mcap: cr.market_cap_eur, name: u.name });
+      n++;
+    });
+    const sectors = Object.entries(groups).map(([s, l]) => {
+      const cap = l.reduce((a, r) => a + (isNum(r.mcap) ? r.mcap : 0), 0);
+      const wavg = cap ? l.reduce((a, r) => a + (isNum(r.mcap) ? r.mcap * r.pct : 0), 0) / cap : null;
+      return { s, l: l.sort((a, b) => (b.mcap || 0) - (a.mcap || 0)), cap, wavg };
+    }).sort((a, b) => b.cap - a.cap || b.l.length - a.l.length);
+    const countries = [...new Set(m.watchlist_universe.map(tk => (UNI[tk] || {}).country).filter(Boolean))].sort();
+    const tools = `<select data-imap="region">${[["ALL", t("eqs.all_regions")], ["EU", t("region.EU")], ["US", t("region.US")]].map(([v, l]) => `<option value="${v}" ${f.region === v ? "selected" : ""}>${esc(l)}</option>`).join("")}</select>
+      <select data-imap="country"><option value="ALL">${t("eqs.all_countries")}</option>${countries.map(c => `<option value="${c}" ${f.country === c ? "selected" : ""}>${esc(t("country." + c))}</option>`).join("")}</select>`;
+    const body = sectors.length ? `<div class="imap">${sectors.map(g => `<div class="imap-sec" style="flex-grow:${Math.max(1, Math.round(Math.sqrt(g.cap / 1e9) || g.l.length))}">
+        <div class="imap-h"><span>${esc(sectorLabel(g.s))}</span><span class="${cls(g.wavg)}">${isNum(g.wavg) ? arrowOf(g.wavg) + pct(g.wavg) : ""}</span></div>
+        <div class="imap-tiles">${g.l.map(r => `<div class="imap-t" data-goto="${esc(r.tk)}" title="${esc(r.name)} ${pct(r.pct)}"
+          style="background:${heatTile(r.pct)};flex-grow:${Math.max(1, Math.round(Math.sqrt((r.mcap || 1e9) / 1e9)))}"><b>${esc(C.bbgCode(r.tk, UNI[r.tk]).replace(/ Equity$/, ""))}</b><span>${pct(r.pct, 1)}</span></div>`).join("")}</div></div>`).join("")}</div>`
+      : `<div class="note">${t("imap.empty")}</div>`;
+    return panel({ title: `IMAP — ${t("imap.title")} ${delayed()}`, tools, updated: quotesUpdated(), source: "Yahoo Finance (cours, secteur, capitalisation)",
+      body: body + `<p class="note">${t("imap.note", { n })}</p>` });
+  }
+
+  // ================================================================== GLCO — commodities
+  const GLCO_GROUPS = [["energy", ["BZ=F", "CL=F", "NG=F", "TTF=F"]], ["metals", ["GC=F", "SI=F", "PL=F", "HG=F"]], ["agri", ["ZW=F", "KC=F", "CC=F"]]];
+  const GLCO_UNIT = { "BZ=F": "USD/bbl", "CL=F": "USD/bbl", "NG=F": "USD/MMBtu", "TTF=F": "EUR/MWh", "GC=F": "USD/oz", "SI=F": "USD/oz",
+    "PL=F": "USD/oz", "HG=F": "USD/lb", "ZW=F": "US¢/bu", "KC=F": "US¢/lb", "CC=F": "USD/t" };
+  function glcoTable() {
+    const q = quotesEnv() || { data: {} };
+    return `<table class="t"><tr><th class="l">${t("col.ticker")}</th><th class="l nm">${t("col.name")}</th><th>${t("col.last")}</th><th class="l">${t("glco.unit")}</th><th>${t("col.chg")}</th><th>${t("col.pct")}</th>
+      ${th("perf1w", t("perf.w1"))}${th("perf1m", t("perf.m1"))}${th("ytd", t("perf.ytd"))}${th("perf1y", t("perf.y1"))}<th>${t("col.date")}</th></tr>
+      ${GLCO_GROUPS.map(([g, tks]) => `<tr class="grp"><td colspan="11">${t("glco." + g)}</td></tr>` + tks.map(tk => {
+        const x = q.data[tk], p = perfOf(tk) || {}, u = UNI[tk] || {};
+        const head = `<td class="tk l">${esc(C.bbgCode(tk, u).replace(/ Comdty$/, ""))}</td><td class="nm">${esc(u.name || tk)}</td>`;
+        if (!x || x.status !== "ok") return `<tr class="click" data-goto="${esc(tk)}">${head}<td class="na" colspan="9" title="${esc(x ? x.error : "")}">${t("unavailable")}</td></tr>`;
+        return `<tr class="click" data-goto="${esc(tk)}">${head}<td data-px="${esc(tk)}">${num(x.last)}</td><td class="l note">${esc(GLCO_UNIT[tk] || x.currency || "")}</td>
+          <td class="${cls(x.change)}">${signed(x.change)}</td><td class="${cls(x.pct)}">${arrowOf(x.pct)}${pct(x.pct)}</td>
+          <td class="${cls(p.w1)}">${pct(p.w1, 1)}</td><td class="${cls(p.m1)}">${pct(p.m1, 1)}</td><td class="${cls(p.ytd)}">${pct(p.ytd, 1)}</td><td class="${cls(p.y1)}">${pct(p.y1, 1)}</td>
+          <td class="note">${fmtDate(x.date)}</td></tr>`;
+      }).join("")).join("")}</table>`;
+  }
+  function renderGLCO() {
+    return panel({ title: `GLCO — ${t("glco.title")} ${delayed()}`, tools: csvBtn(), updated: quotesUpdated(), source: "Yahoo Finance (contrats à terme, 1re échéance)",
+      body: glcoTable() + `<p class="note">${t("glco.note")}</p>` });
+  }
+
+  // ================================================================== HDS — shareholders
+  async function renderHDS() {
+    const m = meta(); if (!m) return firstRunNotice();
+    const stocks = m.watchlist_universe.filter(tk => (UNI[tk] || {}).kind === "stock");
+    const tk = stocks.includes(S.ticker) ? S.ticker : "MC.PA";
+    const x = await companyOf(tk);
+    const tools = tickerSelect(tk, stocks, "hds-ticker");
+    const title = `HDS — <span class="sec">${esc(C.bbgCode(tk, UNI[tk]))}</span> ${esc((UNI[tk] || {}).name || "")}`;
+    const src = "Yahoo Finance (majorHoldersBreakdown, institutionOwnership, fundOwnership, insiderTransactions)";
+    if (!x.ok) return panel({ title, tools, body: dsUnavailable(x) + `<p class="note">${t("des.rotation_note")}</p>`, meta: x.meta, source: src });
+    const h = x.data.holders;
+    if (!h) return panel({ title, tools, meta: x.meta, source: src, body: `<div class="note">${t("hds.pending")}</div>` });
+    const ccy = ((x.data.profile || {}).currency || "").replace("GBp", "GBP");
+    const own = (list, key) => list.length ? `<table class="t"><tr><th class="l">${t("hds.holder")}</th><th>${t("hds.pct")}</th><th>${t("hds.shares")}</th><th>${t("hds.value")}</th><th>${t("hds.chg")}</th><th>${t("hds.date")}</th></tr>
+      ${list.map(o => `<tr><td class="l">${esc(o.name)}</td><td>${pct(o.pct, 2, false)}</td><td>${compact(o.shares)}</td><td>${compact(o.value)}</td><td class="${cls(o.chg)}">${pct(o.chg, 1)}</td><td>${fmtDate(o.date)}</td></tr>`).join("")}</table>`
+      : `<div class="note">${t(key === "inst" ? "hds.none_inst" : "hds.none_funds")}</div>`;
+    const trades = h.insider_trades.length ? `<table class="t"><tr><th class="l">${t("hds.insider")}</th><th class="l">${t("hds.relation")}</th><th class="l">${t("hds.trade")}</th><th>${t("hds.shares")}</th><th>${t("hds.value")}</th><th>${t("hds.date")}</th></tr>
+      ${h.insider_trades.map(o => `<tr><td class="l">${esc(o.name)}</td><td class="l note">${esc(o.relation || "")}</td><td class="l note wrap">${esc(o.text || "—")}</td><td>${compact(o.shares)}</td><td>${compact(o.value)}</td><td>${fmtDate(o.date)}</td></tr>`).join("")}</table>`
+      : `<div class="note">${t("hds.none_trades")}</div>`;
+    const empty = !isNum(h.insiders_pct) && !isNum(h.institutions_pct) && !h.institutions.length && !h.funds.length;
+    return panel({ title, tools, cls: "span-4", meta: x.meta, source: src,
+        body: (empty ? `<div class="note">${t("hds.empty")}</div>` : "") + kv(t("hds.insiders_pct"), pct(h.insiders_pct, 2, false)) + kv(t("hds.institutions_pct"), pct(h.institutions_pct, 2, false)) +
+          kv(t("hds.institutions_float"), pct(h.institutions_float_pct, 2, false)) + kv(t("hds.institutions_n"), isNum(h.institutions_n) ? num(h.institutions_n, 0) : "—") +
+          `<p class="note">${t("hds.note", { ccy: esc(ccy || "—") })}</p>` }) +
+      panel({ title: t("hds.institutions"), cls: "span-8", meta: x.meta, source: src, body: own(h.institutions, "inst") }) +
+      panel({ title: t("hds.funds"), cls: "span-6", meta: x.meta, source: src, body: own(h.funds, "funds") }) +
+      panel({ title: t("hds.trades"), cls: "span-6", meta: x.meta, source: src, body: trades });
+  }
+
+  // ================================================================== COMP — performance vs benchmark (base 100)
+  const benchOf = u => (u.region === "US" ? "SPY" : u.segment === "smid" ? "^STOXX" : "^STOXX50E");   // = config.benchmark_for
+  const RANGES = ["1M", "3M", "6M", "YTD", "1Y", "2Y", "5Y"];
+  function rangeStart(lastYmd, range) {
+    const d = new Date(lastYmd + "T00:00:00Z");
+    if (range === "YTD") return (d.getUTCFullYear() - 1) + "-12-31";
+    const months = { "1M": 1, "3M": 3, "6M": 6, "1Y": 12, "2Y": 24, "5Y": 60 }[range] || 12;
+    d.setUTCMonth(d.getUTCMonth() - months);
+    return d.toISOString().slice(0, 10);
+  }
+  async function renderCOMP() {
+    const m = meta(); if (!m) return firstRunNotice();
+    const tk = S.ticker, u = UNI[tk] || { name: tk, region: "EU" };
+    const others = [benchOf(u)].concat(S.compWith && S.compWith !== tk ? [S.compWith] : []).filter(x => x !== tk);
+    const list = [tk].concat(others);
+    const hs = await Promise.all(list.map(historyOf));
+    const ranges = RANGES.map(r => `<button class="btn ${S.range === r ? "on" : ""}" data-range="${r}">${r}</button>`).join("");
+    const tools = tickerSelect(tk, m.universe.map(x => x.ticker), "comp-ticker") +
+      `<select data-action="comp-with"><option value="">${t("comp.add")}</option>${m.universe.map(x => `<option value="${esc(x.ticker)}" ${S.compWith === x.ticker ? "selected" : ""}>${esc(x.ticker)} — ${esc(x.name)}</option>`).join("")}</select>` + ranges + csvBtn();
+    const title = `COMP — <span class="sec">${esc(C.bbgCode(tk, u))}</span> ${t("comp.vs")} ${others.map(o => esc(C.bbgCode(o, UNI[o]))).join(", ")}`;
+    if (!hs[0].ok) return panel({ title, tools, body: dsUnavailable(hs[0]), meta: hs[0].meta, source: "Yahoo Finance" });
+    const series = list.map((x, i) => {
+      if (!hs[i].ok) return null;
+      const d = hs[i].data, px = (UNI[x] || {}).kind === "stock" || (UNI[x] || {}).kind === "etf" ? d.adj_close : d.close;
+      return { tk: x, map: new Map(d.dates.map((dt, j) => [dt, px[j]]).filter(p => isNum(p[1]))) };
+    });
+    const main = series[0], last = [...main.map.keys()].pop();
+    const start = rangeStart(last, S.range);
+    const dates = [...main.map.keys()].filter(d => d > start && series.every(s => !s || s.map.has(d)));
+    const perf = (s, from) => { const ds_ = [...s.map.keys()].filter(d => d > from && main.map.has(d)); if (ds_.length < 2) return null;
+      return s.map.get(ds_[ds_.length - 1]) / s.map.get(ds_[0]) - 1; };
+    const rows = series.map((s, i) => s ? `<tr><td class="tk l">${esc(C.bbgCode(s.tk, UNI[s.tk]))}</td><td class="nm">${esc((UNI[s.tk] || {}).name || "")}</td>
+        ${RANGES.map(r => { const v = perf(s, rangeStart(last, r)); return `<td class="${cls(v)}">${pct(v, 1)}</td>`; }).join("")}</tr>`
+      : `<tr><td class="tk l">${esc(list[i])}</td><td class="na" colspan="${RANGES.length + 1}">${t("unavailable")}</td></tr>`).join("");
+    const diff = series[1] ? `<tr class="med"><td class="l">${t("comp.diff")}</td><td></td>${RANGES.map(r => { const a = perf(series[0], rangeStart(last, r)), b = perf(series[1], rangeStart(last, r));
+      const v = isNum(a) && isNum(b) ? (a - b) * 100 : null; return `<td class="${cls(v)}">${isNum(v) ? signed(v, 1) + " pts" : "—"}</td>`; }).join("")}</tr>` : "";
+    const html = panel({ title, tools, meta: hs[0].meta, source: "Yahoo Finance (cours ajustés pour les actions, points pour les indices)",
+        body: `<div class="chart" id="compChart"></div><p class="note">${t("comp.note")}</p>` }) +
+      panel({ title: t("comp.table"), meta: hs[0].meta, source: "Yahoo Finance",
+        body: `<table class="t"><tr><th class="l">${t("col.ticker")}</th><th class="l nm">${t("col.name")}</th>${RANGES.map(r => `<th>${r}</th>`).join("")}</tr>${rows}${diff}</table>` });
+    const colors = [PAL.price, PAL.blue, PAL.pink];
+    return { html, after: () => {
+      if (dates.length < 2) { $("#compChart").innerHTML = `<div class="note">${t("comp.no_overlap")}</div>`; return; }
+      const data = [dates.map(toTs)].concat(series.filter(Boolean).map(s => { const b = s.map.get(dates[0]); return dates.map(d => s.map.get(d) / b * 100); }));
+      makeChart($("#compChart"), series.filter(Boolean).map((s, i) => line(C.bbgCode(s.tk, UNI[s.tk]), colors[i], v => num(v, 1))), data, { height: 320, yfmt: v => num(v, 0) });
+    } };
+  }
+
   // ------------------------------------------------------------------ HELP
   function renderHELP() {
-    const cmds = [["AAPL", "help.quote"], ["AAPL FA", "help.fa"], ["MC.PA RISK", "help.risk"], ["NVDA NEWS", "help.news"],
-      ["MC.PA DES", "help.des"], ["MC.PA COMPS", "help.comps"], ["DEALS", "help.deals"],
-      ["MKTS", "help.mkts"], ["EQS", "help.eqs"], ["ECO", "help.eco"], ["LANG FR / LANG EN", "help.lang"], ["HELP", "help.help"]];
-    return panel({ title: "HELP", updated: null, source: "Atlas Terminal",
-      body: `<div class="help-list">${cmds.map(([c, k]) => `<code>${c}</code> — ${t(k)}`).join("<br>")}</div>` }) + glossaryPanel();
+    // function directory, grouped like the terminal's own HELP pages
+    const groups = [
+      ["help.g_markets", [["LP", "LP"], ["MON", "MKTS"], ["WEI", "WEI"], ["MOST", "MOST"], ["IMAP", "IMAP"], ["FXC", "FXC"], ["GLCO", "GLCO"], ["ECO", "ECO"], ["EQS", "EQS"]]],
+      ["help.g_security", [["MC FP Equity GP", "QUOTE"], ["MC FP GIP", "GIP"], ["MC FP HP", "HP"], ["MC FP COMP", "COMP"], ["MC FP DES", "DES"], ["MC FP ANR", "ANR"],
+        ["MC FP EE", "EE"], ["MC FP ERN", "ERN"], ["AAPL US FA", "FA"], ["MC FP DVD", "DVD"], ["MC FP HDS", "HDS"], ["MC FP BETA", "RISK"], ["MC FP CN", "NEWS"],
+        ["MC FP RV", "COMPS"], ["MA", "DEALS"]]],
+      ["help.g_system", [["STATUS", "STATUS"], ["LANG FR / LANG EN", "LANG"], ["HELP", "HELP"]]],
+    ];
+    const rows = groups.map(([g, list]) => `<tr class="grp"><td colspan="3">${t(g)}</td></tr>` + list.map(([ex, fn]) =>
+      `<tr><td class="tk l">${esc(ex.startsWith("LANG") ? "LANG" : ex.split(" ").pop())}</td><td class="l">${esc(t("fn." + fn))}</td><td class="l"><code class="click" data-run="${esc(ex.split(" / ")[0])}">${esc(ex)} &lt;GO&gt;</code></td></tr>`).join("")).join("");
+    return panel({ title: `HELP — ${t("help.title")}`, updated: null, source: "Atlas Terminal",
+        body: `<table class="t help-t"><tr><th class="l">${t("help.mnemonic")}</th><th class="l">${t("help.function")}</th><th class="l">${t("help.example")}</th></tr>${rows}</table>` }) +
+      panel({ title: t("help.syntax_title"), cls: "span-12", updated: null, source: "Atlas Terminal", body: `<div class="help-list">${t("help.syntax")}</div>` }) + glossaryPanel();
   }
 
   // ------------------------------------------------------------------ render loop
@@ -1224,10 +1443,11 @@
     renderTape(); renderStatusBar();
     const fn = { LP: renderLP, MKTS: renderMKTS, WEI: renderWEI, MOST: renderMOST, QUOTE: renderQUOTE, GIP: renderGIP, HP: renderHP, DES: renderDES,
       FA: renderFA, DVD: renderDVD, RISK: renderRISK, NEWS: renderNEWS, ECO: renderECO, FXC: renderFXC, EQS: renderEQS, COMPS: renderCOMPS,
-      DEALS: renderDEALS, STATUS: renderSTATUS, HELP: renderHELP }[S.tab] || renderMKTS;
+      DEALS: renderDEALS, STATUS: renderSTATUS, HELP: renderHELP, IMAP: renderIMAP, GLCO: renderGLCO, HDS: renderHDS, COMP: renderCOMP }[S.tab] || renderMKTS;
     let out = await fn();
     if (seq !== renderSeq) return;            // a newer render started meanwhile
     if (typeof out === "string") out = { html: out };
+    if (SEC_TABS.includes(S.tab)) out.html = secHeader(S.tab === "HDS" || S.tab === "DVD" ? (watchlistStocks().includes(S.ticker) ? S.ticker : "MC.PA") : S.ticker) + out.html;
     destroyCharts();
     $("#main").innerHTML = out.html;
     if (out.after) out.after();
@@ -1238,18 +1458,21 @@
       title.insertAdjacentHTML("afterbegin", `<span class="pnum">${i + 1})</span> `);
       return { label: title.textContent.replace(/^\d+\)\s*/, "").replace(/DIFFÉRÉ|DELAYED/g, "").trim().slice(0, 40), target: p.id };
     }));
+    ACTIONS = actionsFor(S.tab);
     renderMenu();
     if (S.pendingSection) { const sec = S.pendingSection; S.pendingSection = null; const el = document.getElementById("sec-" + sec); if (el) el.scrollIntoView({ block: "start" }); }
     flashChanges();
-    const hash = "#" + S.tab + (TICKER_TABS.includes(S.tab) ? "/" + encodeURIComponent(S.ticker) : "");
-    if (location.hash !== hash) history.replaceState(null, "", hash);
+    if (location.hash !== hashOf()) history.replaceState(null, "", hashOf());
   }
+  const hashOf = () => "#" + S.tab + (TICKER_TABS.includes(S.tab) ? "/" + encodeURIComponent(S.ticker) : "");
   function go(tab, ticker) {
     if (ticker) S.ticker = ticker;
     S.tab = tab;
     $("#cmdMsg").textContent = "";
+    if (location.hash !== hashOf()) history.pushState(null, "", hashOf());   // so that MENU / browser back returns here
     render();
   }
+  const watchlistStocks = () => { const m = meta(); return m ? m.watchlist_universe.filter(tk => (UNI[tk] || {}).kind === "stock") : []; };
 
   // ------------------------------------------------------------------ command bar
   // ---- search helper (suggestions under the command bar)
@@ -1258,7 +1481,7 @@
     if (s.kind === "ticker") {
       const u = UNI[s.ticker] || {};
       const where = [u.country, u.kind === "stock" ? t("seg." + (u.region === "US" ? "us" : u.segment)) : t("kind." + (u.kind || "stock"))].filter(Boolean).join(" · ");
-      return `<b>${esc(s.ticker)}</b><span>${esc(u.name || "")}</span><span class="meta">${esc(where)}</span>`;
+      return `<b>${esc(C.bbgCode(s.ticker, u))}</b><span>${esc(u.name || "")} <span class="note">${esc(s.ticker)}</span></span><span class="meta">${esc(where)}</span>`;
     }
     if (s.kind === "fn") return `<b>${esc(s.value)}</b><span>${t("tab." + s.fn)} — ${esc((UNI[s.ticker] || {}).name || "")}</span><span class="meta">${t("sugg.function")}</span>`;
     const tab = s.value.split(" ")[0];
@@ -1389,7 +1612,24 @@
       if (li) { e.preventDefault(); pickSugg(Number(li.dataset.sugg)); }
     });
     $("#gearBtn").addEventListener("click", () => { renderSettings(); openDialog("#settings"); });
+    window.addEventListener("popstate", () => { routeFromHash(); render(); });
+    // terminal keyboard: yellow market-sector keys (F8 Equity, F9 Comdty, F10 Index, F11 Curncy), F1 HELP,
+    // Esc on an empty command line = MENU (back to the previous screen)
+    const SECTOR_KEYS = { F8: "Equity", F9: "Comdty", F10: "Index", F11: "Curncy" };
+    const pressKey = k => {
+      if (k === "MENU") return history.length > 1 ? history.back() : go("MKTS");
+      if (k === "HELP") return go("HELP");
+      const input = $("#cmd"), v = input.value.trim();
+      if (!v) { input.focus(); return; }
+      input.value = v.replace(/\s+(Equity|Index|Curncy|Comdty)$/i, "") + " " + k;
+      runText(input.value);
+    };
+    $("#keys").addEventListener("click", e => { const b = e.target.closest("[data-key]"); if (b) pressKey(b.dataset.key); });
     document.addEventListener("keydown", e => {
+      if (SECTOR_KEYS[e.key]) { e.preventDefault(); return pressKey(SECTOR_KEYS[e.key]); }
+      if (e.key === "F1") { e.preventDefault(); return pressKey("HELP"); }
+      if (e.key === "Escape" && document.activeElement === $("#cmd") && !$("#cmd").value && !SUG.length
+          && [...document.querySelectorAll(".overlay")].every(o => o.hidden)) return pressKey("MENU");
       if (e.key === "Escape") closeDialogs();
       if (e.key === "/" && !/^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName)) { e.preventDefault(); $("#cmd").focus(); }
     });
@@ -1403,6 +1643,8 @@
         LS.set("watchlist", S.watchlist);
         return render();
       }
+      const run = e.target.closest("[data-run]");
+      if (run) return runText(run.dataset.run);
       const mi = e.target.closest("[data-menu]");
       if (mi) return runMenu(Number(mi.dataset.menu));
       const hp = e.target.closest("[data-hp]");
@@ -1446,6 +1688,10 @@
       if (el.dataset.action === "hp-ticker") go("HP", el.value);
       if (el.dataset.action === "dvd-ticker") go("DVD", el.value);
       if (el.dataset.action === "gip-ticker") go("GIP", el.value);
+      if (el.dataset.action === "hds-ticker") go("HDS", el.value);
+      if (el.dataset.action === "comp-ticker") go("COMP", el.value);
+      if (el.dataset.action === "comp-with") { S.compWith = el.value; LS.set("compWith", el.value); render(); }
+      if (el.dataset.imap) { S.imap[el.dataset.imap] = el.value; if (el.dataset.imap === "region") S.imap.country = "ALL"; LS.set("imap", S.imap); render(); }
       if (el.dataset.most) { S.most.region = el.value; LS.set("mostRegion", el.value); render(); }
       if (el.dataset.comps) { S.comps[el.dataset.comps] = el.value; if (el.dataset.comps === "region") LS.set("compsRegion", el.value); render(); }
       if (el.dataset.deals) { S.deals[el.dataset.deals] = el.value; render(); }
@@ -1486,8 +1732,15 @@
       return n + ":" + (mm.fetched_at || x.env.generated_at || "") + JSON.stringify(mm.regions || "");
     }).join("|");
   }
+  // poll only the small status.json (rewritten by every update run); reload the rest when it changed
+  let lastStamp = null;
   async function refresh() {
     if (!S.auto) return;
+    try {
+      const st = await getJSON("status.json");
+      if (lastStamp && st.generated_at === lastStamp) return;
+      lastStamp = st.generated_at;
+    } catch (e) { /* no status file: fall back to a full reload */ }
     const before = signature();
     await loadCore();
     if (signature() !== before) {
@@ -1507,6 +1760,7 @@
     applyStaticI18n();
     bind();
     await loadCore();
+    lastStamp = D["status.json"] && D["status.json"].ok ? D["status.json"].env.generated_at : null;
     render();
     setInterval(refresh, 60000);
     setInterval(renderClocks, 30000);

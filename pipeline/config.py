@@ -10,7 +10,8 @@ import os
 # exchange: exchange_calendars code used for trading hours and holidays
 
 SUFFIX_COUNTRY = {".PA": "FR", ".DE": "DE", ".AS": "NL", ".SW": "CH", ".L": "GB", ".CO": "DK", ".MC": "ES", ".MI": "IT",
-                  ".BR": "BE", ".ST": "SE", ".OL": "NO", ".HE": "FI", ".LS": "PT"}
+                  ".BR": "BE", ".ST": "SE", ".OL": "NO", ".HE": "FI", ".LS": "PT", ".VI": "AT", ".IR": "IE",
+                  ".WA": "PL", ".AT": "GR", ".PR": "CZ"}
 
 
 def _t(ticker, name, region, exchange, kind="stock", query_en=None, query_fr=None, adr=None, segment="large"):
@@ -318,9 +319,46 @@ FX_COMMOD = [
     _t("EURSEK=X", "EUR/SEK", "EU", "XLON", kind="fx"),
     _t("EURNOK=X", "EUR/NOK", "EU", "XLON", kind="fx"),
     _t("EURDKK=X", "EUR/DKK", "EU", "XLON", kind="fx"),
+    _t("EURPLN=X", "EUR/PLN", "EU", "XLON", kind="fx"),
+    _t("EURCZK=X", "EUR/CZK", "EU", "XLON", kind="fx"),
+]
+# Commodity futures (front month, delayed) for GLCO; refreshed with the European quotes
+COMMODITIES = [
+    _t("CL=F", "WTI crude oil", "EU", "XNYS", kind="commodity"),
+    _t("NG=F", "Natural gas (Henry Hub)", "EU", "XNYS", kind="commodity"),
+    _t("TTF=F", "Natural gas (Dutch TTF)", "EU", "XNYS", kind="commodity"),
+    _t("SI=F", "Silver", "EU", "XNYS", kind="commodity"),
+    _t("PL=F", "Platinum", "EU", "XNYS", kind="commodity"),
+    _t("HG=F", "Copper", "EU", "XNYS", kind="commodity"),
+    _t("ZW=F", "Wheat", "EU", "XNYS", kind="commodity"),
+    _t("KC=F", "Coffee", "EU", "XNYS", kind="commodity"),
+    _t("CC=F", "Cocoa", "EU", "XNYS", kind="commodity"),
 ]
 
-UNIVERSE = US_WATCH + US_OVERVIEW_EXTRA + EU_WATCH + EU_SMID + EU_MORE + EU_INDICES + WORLD_INDICES + FX_COMMOD
+# Extended European universe (STOXX Europe 600 and many small & mid caps): generated from
+# probe/result.json by probe/build_universe.py, keeping only tickers Yahoo Finance actually serves.
+# segment = size class at generation time (large >= EUR 10 bn), used for the benchmark and filters only.
+def _load_ext():
+    import json
+    p = os.path.join(os.path.dirname(__file__), "universe_ext.json")
+    try:
+        rows = json.load(open(p, encoding="utf-8"))
+    except FileNotFoundError:
+        return []
+    out = []
+    for r in rows:
+        u = _t(r["ticker"], r["name"], "EU", r["mic"], query_en=r["name"],
+               query_fr=r["name"] if r["ticker"].endswith(".PA") else None, segment=r["segment"])
+        if r.get("currency"):
+            u["currency"] = r["currency"]
+        out.append(u)
+    return out
+
+
+_known = {t["ticker"] for t in US_WATCH + US_OVERVIEW_EXTRA + EU_WATCH + EU_SMID + EU_MORE}
+EU_EXT = [t for t in _load_ext() if t["ticker"] not in _known]
+
+UNIVERSE = US_WATCH + US_OVERVIEW_EXTRA + EU_WATCH + EU_SMID + EU_MORE + EU_EXT + EU_INDICES + WORLD_INDICES + FX_COMMOD + COMMODITIES
 
 # Other names people type in the command bar (search helper on the site). Not data.
 ALIASES = {
@@ -331,7 +369,9 @@ ALIASES = {
     "SK.PA": ["Groupe SEB"], "GTT.PA": ["GTT"], "BESI.AS": ["Besi"], "ALLDL.PA": ["LDLC"], "LACR.PA": ["Lacroix"],
     "^FCHI": ["CAC"], "^GDAXI": ["DAX 40"], "^STOXX50E": ["Eurostoxx", "SX5E"], "^STOXX": ["Stoxx 600", "SXXP"],
     "^SBF120": ["SBF"], "^FTSE": ["Footsie"], "EURUSD=X": ["EURUSD", "Euro dollar"],
-    "BZ=F": ["Petrole", "Oil", "Brent crude"], "GC=F": ["Or", "Gold"],
+    "BZ=F": ["Petrole", "Oil", "Brent crude"], "GC=F": ["Or", "Gold"], "CL=F": ["WTI", "Petrole WTI"],
+    "NG=F": ["Gaz naturel", "Henry Hub"], "TTF=F": ["TTF", "Gaz europeen"], "SI=F": ["Argent", "Silver"],
+    "PL=F": ["Platine"], "HG=F": ["Cuivre", "Copper"], "ZW=F": ["Ble", "Wheat"], "KC=F": ["Cafe"], "CC=F": ["Cacao"],
     "^GSPC": ["SPX", "SP 500"], "^DJI": ["INDU", "Dow"], "^IXIC": ["CCMP", "Nasdaq Composite"], "^N225": ["NKY", "Nikkei"],
     "^HSI": ["Hang Seng"], "000001.SS": ["SHCOMP", "Shanghai"], "^AXJO": ["AS51", "ASX"], "^KS11": ["KOSPI"],
 }
@@ -344,10 +384,13 @@ for _u in UNIVERSE:
 BY_TICKER = {t["ticker"]: t for t in UNIVERSE}
 
 # Tickers a visitor can put in the watchlist (risk metrics are computed for these)
-WATCHLIST_UNIVERSE = [t["ticker"] for t in US_WATCH + EU_WATCH + EU_SMID + EU_MORE]
-EU_STOCKS = EU_WATCH + EU_SMID + EU_MORE
+WATCHLIST_UNIVERSE = [t["ticker"] for t in US_WATCH + EU_WATCH + EU_SMID + EU_MORE + EU_EXT]
+EU_STOCKS = EU_WATCH + EU_SMID + EU_MORE + EU_EXT
 # news every hour for these; small & mid caps only in the 08:30 and 17:40 runs (Google rate limits)
 NEWS_HOURLY = [t["ticker"] for t in US_WATCH + EU_WATCH]
+NEWS_TWICE_DAILY = [t["ticker"] for t in US_WATCH + EU_WATCH + EU_SMID + EU_MORE]
+NEWS_ROTATING = [t["ticker"] for t in EU_EXT]      # oldest first, NEWS_ROTATING_PER_RUN per 08:30 / 17:40 run
+NEWS_ROTATING_PER_RUN = 220
 DEFAULT_WATCHLIST = [t["ticker"] for t in US_WATCH] + ["MC.PA", "ASML.AS", "SAP.DE"]
 
 BENCHMARK = {"US": "SPY", "EU": "^STOXX50E", "EU_SMID": "^STOXX"}
@@ -365,7 +408,8 @@ RISK_FREE_SERIES = {"US": "DGS3MO", "EU": "ECBDFR"}
 # detect London quotes in pence). Yahoo's own currency field wins when present.
 SUFFIX_CURRENCY = {".PA": "EUR", ".DE": "EUR", ".AS": "EUR", ".MC": "EUR", ".MI": "EUR",
                    ".SW": "CHF", ".L": "GBp", ".CO": "DKK", ".BR": "EUR", ".ST": "SEK", ".OL": "NOK",
-                   ".HE": "EUR", ".LS": "EUR"}
+                   ".HE": "EUR", ".LS": "EUR", ".VI": "EUR", ".IR": "EUR", ".WA": "PLN",
+                   ".AT": "EUR", ".PR": "CZK"}
 
 # --- Sources ---------------------------------------------------------------------
 FRED_URL = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}"
@@ -399,9 +443,9 @@ def sec_user_agent():
 
 
 # Company pages (Yahoo) and ESEF reports are refreshed by rotation in the 08:30 / 17:40 runs
-COMPANY_PER_RUN = 100         # ~5 Yahoo calls each
-COMPANY_MAX_AGE_H = 20        # a company page younger than this is not refetched
-ESEF_PER_RUN = 25
+COMPANY_PER_RUN = 220         # ~5 Yahoo calls each; ~1 000 pages -> full cycle in about 2.5 days
+COMPANY_MAX_AGE_H = 44        # a company page younger than this is not refetched
+ESEF_PER_RUN = 45
 ESEF_MAX_AGE_DAYS = 30        # annual reports change once a year
 # Manual fixes for the ESEF name search: {ticker: {"search": "...", "lei": "..."}}
 ESEF_OVERRIDES = {

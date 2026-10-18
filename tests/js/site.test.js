@@ -70,7 +70,7 @@ test("translations: FR and EN have the same keys and cover every key used", () =
   for (const m of app.matchAll(/"((?:fa|sent|cmd|help)\.[a-z0-9_]+)"/g)) used.add(m[1]);
   for (const m of html.matchAll(/data-i18n(?:-placeholder|-title)?="([^"]+)"/g)) used.add(m[1]);
   C.TABS.forEach(x => used.add("tab." + x));                                                // t("tab." + tab)
-  ["FR", "DE", "NL", "CH", "GB", "DK", "ES", "IT", "US", "BE", "SE", "NO", "FI", "PT"].forEach(x => used.add("country." + x)); // t("country." + c)
+  ["FR", "DE", "NL", "CH", "GB", "DK", "ES", "IT", "US", "BE", "SE", "NO", "FI", "PT", "AT", "IE", "PL", "GR", "CZ"].forEach(x => used.add("country." + x)); // t("country." + c)
   ["large", "smid", "us"].forEach(x => used.add("seg." + x));                              // t("seg." + segment)
   ["index", "etf", "fx", "commodity", "stock"].forEach(x => used.add("kind." + x));        // t("kind." + kind)
   ["large", "mid", "small", "na"].forEach(x => used.add("size." + x));                    // t("size." + size)
@@ -83,6 +83,13 @@ test("translations: FR and EN have the same keys and cover every key used", () =
    "eps_revision_30d", "target_upside", "reco_split", "leverage", "net_cash", "next_earnings"].forEach(x => used.add("fact." + x));
   ["positive", "neutral", "negative"].forEach(x => used.add("sent." + x));                 // t("sent." + label)
   ["US", "EU"].forEach(x => used.add("region." + x));                                      // t("region." + r)
+  ["wl_add", "wl_remove"].forEach(x => used.add("act." + x));
+  ["inst", "funds"].forEach(x => used.add("hds.none_" + x));
+  ["energy", "metals", "agri"].forEach(x => used.add("glco." + x));
+  ["D", "W", "M"].forEach(x => used.add("hp." + x));
+  ["g_markets", "g_security", "g_system"].forEach(x => used.add("help." + x));
+  const helpSrc = app.slice(app.indexOf("function renderHELP"), app.indexOf("render loop"));
+  for (const m of helpSrc.matchAll(/\["[^"]+", "([A-Z]+)"\]/g)) used.add("fn." + m[1]);      // HELP directory rows
   const missing = [...used].filter(k => !k.endsWith(".") && !(k in fr)); // "tab." etc. = dynamic prefixes, checked above
   assert.deepEqual(missing, [], "missing translation keys: " + missing.join(", "));
 });
@@ -116,7 +123,7 @@ test("suggest: names, tickers, accents, aliases", () => {
 });
 
 test("suggest: functions after a ticker, commands", () => {
-  assert.deepEqual(C.suggest("TTE.PA ", UNI).map(s => s.value), "QUOTE GIP HP DES FA DVD RISK NEWS COMPS DEALS".split(" ").map(f => "TTE.PA " + f));
+  assert.deepEqual(C.suggest("TTE.PA ", UNI).map(s => s.value), "QUOTE GIP HP COMP DES FA DVD HDS RISK NEWS COMPS DEALS".split(" ").map(f => "TTE.PA " + f));
   assert.deepEqual(C.suggest("total f", UNI).map(s => s.value), ["TTE.PA FA"]); // exact name/alias works too
   assert.deepEqual(C.suggest("TTE.PA f", UNI).map(s => s.value), ["TTE.PA FA"]);
   assert.ok(C.suggest("EC", UNI).some(s => s.kind === "cmd" && s.value === "ECO"));
@@ -164,4 +171,11 @@ test("translations with a changed number are not shown", () => {
   assert.equal(C.numbersSubset("founded in 1765", "fondée en 1765"), true);
   assert.equal(C.numbersSubset("founded in 1765", "fondée en 1365"), false);
   assert.equal(C.numbersSubset("up 3.5% to 1,234", "hausse de 3,5 % à 1 234"), true);
+});
+
+test("windowReturns: last window+1 prices, nulls dropped", () => {
+  const r = C.windowReturns(["d1", "d2", "d3", "d4"], [100, null, 110, 99], 5);
+  assert.deepEqual(r.dates, ["d3", "d4"]);
+  close(r.r[0], Math.log(1.1)); close(r.r[1], Math.log(0.9));
+  assert.equal(C.windowReturns(["a", "b", "c"], [1, 2, 4], 1).r.length, 1);
 });

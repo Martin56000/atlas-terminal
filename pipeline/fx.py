@@ -3,7 +3,7 @@ EURxxx=X is quoted as "xxx per 1 EUR", so amount_in_eur = amount / rate. Missing
 (never a guessed rate)."""
 
 FX_TICKERS = {"USD": "EURUSD=X", "GBP": "EURGBP=X", "CHF": "EURCHF=X", "SEK": "EURSEK=X",
-              "NOK": "EURNOK=X", "DKK": "EURDKK=X"}
+              "NOK": "EURNOK=X", "DKK": "EURDKK=X", "PLN": "EURPLN=X", "CZK": "EURCZK=X"}
 
 
 def rates_from_quotes(quotes_data):

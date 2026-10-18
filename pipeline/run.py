@@ -17,7 +17,8 @@ from . import config, metrics, schedule, store
 from .market import safe_name
 
 US_QUOTES = [t["ticker"] for t in config.US_WATCH + config.US_OVERVIEW_EXTRA] + ["BZ=F", "GC=F"]
-EU_QUOTES = [t["ticker"] for t in config.EU_STOCKS + config.EU_INDICES + config.WORLD_INDICES + config.FX_COMMOD if t["region"] == "EU"]
+EU_QUOTES = [t["ticker"] for t in config.EU_STOCKS + config.EU_INDICES + config.WORLD_INDICES + config.FX_COMMOD + config.COMMODITIES
+             if t["region"] == "EU"]
 ALL = [t["ticker"] for t in config.UNIVERSE]
 
 
@@ -33,8 +34,9 @@ def ensure_currencies(meta):
     stale = not stamp or (schedule.utcnow() - datetime.fromisoformat(stamp)) > timedelta(days=7)
     missing = [t for t in ALL if t not in cur]
     if stale or missing:
-        log("fetching quote currencies")
-        cur = fetch_currencies(ALL)
+        todo = ALL if stale else missing
+        log(f"fetching quote currencies ({len(todo)})")
+        cur = dict(cur, **fetch_currencies(todo))
         meta["currencies"], meta["currencies_at"] = cur, store.now_iso()
     return cur
 
@@ -156,7 +158,7 @@ def task_risk():
         rf[region] = {"series": sid, "value": s["latest"]["value"] / 100, "date": s["latest"]["date"]} if s else None
 
     bench = {t: _adj_series(t) for t in set(config.BENCHMARK.values())}
-    out, returns = {}, {}
+    out = {}   # daily returns for correlations are recomputed on the site from history/ (keeps this file small)
     for t in config.WATCHLIST_UNIVERSE:
         info = config.BY_TICKER[t]
         p = _adj_series(t)
@@ -175,10 +177,8 @@ def task_risk():
         if r_free is None:
             m["sharpe_note"] = "risk-free rate unavailable"
         out[t] = m
-        r = metrics.log_returns(metrics.window_prices(p, config.RISK_WINDOW))
-        returns[t] = {"dates": [d.strftime("%Y-%m-%d") for d in r.index], "r": [round(x, 6) for x in r.tolist()]}
     store.write("risk.json", store.envelope_ok("Computed from Yahoo Finance adjusted closes; rf: 3-month US Treasury (US), ECB deposit rate (EU)",
-                                               {"window": config.RISK_WINDOW, "rf": rf, "metrics": out, "returns": returns}))
+                                               {"window": config.RISK_WINDOW, "rf": rf, "metrics": out}))
 
 
 def task_fundamentals():
@@ -207,14 +207,33 @@ def task_fundamentals():
         store.run_dataset(name, src, lambda t=t: fa.fetch_company(client, t, ciks))
 
 
+NEWS_SOURCE = "Yahoo Finance news + Google News RSS; sentiment: ProsusAI/finbert; translation: Helsinki-NLP/opus-mt-tc-big-en-fr"
+
+
+def news_file(t):
+    return f"news/{safe_name(t)}.json"
+
+
+def _split_legacy_news():
+    """news.json used to hold every headline; it now holds an index and each ticker has news/<ticker>.json."""
+    prev = store.read("news.json") or {}
+    for t, v in (prev.get("data") or {}).items():
+        if isinstance(v, dict) and "en" in v and store.read(news_file(t)) is None:
+            store.write(news_file(t), {"_meta": dict(prev.get("_meta") or {}, fetched_at=v.get("fetched_at")), "data": v})
+
+
+def news_rotation(n):
+    """Extended universe: the n tickers whose news is the oldest (never fetched first)."""
+    return rotation("news", config.NEWS_ROTATING, n, max_age_h=0)
+
+
 def task_news(tickers=None):
-    """Refresh news for `tickers` (default: all) and merge with the other tickers' last results."""
+    """Refresh news for `tickers`, one file per ticker, then rebuild the light index news.json."""
     from . import news, sentiment, translate
+    _split_legacy_news()
     tickers = tickers or config.WATCHLIST_UNIVERSE
     log(f"news + sentiment: {len(tickers)} tickers")
     cache = store.read("sentiment_cache.json") or {}
-    prev = store.read("news.json") or {}
-    data = {t: v for t, v in (prev.get("data") or {}).items() if t in config.WATCHLIST_UNIVERSE and t not in tickers}
     per, all_items = {}, []
     import time
     for t in tickers:
@@ -243,14 +262,29 @@ def task_news(tickers=None):
         en = translate.attach(sentiment.attach(res["en"], cache), tcache)
         fr = sentiment.attach(res["fr"], cache) if res["fr"] is not None else None
         failed = not en and not fr and res["errors"]
-        data[t] = {"status": "error" if failed else "ok", "errors": res["errors"], "fetched_at": fetched,
-                   "en": en, "fr": fr, "avg": sentiment.average(en)}
-    live_links = {h["link"] for v in data.values() for h in (v.get("en") or [])}
+        v = {"status": "error" if failed else "ok", "errors": res["errors"], "fetched_at": fetched,
+             "en": en, "fr": fr, "avg": sentiment.average(en)}
+        env = store.envelope_ok(NEWS_SOURCE, v)
+        if failed:
+            old = store.read(news_file(t)) or {}
+            env["_meta"].update(status="error", error=" | ".join(res["errors"])[:300],
+                                last_success=(old.get("_meta") or {}).get("last_success"))
+        store.write(news_file(t), env)
+    # light index + cache pruning over every ticker file
+    index, live_links = {}, set()
+    for t in config.WATCHLIST_UNIVERSE:
+        v = (store.read(news_file(t)) or {}).get("data")
+        if not v:
+            continue
+        hs = (v.get("en") or []) + (v.get("fr") or [])
+        live_links |= {h["link"] for h in v.get("en") or []}
+        last = max((h.get("published") or "" for h in hs), default="") or None
+        index[t] = {"status": v["status"], "fetched_at": v["fetched_at"], "avg": v.get("avg"), "n": len(hs),
+                    "latest": last, "errors": v.get("errors") or []}
     store.write("sentiment_cache.json", {k: v for k, v in cache.items() if k in live_links})
     store.write("translation_cache_tcbig.json", {k: v for k, v in tcache.items() if k in live_links})
-    store.write("news.json", store.envelope_ok(
-        "Yahoo Finance news + Google News RSS; sentiment: ProsusAI/finbert; translation: Helsinki-NLP/opus-mt-tc-big-en-fr",
-        data, {"sentiment_error": sentiment_error, "translation_error": translation_error}))
+    store.write("news.json", store.envelope_ok(NEWS_SOURCE, index,
+                                               {"sentiment_error": sentiment_error, "translation_error": translation_error}))
 
 
 def _age_hours(env):
@@ -379,7 +413,8 @@ def task_deals():
         for f in d.get("deals") or []:
             sec.append({"ticker": t, **f})
     sec.sort(key=lambda f: f["filed"], reverse=True)
-    news = (store.read("news.json") or {}).get("data") or {}
+    news = {t: (store.read(news_file(t)) or {}).get("data") for t in config.WATCHLIST_UNIVERSE}
+    news = {t: v for t, v in news.items() if v}
     store.write("deals.json", store.envelope_ok("SEC EDGAR filings + keyword detection on collected headlines",
                                                 {"sec": sec[:200], "news": deals.news_deals(news)}))
 
@@ -492,8 +527,8 @@ def main(argv=None):
         _safe(task_company, "company_task_error.json", "company pages")
         _safe(task_esef, "esef_task_error.json", "ESEF")
         _safe(task_translate_profiles, "translate_task_error.json", "profile translation")
-    if "daily" in tasks or "eu_close" in tasks:      # all tickers, small & mid caps included
-        task_news()
+    if "daily" in tasks or "eu_close" in tasks:      # core list + the oldest part of the extended universe
+        task_news(config.NEWS_TWICE_DAILY + news_rotation(config.NEWS_ROTATING_PER_RUN))
         state["news_at"] = store.now_iso()
     elif "news" in tasks:                            # hourly: large caps only
         task_news(config.NEWS_HOURLY)

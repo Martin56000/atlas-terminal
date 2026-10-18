@@ -108,9 +108,9 @@ def fetch_currencies(tickers):
     out = {}
     for t in tickers:
         info = config.BY_TICKER[t]
-        cur = None
+        cur = info.get("currency")      # checked by the probe when the ticker was added
         try:
-            cur = yf.Ticker(t).fast_info.get("currency")
+            cur = cur or yf.Ticker(t).fast_info.get("currency")
         except Exception:  # noqa: BLE001
             cur = None
         if not cur:

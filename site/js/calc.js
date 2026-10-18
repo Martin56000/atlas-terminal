@@ -1,7 +1,7 @@
 /* Pure helpers shared by the site and the Node tests. No DOM, no data. */
 (function (root) {
   "use strict";
-  const TABS = ["LP", "MKTS", "WEI", "MOST", "QUOTE", "GIP", "HP", "DES", "FA", "DVD", "RISK", "NEWS", "ECO", "FXC", "EQS", "COMPS", "DEALS", "STATUS"];
+  const TABS = ["LP", "MKTS", "WEI", "MOST", "IMAP", "QUOTE", "GIP", "HP", "COMP", "DES", "FA", "DVD", "HDS", "RISK", "NEWS", "ECO", "FXC", "GLCO", "EQS", "COMPS", "DEALS", "STATUS"];
 
   function safeName(t) { return t.replace(/[^A-Za-z0-9.\-]/g, "_"); }
 
@@ -52,24 +52,27 @@
     return { tickers: avail, matrix, n: dates.length };
   }
 
-  const TICKER_FNS = ["QUOTE", "GIP", "HP", "DES", "FA", "DVD", "RISK", "NEWS", "COMPS", "DEALS"];
-  const COMMANDS = ["LP", "MKTS", "WEI", "MOST", "FXC", "EQS", "COMPS", "DEALS", "ECO", "STATUS", "RISK", "NEWS", "QUOTE", "DES", "FA", "HELP", "LANG FR", "LANG EN"];
+  const TICKER_FNS = ["QUOTE", "GIP", "HP", "COMP", "DES", "FA", "DVD", "HDS", "RISK", "NEWS", "COMPS", "DEALS"];
+  const COMMANDS = ["LP", "MKTS", "WEI", "MOST", "IMAP", "FXC", "GLCO", "EQS", "COMPS", "DEALS", "ECO", "STATUS", "RISK", "NEWS", "QUOTE", "DES", "FA", "HELP", "LANG FR", "LANG EN"];
 
   // ---- terminal-style syntax: "MC FP Equity DES <GO>", "SX5E Index GP", "EURUSD Curncy", function mnemonics
   const EXCH = { FP: ".PA", GY: ".DE", GR: ".DE", NA: ".AS", SW: ".SW", SE: ".SW", VX: ".SW", LN: ".L", DC: ".CO",
-    SM: ".MC", SQ: ".MC", IM: ".MI", BB: ".BR", SS: ".ST", NO: ".OL", FH: ".HE", PL: ".LS", US: "", UN: "", UW: "", UQ: "" };
+    SM: ".MC", SQ: ".MC", IM: ".MI", BB: ".BR", SS: ".ST", NO: ".OL", FH: ".HE", PL: ".LS", AV: ".VI", ID: ".IR", PW: ".WA",
+    GA: ".AT", CP: ".PR", US: "", UN: "", UW: "", UQ: "" };
   const SUFFIX_CODE = { ".PA": "FP", ".DE": "GY", ".AS": "NA", ".SW": "SW", ".L": "LN", ".CO": "DC", ".MC": "SM", ".MI": "IM",
-    ".BR": "BB", ".ST": "SS", ".OL": "NO", ".HE": "FH", ".LS": "PL" };
+    ".BR": "BB", ".ST": "SS", ".OL": "NO", ".HE": "FH", ".LS": "PL", ".VI": "AV", ".IR": "ID", ".WA": "PW", ".AT": "GA", ".PR": "CP" };
   const INDEX_CODES = { SX5E: "^STOXX50E", CAC: "^FCHI", DAX: "^GDAXI", UKX: "^FTSE", AEX: "^AEX", SMI: "^SSMI", IBEX: "^IBEX",
     FTSEMIB: "FTSEMIB.MI", SXXP: "^STOXX", SBF120: "^SBF120", MDAX: "^MDAXI", SDAX: "^SDAXI", MCX: "^FTMC", SPX: "^GSPC",
     INDU: "^DJI", CCMP: "^IXIC", RTY: "^RUT", NKY: "^N225", HSI: "^HSI", SHCOMP: "000001.SS", AS51: "^AXJO", KOSPI: "^KS11", VIX: "^VIX" };
-  const CMDTY_CODES = { CO1: "BZ=F", BRENT: "BZ=F", GC1: "GC=F", XAU: "GC=F" };
+  const CMDTY_CODES = { CO1: "BZ=F", BRENT: "BZ=F", GC1: "GC=F", XAU: "GC=F", CL1: "CL=F", NG1: "NG=F", TTF1: "TTF=F", SI1: "SI=F",
+    PL1: "PL=F", HG1: "HG=F", W1: "ZW=F", KC1: "KC=F", CC1: "CC=F" };
   const SECTORS = ["EQUITY", "INDEX", "CURNCY", "COMDTY", "CMDTY"];
   // mnemonics of the classic terminal -> our screens (+ section of the company page)
   const FN_ALIASES = { GP: ["QUOTE"], ANR: ["DES", "targets"], EE: ["DES", "consensus"], ERN: ["DES", "surprises"], RV: ["COMPS"],
-    MA: ["DEALS"], CN: ["NEWS"], N: ["NEWS"], TOP: ["NEWS"], BETA: ["RISK"], HDS: ["DES"], FXIP: ["FXC"] };
-  const TAB_ALIASES = { MON: "MKTS", BTMM: "ECO", FX: "FXC", WB: "ECO" };
-  const STANDALONE = ["LP", "MKTS", "WEI", "MOST", "FXC", "EQS", "COMPS", "DEALS", "ECO", "STATUS", "NEWS", "RISK"];
+    MA: ["DEALS"], CN: ["NEWS"], N: ["NEWS"], TOP: ["NEWS"], BETA: ["RISK"], FXIP: ["FXC"], DDM: ["DVD"],
+    RELS: ["COMP"], GPC: ["COMP"] };
+  const TAB_ALIASES = { MON: "MKTS", BTMM: "ECO", FX: "FXC", WB: "ECO", CMDTY: "GLCO", BMAP: "IMAP", WEIF: "WEI", MOV: "MOST" };
+  const STANDALONE = ["LP", "MKTS", "WEI", "MOST", "IMAP", "FXC", "GLCO", "EQS", "COMPS", "DEALS", "ECO", "STATUS", "NEWS", "RISK"];
 
   function bbgCode(ticker, item) {
     for (const [code, tk] of Object.entries(INDEX_CODES)) if (tk === ticker) return code + " Index";
@@ -246,13 +249,20 @@
     return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2;
   }
 
+  // same as pipeline/metrics.py: last window+1 prices (nulls dropped) -> `window` log returns
+  function windowReturns(dates, prices, window) {
+    const pts = dates.map((d, i) => [d, prices[i]]).filter(p => typeof p[1] === "number" && p[1] > 0).slice(-(window + 1));
+    const out = { dates: [], r: [] };
+    for (let i = 1; i < pts.length; i++) { out.dates.push(pts[i][0]); out.r.push(Math.log(pts[i][1] / pts[i - 1][1])); }
+    return out;
+  }
   // a machine translation must not contain a number that is not in the original
   function numbersSubset(src, dst) {
     const count = s => (String(s || "").match(/\d+/g) || []).reduce((m, x) => (m[x] = (m[x] || 0) + 1, m), {});
     const a = count(src), b = count(dst);
     return Object.keys(b).every(k => (a[k] || 0) >= b[k]);
   }
-  const api = { numbersSubset, bbgCode, resolveSecurity, FN_ALIASES, median, TABS, safeName, sma, pearson, correlationMatrix, parseCommand, suggest, resolveTicker, norm, isOpen, sessionsClosedSince, parisMinutes };
+  const api = { windowReturns, numbersSubset, bbgCode, resolveSecurity, FN_ALIASES, median, TABS, safeName, sma, pearson, correlationMatrix, parseCommand, suggest, resolveTicker, norm, isOpen, sessionsClosedSince, parisMinutes };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.AtlasCalc = api;
 })(this);

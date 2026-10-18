@@ -1372,8 +1372,8 @@
           kv(t("hds.institutions_float"), pct(h.institutions_float_pct, 2, false)) + kv(t("hds.institutions_n"), isNum(h.institutions_n) ? num(h.institutions_n, 0) : "—") +
           `<p class="note">${t("hds.note", { ccy: esc(ccy || "—") })}</p>` }) +
       panel({ title: t("hds.institutions"), cls: "span-8", meta: x.meta, source: src, body: own(h.institutions, "inst") }) +
-      panel({ title: t("hds.funds"), cls: "span-6", meta: x.meta, source: src, body: own(h.funds, "funds") }) +
-      panel({ title: t("hds.trades"), cls: "span-6", meta: x.meta, source: src, body: trades });
+      panel({ title: t("hds.funds"), cls: "span-12", meta: x.meta, source: src, body: own(h.funds, "funds") }) +
+      panel({ title: t("hds.trades"), cls: "span-12", meta: x.meta, source: src, body: trades });
   }
 
   // ================================================================== COMP — performance vs benchmark (base 100)

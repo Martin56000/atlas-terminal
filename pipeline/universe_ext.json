@@ -3663,15 +3663,6 @@
 "currency": "EUR"
 },
 {
-"ticker": "ECR.MC",
-"name": "Ercros",
-"mic": "XMAD",
-"country": "ES",
-"segment": "smid",
-"classified_from_mcap": true,
-"currency": "EUR"
-},
-{
 "ticker": "DOM.MC",
 "name": "Global Dominion",
 "mic": "XMAD",
@@ -4743,15 +4734,6 @@
 "currency": "GBp"
 },
 {
-"ticker": "SDR.L",
-"name": "Schroders",
-"mic": "XLON",
-"country": "GB",
-"segment": "large",
-"classified_from_mcap": true,
-"currency": "GBp"
-},
-{
 "ticker": "SGE.L",
 "name": "Sage",
 "mic": "XLON",
@@ -4889,15 +4871,6 @@
 {
 "ticker": "BTRW.L",
 "name": "Barratt Redrow",
-"mic": "XLON",
-"country": "GB",
-"segment": "smid",
-"classified_from_mcap": true,
-"currency": "GBp"
-},
-{
-"ticker": "BEZ.L",
-"name": "Beazley",
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",

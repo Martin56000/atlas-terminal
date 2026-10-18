@@ -305,6 +305,9 @@ def rotation(prefix, tickers, n, max_age_h, error_age_h=24, required=()):
         age = _age_hours(env)
         if age is not None and env["_meta"].get("status") == "ok" and any(k not in (env.get("data") or {}) for k in required):
             age = None
+        err = ((env or {}).get("_meta") or {}).get("error") or ""
+        if "RateLimit" in err or "Too Many Requests" in err:     # throttled, not a real failure: retry first
+            age = None
         limit = error_age_h if (env or {}).get("_meta", {}).get("status") == "error" else max_age_h
         if age is None:
             never.append(t)

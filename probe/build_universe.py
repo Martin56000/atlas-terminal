@@ -14,7 +14,7 @@ import unicodedata
 REJECT = {"MLAA.PA", "ALBI.PA",
           "DSFIR.SW", "NDA-FI.HE", "STLAM.MI", "CENER.BR"}   # second listings of companies already kept
 RENAME = {"GPE.PA": "Groupe Pizzorno Environnement", "PARP.PA": "Groupe Partouche", "CRI.PA": "Belgrano"}
-MIN_LAST_DATE = "2026-09-01"
+MIN_LAST_DATE = "2026-10-09"   # a stock without a close in the week before the probe has been delisted
 
 
 def norm(s):

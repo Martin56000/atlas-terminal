@@ -8,6 +8,7 @@ from a source: failures are recorded as status=error with the message."""
 import argparse
 import os
 import sys
+import time
 import traceback
 from datetime import datetime, timedelta
 
@@ -328,8 +329,19 @@ def task_company():
                     and translate.numbers_ok(prev_pf["summary"], prev_pf["summary_fr"], subset=True)):
                 d["profile"]["summary_fr"] = prev_pf["summary_fr"]
             return d
-        store.run_dataset(f"company/{safe_name(t)}.json", src, fetch_keep)
-        time.sleep(0.3)
+        name = f"company/{safe_name(t)}.json"
+        prev_env = store.read(name)
+        store.run_dataset(name, src, fetch_keep)
+        err = ((store.read(name) or {}).get("_meta") or {}).get("error") or ""
+        if "RateLimit" in err or "Too Many Requests" in err:
+            # Yahoo is throttling: keep the previous page untouched and stop; the rotation resumes next run
+            if prev_env:
+                store.write(name, prev_env)
+            else:
+                os.remove(store.path(name))
+            log(f"company pages: Yahoo rate limit at {t}, stopping this rotation")
+            break
+        time.sleep(1.0)
 
 
 def task_translate_profiles(budget_s=360):
@@ -499,6 +511,7 @@ def main(argv=None):
     if "daily" in tasks:
         _safe(task_macro, "macro.json", "FRED / US Treasury / NY Fed / BLS / ECB")
         task_history(currencies)
+        time.sleep(30)                     # let Yahoo's rate limit breathe after ~1 200 five-year histories
         task_quotes(US_QUOTES, "US", currencies)
         task_quotes(EU_QUOTES, "EU", currencies)
         task_risk()
@@ -509,6 +522,7 @@ def main(argv=None):
             state["eu_close"] = today
     if "eu_close" in tasks:
         task_history(currencies)
+        time.sleep(30)
         task_quotes(EU_QUOTES, "EU", currencies)
         task_risk()
         state["eu_close"] = today
@@ -524,6 +538,7 @@ def main(argv=None):
         task_intraday(EU_QUOTES, currencies)
     heavy = "daily" in tasks or "eu_close" in tasks
     if heavy:
+        time.sleep(30)
         _safe(task_company, "company_task_error.json", "company pages")
         _safe(task_esef, "esef_task_error.json", "ESEF")
         _safe(task_translate_profiles, "translate_task_error.json", "profile translation")

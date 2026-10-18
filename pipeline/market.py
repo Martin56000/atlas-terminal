@@ -41,22 +41,60 @@ def _download(tickers, **kw):
     return with_retries(go)
 
 
+CHUNK = 120            # symbols per yf.download call: one huge batch triggers Yahoo's rate limit
+MAX_SINGLE_RETRIES = 25
+
+
+def is_rate_limit(e):
+    return "RateLimit" in type(e).__name__ or "Too Many Requests" in str(e)
+
+
+def _batched(tickers, out, errors, pause, **kw):
+    for i in range(0, len(tickers), CHUNK):
+        chunk = tickers[i:i + CHUNK]
+        try:
+            df = _download(chunk, **kw)
+            for t in chunk:
+                out[t] = split_frame(df, t)
+        except Exception as e:  # noqa: BLE001
+            for t in chunk:
+                out[t] = None
+                errors[t] = f"Yahoo Finance: {type(e).__name__}: {e}"[:300]
+        if i + CHUNK < len(tickers):
+            time.sleep(pause)
+
+
 def frames(tickers, **kw):
-    """One batched download, then a single individual retry for tickers that came back empty
-    (Yahoo occasionally drops one symbol from a batch)."""
+    """Batched downloads in chunks; one more batched pass for symbols that came back empty, then a
+    bounded number of individual calls (Ticker.history). Stops calling Yahoo at the first rate-limit
+    answer: those symbols keep an explicit error and are retried at the next update."""
     import yfinance as yf
-    df = _download(tickers, **kw)
-    out = {t: split_frame(df, t) for t in tickers}
-    errors = {}
-    for t in [t for t, f in out.items() if f is None]:
+    out, errors = {}, {}
+    _batched(list(tickers), out, errors, pause=2, **kw)
+    missing = [t for t in tickers if out.get(t) is None]
+    if missing:
+        time.sleep(15)
+        _batched(missing, out, errors, pause=3, **kw)
+    missing = [t for t in tickers if out.get(t) is None]
+    limited = False
+    for n, t in enumerate(missing):
+        if limited or n >= MAX_SINGLE_RETRIES:
+            errors.setdefault(t, "Yahoo Finance returned no data for this symbol in this update")
+            continue
         try:  # second call path: Ticker.history instead of download
             h = yf.Ticker(t).history(auto_adjust=False, **kw)
             out[t] = split_frame(h, t) if h is not None and not h.empty else None
             if out[t] is None:
                 errors[t] = "Yahoo Finance returned an empty history for this symbol (download and history calls)"
+            else:
+                errors.pop(t, None)
         except Exception as e:  # noqa: BLE001
-            out[t] = None
             errors[t] = f"Yahoo Finance: {type(e).__name__}: {e}"[:300]
+            limited = is_rate_limit(e)
+        time.sleep(0.5)
+    for t in tickers:
+        if out.get(t) is not None:
+            errors.pop(t, None)
     return out, errors
 
 

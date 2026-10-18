@@ -125,3 +125,36 @@ def test_cpi_yoy_with_a_missing_month():
     out = dict(macro.yoy(pts))
     assert out["2026-09-01"] == pytest.approx(3.0)
     assert "2026-10-01" not in out
+
+
+def test_frames_chunks_and_stops_at_rate_limit(monkeypatch):
+    import sys
+    import types
+
+    import pandas as pd
+
+    from pipeline import market
+    monkeypatch.setattr(market.time, "sleep", lambda s: None)
+    monkeypatch.setattr(market, "CHUNK", 3)
+    calls = []
+
+    def fake_download(chunk, **kw):
+        calls.append(list(chunk))
+        cols = pd.MultiIndex.from_product([[t for t in chunk if t != "BAD"], ["Close"]])
+        return pd.DataFrame([[1.0] * len(cols)], index=pd.to_datetime(["2026-10-16"]), columns=cols)
+    monkeypatch.setattr(market, "_download", fake_download)
+
+    class RateLimitError(Exception):
+        pass
+
+    class FakeTicker:
+        def __init__(self, t):
+            pass
+
+        def history(self, **kw):
+            raise RateLimitError("Too Many Requests")
+    monkeypatch.setitem(sys.modules, "yfinance", types.SimpleNamespace(Ticker=FakeTicker))
+    out, errors = market.frames(["A", "B", "C", "D", "BAD"], period="5d")
+    assert calls[:2] == [["A", "B", "C"], ["D", "BAD"]] and calls[2] == ["BAD"]    # chunks, then one batched retry
+    assert out["A"] is not None and out["BAD"] is None
+    assert "RateLimitError" in errors["BAD"] and set(errors) == {"BAD"}

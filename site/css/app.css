@@ -297,3 +297,4 @@ code.click { cursor: pointer; color: var(--field-ink); background: var(--field);
 .imap-t b { font-weight: 600; white-space: nowrap; }
 .imap-t:hover { outline: 1px solid #fff; }
 .sechdr { grid-column: span 12; }
+.pager { display: inline-flex; align-items: center; gap: 4px; color: #fff; font-size: 12px; } .btn[disabled] { opacity: .35; cursor: default; }

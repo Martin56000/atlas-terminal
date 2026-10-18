@@ -617,7 +617,11 @@
       const def = d && I18N["def." + d];
       return `<th class="${c || ""} sortable${def ? " def" : ""}" data-sort="${k}" title="${esc((def ? def + " — " : "") + t("eqs.sort"))}">${t(lbl)}${arrow(k)}</th>`;
     }).join("")}</tr>`;
-    const body = rows.map(r => `<tr class="click" data-goto="${esc(r.ticker)}">
+    // terminal-style pages of 50 lines (PgUp / PgDn); hidden rows still go into the CSV export
+    const PAGE = 50, pages = Math.max(1, Math.ceil(rows.length / PAGE));
+    S.eqsPage = Math.min(Math.max(1, S.eqsPage || 1), pages);
+    const p0 = (S.eqsPage - 1) * PAGE;
+    const body = rows.map((r, i) => `<tr class="click" data-goto="${esc(r.ticker)}" ${i < p0 || i >= p0 + PAGE ? "hidden" : ""}>
       <td><button class="star ${r.inWl ? "on" : ""}" data-star="${esc(r.ticker)}" title="${esc(t(r.inWl ? "eqs.remove_wl" : "eqs.add_wl"))}">${r.inWl ? "★" : "☆"}</button></td>
       <td class="tk l">${esc(r.ticker)}</td><td class="nm">${esc(r.name)}</td><td class="l">${esc(r.country)}</td><td class="l note">${t("size." + r.segment)}</td>
       <td>${bn(r.mcap)}</td>
@@ -628,7 +632,9 @@
       <td>${mult(r.pe)}</td><td class="note">${r.next ? fmtDate(r.next) : "—"}</td></tr>`).join("");
     const q = quotesEnv(), regs = q ? Object.values(q._meta.regions || {}) : [];
     const r = ds("risk.json");
-    return panel({ title: `EQS — ${t("eqs.title")} ${delayed()}`, tools: tools + csvBtn(),
+    const pager = `<span class="pager"><button class="btn" data-page="-1" ${S.eqsPage <= 1 ? "disabled" : ""}>◀</button>
+      ${t("page", { p: S.eqsPage, n: pages })}<button class="btn" data-page="1" ${S.eqsPage >= pages ? "disabled" : ""}>▶</button></span>`;
+    return panel({ title: `EQS — ${t("eqs.title")} ${delayed()}`, tools: tools + pager + csvBtn(),
       updated: regs.length ? regs.map(x => x.fetched_at).sort().pop() : null,
       source: "Yahoo Finance (yfinance) · " + t("risk.source"),
       body: `<div class="note">${t("eqs.count", { n: rows.length })} · ${t("eqs.help")}</div><table class="t">${head}${body}</table>
@@ -1628,6 +1634,9 @@
     document.addEventListener("keydown", e => {
       if (SECTOR_KEYS[e.key]) { e.preventDefault(); return pressKey(SECTOR_KEYS[e.key]); }
       if (e.key === "F1") { e.preventDefault(); return pressKey("HELP"); }
+      if ((e.key === "PageDown" || e.key === "PageUp") && S.tab === "EQS" && !/^(INPUT|SELECT)$/.test(document.activeElement.tagName)) {
+        e.preventDefault(); S.eqsPage = (S.eqsPage || 1) + (e.key === "PageDown" ? 1 : -1); return render();
+      }
       if (e.key === "Escape" && document.activeElement === $("#cmd") && !$("#cmd").value && !SUG.length
           && [...document.querySelectorAll(".overlay")].every(o => o.hidden)) return pressKey("MENU");
       if (e.key === "Escape") closeDialogs();
@@ -1647,6 +1656,8 @@
       if (run) return runText(run.dataset.run);
       const mi = e.target.closest("[data-menu]");
       if (mi) return runMenu(Number(mi.dataset.menu));
+      const pg = e.target.closest("[data-page]");
+      if (pg) { S.eqsPage = (S.eqsPage || 1) + Number(pg.dataset.page); return render(); }
       const hp = e.target.closest("[data-hp]");
       if (hp) { S.hp = hp.dataset.hp; LS.set("hp", S.hp); return render(); }
       const lpo = e.target.closest("[data-lp-open]");
@@ -1661,7 +1672,7 @@
       if (th) {
         const k = th.dataset.sort;
         S.eqs.dir = S.eqs.sort === k ? -S.eqs.dir : (["ticker", "name", "country", "segment"].includes(k) ? 1 : -1);
-        S.eqs.sort = k; LS.set("eqs", S.eqs);
+        S.eqs.sort = k; S.eqsPage = 1; LS.set("eqs", S.eqs);
         return render();
       }
       const el = e.target.closest("[data-tab],[data-goto],[data-range],[data-action],[data-set],[data-close]");
@@ -1697,7 +1708,7 @@
       if (el.dataset.deals) { S.deals[el.dataset.deals] = el.value; render(); }
       if (el.dataset.action === "news-ticker") { S.newsTicker = el.value; render(); }
       if (el.dataset.eqs) {
-        S.eqs[el.dataset.eqs] = el.value;
+        S.eqs[el.dataset.eqs] = el.value; S.eqsPage = 1;
         if (el.dataset.eqs === "region") S.eqs.country = "ALL";
         LS.set("eqs", S.eqs); render();
       }

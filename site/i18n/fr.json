@@ -614,5 +614,6 @@
  "sector.Basic Materials": "Matériaux de base",
  "sector.Utilities": "Services aux collectivités",
  "sector.Communication Services": "Communication",
- "sector.Real Estate": "Immobilier"
+ "sector.Real Estate": "Immobilier",
+ "page": "Page {p}/{n}"
 }

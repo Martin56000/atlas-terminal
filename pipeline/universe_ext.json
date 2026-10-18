@@ -37,7 +37,7 @@
 },
 {
 "ticker": "GPE.PA",
-"name": "Gérard Perrier Industrie",
+"name": "Groupe Pizzorno Environnement",
 "mic": "XPAR",
 "country": "FR",
 "segment": "smid",
@@ -280,7 +280,7 @@
 },
 {
 "ticker": "CRI.PA",
-"name": "Chargeurs",
+"name": "Belgrano",
 "mic": "XPAR",
 "country": "FR",
 "segment": "smid",
@@ -639,15 +639,6 @@
 "currency": "EUR"
 },
 {
-"ticker": "MLAA.PA",
-"name": "Groupe Partouche",
-"mic": "XPAR",
-"country": "FR",
-"segment": "smid",
-"classified_from_mcap": true,
-"currency": "EUR"
-},
-{
 "ticker": "SDG.PA",
 "name": "Synergie",
 "mic": "XPAR",
@@ -666,17 +657,8 @@
 "currency": "EUR"
 },
 {
-"ticker": "ALBI.PA",
-"name": "Bigben Interactive",
-"mic": "XPAR",
-"country": "FR",
-"segment": "smid",
-"classified_from_mcap": true,
-"currency": "EUR"
-},
-{
 "ticker": "PARP.PA",
-"name": "Groupe Pierre & Vacances",
+"name": "Groupe Partouche",
 "mic": "XPAR",
 "country": "FR",
 "segment": "smid",
@@ -2079,15 +2061,6 @@
 "currency": "EUR"
 },
 {
-"ticker": "CENER.BR",
-"name": "Cenergy Holdings",
-"mic": "XBRU",
-"country": "BE",
-"segment": "smid",
-"classified_from_mcap": true,
-"currency": "EUR"
-},
-{
 "ticker": "AGS.BR",
 "name": "Ageas",
 "mic": "XBRU",
@@ -3276,15 +3249,6 @@
 "currency": "EUR"
 },
 {
-"ticker": "STLAM.MI",
-"name": "Stellantis (Milan)",
-"mic": "XMIL",
-"country": "IT",
-"segment": "large",
-"classified_from_mcap": true,
-"currency": "EUR"
-},
-{
 "ticker": "LTMC.MI",
 "name": "Lottomatica",
 "mic": "XMIL",
@@ -3884,7 +3848,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -3892,8 +3856,8 @@
 "name": "Swisscom",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -3901,8 +3865,8 @@
 "name": "Partners Group",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -3910,8 +3874,8 @@
 "name": "Swiss Life",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -3919,8 +3883,8 @@
 "name": "Helvetia Baloise",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -3928,8 +3892,8 @@
 "name": "SGS",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -3937,8 +3901,8 @@
 "name": "Schindler",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -3946,8 +3910,8 @@
 "name": "Straumann",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -3955,8 +3919,8 @@
 "name": "Sonova",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -3964,8 +3928,8 @@
 "name": "Alcon",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -3973,8 +3937,8 @@
 "name": "Logitech",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -3982,8 +3946,8 @@
 "name": "Kuehne+Nagel",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -3991,8 +3955,8 @@
 "name": "EMS-Chemie",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4001,7 +3965,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4010,7 +3974,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4018,8 +3982,8 @@
 "name": "Lindt & Sprüngli",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4028,7 +3992,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4036,8 +4000,8 @@
 "name": "Julius Baer",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4045,8 +4009,8 @@
 "name": "Banque Cantonale Vaudoise",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4054,8 +4018,8 @@
 "name": "Swiss Prime Site",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4064,7 +4028,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4073,7 +4037,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4082,7 +4046,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4091,7 +4055,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4100,7 +4064,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4108,8 +4072,8 @@
 "name": "Belimo",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4118,7 +4082,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4127,7 +4091,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4136,7 +4100,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4145,7 +4109,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4154,7 +4118,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4163,7 +4127,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4172,7 +4136,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4181,7 +4145,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4190,7 +4154,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4199,7 +4163,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4208,7 +4172,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4217,7 +4181,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4226,7 +4190,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4235,7 +4199,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4244,7 +4208,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4253,7 +4217,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4262,7 +4226,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4271,7 +4235,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4280,7 +4244,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4289,7 +4253,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4298,7 +4262,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4307,7 +4271,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4316,7 +4280,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4325,7 +4289,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4334,7 +4298,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4343,7 +4307,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4352,7 +4316,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4361,7 +4325,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4370,7 +4334,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4379,7 +4343,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4387,8 +4351,8 @@
 "name": "Sandoz",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4396,17 +4360,8 @@
 "name": "Galderma",
 "mic": "XSWX",
 "country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
-"currency": "CHF"
-},
-{
-"ticker": "DSFIR.SW",
-"name": "DSM-Firmenich (Zurich)",
-"mic": "XSWX",
-"country": "CH",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4415,7 +4370,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4424,7 +4379,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4433,7 +4388,7 @@
 "mic": "XSWX",
 "country": "CH",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CHF"
 },
 {
@@ -4442,7 +4397,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4450,8 +4405,8 @@
 "name": "Anglo American",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4459,8 +4414,8 @@
 "name": "Antofagasta",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4468,8 +4423,8 @@
 "name": "Associated British Foods",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4478,7 +4433,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4486,8 +4441,8 @@
 "name": "Aviva",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4496,7 +4451,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4504,8 +4459,8 @@
 "name": "BT Group",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4513,8 +4468,8 @@
 "name": "Bunzl",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4523,7 +4478,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4531,8 +4486,8 @@
 "name": "Coca-Cola HBC",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4541,7 +4496,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4549,8 +4504,8 @@
 "name": "Compass Group",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "USD"
 },
 {
@@ -4559,7 +4514,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4568,7 +4523,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4576,8 +4531,8 @@
 "name": "Experian",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4585,8 +4540,8 @@
 "name": "Fresnillo",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4594,8 +4549,8 @@
 "name": "Halma",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4603,8 +4558,8 @@
 "name": "Haleon",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4613,7 +4568,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4621,8 +4576,8 @@
 "name": "InterContinental Hotels",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "USD"
 },
 {
@@ -4630,8 +4585,8 @@
 "name": "Imperial Brands",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4639,8 +4594,8 @@
 "name": "Informa",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4648,8 +4603,8 @@
 "name": "Intertek",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4658,7 +4613,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4667,7 +4622,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4676,7 +4631,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4684,8 +4639,8 @@
 "name": "Legal & General",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4693,8 +4648,8 @@
 "name": "Marks & Spencer",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4703,7 +4658,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4711,8 +4666,8 @@
 "name": "NatWest",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4720,8 +4675,8 @@
 "name": "Next",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4729,8 +4684,8 @@
 "name": "Prudential",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4739,7 +4694,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4748,7 +4703,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4756,8 +4711,8 @@
 "name": "Reckitt",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4766,7 +4721,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4775,7 +4730,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4784,7 +4739,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4792,8 +4747,8 @@
 "name": "Schroders",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4801,8 +4756,8 @@
 "name": "Sage",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4810,8 +4765,8 @@
 "name": "Segro",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4820,7 +4775,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4828,8 +4783,8 @@
 "name": "Smith & Nephew",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4838,7 +4793,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4846,8 +4801,8 @@
 "name": "SSE",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4855,8 +4810,8 @@
 "name": "Standard Chartered",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4864,8 +4819,8 @@
 "name": "Severn Trent",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4874,7 +4829,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4882,8 +4837,8 @@
 "name": "United Utilities",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4891,8 +4846,8 @@
 "name": "Vodafone",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4901,7 +4856,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4910,7 +4865,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4918,8 +4873,8 @@
 "name": "3i Group",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4927,8 +4882,8 @@
 "name": "Admiral",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4937,7 +4892,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4946,7 +4901,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4955,7 +4910,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4964,7 +4919,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4973,7 +4928,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4982,7 +4937,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -4991,7 +4946,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5000,7 +4955,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5009,7 +4964,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5017,8 +4972,8 @@
 "name": "Diploma",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5027,7 +4982,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5036,7 +4991,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5044,8 +4999,8 @@
 "name": "Airtel Africa",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5054,7 +5009,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5063,7 +5018,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5072,7 +5027,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5081,7 +5036,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5090,7 +5045,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5099,7 +5054,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5108,7 +5063,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5117,7 +5072,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5126,7 +5081,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5135,7 +5090,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5144,7 +5099,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5153,7 +5108,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5162,7 +5117,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5171,7 +5126,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5180,7 +5135,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5189,7 +5144,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5198,7 +5153,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5207,7 +5162,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5216,7 +5171,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5225,7 +5180,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5234,7 +5189,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5243,7 +5198,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5252,7 +5207,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5261,7 +5216,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5270,7 +5225,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5279,7 +5234,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5288,7 +5243,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5297,7 +5252,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5306,7 +5261,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5315,7 +5270,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5324,7 +5279,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5333,7 +5288,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5342,7 +5297,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5351,7 +5306,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5360,7 +5315,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5369,7 +5324,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5378,7 +5333,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5387,7 +5342,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5396,7 +5351,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5405,7 +5360,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5414,7 +5369,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5423,7 +5378,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5432,7 +5387,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5441,7 +5396,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5450,7 +5405,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5459,7 +5414,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5468,7 +5423,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5477,7 +5432,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5486,7 +5441,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5495,7 +5450,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5504,7 +5459,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5513,7 +5468,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5522,7 +5477,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5531,7 +5486,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5540,7 +5495,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5549,7 +5504,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5558,7 +5513,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5567,7 +5522,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5576,7 +5531,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5585,7 +5540,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5594,7 +5549,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5603,7 +5558,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5612,7 +5567,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5621,7 +5576,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5630,7 +5585,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5639,7 +5594,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5648,7 +5603,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5657,7 +5612,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5666,7 +5621,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5675,7 +5630,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5684,7 +5639,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5693,7 +5648,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5702,7 +5657,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5711,7 +5666,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5720,7 +5675,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5729,7 +5684,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5746,8 +5701,8 @@
 "name": "Scottish Mortgage",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5755,8 +5710,8 @@
 "name": "Shell",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5764,8 +5719,8 @@
 "name": "HSBC",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5773,8 +5728,8 @@
 "name": "AstraZeneca",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5782,8 +5737,8 @@
 "name": "Unilever",
 "mic": "XLON",
 "country": "GB",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5792,7 +5747,7 @@
 "mic": "XLON",
 "country": "GB",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "GBp"
 },
 {
@@ -5801,7 +5756,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5810,7 +5765,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5819,7 +5774,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5827,8 +5782,8 @@
 "name": "SEB",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5836,8 +5791,8 @@
 "name": "Handelsbanken",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5845,8 +5800,8 @@
 "name": "Swedbank",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5854,8 +5809,8 @@
 "name": "Essity",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5864,7 +5819,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5872,8 +5827,8 @@
 "name": "Sandvik",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5881,8 +5836,8 @@
 "name": "SKF",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5890,8 +5845,8 @@
 "name": "Alfa Laval",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5899,8 +5854,8 @@
 "name": "Epiroc",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5908,8 +5863,8 @@
 "name": "Hexagon",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5918,7 +5873,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5926,8 +5881,8 @@
 "name": "Telia",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5935,8 +5890,8 @@
 "name": "Boliden",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5945,7 +5900,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5953,8 +5908,8 @@
 "name": "Evolution",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5963,7 +5918,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5971,8 +5926,8 @@
 "name": "Lifco",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5980,8 +5935,8 @@
 "name": "Industrivärden",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5989,8 +5944,8 @@
 "name": "Latour",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -5999,7 +5954,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6008,7 +5963,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6017,7 +5972,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6025,8 +5980,8 @@
 "name": "Saab",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6035,7 +5990,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6044,7 +5999,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6052,8 +6007,8 @@
 "name": "Sobi",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6062,7 +6017,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6071,7 +6026,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6080,7 +6035,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6089,7 +6044,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6098,7 +6053,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6107,7 +6062,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6116,7 +6071,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6125,7 +6080,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6133,8 +6088,8 @@
 "name": "EQT",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6143,7 +6098,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6152,7 +6107,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6161,7 +6116,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6170,7 +6125,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6179,7 +6134,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6188,7 +6143,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6196,8 +6151,8 @@
 "name": "Skanska",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6206,7 +6161,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6215,7 +6170,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6224,7 +6179,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6233,7 +6188,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6242,7 +6197,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6251,7 +6206,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6259,8 +6214,8 @@
 "name": "Nordea",
 "mic": "XSTO",
 "country": "SE",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6269,7 +6224,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6278,7 +6233,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6287,7 +6242,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6296,7 +6251,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6305,7 +6260,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6314,7 +6269,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6323,7 +6278,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6332,7 +6287,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6341,7 +6296,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6350,7 +6305,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6359,7 +6314,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6368,7 +6323,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6377,7 +6332,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6386,7 +6341,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6395,7 +6350,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6404,7 +6359,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6413,7 +6368,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6422,7 +6377,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6431,7 +6386,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6440,7 +6395,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6449,7 +6404,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6458,7 +6413,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6467,7 +6422,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6476,7 +6431,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6485,7 +6440,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6494,7 +6449,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6503,7 +6458,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6512,7 +6467,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6521,7 +6476,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6530,7 +6485,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6539,7 +6494,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6548,7 +6503,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6557,7 +6512,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6566,7 +6521,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6575,7 +6530,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6584,7 +6539,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6593,7 +6548,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6602,7 +6557,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6611,7 +6566,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6620,7 +6575,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6629,7 +6584,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6638,7 +6593,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6647,7 +6602,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6656,7 +6611,7 @@
 "mic": "XSTO",
 "country": "SE",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "SEK"
 },
 {
@@ -6665,7 +6620,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6673,8 +6628,8 @@
 "name": "Telenor",
 "mic": "XOSL",
 "country": "NO",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6683,7 +6638,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6692,7 +6647,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6700,8 +6655,8 @@
 "name": "Aker BP",
 "mic": "XOSL",
 "country": "NO",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6710,7 +6665,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6718,8 +6673,8 @@
 "name": "Kongsberg Gruppen",
 "mic": "XOSL",
 "country": "NO",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6727,8 +6682,8 @@
 "name": "Gjensidige",
 "mic": "XOSL",
 "country": "NO",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6737,7 +6692,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6746,7 +6701,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6755,7 +6710,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6764,7 +6719,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6773,7 +6728,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6782,7 +6737,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6791,7 +6746,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6800,7 +6755,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6809,7 +6764,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6818,7 +6773,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6827,7 +6782,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6835,8 +6790,8 @@
 "name": "Frontline",
 "mic": "XOSL",
 "country": "NO",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6845,7 +6800,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6854,7 +6809,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6862,8 +6817,8 @@
 "name": "Vår Energi",
 "mic": "XOSL",
 "country": "NO",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6872,7 +6827,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6881,7 +6836,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6890,7 +6845,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6899,7 +6854,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6908,7 +6863,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6917,7 +6872,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6926,7 +6881,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6935,7 +6890,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6944,7 +6899,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6953,7 +6908,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6962,7 +6917,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6971,7 +6926,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6980,7 +6935,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6989,7 +6944,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -6998,7 +6953,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -7007,7 +6962,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -7016,7 +6971,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -7025,7 +6980,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -7034,7 +6989,7 @@
 "mic": "XOSL",
 "country": "NO",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "NOK"
 },
 {
@@ -7085,15 +7040,6 @@
 {
 "ticker": "ORNBV.HE",
 "name": "Orion",
-"mic": "XHEL",
-"country": "FI",
-"segment": "large",
-"classified_from_mcap": true,
-"currency": "EUR"
-},
-{
-"ticker": "NDA-FI.HE",
-"name": "Nordea (Helsinki)",
 "mic": "XHEL",
 "country": "FI",
 "segment": "large",
@@ -7339,8 +7285,8 @@
 "name": "Coloplast",
 "mic": "XCSE",
 "country": "DK",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7348,8 +7294,8 @@
 "name": "Genmab",
 "mic": "XCSE",
 "country": "DK",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7357,8 +7303,8 @@
 "name": "Novonesis",
 "mic": "XCSE",
 "country": "DK",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7367,7 +7313,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7375,8 +7321,8 @@
 "name": "Demant",
 "mic": "XCSE",
 "country": "DK",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7385,7 +7331,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7394,7 +7340,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7402,8 +7348,8 @@
 "name": "Tryg",
 "mic": "XCSE",
 "country": "DK",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7411,8 +7357,8 @@
 "name": "Danske Bank",
 "mic": "XCSE",
 "country": "DK",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7421,7 +7367,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7430,7 +7376,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7439,7 +7385,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7448,7 +7394,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7457,7 +7403,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7466,7 +7412,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7475,7 +7421,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7484,7 +7430,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7493,7 +7439,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7502,7 +7448,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7511,7 +7457,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7520,7 +7466,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7529,7 +7475,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7538,7 +7484,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7547,7 +7493,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7556,7 +7502,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7565,7 +7511,7 @@
 "mic": "XCSE",
 "country": "DK",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "DKK"
 },
 {
@@ -7573,8 +7519,8 @@
 "name": "PKO Bank Polski",
 "mic": "XWAR",
 "country": "PL",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7582,8 +7528,8 @@
 "name": "Bank Pekao",
 "mic": "XWAR",
 "country": "PL",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7591,8 +7537,8 @@
 "name": "PZU",
 "mic": "XWAR",
 "country": "PL",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7600,8 +7546,8 @@
 "name": "KGHM",
 "mic": "XWAR",
 "country": "PL",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7609,8 +7555,8 @@
 "name": "Orlen",
 "mic": "XWAR",
 "country": "PL",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7618,8 +7564,8 @@
 "name": "LPP",
 "mic": "XWAR",
 "country": "PL",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7628,7 +7574,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7636,8 +7582,8 @@
 "name": "Allegro",
 "mic": "XWAR",
 "country": "PL",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7646,7 +7592,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7655,7 +7601,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7663,8 +7609,8 @@
 "name": "mBank",
 "mic": "XWAR",
 "country": "PL",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7673,7 +7619,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7682,7 +7628,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7691,7 +7637,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7700,7 +7646,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7709,7 +7655,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7718,7 +7664,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7727,7 +7673,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7736,7 +7682,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7745,7 +7691,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7754,7 +7700,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7763,7 +7709,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7772,7 +7718,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7781,7 +7727,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7790,7 +7736,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7799,7 +7745,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7808,7 +7754,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7817,7 +7763,7 @@
 "mic": "XWAR",
 "country": "PL",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "PLN"
 },
 {
@@ -7987,8 +7933,8 @@
 "name": "CEZ",
 "mic": "XPRA",
 "country": "CZ",
-"segment": "smid",
-"classified_from_mcap": false,
+"segment": "large",
+"classified_from_mcap": true,
 "currency": "CZK"
 },
 {
@@ -7997,7 +7943,7 @@
 "mic": "XPRA",
 "country": "CZ",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
 "currency": "CZK"
 },
 {
@@ -8006,7 +7952,259 @@
 "mic": "XPRA",
 "country": "CZ",
 "segment": "smid",
-"classified_from_mcap": false,
+"classified_from_mcap": true,
+"currency": "CZK"
+},
+{
+"ticker": "ALCAT.PA",
+"name": "Catana Group",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ALCAF.PA",
+"name": "Cafom",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ALDLT.PA",
+"name": "Delta Plus Group",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ALCOX.PA",
+"name": "Nicox",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PERR.PA",
+"name": "Gérard Perrier Industrie",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BIG.PA",
+"name": "Bigben Interactive",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VAC.PA",
+"name": "Pierre & Vacances-Center Parcs",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "LBIRD.PA",
+"name": "Lumibird",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MTU.PA",
+"name": "Manitou",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "RBT.PA",
+"name": "Robertet",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ITP.PA",
+"name": "Interparfums",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SWP.PA",
+"name": "Sword Group",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ALFPC.PA",
+"name": "Fountaine Pajot",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EXENS.PA",
+"name": "Exosens",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PLNW.PA",
+"name": "Planisware",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "LTA.PA",
+"name": "Altamir",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EQS.PA",
+"name": "Equasens",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ASY.PA",
+"name": "Assystem",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CEN.PA",
+"name": "Groupe Crit",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SMCP.PA",
+"name": "SMCP",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ALSYDB.CO",
+"name": "AL Sydbank",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "DKK"
+},
+{
+"ticker": "VEND.OL",
+"name": "Vend Marketplaces (ex-Schibsted)",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "NOK"
+},
+{
+"ticker": "SB1NO.OL",
+"name": "SpareBank 1 Sør-Norge",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "NOK"
+},
+{
+"ticker": "LUMO.HE",
+"name": "Lumo Kodit (ex-Kojamo)",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SDLF.L",
+"name": "Standard Life (ex-Phoenix Group)",
+"mic": "XLON",
+"country": "GB",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "GBp"
+},
+{
+"ticker": "EBP.WA",
+"name": "Erste Bank Polska (ex-Santander Bank Polska)",
+"mic": "XWAR",
+"country": "PL",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "PLN"
+},
+{
+"ticker": "ALWN.AT",
+"name": "Allwyn Hellenic (ex-OPAP)",
+"mic": "ASEX",
+"country": "GR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "COLT.PR",
+"name": "Colt CZ Group",
+"mic": "XPRA",
+"country": "CZ",
+"segment": "smid",
+"classified_from_mcap": true,
 "currency": "CZK"
 }
 ]

@@ -1,0 +1,763 @@
+[
+ {
+  "ticker": "EURUSD=X",
+  "name": "EUR/USD",
+  "country": "XX",
+  "mic": "none",
+  "ok": true,
+  "last_date": "2026-10-17",
+  "last_close": 1.1242270469665527,
+  "suggest": [
+   {
+    "symbol": "EURUSD=X",
+    "name": "EUR/USD",
+    "exch": "CCY",
+    "type": "CURRENCY"
+   },
+   {
+    "symbol": "M6E=F",
+    "name": "Micro EUR/USD Futures,Dec-2026",
+    "exch": "CME",
+    "type": "FUTURE"
+   },
+   {
+    "symbol": "0P0000UIYF",
+    "name": "Eurobank (USD) (LF) Equity- Global Eqs",
+    "exch": "PNK",
+    "type": "MUTUALFUND"
+   },
+   {
+    "symbol": "0P0000ZMW6",
+    "name": "UBS (Lux) Eq Eurp Opp (EUR)USD HPacc",
+    "exch": "PNK",
+    "type": "MUTUALFUND"
+   },
+   {
+    "symbol": "EURT-USD",
+    "name": "Tether EURt USD",
+    "exch": "CCC",
+    "type": "CRYPTOCURRENCY"
+   },
+   {
+    "symbol": "0P00017RHW.SW",
+    "name": "SWC (CH) IBF Corp. Wld ex EUR/USD FA CHF",
+    "exch": "EBS",
+    "type": "MUTUALFUND"
+   },
+   {
+    "symbol": "0P0000A70X",
+    "name": "KBC Bonds Emerging Europe USD",
+    "exch": "PNK",
+    "type": "MUTUALFUND"
+   }
+  ]
+ },
+ {
+  "ticker": "EURGBP=X",
+  "name": "EUR/GBP",
+  "country": "XX",
+  "mic": "none",
+  "ok": true,
+  "last_date": "2026-10-17",
+  "last_close": 0.843209981918335,
+  "suggest": [
+   {
+    "symbol": "EURGBP=X",
+    "name": "EUR/GBP",
+    "exch": "CCY",
+    "type": "CURRENCY"
+   },
+   {
+    "symbol": "0P0000PNW1.L",
+    "name": "Focused SICAV Corporate Bd EUR GBPH F UK",
+    "exch": "LSE",
+    "type": "MUTUALFUND"
+   },
+   {
+    "symbol": "0P000064P3.L",
+    "name": "Chahine Funds Equity Contnn Eurp GBP",
+    "exch": "LSE",
+    "type": "MUTUALFUND"
+   },
+   {
+    "symbol": "0P0001D32L.L",
+    "name": "Seilern Europa GBP H C",
+    "exch": "LSE",
+    "type": "MUTUALFUND"
+   },
+   {
+    "symbol": "0P000064P0.L",
+    "name": "Chahine Funds Equity Europe GBP Inc",
+    "exch": "LSE",
+    "type": "MUTUALFUND"
+   },
+   {
+    "symbol": "DE000SLA6BS0.SG",
+    "name": "Lyxor S&P 500 UCITS ETF - C-EUR GBP INAV",
+    "exch": "STU",
+    "type": "INDEX"
+   },
+   {
+    "symbol": "DE000SLA58P0.SG",
+    "name": "LYXOR MSCI KOREA UCITS ETF - C-EUR GBp INAV",
+    "exch": "STU",
+    "type": "INDEX"
+   }
+  ]
+ },
+ {
+  "ticker": "EURCHF=X",
+  "name": "EUR/CHF",
+  "country": "XX",
+  "mic": "none",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 0.9254999756813049,
+  "suggest": [
+   {
+    "symbol": "EURCHF=X",
+    "name": "EUR/CHF",
+    "exch": "CCY",
+    "type": "CURRENCY"
+   },
+   {
+    "symbol": "DE000SLA7VV0.SG",
+    "name": "Lyxor FTSE EPRA/NAREIT Global Developed UCITS ETF - Dist (EUR) CHF iNAV",
+    "exch": "STU",
+    "type": "INDEX"
+   },
+   {
+    "symbol": "CH0028765730.SG",
+    "name": "LPX Europe CHF",
+    "exch": "STU",
+    "type": "INDEX"
+   },
+   {
+    "symbol": "0P00008VY2.SW",
+    "name": "ZAST Obligationen Unternm Euro (CHF hg)",
+    "exch": "EBS",
+    "type": "MUTUALFUND"
+   },
+   {
+    "symbol": "0P0000649A.SW",
+    "name": "ZIF Aktien Europa CHF D1",
+    "exch": "EBS",
+    "type": "MUTUALFUND"
+   },
+   {
+    "symbol": "DE000SLA7VP2.SG",
+    "name": "Lyxor Japan (TOPIX) (DR) UCITS ETF - Dist EUR CHF iNAV",
+    "exch": "STU",
+    "type": "INDEX"
+   },
+   {
+    "symbol": "CH0028765797.SG",
+    "name": "LPX Europe CHF",
+    "exch": "STU",
+    "type": "INDEX"
+   }
+  ]
+ },
+ {
+  "ticker": "EURSEK=X",
+  "name": "EUR/SEK",
+  "country": "XX",
+  "mic": "none",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 11.139349937438965,
+  "suggest": [
+   {
+    "symbol": "EURSEK=X",
+    "name": "EUR/SEK",
+    "exch": "CCY",
+    "type": "CURRENCY"
+   },
+   {
+    "symbol": "DE000SL0BTL9.SG",
+    "name": "Solactive ISS ESG Screened USD EUR SEK NOK High Yield TR Index",
+    "exch": "STU",
+    "type": "INDEX"
+   },
+   {
+    "symbol": "KRKZ26.NYB",
+    "name": "EUR/SEK 125 - NYCC - Dec26",
+    "exch": "NYB",
+    "type": "FUTURE"
+   },
+   {
+    "symbol": "DE000SL0BTM7.SG",
+    "name": "Solactive ISS ESG Screened USD EUR SEK NOK High Yield TR SEK Hedged Index",
+    "exch": "STU",
+    "type": "INDEX"
+   }
+  ]
+ },
+ {
+  "ticker": "EURNOK=X",
+  "name": "EUR/NOK",
+  "country": "XX",
+  "mic": "none",
+  "ok": true,
+  "last_date": "2026-10-17",
+  "last_close": 10.594550132751465,
+  "suggest": [
+   {
+    "symbol": "EURNOK=X",
+    "name": "EUR/NOK",
+    "exch": "CCY",
+    "type": "CURRENCY"
+   },
+   {
+    "symbol": "KOLZ26.NYB",
+    "name": "EUR/NOK 125 - NYCC - Dec26",
+    "exch": "NYB",
+    "type": "FUTURE"
+   }
+  ]
+ },
+ {
+  "ticker": "EURDKK=X",
+  "name": "EUR/DKK",
+  "country": "XX",
+  "mic": "none",
+  "ok": true,
+  "last_date": "2026-10-18",
+  "last_close": 7.474899768829346,
+  "suggest": [
+   {
+    "symbol": "EURDKK=X",
+    "name": "EUR/DKK",
+    "exch": "CCY",
+    "type": "CURRENCY"
+   }
+  ]
+ },
+ {
+  "ticker": "EURPLN=X",
+  "name": "EUR/PLN",
+  "country": "XX",
+  "mic": "none",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 4.3678998947143555,
+  "suggest": [
+   {
+    "symbol": "EURPLN=X",
+    "name": "EUR/PLN",
+    "exch": "CCY",
+    "type": "CURRENCY"
+   },
+   {
+    "symbol": "DE000SLA6BX0.SG",
+    "name": "Lyxor S&P 500 UCITS ETF - D-EUR PLN INAV",
+    "exch": "STU",
+    "type": "INDEX"
+   },
+   {
+    "symbol": "Q0SI.Z",
+    "name": "Constant Matu. Collar EURPLN I",
+    "exch": "ZRH",
+    "type": "INDEX"
+   }
+  ]
+ },
+ {
+  "ticker": "EURCZK=X",
+  "name": "EUR/CZK",
+  "country": "XX",
+  "mic": "none",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 24.30900001525879,
+  "suggest": [
+   {
+    "symbol": "EURCZK=X",
+    "name": "EUR/CZK",
+    "exch": "CCY",
+    "type": "CURRENCY"
+   },
+   {
+    "symbol": "EZZ26.NYB",
+    "name": "EUR/CZK - NYCC - Dec26",
+    "exch": "NYB",
+    "type": "FUTURE"
+   },
+   {
+    "symbol": "ECKZ26.CME",
+    "name": "Czech Koruna/Euro (CZK/EUR) Cro",
+    "exch": "CME",
+    "type": "FUTURE"
+   },
+   {
+    "symbol": "Q0SJ.Z",
+    "name": "Constant Matu. Collar EURCZK I",
+    "exch": "ZRH",
+    "type": "INDEX"
+   }
+  ]
+ },
+ {
+  "ticker": "ALCAT.PA",
+  "name": "Catana Group",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 1.6640000343322754,
+  "currency": "EUR",
+  "market_cap": 47446245.3309288,
+  "exchange": "PAR",
+  "yahoo_name": "SA Catana Group"
+ },
+ {
+  "ticker": "ALCAF.PA",
+  "name": "Cafom",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 12.600000381469727,
+  "currency": "EUR",
+  "market_cap": 115919764.10951424,
+  "exchange": "PAR",
+  "yahoo_name": "Centrale d'Achat Française pour l'Outre-Mer Société Anonyme"
+ },
+ {
+  "ticker": "ALDLT.PA",
+  "name": "Delta Plus Group",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 22.600000381469727,
+  "currency": "EUR",
+  "market_cap": 161877926.73236847,
+  "exchange": "PAR",
+  "yahoo_name": "Delta Plus Group"
+ },
+ {
+  "ticker": "ALCOX.PA",
+  "name": "Nicox",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 0.30000001192092896,
+  "currency": "EUR",
+  "market_cap": 29166823.45898539,
+  "exchange": "PAR",
+  "yahoo_name": "Nicox S.A."
+ },
+ {
+  "ticker": "PERR.PA",
+  "name": "Gérard Perrier Industrie",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 66.19999694824219,
+  "currency": "EUR",
+  "market_cap": 249743526.6870575,
+  "exchange": "PAR",
+  "yahoo_name": "Gérard Perrier Industrie S.A."
+ },
+ {
+  "ticker": "GPE.PA",
+  "name": "Groupe Pizzorno Environnement",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 62.150001525878906,
+  "currency": "EUR",
+  "market_cap": 240224050.39787292,
+  "exchange": "PAR",
+  "yahoo_name": "Groupe Pizzorno Environnement"
+ },
+ {
+  "ticker": "BIG.PA",
+  "name": "Bigben Interactive",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 0.0697999969124794,
+  "currency": "EUR",
+  "market_cap": 1295316.0951032192,
+  "exchange": "PAR",
+  "yahoo_name": "BigBen Interactive"
+ },
+ {
+  "ticker": "VAC.PA",
+  "name": "Pierre & Vacances-Center Parcs",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 1.8819999694824219,
+  "currency": "EUR",
+  "market_cap": 869304828.913784,
+  "exchange": "PAR",
+  "yahoo_name": "Pierre et Vacances SA"
+ },
+ {
+  "ticker": "PARP.PA",
+  "name": "Groupe Partouche",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 17.399999618530273,
+  "currency": "EUR",
+  "market_cap": 167372423.33060265,
+  "exchange": "PAR",
+  "yahoo_name": "Groupe Partouche SA"
+ },
+ {
+  "ticker": "LBIRD.PA",
+  "name": "Lumibird",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 22.600000381469727,
+  "currency": "EUR",
+  "market_cap": 498683223.81736946,
+  "exchange": "PAR",
+  "yahoo_name": "Lumibird SA"
+ },
+ {
+  "ticker": "MTU.PA",
+  "name": "Manitou",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 20.200000762939453,
+  "currency": "EUR",
+  "market_cap": 772979975.9948959,
+  "exchange": "PAR",
+  "yahoo_name": "Manitou BF SA"
+ },
+ {
+  "ticker": "RBT.PA",
+  "name": "Robertet",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 776.0,
+  "currency": "EUR",
+  "market_cap": 1628045672.0,
+  "exchange": "PAR",
+  "yahoo_name": "Robertet SA"
+ },
+ {
+  "ticker": "ITP.PA",
+  "name": "Interparfums",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 32.459999084472656,
+  "currency": "EUR",
+  "market_cap": 2851018719.3476257,
+  "exchange": "PAR",
+  "yahoo_name": "Interparfums SA"
+ },
+ {
+  "ticker": "SWP.PA",
+  "name": "Sword Group",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 29.100000381469727,
+  "currency": "EUR",
+  "market_cap": 275026897.205307,
+  "exchange": "PAR",
+  "yahoo_name": "Sword Group S.E."
+ },
+ {
+  "ticker": "ALFPC.PA",
+  "name": "Fountaine Pajot",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 74.80000305175781,
+  "currency": "EUR",
+  "market_cap": 124685621.08703613,
+  "exchange": "PAR",
+  "yahoo_name": "Fountaine Pajot SA"
+ },
+ {
+  "ticker": "EXENS.PA",
+  "name": "Exosens",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 59.45000076293945,
+  "currency": "EUR",
+  "market_cap": 3013136194.4184685,
+  "exchange": "PAR",
+  "yahoo_name": "Exosens"
+ },
+ {
+  "ticker": "PLNW.PA",
+  "name": "Planisware",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 25.899999618530273,
+  "currency": "EUR",
+  "market_cap": 1792127940.6045341,
+  "exchange": "PAR",
+  "yahoo_name": "Planisware SAS"
+ },
+ {
+  "ticker": "LTA.PA",
+  "name": "Altamir",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 22.399999618530273,
+  "currency": "EUR",
+  "market_cap": 817017160.4862804,
+  "exchange": "PAR",
+  "yahoo_name": "Altamir Ord"
+ },
+ {
+  "ticker": "SO.PA",
+  "name": "Somfy",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": false,
+  "last_date": null,
+  "last_close": null,
+  "suggest": []
+ },
+ {
+  "ticker": "RIN.PA",
+  "name": "Vilmorin & Cie",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": false,
+  "last_date": null,
+  "last_close": null,
+  "suggest": []
+ },
+ {
+  "ticker": "EQS.PA",
+  "name": "Equasens",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 28.549999237060547,
+  "currency": "EUR",
+  "market_cap": 429109229.3329468,
+  "exchange": "PAR",
+  "yahoo_name": "Equasens Société anonyme"
+ },
+ {
+  "ticker": "ASY.PA",
+  "name": "Assystem",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 33.849998474121094,
+  "currency": "EUR",
+  "market_cap": 502146753.01439667,
+  "exchange": "PAR",
+  "yahoo_name": "Assystem S.A."
+ },
+ {
+  "ticker": "CEN.PA",
+  "name": "Groupe Crit",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 46.599998474121094,
+  "currency": "EUR",
+  "market_cap": 490926323.9250183,
+  "exchange": "PAR",
+  "yahoo_name": "Groupe CRIT SA"
+ },
+ {
+  "ticker": "SMCP.PA",
+  "name": "SMCP",
+  "country": "FR",
+  "mic": "XPAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 5.75,
+  "currency": "EUR",
+  "market_cap": 449154350.0,
+  "exchange": "PAR",
+  "yahoo_name": "SMCP S.A."
+ },
+ {
+  "ticker": "ALSYDB.CO",
+  "name": "AL Sydbank",
+  "country": "DK",
+  "mic": "XCSE",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 709.0,
+  "currency": "DKK",
+  "market_cap": 60172721523.0,
+  "exchange": "CPH",
+  "yahoo_name": "AL Sydbank A/S"
+ },
+ {
+  "ticker": "VEND.OL",
+  "name": "Vend Marketplaces (ex-Schibsted)",
+  "country": "NO",
+  "mic": "XOSL",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 224.0,
+  "currency": "NOK",
+  "market_cap": 44281202336.0,
+  "exchange": "OSL",
+  "yahoo_name": "Vend Marketplaces ASA"
+ },
+ {
+  "ticker": "SB1NO.OL",
+  "name": "SpareBank 1 Sør-Norge",
+  "country": "NO",
+  "mic": "XOSL",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 225.0,
+  "currency": "NOK",
+  "market_cap": 83274557625.0,
+  "exchange": "OSL",
+  "yahoo_name": "SpareBank 1 Sør-Norge ASA"
+ },
+ {
+  "ticker": "LUMO.HE",
+  "name": "Lumo Kodit (ex-Kojamo)",
+  "country": "FI",
+  "mic": "XHEL",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 6.960000038146973,
+  "currency": "EUR",
+  "market_cap": 1843085029.4617405,
+  "exchange": "HEL",
+  "yahoo_name": "Lumo Kodit Oyj"
+ },
+ {
+  "ticker": "LAKE.BR",
+  "name": "Lakefront Biotherapeutics (ex-Galapagos)",
+  "country": "BE",
+  "mic": "XBRU",
+  "ok": false,
+  "last_date": null,
+  "last_close": null,
+  "suggest": [
+   {
+    "symbol": "LKFT",
+    "name": "Lakefront Biotherapeutics NV",
+    "exch": "NMS",
+    "type": "EQUITY"
+   },
+   {
+    "symbol": "LKFT.AS",
+    "name": "Lakefront Biotherapeutics NV",
+    "exch": "AMS",
+    "type": "EQUITY"
+   },
+   {
+    "symbol": "GLPGF",
+    "name": "Lakefront Biotherapeutics NV",
+    "exch": "PNK",
+    "type": "EQUITY"
+   },
+   {
+    "symbol": "GXEA.F",
+    "name": "Lakefront Biotherapeutics NV",
+    "exch": "FRA",
+    "type": "EQUITY"
+   },
+   {
+    "symbol": "GXEA.DU",
+    "name": "Galapagos NV",
+    "exch": "DUS",
+    "type": "EQUITY"
+   },
+   {
+    "symbol": "GXE.F",
+    "name": "Lakefront Biotherapeutics NV",
+    "exch": "FRA",
+    "type": "EQUITY"
+   },
+   {
+    "symbol": "GXE.HM",
+    "name": "Galapagos NV",
+    "exch": "HAM",
+    "type": "EQUITY"
+   }
+  ]
+ },
+ {
+  "ticker": "SDLF.L",
+  "name": "Standard Life (ex-Phoenix Group)",
+  "country": "GB",
+  "mic": "XLON",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 911.0,
+  "currency": "GBp",
+  "market_cap": 913049834723.0,
+  "exchange": "LSE",
+  "yahoo_name": "Standard Life plc"
+ },
+ {
+  "ticker": "EBP.WA",
+  "name": "Erste Bank Polska (ex-Santander Bank Polska)",
+  "country": "PL",
+  "mic": "XWAR",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 778.0,
+  "currency": "PLN",
+  "market_cap": 79503286292.0,
+  "exchange": "WSE",
+  "yahoo_name": "Erste Bank Polska S.A."
+ },
+ {
+  "ticker": "ALWN.AT",
+  "name": "Allwyn Hellenic (ex-OPAP)",
+  "country": "GR",
+  "mic": "ASEX",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 12.300000190734863,
+  "currency": "EUR",
+  "market_cap": 9483864827.765335,
+  "exchange": "ATH",
+  "yahoo_name": "Allwyn AG"
+ },
+ {
+  "ticker": "COLT.PR",
+  "name": "Colt CZ Group",
+  "country": "CZ",
+  "mic": "XPRA",
+  "ok": true,
+  "last_date": "2026-10-16",
+  "last_close": 844.0,
+  "currency": "CZK",
+  "market_cap": 52865832248.0,
+  "exchange": "PRA",
+  "yahoo_name": "Colt CZ Group SE"
+ }
+]

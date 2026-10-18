@@ -10,7 +10,9 @@ import json
 import sys
 import unicodedata
 
-REJECT = set()          # tickers whose Yahoo name shows it is not the intended company (filled after review)
+# tickers whose Yahoo name shows they are not the intended company (round-1 review); right tickers are in round 2
+REJECT = {"MLAA.PA", "ALBI.PA"}
+RENAME = {"GPE.PA": "Groupe Pizzorno Environnement", "PARP.PA": "Groupe Partouche", "CRI.PA": "Belgrano (ex-Chargeurs)"}
 MIN_LAST_DATE = "2026-09-01"
 
 
@@ -46,7 +48,7 @@ def main(paths):
         if ccy == "GBp":
             cap, ccy = (cap or 0) / 100, "GBP"
         eur = cap / rates[ccy] if cap and ccy in rates else None
-        out.append({"ticker": t, "name": r["name"], "mic": r["mic"], "country": r["country"],
+        out.append({"ticker": t, "name": RENAME.get(t, r["name"]), "mic": r["mic"], "country": r["country"],
                     "segment": "large" if eur and eur >= 10e9 else "smid", "classified_from_mcap": eur is not None,
                     "currency": r.get("currency")})
     json.dump(out, open("pipeline/universe_ext.json", "w", encoding="utf-8"), ensure_ascii=False, indent=0)

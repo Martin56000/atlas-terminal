@@ -1,0 +1,8012 @@
+[
+{
+"ticker": "FR.PA",
+"name": "Valeo",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ELIS.PA",
+"name": "Elis",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AUB.PA",
+"name": "Aubay",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FGA.PA",
+"name": "Figeac Aéro",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "GPE.PA",
+"name": "Gérard Perrier Industrie",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ALHGR.PA",
+"name": "Hoffmann Green Cement Technologies",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "IDL.PA",
+"name": "ID Logistics",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NEX.PA",
+"name": "Nexans",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SPIE.PA",
+"name": "Spie",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "RUI.PA",
+"name": "Rubis",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "GET.PA",
+"name": "Getlink",
+"mic": "XPAR",
+"country": "FR",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "IPN.PA",
+"name": "Ipsen",
+"mic": "XPAR",
+"country": "FR",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BB.PA",
+"name": "Société BIC",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NK.PA",
+"name": "Imerys",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FNAC.PA",
+"name": "Fnac Darty",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MMT.PA",
+"name": "M6 Métropole Télévision",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MERY.PA",
+"name": "Mercialys",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NXI.PA",
+"name": "Nexity",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ALTA.PA",
+"name": "Altarea",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CARM.PA",
+"name": "Carmila",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SESG.PA",
+"name": "SES",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "RF.PA",
+"name": "Eurazeo",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "WAVE.PA",
+"name": "Wavestone",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ATE.PA",
+"name": "Alten",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MAU.PA",
+"name": "Maurel & Prom",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TE.PA",
+"name": "Technip Energies",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FRVIA.PA",
+"name": "Forvia",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "OPM.PA",
+"name": "OPmobility",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NANO.PA",
+"name": "Nanobiotix",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EXA.PA",
+"name": "Exail Technologies",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "LNA.PA",
+"name": "LNA Santé",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CRI.PA",
+"name": "Chargeurs",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MDM.PA",
+"name": "Maisons du Monde",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TKO.PA",
+"name": "Tikehau Capital",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ANTIN.PA",
+"name": "Antin Infrastructure Partners",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MRN.PA",
+"name": "Mersen",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BOI.PA",
+"name": "Boiron",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "QDT.PA",
+"name": "Quadient",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NRO.PA",
+"name": "Neurones",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VLA.PA",
+"name": "Valneva",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DBG.PA",
+"name": "Derichebourg",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SCHP.PA",
+"name": "Séché Environnement",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MF.PA",
+"name": "Wendel",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ARG.PA",
+"name": "Argan",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "LOUP.PA",
+"name": "LDC",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FII.PA",
+"name": "Lisi",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "GNFT.PA",
+"name": "Genfit",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SAVE.PA",
+"name": "Savencia",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TFF.PA",
+"name": "TFF Group",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VETO.PA",
+"name": "Vetoquinol",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PIG.PA",
+"name": "Haulotte",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CLARI.PA",
+"name": "Clariane",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EMEIS.PA",
+"name": "Emeis",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ATO.PA",
+"name": "Atos",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VU.PA",
+"name": "Vusion",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SBT.PA",
+"name": "Oeneo",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "LPE.PA",
+"name": "Laurent-Perrier",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "GLO.PA",
+"name": "GL events",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VLTSA.PA",
+"name": "Voltalia",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EAPI.PA",
+"name": "Euroapi",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "XFAB.PA",
+"name": "X-Fab",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AL2SI.PA",
+"name": "2CRSi",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "IDIP.PA",
+"name": "IDI",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PEUG.PA",
+"name": "Peugeot Invest",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ABVX.PA",
+"name": "Abivax",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EKI.PA",
+"name": "Ekinops",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ALCLS.PA",
+"name": "Cellectis",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DPT.PA",
+"name": "S.T. Dupont",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EXE.PA",
+"name": "Exel Industries",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BLC.PA",
+"name": "Bastide Le Confort Médical",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "JCQ.PA",
+"name": "Jacquet Metals",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MLAA.PA",
+"name": "Groupe Partouche",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SDG.PA",
+"name": "Synergie",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "INF.PA",
+"name": "Infotel",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ALBI.PA",
+"name": "Bigben Interactive",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PARP.PA",
+"name": "Groupe Pierre & Vacances",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HCO.PA",
+"name": "High Co",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EC.PA",
+"name": "TotalEnergies EP Gabon",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AKW.PA",
+"name": "Akwel",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MBWS.PA",
+"name": "Marie Brizard Wine & Spirits",
+"mic": "XPAR",
+"country": "FR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "GBF.DE",
+"name": "Bilfinger",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BFSA.DE",
+"name": "Befesa",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FTK.DE",
+"name": "flatexDEGIRO",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "JEN.DE",
+"name": "Jenoptik",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "JST.DE",
+"name": "JOST Werke",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "LEG.DE",
+"name": "LEG Immobilien",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TEG.DE",
+"name": "TAG Immobilien",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AT1.DE",
+"name": "Aroundtown",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "KGX.DE",
+"name": "Kion",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HNR1.DE",
+"name": "Hannover Rück",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TLX.DE",
+"name": "Talanx",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SY1.DE",
+"name": "Symrise",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BNR.DE",
+"name": "Brenntag",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FME.DE",
+"name": "Fresenius Medical Care",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FRE.DE",
+"name": "Fresenius",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BEI.DE",
+"name": "Beiersdorf",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HEN3.DE",
+"name": "Henkel",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CON.DE",
+"name": "Continental",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PAH3.DE",
+"name": "Porsche Automobil Holding",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "P911.DE",
+"name": "Porsche AG",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DTG.DE",
+"name": "Daimler Truck",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MBG.DE",
+"name": "Mercedes-Benz Group",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ZAL.DE",
+"name": "Zalando",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PUM.DE",
+"name": "Puma",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HFG.DE",
+"name": "HelloFresh",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DHER.DE",
+"name": "Delivery Hero",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CBK.DE",
+"name": "Commerzbank",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AIXA.DE",
+"name": "Aixtron",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NEM.DE",
+"name": "Nemetschek",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SRT3.DE",
+"name": "Sartorius",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EVK.DE",
+"name": "Evonik",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "LXS.DE",
+"name": "Lanxess",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "WCH.DE",
+"name": "Wacker Chemie",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "KBX.DE",
+"name": "Knorr-Bremse",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "RAA.DE",
+"name": "Rational",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "G1A.DE",
+"name": "GEA Group",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "KRN.DE",
+"name": "Krones",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DUE.DE",
+"name": "Dürr",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HOT.DE",
+"name": "Hochtief",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BOSS.DE",
+"name": "Hugo Boss",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FPE3.DE",
+"name": "Fuchs",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EVD.DE",
+"name": "CTS Eventim",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SAX.DE",
+"name": "Ströer",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PSM.DE",
+"name": "ProSiebenSat.1",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "UTDI.DE",
+"name": "United Internet",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "1U1.DE",
+"name": "1&1",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FNTN.DE",
+"name": "Freenet",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SDF.DE",
+"name": "K+S",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AFX.DE",
+"name": "Carl Zeiss Meditec",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DWNI.DE",
+"name": "Deutsche Wohnen",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "GXI.DE",
+"name": "Gerresheimer",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NDX1.DE",
+"name": "Nordex",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VBK.DE",
+"name": "Verbio",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "S92.DE",
+"name": "SMA Solar",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EVT.DE",
+"name": "Evotec",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TMV.DE",
+"name": "TeamViewer",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BC8.DE",
+"name": "Bechtle",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "COK.DE",
+"name": "Cancom",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SIX2.DE",
+"name": "Sixt",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "R3NK.DE",
+"name": "Renk",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TKA.DE",
+"name": "thyssenkrupp",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SZG.DE",
+"name": "Salzgitter",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NA9.DE",
+"name": "Nagarro",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "STM.DE",
+"name": "Stabilus",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NOEJ.DE",
+"name": "Norma Group",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SGL.DE",
+"name": "SGL Carbon",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "WAF.DE",
+"name": "Siltronic",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "JUN3.DE",
+"name": "Jungheinrich",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HLAG.DE",
+"name": "Hapag-Lloyd",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "LHA.DE",
+"name": "Lufthansa",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FRA.DE",
+"name": "Fraport",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TUI1.DE",
+"name": "TUI",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AG1.DE",
+"name": "Auto1",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MRK.DE",
+"name": "Merck KGaA",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "QIA.DE",
+"name": "Qiagen",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VOS.DE",
+"name": "Vossloh",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "WAC.DE",
+"name": "Wacker Neuson",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "GFT.DE",
+"name": "GFT Technologies",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ELG.DE",
+"name": "Elmos Semiconductor",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "IOS.DE",
+"name": "Ionos",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HYQ.DE",
+"name": "Hypoport",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MUX.DE",
+"name": "Mutares",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PNE3.DE",
+"name": "PNE",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DOU.DE",
+"name": "Douglas",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SHA0.DE",
+"name": "Schaeffler",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TKMS.DE",
+"name": "TKMS",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "KWS.DE",
+"name": "KWS Saat",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DRW3.DE",
+"name": "Drägerwerk",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CWC.DE",
+"name": "CEWE",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ZIL2.DE",
+"name": "ElringKlinger",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SPG.DE",
+"name": "Springer Nature",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VIB3.DE",
+"name": "Villeroy & Boch",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "INH.DE",
+"name": "Indus Holding",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DMP.DE",
+"name": "Dermapharm",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FIE.DE",
+"name": "Fielmann",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CEC.DE",
+"name": "Ceconomy",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PAT.DE",
+"name": "Patrizia",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "GYC.DE",
+"name": "Grand City Properties",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VH2.DE",
+"name": "Friedrich Vorwerk",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "8TRA.DE",
+"name": "Traton",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DEZ.DE",
+"name": "Deutz",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "KTN.DE",
+"name": "Kontron",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MLP.DE",
+"name": "MLP",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SFQ.DE",
+"name": "SAF-Holland",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PBB.DE",
+"name": "Deutsche Pfandbriefbank",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HAG.DE",
+"name": "Hensoldt",
+"mic": "XETR",
+"country": "DE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AOF.DE",
+"name": "ATOSS Software",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ADN1.DE",
+"name": "Adesso",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SMHN.DE",
+"name": "Süss MicroTec",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HDD.DE",
+"name": "Heidelberger Druckmaschinen",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DBAN.DE",
+"name": "Deutsche Beteiligungs AG",
+"mic": "XETR",
+"country": "DE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ARCAD.AS",
+"name": "Arcadis",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AGN.AS",
+"name": "Aegon",
+"mic": "XAMS",
+"country": "NL",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NN.AS",
+"name": "NN Group",
+"mic": "XAMS",
+"country": "NL",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ASRNL.AS",
+"name": "ASR Nederland",
+"mic": "XAMS",
+"country": "NL",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "RAND.AS",
+"name": "Randstad",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "IMCD.AS",
+"name": "IMCD",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DSFIR.AS",
+"name": "DSM-Firmenich",
+"mic": "XAMS",
+"country": "NL",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "KPN.AS",
+"name": "KPN",
+"mic": "XAMS",
+"country": "NL",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "UMG.AS",
+"name": "Universal Music Group",
+"mic": "XAMS",
+"country": "NL",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EXO.AS",
+"name": "Exor",
+"mic": "XAMS",
+"country": "NL",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CTPNV.AS",
+"name": "CTP",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AALB.AS",
+"name": "Aalberts",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SBMO.AS",
+"name": "SBM Offshore",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FUR.AS",
+"name": "Fugro",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TOM2.AS",
+"name": "TomTom",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BAMNB.AS",
+"name": "Koninklijke BAM",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HEIJM.AS",
+"name": "Heijmans",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CRBN.AS",
+"name": "Corbion",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VPK.AS",
+"name": "Vopak",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "OCI.AS",
+"name": "OCI",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "LIGHT.AS",
+"name": "Signify",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BFIT.AS",
+"name": "Basic-Fit",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FLOW.AS",
+"name": "Flow Traders",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "WHA.AS",
+"name": "Wereldhave",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ECMPA.AS",
+"name": "Eurocommercial Properties",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AMG.AS",
+"name": "AMG Critical Materials",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ALFEN.AS",
+"name": "Alfen",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PHARM.AS",
+"name": "Pharming",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "APAM.AS",
+"name": "Aperam",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SIFG.AS",
+"name": "Sif Holding",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ACOMO.AS",
+"name": "Acomo",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VLK.AS",
+"name": "Van Lanschot Kempen",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ABN.AS",
+"name": "ABN Amro",
+"mic": "XAMS",
+"country": "NL",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BRNL.AS",
+"name": "Brunel",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MT.AS",
+"name": "ArcelorMittal",
+"mic": "XAMS",
+"country": "NL",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CVC.AS",
+"name": "CVC Capital Partners",
+"mic": "XAMS",
+"country": "NL",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "INPST.AS",
+"name": "InPost",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HEIO.AS",
+"name": "Heineken Holding",
+"mic": "XAMS",
+"country": "NL",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NEDAP.AS",
+"name": "Nedap",
+"mic": "XAMS",
+"country": "NL",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FAGR.BR",
+"name": "Fagron",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CENER.BR",
+"name": "Cenergy Holdings",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AGS.BR",
+"name": "Ageas",
+"mic": "XBRU",
+"country": "BE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ELI.BR",
+"name": "Elia",
+"mic": "XBRU",
+"country": "BE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "GBLB.BR",
+"name": "GBL",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SOF.BR",
+"name": "Sofina",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "UMI.BR",
+"name": "Umicore",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "WDP.BR",
+"name": "WDP",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AED.BR",
+"name": "Aedifica",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DIE.BR",
+"name": "D'Ieteren",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "LOTB.BR",
+"name": "Lotus Bakeries",
+"mic": "XBRU",
+"country": "BE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MELE.BR",
+"name": "Melexis",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BEKB.BR",
+"name": "Bekaert",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AZE.BR",
+"name": "Azelis",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BPOST.BR",
+"name": "bpost",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PROX.BR",
+"name": "Proximus",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SYENS.BR",
+"name": "Syensqo",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "XIOR.BR",
+"name": "Xior",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VGP.BR",
+"name": "VGP",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MONT.BR",
+"name": "Montea",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BAR.BR",
+"name": "Barco",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "KIN.BR",
+"name": "Kinepolis",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ARGX.BR",
+"name": "argenx",
+"mic": "XBRU",
+"country": "BE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EVS.BR",
+"name": "EVS Broadcast",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "RECT.BR",
+"name": "Recticel",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TESB.BR",
+"name": "Tessenderlo",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ONTEX.BR",
+"name": "Ontex",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AGFB.BR",
+"name": "Agfa-Gevaert",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SIP.BR",
+"name": "Sipef",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "IBAB.BR",
+"name": "IBA",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CMBT.BR",
+"name": "CMB.Tech",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SHUR.BR",
+"name": "Shurgard",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CFEB.BR",
+"name": "CFE",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DEME.BR",
+"name": "DEME Group",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VIO.BR",
+"name": "Viohalco",
+"mic": "XBRU",
+"country": "BE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DOC.VI",
+"name": "DO & CO",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EBS.VI",
+"name": "Erste Group",
+"mic": "XWBO",
+"country": "AT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "RBI.VI",
+"name": "Raiffeisen Bank International",
+"mic": "XWBO",
+"country": "AT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "OMV.VI",
+"name": "OMV",
+"mic": "XWBO",
+"country": "AT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VER.VI",
+"name": "Verbund",
+"mic": "XWBO",
+"country": "AT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ANDR.VI",
+"name": "Andritz",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VOE.VI",
+"name": "voestalpine",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "WIE.VI",
+"name": "Wienerberger",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BG.VI",
+"name": "BAWAG",
+"mic": "XWBO",
+"country": "AT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "POST.VI",
+"name": "Österreichische Post",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "UQA.VI",
+"name": "Uniqa",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VIG.VI",
+"name": "Vienna Insurance Group",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TKA.VI",
+"name": "Telekom Austria",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CAI.VI",
+"name": "CA Immobilien",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SBO.VI",
+"name": "SBO",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "LNZ.VI",
+"name": "Lenzing",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PAL.VI",
+"name": "Palfinger",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SEM.VI",
+"name": "Semperit",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AGR.VI",
+"name": "Agrana",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ATS.VI",
+"name": "AT&S",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ZAG.VI",
+"name": "Zumtobel",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "POS.VI",
+"name": "Porr",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "STR.VI",
+"name": "Strabag",
+"mic": "XWBO",
+"country": "AT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FACC.VI",
+"name": "FACC",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EVN.VI",
+"name": "EVN",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MMK.VI",
+"name": "Mayr-Melnhof",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ROS.VI",
+"name": "Rosenbauer",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AMAG.VI",
+"name": "AMAG",
+"mic": "XWBO",
+"country": "AT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "KRZ.IR",
+"name": "Kerry Group",
+"mic": "XDUB",
+"country": "IE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "KRX.IR",
+"name": "Kingspan",
+"mic": "XDUB",
+"country": "IE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BIRG.IR",
+"name": "Bank of Ireland",
+"mic": "XDUB",
+"country": "IE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "A5G.IR",
+"name": "AIB Group",
+"mic": "XDUB",
+"country": "IE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "GL9.IR",
+"name": "Glanbia",
+"mic": "XDUB",
+"country": "IE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "IR5B.IR",
+"name": "Irish Continental Group",
+"mic": "XDUB",
+"country": "IE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "UPR.IR",
+"name": "Uniphar",
+"mic": "XDUB",
+"country": "IE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "C5H.IR",
+"name": "Cairn Homes",
+"mic": "XDUB",
+"country": "IE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "GVR.IR",
+"name": "Glenveagh Properties",
+"mic": "XDUB",
+"country": "IE",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "RYA.IR",
+"name": "Ryanair",
+"mic": "XDUB",
+"country": "IE",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ACE.MI",
+"name": "Acea",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AMP.MI",
+"name": "Amplifon",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ARIS.MI",
+"name": "Ariston",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AZM.MI",
+"name": "Azimut",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "COM.MI",
+"name": "Comer Industries",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "INW.MI",
+"name": "Infrastrutture Wireless Italiane",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SRG.MI",
+"name": "Snam",
+"mic": "XMIL",
+"country": "IT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TRN.MI",
+"name": "Terna",
+"mic": "XMIL",
+"country": "IT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "A2A.MI",
+"name": "A2A",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HER.MI",
+"name": "Hera",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "IG.MI",
+"name": "Italgas",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BAMI.MI",
+"name": "Banco BPM",
+"mic": "XMIL",
+"country": "IT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BMPS.MI",
+"name": "Monte dei Paschi",
+"mic": "XMIL",
+"country": "IT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BPE.MI",
+"name": "BPER Banca",
+"mic": "XMIL",
+"country": "IT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FBK.MI",
+"name": "FinecoBank",
+"mic": "XMIL",
+"country": "IT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MB.MI",
+"name": "Mediobanca",
+"mic": "XMIL",
+"country": "IT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BGN.MI",
+"name": "Banca Generali",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BMED.MI",
+"name": "Banca Mediolanum",
+"mic": "XMIL",
+"country": "IT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "UNI.MI",
+"name": "Unipol",
+"mic": "XMIL",
+"country": "IT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PIRC.MI",
+"name": "Pirelli",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "IP.MI",
+"name": "Interpump",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "REC.MI",
+"name": "Recordati",
+"mic": "XMIL",
+"country": "IT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DIA.MI",
+"name": "DiaSorin",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TIT.MI",
+"name": "Telecom Italia",
+"mic": "XMIL",
+"country": "IT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NEXI.MI",
+"name": "Nexi",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SPM.MI",
+"name": "Saipem",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TEN.MI",
+"name": "Tenaris",
+"mic": "XMIL",
+"country": "IT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "IVG.MI",
+"name": "Iveco",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BZU.MI",
+"name": "Buzzi",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ERG.MI",
+"name": "ERG",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SFER.MI",
+"name": "Salvatore Ferragamo",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TIP.MI",
+"name": "Tamburi Investment Partners",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ENAV.MI",
+"name": "Enav",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MAIRE.MI",
+"name": "Maire",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "WBD.MI",
+"name": "Webuild",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FCT.MI",
+"name": "Fincantieri",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BFF.MI",
+"name": "BFF Bank",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CE.MI",
+"name": "Credem",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DAN.MI",
+"name": "Danieli",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SES.MI",
+"name": "Sesa",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ZV.MI",
+"name": "Zignago Vetro",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SOL.MI",
+"name": "SOL",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "GVS.MI",
+"name": "GVS",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CRL.MI",
+"name": "Carel",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ELN.MI",
+"name": "El.En.",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AVIO.MI",
+"name": "Avio",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "OVS.MI",
+"name": "OVS",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MFEB.MI",
+"name": "MFE-MediaForEurope",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "RWAY.MI",
+"name": "Rai Way",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TGYM.MI",
+"name": "Technogym",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "WIIT.MI",
+"name": "WIIT",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "REY.MI",
+"name": "Reply",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DOV.MI",
+"name": "doValue",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "IRE.MI",
+"name": "Iren",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SFL.MI",
+"name": "Safilo",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MARR.MI",
+"name": "Marr",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BRE.MI",
+"name": "Brembo",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FILA.MI",
+"name": "Fila",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CEM.MI",
+"name": "Cementir",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ENEL.MI",
+"name": "Enel",
+"mic": "XMIL",
+"country": "IT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "RACE.MI",
+"name": "Ferrari",
+"mic": "XMIL",
+"country": "IT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "STLAM.MI",
+"name": "Stellantis (Milan)",
+"mic": "XMIL",
+"country": "IT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "LTMC.MI",
+"name": "Lottomatica",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PHN.MI",
+"name": "Pharmanutra",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CY4.MI",
+"name": "Cy4Gate",
+"mic": "XMIL",
+"country": "IT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ALM.MC",
+"name": "Almirall",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "COXG.MC",
+"name": "Cox ABG Group",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FDR.MC",
+"name": "Fluidra",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BKT.MC",
+"name": "Bankinter",
+"mic": "XMAD",
+"country": "ES",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SAB.MC",
+"name": "Banco Sabadell",
+"mic": "XMAD",
+"country": "ES",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "UNI.MC",
+"name": "Unicaja",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MAP.MC",
+"name": "Mapfre",
+"mic": "XMAD",
+"country": "ES",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ACS.MC",
+"name": "ACS",
+"mic": "XMAD",
+"country": "ES",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ACX.MC",
+"name": "Acerinox",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ANA.MC",
+"name": "Acciona",
+"mic": "XMAD",
+"country": "ES",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ANE.MC",
+"name": "Acciona Energía",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CLNX.MC",
+"name": "Cellnex",
+"mic": "XMAD",
+"country": "ES",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ELE.MC",
+"name": "Endesa",
+"mic": "XMAD",
+"country": "ES",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ENG.MC",
+"name": "Enagás",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "RED.MC",
+"name": "Redeia",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NTGY.MC",
+"name": "Naturgy",
+"mic": "XMAD",
+"country": "ES",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "IAG.MC",
+"name": "International Airlines Group",
+"mic": "XMAD",
+"country": "ES",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MRL.MC",
+"name": "Merlin Properties",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "COL.MC",
+"name": "Inmobiliaria Colonial",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "IDR.MC",
+"name": "Indra",
+"mic": "XMAD",
+"country": "ES",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "LOG.MC",
+"name": "Logista",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MEL.MC",
+"name": "Meliá Hotels",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SCYR.MC",
+"name": "Sacyr",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VIS.MC",
+"name": "Viscofan",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CIE.MC",
+"name": "CIE Automotive",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EBRO.MC",
+"name": "Ebro Foods",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FAE.MC",
+"name": "Faes Farma",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ROVI.MC",
+"name": "Laboratorios Rovi",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PHM.MC",
+"name": "Pharma Mar",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SLR.MC",
+"name": "Solaria",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "GEST.MC",
+"name": "Gestamp",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TRE.MC",
+"name": "Técnicas Reunidas",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CAF.MC",
+"name": "CAF",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TLGO.MC",
+"name": "Talgo",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PUIG.MC",
+"name": "Puig",
+"mic": "XMAD",
+"country": "ES",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VID.MC",
+"name": "Vidrala",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ENC.MC",
+"name": "Ence",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "A3M.MC",
+"name": "Atresmedia",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MVC.MC",
+"name": "Metrovacesa",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HOME.MC",
+"name": "Neinor Homes",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "LDA.MC",
+"name": "Línea Directa",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "OHLA.MC",
+"name": "OHLA",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "GRE.MC",
+"name": "Grenergy",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ECR.MC",
+"name": "Ercros",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "DOM.MC",
+"name": "Global Dominion",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PSG.MC",
+"name": "Prosegur",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CASH.MC",
+"name": "Prosegur Cash",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TUB.MC",
+"name": "Tubacex",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EDR.MC",
+"name": "eDreams Odigeo",
+"mic": "XMAD",
+"country": "ES",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ITX.MC",
+"name": "Inditex",
+"mic": "XMAD",
+"country": "ES",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "IBE.MC",
+"name": "Iberdrola",
+"mic": "XMAD",
+"country": "ES",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SAN.MC",
+"name": "Banco Santander",
+"mic": "XMAD",
+"country": "ES",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BCP.LS",
+"name": "Banco Comercial Português",
+"mic": "XLIS",
+"country": "PT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NOS.LS",
+"name": "NOS",
+"mic": "XLIS",
+"country": "PT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NVG.LS",
+"name": "Navigator",
+"mic": "XLIS",
+"country": "PT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SEM.LS",
+"name": "Semapa",
+"mic": "XLIS",
+"country": "PT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SON.LS",
+"name": "Sonae",
+"mic": "XLIS",
+"country": "PT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CTT.LS",
+"name": "CTT Correios",
+"mic": "XLIS",
+"country": "PT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ALTR.LS",
+"name": "Altri",
+"mic": "XLIS",
+"country": "PT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EGL.LS",
+"name": "Mota-Engil",
+"mic": "XLIS",
+"country": "PT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "RENE.LS",
+"name": "REN",
+"mic": "XLIS",
+"country": "PT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "COR.LS",
+"name": "Corticeira Amorim",
+"mic": "XLIS",
+"country": "PT",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EDPR.LS",
+"name": "EDP Renováveis",
+"mic": "XLIS",
+"country": "PT",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ACLN.SW",
+"name": "Accelleron",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "SCMN.SW",
+"name": "Swisscom",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "PGHN.SW",
+"name": "Partners Group",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "SLHN.SW",
+"name": "Swiss Life",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "HBAN.SW",
+"name": "Helvetia Baloise",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "SGSN.SW",
+"name": "SGS",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "SCHP.SW",
+"name": "Schindler",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "STMN.SW",
+"name": "Straumann",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "SOON.SW",
+"name": "Sonova",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "ALC.SW",
+"name": "Alcon",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "LOGN.SW",
+"name": "Logitech",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "KNIN.SW",
+"name": "Kuehne+Nagel",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "EMSN.SW",
+"name": "EMS-Chemie",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "CLN.SW",
+"name": "Clariant",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "BARN.SW",
+"name": "Barry Callebaut",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "LISN.SW",
+"name": "Lindt & Sprüngli",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "TEMN.SW",
+"name": "Temenos",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "BAER.SW",
+"name": "Julius Baer",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "BCVN.SW",
+"name": "Banque Cantonale Vaudoise",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "SPSN.SW",
+"name": "Swiss Prime Site",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "PSPN.SW",
+"name": "PSP Swiss Property",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "AVOL.SW",
+"name": "Avolta",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "SUN.SW",
+"name": "Sulzer",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "GF.SW",
+"name": "Georg Fischer",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "BUCN.SW",
+"name": "Bucher Industries",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "BEAN.SW",
+"name": "Belimo",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "DOKA.SW",
+"name": "dormakaba",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "FHZN.SW",
+"name": "Flughafen Zürich",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "VONN.SW",
+"name": "Vontobel",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "CMBN.SW",
+"name": "Cembra Money Bank",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "SQN.SW",
+"name": "Swissquote",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "SFSN.SW",
+"name": "SFS Group",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "SIGN.SW",
+"name": "SIG Group",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "GALE.SW",
+"name": "Galenica",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "IFCN.SW",
+"name": "Inficon",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "COTN.SW",
+"name": "Comet",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "DKSH.SW",
+"name": "DKSH",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "ADEN.SW",
+"name": "Adecco",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "BKW.SW",
+"name": "BKW",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "EMMN.SW",
+"name": "Emmi",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "SKAN.SW",
+"name": "Skan Group",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "BCHN.SW",
+"name": "Burckhardt Compression",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "KARN.SW",
+"name": "Kardex",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "INRN.SW",
+"name": "Interroll",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "MOVE.SW",
+"name": "Medacta",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "YPSN.SW",
+"name": "Ypsomed",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "SRAIL.SW",
+"name": "Stadler Rail",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "ALLN.SW",
+"name": "Allreal",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "LAND.SW",
+"name": "Landis+Gyr",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "OERL.SW",
+"name": "OC Oerlikon",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "DAE.SW",
+"name": "Dätwyler",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "SENS.SW",
+"name": "Sensirion",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "BANB.SW",
+"name": "Bachem",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "VZN.SW",
+"name": "VZ Holding",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "LEHN.SW",
+"name": "LEM",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "HUBN.SW",
+"name": "Huber+Suhner",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "SDZ.SW",
+"name": "Sandoz",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "GALD.SW",
+"name": "Galderma",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "DSFIR.SW",
+"name": "DSM-Firmenich (Zurich)",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "VAHN.SW",
+"name": "Vaudoise",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "TXGN.SW",
+"name": "TX Group",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "SWON.SW",
+"name": "SoftwareOne",
+"mic": "XSWX",
+"country": "CH",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CHF"
+},
+{
+"ticker": "KLR.L",
+"name": "Keller Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "AAL.L",
+"name": "Anglo American",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "ANTO.L",
+"name": "Antofagasta",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "ABF.L",
+"name": "Associated British Foods",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "AUTO.L",
+"name": "Auto Trader",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "AV.L",
+"name": "Aviva",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "BKG.L",
+"name": "Berkeley Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "BT-A.L",
+"name": "BT Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "BNZL.L",
+"name": "Bunzl",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "BRBY.L",
+"name": "Burberry",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "CCH.L",
+"name": "Coca-Cola HBC",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "CNA.L",
+"name": "Centrica",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "CPG.L",
+"name": "Compass Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "USD"
+},
+{
+"ticker": "CRDA.L",
+"name": "Croda",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "DCC.L",
+"name": "DCC",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "EXPN.L",
+"name": "Experian",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "FRES.L",
+"name": "Fresnillo",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "HLMA.L",
+"name": "Halma",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "HLN.L",
+"name": "Haleon",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "HSX.L",
+"name": "Hiscox",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "IHG.L",
+"name": "InterContinental Hotels",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "USD"
+},
+{
+"ticker": "IMB.L",
+"name": "Imperial Brands",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "INF.L",
+"name": "Informa",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "ITRK.L",
+"name": "Intertek",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "JD.L",
+"name": "JD Sports",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "KGF.L",
+"name": "Kingfisher",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "LAND.L",
+"name": "Land Securities",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "LGEN.L",
+"name": "Legal & General",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "MKS.L",
+"name": "Marks & Spencer",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "MNDI.L",
+"name": "Mondi",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "NWG.L",
+"name": "NatWest",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "NXT.L",
+"name": "Next",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "PRU.L",
+"name": "Prudential",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "PSON.L",
+"name": "Pearson",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "PSN.L",
+"name": "Persimmon",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "RKT.L",
+"name": "Reckitt",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "RMV.L",
+"name": "Rightmove",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "RTO.L",
+"name": "Rentokil",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "SBRY.L",
+"name": "Sainsbury's",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "SDR.L",
+"name": "Schroders",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "SGE.L",
+"name": "Sage",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "SGRO.L",
+"name": "Segro",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "SMIN.L",
+"name": "Smiths Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "SN.L",
+"name": "Smith & Nephew",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "SPX.L",
+"name": "Spirax Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "SSE.L",
+"name": "SSE",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "STAN.L",
+"name": "Standard Chartered",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "SVT.L",
+"name": "Severn Trent",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "TW.L",
+"name": "Taylor Wimpey",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "UU.L",
+"name": "United Utilities",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "VOD.L",
+"name": "Vodafone",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "WPP.L",
+"name": "WPP",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "WTB.L",
+"name": "Whitbread",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "III.L",
+"name": "3i Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "ADM.L",
+"name": "Admiral",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "BTRW.L",
+"name": "Barratt Redrow",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "BEZ.L",
+"name": "Beazley",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "ENT.L",
+"name": "Entain",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "GAW.L",
+"name": "Games Workshop",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "HWDN.L",
+"name": "Howden Joinery",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "ICG.L",
+"name": "Intermediate Capital",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "IMI.L",
+"name": "IMI",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "WEIR.L",
+"name": "Weir Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "MRO.L",
+"name": "Melrose",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "DPLM.L",
+"name": "Diploma",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "CTEC.L",
+"name": "ConvaTec",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "HIK.L",
+"name": "Hikma",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "AAF.L",
+"name": "Airtel Africa",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "BAB.L",
+"name": "Babcock",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "IGG.L",
+"name": "IG Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "ITV.L",
+"name": "ITV",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "EZJ.L",
+"name": "easyJet",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "STJ.L",
+"name": "St James's Place",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "RS1.L",
+"name": "RS Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "BWY.L",
+"name": "Bellway",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "VTY.L",
+"name": "Vistry",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "TPK.L",
+"name": "Travis Perkins",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "GRG.L",
+"name": "Greggs",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "INCH.L",
+"name": "Inchcape",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "ROR.L",
+"name": "Rotork",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "CHG.L",
+"name": "Chemring",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "QQ.L",
+"name": "QinetiQ",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "SRP.L",
+"name": "Serco",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "HAS.L",
+"name": "Hays",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "PAGE.L",
+"name": "PageGroup",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "MGNS.L",
+"name": "Morgan Sindall",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "BBY.L",
+"name": "Balfour Beatty",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "WIZZ.L",
+"name": "Wizz Air",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "TRN.L",
+"name": "Trainline",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "CCC.L",
+"name": "Computacenter",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "BYIT.L",
+"name": "Bytes Technology",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "OXIG.L",
+"name": "Oxford Instruments",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "RSW.L",
+"name": "Renishaw",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "VCT.L",
+"name": "Victrex",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "JMAT.L",
+"name": "Johnson Matthey",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "TATE.L",
+"name": "Tate & Lyle",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "PETS.L",
+"name": "Pets at Home",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "DNLM.L",
+"name": "Dunelm",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "BOY.L",
+"name": "Bodycote",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "VSVS.L",
+"name": "Vesuvius",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "MGAM.L",
+"name": "Morgan Advanced Materials",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "GEN.L",
+"name": "Genuit",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "MTO.L",
+"name": "Mitie",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "RWS.L",
+"name": "RWS",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "FUTR.L",
+"name": "Future",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "ASHM.L",
+"name": "Ashmore",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "JUP.L",
+"name": "Jupiter",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "MNG.L",
+"name": "M&G",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "ABDN.L",
+"name": "Aberdeen Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "PLUS.L",
+"name": "Plus500",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "CMCX.L",
+"name": "CMC Markets",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "QLT.L",
+"name": "Quilter",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "SAFE.L",
+"name": "Safestore",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "BLND.L",
+"name": "British Land",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "DLN.L",
+"name": "Derwent London",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "UTG.L",
+"name": "Unite Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "LMP.L",
+"name": "LondonMetric",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "BBOX.L",
+"name": "Tritax Big Box",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "HMSO.L",
+"name": "Hammerson",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "GPE.L",
+"name": "Great Portland Estates",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "SHC.L",
+"name": "Shaftesbury Capital",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "CKN.L",
+"name": "Clarkson",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "FGP.L",
+"name": "FirstGroup",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "MONY.L",
+"name": "MONY Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "ASC.L",
+"name": "ASOS",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "OCDO.L",
+"name": "Ocado",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "WOSG.L",
+"name": "Watches of Switzerland",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "HTWS.L",
+"name": "Helios Towers",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "TEP.L",
+"name": "Telecom Plus",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "DRX.L",
+"name": "Drax",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "PNN.L",
+"name": "Pennon",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "RHIM.L",
+"name": "RHI Magnesita",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "ATG.L",
+"name": "Auction Technology Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "IWG.L",
+"name": "IWG",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "SSPG.L",
+"name": "SSP Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "PFD.L",
+"name": "Premier Foods",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "CBG.L",
+"name": "Close Brothers",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "HILS.L",
+"name": "Hill & Smith",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "SMWH.L",
+"name": "WH Smith",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "GFTU.L",
+"name": "Grafton Group",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "AML.L",
+"name": "Aston Martin Lagonda",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "TBCG.L",
+"name": "TBC Bank",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "ENOG.L",
+"name": "Energean",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "HBR.L",
+"name": "Harbour Energy",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "MTLN.L",
+"name": "Metlen Energy & Metals",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SMT.L",
+"name": "Scottish Mortgage",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "SHEL.L",
+"name": "Shell",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "HSBA.L",
+"name": "HSBC",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "AZN.L",
+"name": "AstraZeneca",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "ULVR.L",
+"name": "Unilever",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "WISE.L",
+"name": "Wise",
+"mic": "XLON",
+"country": "GB",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "GBp"
+},
+{
+"ticker": "HANZA.ST",
+"name": "Hanza",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "INWI.ST",
+"name": "Inwido",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "KAR.ST",
+"name": "Karnov Group",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SEB-A.ST",
+"name": "SEB",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SHB-A.ST",
+"name": "Handelsbanken",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SWED-A.ST",
+"name": "Swedbank",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "ESSITY-B.ST",
+"name": "Essity",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SCA-B.ST",
+"name": "SCA",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SAND.ST",
+"name": "Sandvik",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SKF-B.ST",
+"name": "SKF",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "ALFA.ST",
+"name": "Alfa Laval",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "EPI-A.ST",
+"name": "Epiroc",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "HEXA-B.ST",
+"name": "Hexagon",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "TEL2-B.ST",
+"name": "Tele2",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "TELIA.ST",
+"name": "Telia",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "BOL.ST",
+"name": "Boliden",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SSAB-A.ST",
+"name": "SSAB",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "EVO.ST",
+"name": "Evolution",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "NIBE-B.ST",
+"name": "NIBE",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "LIFCO-B.ST",
+"name": "Lifco",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "INDU-C.ST",
+"name": "Industrivärden",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "LATO-B.ST",
+"name": "Latour",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "ELUX-B.ST",
+"name": "Electrolux",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "HUSQ-B.ST",
+"name": "Husqvarna",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SECU-B.ST",
+"name": "Securitas",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SAAB-B.ST",
+"name": "Saab",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "TREL-B.ST",
+"name": "Trelleborg",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "GETI-B.ST",
+"name": "Getinge",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SOBI.ST",
+"name": "Sobi",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "CAST.ST",
+"name": "Castellum",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "FABG.ST",
+"name": "Fabege",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "BALD-B.ST",
+"name": "Fastighets AB Balder",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SAGA-B.ST",
+"name": "Sagax",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "WALL-B.ST",
+"name": "Wallenstam",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "AAK.ST",
+"name": "AAK",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "AXFO.ST",
+"name": "Axfood",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "KINV-B.ST",
+"name": "Kinnevik",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "EQT.ST",
+"name": "EQT",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "INDT.ST",
+"name": "Indutrade",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "ADDT-B.ST",
+"name": "Addtech",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "BEIJ-B.ST",
+"name": "Beijer Ref",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "NOLA-B.ST",
+"name": "Nolato",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "THULE.ST",
+"name": "Thule",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SWEC-B.ST",
+"name": "Sweco",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SKA-B.ST",
+"name": "Skanska",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "NCC-B.ST",
+"name": "NCC",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "PEAB-B.ST",
+"name": "Peab",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "HOLM-B.ST",
+"name": "Holmen",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "BILL.ST",
+"name": "Billerud",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "AFRY.ST",
+"name": "AFRY",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "AZA.ST",
+"name": "Avanza",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "NDA-SE.ST",
+"name": "Nordea",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SINCH.ST",
+"name": "Sinch",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "VITR.ST",
+"name": "Vitrolife",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "MYCR.ST",
+"name": "Mycronic",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "LAGR-B.ST",
+"name": "Lagercrantz",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "HPOL-B.ST",
+"name": "Hexpol",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "ALIV-SDB.ST",
+"name": "Autoliv",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "DOM.ST",
+"name": "Dometic",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "CLAS-B.ST",
+"name": "Clas Ohlson",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "BETS-B.ST",
+"name": "Betsson",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "EMBRAC-B.ST",
+"name": "Embracer",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "MTRS.ST",
+"name": "Munters",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "BURE.ST",
+"name": "Bure Equity",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "RATO-B.ST",
+"name": "Ratos",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "ATRLJ-B.ST",
+"name": "Atrium Ljungberg",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "CATE.ST",
+"name": "Catena",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "PNDX-B.ST",
+"name": "Pandox",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "CAMX.ST",
+"name": "Camurus",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "BIOA-B.ST",
+"name": "BioArctic",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "ARJO-B.ST",
+"name": "Arjo",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "EKTA-B.ST",
+"name": "Elekta",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "BRAV.ST",
+"name": "Bravida",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "LOOMIS.ST",
+"name": "Loomis",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "ALLEI.ST",
+"name": "Alleima",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "VOLCAR-B.ST",
+"name": "Volvo Car",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "AQ.ST",
+"name": "AQ Group",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "TROAX.ST",
+"name": "Troax",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "BUFAB.ST",
+"name": "Bufab",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "XVIVO.ST",
+"name": "Xvivo Perfusion",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SECT-B.ST",
+"name": "Sectra",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "HMS.ST",
+"name": "HMS Networks",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "PDX.ST",
+"name": "Paradox Interactive",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SYSR.ST",
+"name": "Systemair",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "GRNG.ST",
+"name": "Gränges",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "ENGCON-B.ST",
+"name": "engcon",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "BEIA-B.ST",
+"name": "Beijer Alma",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "OEM-B.ST",
+"name": "OEM International",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "MIPS.ST",
+"name": "MIPS",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "IVSO.ST",
+"name": "Invisio",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "STOR-B.ST",
+"name": "Storskogen",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SDIP-B.ST",
+"name": "Sdiptech",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "INSTAL.ST",
+"name": "Instalco",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "SAVE.ST",
+"name": "Nordnet",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "BETCO.ST",
+"name": "Better Collective",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "ATT.ST",
+"name": "Attendo",
+"mic": "XSTO",
+"country": "SE",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "SEK"
+},
+{
+"ticker": "CADLR.OL",
+"name": "Cadeler",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "TEL.OL",
+"name": "Telenor",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "ORK.OL",
+"name": "Orkla",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "YAR.OL",
+"name": "Yara",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "AKRBP.OL",
+"name": "Aker BP",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "SUBC.OL",
+"name": "Subsea 7",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "KOG.OL",
+"name": "Kongsberg Gruppen",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "GJF.OL",
+"name": "Gjensidige",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "STB.OL",
+"name": "Storebrand",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "SALM.OL",
+"name": "SalMar",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "LSG.OL",
+"name": "Lerøy Seafood",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "BAKKA.OL",
+"name": "Bakkafrost",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "AUSS.OL",
+"name": "Austevoll Seafood",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "TOM.OL",
+"name": "Tomra",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "NOD.OL",
+"name": "Nordic Semiconductor",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "AKER.OL",
+"name": "Aker",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "AKSO.OL",
+"name": "Aker Solutions",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "TGS.OL",
+"name": "TGS",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "BWLPG.OL",
+"name": "BW LPG",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "FRO.OL",
+"name": "Frontline",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "HAFNI.OL",
+"name": "Hafnia",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "WAWI.OL",
+"name": "Wallenius Wilhelmsen",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "VAR.OL",
+"name": "Vår Energi",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "ELK.OL",
+"name": "Elkem",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "BOUV.OL",
+"name": "Bouvet",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "ATEA.OL",
+"name": "Atea",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "EPR.OL",
+"name": "Europris",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "KIT.OL",
+"name": "Kitron",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "AFG.OL",
+"name": "AF Gruppen",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "VEI.OL",
+"name": "Veidekke",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "ENTRA.OL",
+"name": "Entra",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "MPCC.OL",
+"name": "MPC Container Ships",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "PROT.OL",
+"name": "Protector Forsikring",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "MING.OL",
+"name": "SpareBank 1 SMN",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "NAS.OL",
+"name": "Norwegian Air Shuttle",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "SCATC.OL",
+"name": "Scatec",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "NEL.OL",
+"name": "Nel",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "AUTO.OL",
+"name": "AutoStore",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "HAUTO.OL",
+"name": "Höegh Autoliners",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "ODF.OL",
+"name": "Odfjell",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "DNO.OL",
+"name": "DNO",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "KID.OL",
+"name": "Kid",
+"mic": "XOSL",
+"country": "NO",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "NOK"
+},
+{
+"ticker": "KCR.HE",
+"name": "Konecranes",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FORTUM.HE",
+"name": "Fortum",
+"mic": "XHEL",
+"country": "FI",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "UPM.HE",
+"name": "UPM-Kymmene",
+"mic": "XHEL",
+"country": "FI",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "STERV.HE",
+"name": "Stora Enso",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ELISA.HE",
+"name": "Elisa",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ORNBV.HE",
+"name": "Orion",
+"mic": "XHEL",
+"country": "FI",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "NDA-FI.HE",
+"name": "Nordea (Helsinki)",
+"mic": "XHEL",
+"country": "FI",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "WRT1V.HE",
+"name": "Wärtsilä",
+"mic": "XHEL",
+"country": "FI",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "METSO.HE",
+"name": "Metso",
+"mic": "XHEL",
+"country": "FI",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VALMT.HE",
+"name": "Valmet",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "KESKOB.HE",
+"name": "Kesko",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HUH1V.HE",
+"name": "Huhtamäki",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TIETO.HE",
+"name": "Tietoevry",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "OUT1V.HE",
+"name": "Outokumpu",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "KEMIRA.HE",
+"name": "Kemira",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HIAB.HE",
+"name": "Hiab",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TYRES.HE",
+"name": "Nokian Tyres",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "QTCOM.HE",
+"name": "Qt Group",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "FSKRS.HE",
+"name": "Fiskars",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "YIT.HE",
+"name": "YIT",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CTY1S.HE",
+"name": "Citycon",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TOKMAN.HE",
+"name": "Tokmanni",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PUUILO.HE",
+"name": "Puuilo",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HARVIA.HE",
+"name": "Harvia",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "REG1V.HE",
+"name": "Revenio",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "VAIAS.HE",
+"name": "Vaisala",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MANTA.HE",
+"name": "Mandatum",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TTALO.HE",
+"name": "Terveystalo",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SANOMA.HE",
+"name": "Sanoma",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MEKKO.HE",
+"name": "Marimekko",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PON1V.HE",
+"name": "Ponsse",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "OLVAS.HE",
+"name": "Olvi",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "KEMPOWR.HE",
+"name": "Kempower",
+"mic": "XHEL",
+"country": "FI",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "COLO-B.CO",
+"name": "Coloplast",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "GMAB.CO",
+"name": "Genmab",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "NSIS-B.CO",
+"name": "Novonesis",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "PNDORA.CO",
+"name": "Pandora",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "DEMANT.CO",
+"name": "Demant",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "GN.CO",
+"name": "GN Store Nord",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "ROCK-B.CO",
+"name": "Rockwool",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "TRYG.CO",
+"name": "Tryg",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "DANSKE.CO",
+"name": "Danske Bank",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "JYSK.CO",
+"name": "Jyske Bank",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "ISS.CO",
+"name": "ISS",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "AMBU-B.CO",
+"name": "Ambu",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "ZEAL.CO",
+"name": "Zealand Pharma",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "BAVA.CO",
+"name": "Bavarian Nordic",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "NETC.CO",
+"name": "Netcompany",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "FLS.CO",
+"name": "FLSmidth",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "RBREW.CO",
+"name": "Royal Unibrew",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "SCHO.CO",
+"name": "Schouw",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "DFDS.CO",
+"name": "DFDS",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "NKT.CO",
+"name": "NKT",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "ALMB.CO",
+"name": "Alm. Brand",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "RILBA.CO",
+"name": "Ringkjøbing Landbobank",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "MATAS.CO",
+"name": "Matas",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "NTG.CO",
+"name": "NTG Nordic Transport",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "HLUN-B.CO",
+"name": "Lundbeck",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "ALK-B.CO",
+"name": "ALK-Abelló",
+"mic": "XCSE",
+"country": "DK",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "DKK"
+},
+{
+"ticker": "PKO.WA",
+"name": "PKO Bank Polski",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "PEO.WA",
+"name": "Bank Pekao",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "PZU.WA",
+"name": "PZU",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "KGH.WA",
+"name": "KGHM",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "PKN.WA",
+"name": "Orlen",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "LPP.WA",
+"name": "LPP",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "DNP.WA",
+"name": "Dino Polska",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "ALE.WA",
+"name": "Allegro",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "CDR.WA",
+"name": "CD Projekt",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "PGE.WA",
+"name": "PGE",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "MBK.WA",
+"name": "mBank",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "KRU.WA",
+"name": "Kruk",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "CPS.WA",
+"name": "Cyfrowy Polsat",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "OPL.WA",
+"name": "Orange Polska",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "BDX.WA",
+"name": "Budimex",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "KTY.WA",
+"name": "Grupa Kęty",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "PCO.WA",
+"name": "Pepco",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "ZAB.WA",
+"name": "Żabka",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "MIL.WA",
+"name": "Bank Millennium",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "ALR.WA",
+"name": "Alior Bank",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "TPE.WA",
+"name": "Tauron",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "ENA.WA",
+"name": "Enea",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "ACP.WA",
+"name": "Asseco Poland",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "XTB.WA",
+"name": "XTB",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "TXT.WA",
+"name": "Text",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "JSW.WA",
+"name": "JSW",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "DOM.WA",
+"name": "Dom Development",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "BFT.WA",
+"name": "Benefit Systems",
+"mic": "XWAR",
+"country": "PL",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "PLN"
+},
+{
+"ticker": "ETE.AT",
+"name": "National Bank of Greece",
+"mic": "ASEX",
+"country": "GR",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "EUROB.AT",
+"name": "Eurobank",
+"mic": "ASEX",
+"country": "GR",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ALPHA.AT",
+"name": "Alpha Bank",
+"mic": "ASEX",
+"country": "GR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TPEIR.AT",
+"name": "Piraeus Bank",
+"mic": "ASEX",
+"country": "GR",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "HTO.AT",
+"name": "OTE",
+"mic": "ASEX",
+"country": "GR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "PPC.AT",
+"name": "PPC",
+"mic": "ASEX",
+"country": "GR",
+"segment": "large",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "MOH.AT",
+"name": "Motor Oil Hellas",
+"mic": "ASEX",
+"country": "GR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ELPE.AT",
+"name": "Helleniq Energy",
+"mic": "ASEX",
+"country": "GR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "BELA.AT",
+"name": "Jumbo",
+"mic": "ASEX",
+"country": "GR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "GEKTERNA.AT",
+"name": "GEK Terna",
+"mic": "ASEX",
+"country": "GR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AEGN.AT",
+"name": "Aegean Airlines",
+"mic": "ASEX",
+"country": "GR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "TITC.AT",
+"name": "Titan Cement",
+"mic": "ASEX",
+"country": "GR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "LAMDA.AT",
+"name": "Lamda Development",
+"mic": "ASEX",
+"country": "GR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "ADMIE.AT",
+"name": "IPTO",
+"mic": "ASEX",
+"country": "GR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "AIA.AT",
+"name": "Athens International Airport",
+"mic": "ASEX",
+"country": "GR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CENER.AT",
+"name": "Cenergy (Athens)",
+"mic": "ASEX",
+"country": "GR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "SAR.AT",
+"name": "Sarantis",
+"mic": "ASEX",
+"country": "GR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "QUEST.AT",
+"name": "Quest Holdings",
+"mic": "ASEX",
+"country": "GR",
+"segment": "smid",
+"classified_from_mcap": true,
+"currency": "EUR"
+},
+{
+"ticker": "CEZ.PR",
+"name": "CEZ",
+"mic": "XPRA",
+"country": "CZ",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CZK"
+},
+{
+"ticker": "KOMB.PR",
+"name": "Komerční banka",
+"mic": "XPRA",
+"country": "CZ",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CZK"
+},
+{
+"ticker": "MONET.PR",
+"name": "Moneta Money Bank",
+"mic": "XPRA",
+"country": "CZ",
+"segment": "smid",
+"classified_from_mcap": false,
+"currency": "CZK"
+}
+]

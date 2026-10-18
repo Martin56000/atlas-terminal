@@ -1,0 +1,29 @@
+name: Probe candidate tickers
+
+# Checks probe/candidates.txt against Yahoo Finance and pushes probe/result.json to the "probe" branch.
+on:
+  push:
+    branches: [main]
+    paths: ["probe/candidates.txt", "probe/probe.py"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "yfinance>=1.7.0" pandas
+      - run: python probe/probe.py
+      - name: Push result
+        run: |
+          mkdir /tmp/out && cp probe/result.json /tmp/out/
+          cd /tmp/out && git init -q -b probe && git add -A && \
+          git -c user.name="atlas-bot" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -q -m probe && \
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" probe

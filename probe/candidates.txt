@@ -1,0 +1,946 @@
+# Candidate European stocks to add. One per line: Yahoo ticker | name
+# Each is checked against Yahoo Finance by .github/workflows/probe.yml before entering the universe.
+
+## FR XPAR
+FR.PA|Valeo
+ELIS.PA|Elis
+AUB.PA|Aubay
+FGA.PA|Figeac Aéro
+GPE.PA|Gérard Perrier Industrie
+ALHGR.PA|Hoffmann Green Cement Technologies
+IDL.PA|ID Logistics
+NEX.PA|Nexans
+SPIE.PA|Spie
+RUI.PA|Rubis
+GET.PA|Getlink
+IPN.PA|Ipsen
+BB.PA|Société BIC
+NK.PA|Imerys
+FNAC.PA|Fnac Darty
+MMT.PA|M6 Métropole Télévision
+MERY.PA|Mercialys
+NXI.PA|Nexity
+ALTA.PA|Altarea
+CARM.PA|Carmila
+SESG.PA|SES
+RF.PA|Eurazeo
+WAVE.PA|Wavestone
+ATE.PA|Alten
+MAU.PA|Maurel & Prom
+TE.PA|Technip Energies
+FRVIA.PA|Forvia
+OPM.PA|OPmobility
+NANO.PA|Nanobiotix
+EXA.PA|Exail Technologies
+LNA.PA|LNA Santé
+CRI.PA|Chargeurs
+MDM.PA|Maisons du Monde
+TKO.PA|Tikehau Capital
+ANTIN.PA|Antin Infrastructure Partners
+MRN.PA|Mersen
+BOI.PA|Boiron
+QDT.PA|Quadient
+SII.PA|SII
+NRO.PA|Neurones
+VLA.PA|Valneva
+DBG.PA|Derichebourg
+SCHP.PA|Séché Environnement
+MF.PA|Wendel
+ARG.PA|Argan
+LOUP.PA|LDC
+FII.PA|Lisi
+GNFT.PA|Genfit
+SAVE.PA|Savencia
+TFF.PA|TFF Group
+VETO.PA|Vetoquinol
+PIG.PA|Haulotte
+CLARI.PA|Clariane
+EMEIS.PA|Emeis
+ATO.PA|Atos
+VU.PA|Vusion
+SBT.PA|Oeneo
+LPE.PA|Laurent-Perrier
+GLO.PA|GL events
+VLTSA.PA|Voltalia
+EAPI.PA|Euroapi
+XFAB.PA|X-Fab
+AL2SI.PA|2CRSi
+IDIP.PA|IDI
+PEUG.PA|Peugeot Invest
+ABVX.PA|Abivax
+EKI.PA|Ekinops
+ALCLS.PA|Cellectis
+DPT.PA|S.T. Dupont
+EXE.PA|Exel Industries
+BLC.PA|Bastide Le Confort Médical
+JCQ.PA|Jacquet Metals
+MLAA.PA|Groupe Partouche
+SDG.PA|Synergie
+CATG.PA|Catana Group
+INF.PA|Infotel
+ALBI.PA|Bigben Interactive
+PARP.PA|Groupe Pierre & Vacances
+CAFO.PA|Cafom
+ALCAR.PA|Carmat
+ROTH.PA|Rothschild & Co
+HCO.PA|High Co
+EC.PA|TotalEnergies EP Gabon
+AKW.PA|Akwel
+DLTA.PA|Delta Plus
+MBWS.PA|Marie Brizard Wine & Spirits
+COX.PA|Nicox
+## DE XETR
+GBF.DE|Bilfinger
+BFSA.DE|Befesa
+FTK.DE|flatexDEGIRO
+JEN.DE|Jenoptik
+JST.DE|JOST Werke
+LEG.DE|LEG Immobilien
+TEG.DE|TAG Immobilien
+AT1.DE|Aroundtown
+KGX.DE|Kion
+HNR1.DE|Hannover Rück
+TLX.DE|Talanx
+SY1.DE|Symrise
+BNR.DE|Brenntag
+FME.DE|Fresenius Medical Care
+FRE.DE|Fresenius
+BEI.DE|Beiersdorf
+HEN3.DE|Henkel
+CON.DE|Continental
+PAH3.DE|Porsche Automobil Holding
+P911.DE|Porsche AG
+DTG.DE|Daimler Truck
+MBG.DE|Mercedes-Benz Group
+ZAL.DE|Zalando
+PUM.DE|Puma
+HFG.DE|HelloFresh
+DHER.DE|Delivery Hero
+CBK.DE|Commerzbank
+AIXA.DE|Aixtron
+NEM.DE|Nemetschek
+SRT3.DE|Sartorius
+EVK.DE|Evonik
+LXS.DE|Lanxess
+WCH.DE|Wacker Chemie
+KBX.DE|Knorr-Bremse
+RAA.DE|Rational
+G1A.DE|GEA Group
+KRN.DE|Krones
+DUE.DE|Dürr
+HOT.DE|Hochtief
+BOSS.DE|Hugo Boss
+FPE3.DE|Fuchs
+EVD.DE|CTS Eventim
+SAX.DE|Ströer
+PSM.DE|ProSiebenSat.1
+UTDI.DE|United Internet
+1U1.DE|1&1
+FNTN.DE|Freenet
+SDF.DE|K+S
+AFX.DE|Carl Zeiss Meditec
+DWNI.DE|Deutsche Wohnen
+GXI.DE|Gerresheimer
+NDX1.DE|Nordex
+VBK.DE|Verbio
+S92.DE|SMA Solar
+EVT.DE|Evotec
+TMV.DE|TeamViewer
+BC8.DE|Bechtle
+COK.DE|Cancom
+SIX2.DE|Sixt
+R3NK.DE|Renk
+TKA.DE|thyssenkrupp
+SZG.DE|Salzgitter
+NA9.DE|Nagarro
+STM.DE|Stabilus
+NOEJ.DE|Norma Group
+KCO.DE|Klöckner & Co
+SGL.DE|SGL Carbon
+WAF.DE|Siltronic
+JUN3.DE|Jungheinrich
+HLAG.DE|Hapag-Lloyd
+LHA.DE|Lufthansa
+FRA.DE|Fraport
+TUI1.DE|TUI
+AG1.DE|Auto1
+MRK.DE|Merck KGaA
+QIA.DE|Qiagen
+VOS.DE|Vossloh
+WAC.DE|Wacker Neuson
+GFT.DE|GFT Technologies
+ELG.DE|Elmos Semiconductor
+IOS.DE|Ionos
+HYQ.DE|Hypoport
+MUX.DE|Mutares
+PNE3.DE|PNE
+DOU.DE|Douglas
+SHA0.DE|Schaeffler
+TKMS.DE|TKMS
+KWS.DE|KWS Saat
+DRW3.DE|Drägerwerk
+CWC.DE|CEWE
+ZIL2.DE|ElringKlinger
+SPG.DE|Springer Nature
+VIB3.DE|Villeroy & Boch
+INH.DE|Indus Holding
+DMP.DE|Dermapharm
+FIE.DE|Fielmann
+CEC.DE|Ceconomy
+B4B.DE|Metro
+PAT.DE|Patrizia
+GYC.DE|Grand City Properties
+VH2.DE|Friedrich Vorwerk
+8TRA.DE|Traton
+DEZ.DE|Deutz
+KTN.DE|Kontron
+MLP.DE|MLP
+SFQ.DE|SAF-Holland
+PBB.DE|Deutsche Pfandbriefbank
+HAG.DE|Hensoldt
+AOF.DE|ATOSS Software
+NB2.DE|Northern Data
+ADN1.DE|Adesso
+SMHN.DE|Süss MicroTec
+HDD.DE|Heidelberger Druckmaschinen
+DBAN.DE|Deutsche Beteiligungs AG
+SANT.DE|Kontron S&T
+## NL XAMS
+ARCAD.AS|Arcadis
+AGN.AS|Aegon
+NN.AS|NN Group
+ASRNL.AS|ASR Nederland
+RAND.AS|Randstad
+IMCD.AS|IMCD
+DSFIR.AS|DSM-Firmenich
+KPN.AS|KPN
+UMG.AS|Universal Music Group
+EXO.AS|Exor
+CTPNV.AS|CTP
+AALB.AS|Aalberts
+SBMO.AS|SBM Offshore
+FUR.AS|Fugro
+JDEP.AS|JDE Peet's
+TOM2.AS|TomTom
+BAMNB.AS|Koninklijke BAM
+HEIJM.AS|Heijmans
+CRBN.AS|Corbion
+VPK.AS|Vopak
+OCI.AS|OCI
+LIGHT.AS|Signify
+BFIT.AS|Basic-Fit
+FLOW.AS|Flow Traders
+WHA.AS|Wereldhave
+ECMPA.AS|Eurocommercial Properties
+AMG.AS|AMG Critical Materials
+ALFEN.AS|Alfen
+PHARM.AS|Pharming
+APAM.AS|Aperam
+SIFG.AS|Sif Holding
+ACOMO.AS|Acomo
+VLK.AS|Van Lanschot Kempen
+ABN.AS|ABN Amro
+BRNL.AS|Brunel
+MT.AS|ArcelorMittal
+CVC.AS|CVC Capital Partners
+INPST.AS|InPost
+HEIO.AS|Heineken Holding
+NEDAP.AS|Nedap
+## BE XBRU
+FAGR.BR|Fagron
+CENER.BR|Cenergy Holdings
+AGS.BR|Ageas
+ELI.BR|Elia
+GBLB.BR|GBL
+SOF.BR|Sofina
+UMI.BR|Umicore
+WDP.BR|WDP
+AED.BR|Aedifica
+COFB.BR|Cofinimmo
+DIE.BR|D'Ieteren
+LOTB.BR|Lotus Bakeries
+MELE.BR|Melexis
+BEKB.BR|Bekaert
+AZE.BR|Azelis
+BPOST.BR|bpost
+PROX.BR|Proximus
+SYENS.BR|Syensqo
+XIOR.BR|Xior
+VGP.BR|VGP
+MONT.BR|Montea
+BAR.BR|Barco
+KIN.BR|Kinepolis
+GLPG.BR|Galapagos
+ARGX.BR|argenx
+EVS.BR|EVS Broadcast
+RECT.BR|Recticel
+TESB.BR|Tessenderlo
+ONTEX.BR|Ontex
+AGFB.BR|Agfa-Gevaert
+SIP.BR|Sipef
+IBAB.BR|IBA
+CMBT.BR|CMB.Tech
+SHUR.BR|Shurgard
+CFEB.BR|CFE
+DEME.BR|DEME Group
+VIO.BR|Viohalco
+## AT XWBO
+DOC.VI|DO & CO
+EBS.VI|Erste Group
+RBI.VI|Raiffeisen Bank International
+OMV.VI|OMV
+VER.VI|Verbund
+ANDR.VI|Andritz
+VOE.VI|voestalpine
+WIE.VI|Wienerberger
+BG.VI|BAWAG
+POST.VI|Österreichische Post
+UQA.VI|Uniqa
+VIG.VI|Vienna Insurance Group
+TKA.VI|Telekom Austria
+CAI.VI|CA Immobilien
+SBO.VI|SBO
+LNZ.VI|Lenzing
+PAL.VI|Palfinger
+SEM.VI|Semperit
+AGR.VI|Agrana
+ATS.VI|AT&S
+ZAG.VI|Zumtobel
+POS.VI|Porr
+STR.VI|Strabag
+FACC.VI|FACC
+EVN.VI|EVN
+MMK.VI|Mayr-Melnhof
+ROS.VI|Rosenbauer
+AMAG.VI|AMAG
+## IE XDUB
+KRZ.IR|Kerry Group
+KRX.IR|Kingspan
+BIRG.IR|Bank of Ireland
+A5G.IR|AIB Group
+GL9.IR|Glanbia
+IR5B.IR|Irish Continental Group
+UPR.IR|Uniphar
+C5H.IR|Cairn Homes
+GVR.IR|Glenveagh Properties
+RYA.IR|Ryanair
+## IT XMIL
+ACE.MI|Acea
+AMP.MI|Amplifon
+ARIS.MI|Ariston
+AZM.MI|Azimut
+COM.MI|Comer Industries
+INW.MI|Infrastrutture Wireless Italiane
+SRG.MI|Snam
+TRN.MI|Terna
+A2A.MI|A2A
+HER.MI|Hera
+IG.MI|Italgas
+BAMI.MI|Banco BPM
+BMPS.MI|Monte dei Paschi
+BPE.MI|BPER Banca
+FBK.MI|FinecoBank
+MB.MI|Mediobanca
+BGN.MI|Banca Generali
+BMED.MI|Banca Mediolanum
+UNI.MI|Unipol
+PIRC.MI|Pirelli
+IP.MI|Interpump
+REC.MI|Recordati
+DIA.MI|DiaSorin
+TIT.MI|Telecom Italia
+NEXI.MI|Nexi
+SPM.MI|Saipem
+TEN.MI|Tenaris
+IVG.MI|Iveco
+BZU.MI|Buzzi
+ERG.MI|ERG
+SFER.MI|Salvatore Ferragamo
+TIP.MI|Tamburi Investment Partners
+ENAV.MI|Enav
+MAIRE.MI|Maire
+WBD.MI|Webuild
+FCT.MI|Fincantieri
+BFF.MI|BFF Bank
+CE.MI|Credem
+BPSO.MI|Banca Popolare di Sondrio
+DAN.MI|Danieli
+SES.MI|Sesa
+ZV.MI|Zignago Vetro
+SOL.MI|SOL
+GVS.MI|GVS
+CRL.MI|Carel
+ELN.MI|El.En.
+AVIO.MI|Avio
+OVS.MI|OVS
+MFEB.MI|MFE-MediaForEurope
+RWAY.MI|Rai Way
+TGYM.MI|Technogym
+WIIT.MI|WIIT
+REY.MI|Reply
+DOV.MI|doValue
+IRE.MI|Iren
+SFL.MI|Safilo
+MARR.MI|Marr
+BRE.MI|Brembo
+FILA.MI|Fila
+CEM.MI|Cementir
+ENEL.MI|Enel
+RACE.MI|Ferrari
+STLAM.MI|Stellantis (Milan)
+SRS.MI|Saras
+LTMC.MI|Lottomatica
+PHN.MI|Pharmanutra
+CY4.MI|Cy4Gate
+SAL.MI|Salcef
+## ES XMAD
+ALM.MC|Almirall
+COXG.MC|Cox ABG Group
+FDR.MC|Fluidra
+BKT.MC|Bankinter
+SAB.MC|Banco Sabadell
+UNI.MC|Unicaja
+MAP.MC|Mapfre
+ACS.MC|ACS
+ACX.MC|Acerinox
+ANA.MC|Acciona
+ANE.MC|Acciona Energía
+CLNX.MC|Cellnex
+ELE.MC|Endesa
+ENG.MC|Enagás
+RED.MC|Redeia
+NTGY.MC|Naturgy
+IAG.MC|International Airlines Group
+MRL.MC|Merlin Properties
+COL.MC|Inmobiliaria Colonial
+IDR.MC|Indra
+LOG.MC|Logista
+MEL.MC|Meliá Hotels
+SCYR.MC|Sacyr
+VIS.MC|Viscofan
+CIE.MC|CIE Automotive
+EBRO.MC|Ebro Foods
+FAE.MC|Faes Farma
+ROVI.MC|Laboratorios Rovi
+PHM.MC|Pharma Mar
+SLR.MC|Solaria
+GEST.MC|Gestamp
+TRE.MC|Técnicas Reunidas
+CAF.MC|CAF
+TLGO.MC|Talgo
+PUIG.MC|Puig
+VID.MC|Vidrala
+ENC.MC|Ence
+A3M.MC|Atresmedia
+MVC.MC|Metrovacesa
+HOME.MC|Neinor Homes
+LDA.MC|Línea Directa
+OHLA.MC|OHLA
+GRE.MC|Grenergy
+ECR.MC|Ercros
+DOM.MC|Global Dominion
+PSG.MC|Prosegur
+CASH.MC|Prosegur Cash
+TUB.MC|Tubacex
+EDR.MC|eDreams Odigeo
+ITX.MC|Inditex
+IBE.MC|Iberdrola
+SAN.MC|Banco Santander
+## PT XLIS
+BCP.LS|Banco Comercial Português
+NOS.LS|NOS
+NVG.LS|Navigator
+SEM.LS|Semapa
+SON.LS|Sonae
+CTT.LS|CTT Correios
+ALTR.LS|Altri
+EGL.LS|Mota-Engil
+RENE.LS|REN
+COR.LS|Corticeira Amorim
+EDPR.LS|EDP Renováveis
+## CH XSWX
+ACLN.SW|Accelleron
+SCMN.SW|Swisscom
+PGHN.SW|Partners Group
+SLHN.SW|Swiss Life
+HBAN.SW|Helvetia Baloise
+SGSN.SW|SGS
+SCHP.SW|Schindler
+STMN.SW|Straumann
+SOON.SW|Sonova
+ALC.SW|Alcon
+LOGN.SW|Logitech
+KNIN.SW|Kuehne+Nagel
+EMSN.SW|EMS-Chemie
+CLN.SW|Clariant
+BARN.SW|Barry Callebaut
+LISN.SW|Lindt & Sprüngli
+TEMN.SW|Temenos
+BAER.SW|Julius Baer
+BCVN.SW|Banque Cantonale Vaudoise
+SPSN.SW|Swiss Prime Site
+PSPN.SW|PSP Swiss Property
+AVOL.SW|Avolta
+SUN.SW|Sulzer
+GF.SW|Georg Fischer
+BUCN.SW|Bucher Industries
+BEAN.SW|Belimo
+DOKA.SW|dormakaba
+FHZN.SW|Flughafen Zürich
+VONN.SW|Vontobel
+CMBN.SW|Cembra Money Bank
+SQN.SW|Swissquote
+SFSN.SW|SFS Group
+SIGN.SW|SIG Group
+GALE.SW|Galenica
+IFCN.SW|Inficon
+COTN.SW|Comet
+DKSH.SW|DKSH
+ADEN.SW|Adecco
+BKW.SW|BKW
+EMMN.SW|Emmi
+SKAN.SW|Skan Group
+BCHN.SW|Burckhardt Compression
+KARN.SW|Kardex
+INRN.SW|Interroll
+MOVE.SW|Medacta
+YPSN.SW|Ypsomed
+SRAIL.SW|Stadler Rail
+ALLN.SW|Allreal
+LAND.SW|Landis+Gyr
+OERL.SW|OC Oerlikon
+DAE.SW|Dätwyler
+SENS.SW|Sensirion
+BANB.SW|Bachem
+VZN.SW|VZ Holding
+LEHN.SW|LEM
+HUBN.SW|Huber+Suhner
+SDZ.SW|Sandoz
+GALD.SW|Galderma
+DSFIR.SW|DSM-Firmenich (Zurich)
+VAHN.SW|Vaudoise
+TXGN.SW|TX Group
+SWON.SW|SoftwareOne
+## GB XLON
+KLR.L|Keller Group
+AAL.L|Anglo American
+ANTO.L|Antofagasta
+AHT.L|Ashtead
+ABF.L|Associated British Foods
+AUTO.L|Auto Trader
+AV.L|Aviva
+BKG.L|Berkeley Group
+BT-A.L|BT Group
+BNZL.L|Bunzl
+BRBY.L|Burberry
+CCH.L|Coca-Cola HBC
+CNA.L|Centrica
+CPG.L|Compass Group
+CRDA.L|Croda
+DCC.L|DCC
+EXPN.L|Experian
+FRES.L|Fresnillo
+HLMA.L|Halma
+HLN.L|Haleon
+HSX.L|Hiscox
+IHG.L|InterContinental Hotels
+IMB.L|Imperial Brands
+INF.L|Informa
+ITRK.L|Intertek
+JD.L|JD Sports
+KGF.L|Kingfisher
+LAND.L|Land Securities
+LGEN.L|Legal & General
+MKS.L|Marks & Spencer
+MNDI.L|Mondi
+NWG.L|NatWest
+NXT.L|Next
+PRU.L|Prudential
+PSON.L|Pearson
+PSN.L|Persimmon
+RKT.L|Reckitt
+RMV.L|Rightmove
+RTO.L|Rentokil
+SBRY.L|Sainsbury's
+SDR.L|Schroders
+SGE.L|Sage
+SGRO.L|Segro
+SMIN.L|Smiths Group
+SN.L|Smith & Nephew
+SPX.L|Spirax Group
+SSE.L|SSE
+STAN.L|Standard Chartered
+SVT.L|Severn Trent
+TW.L|Taylor Wimpey
+UU.L|United Utilities
+VOD.L|Vodafone
+WPP.L|WPP
+WTB.L|Whitbread
+III.L|3i Group
+ADM.L|Admiral
+BTRW.L|Barratt Redrow
+BEZ.L|Beazley
+ENT.L|Entain
+GAW.L|Games Workshop
+HWDN.L|Howden Joinery
+ICG.L|Intermediate Capital
+IMI.L|IMI
+PHNX.L|Phoenix Group
+WEIR.L|Weir Group
+MRO.L|Melrose
+DPLM.L|Diploma
+CTEC.L|ConvaTec
+HIK.L|Hikma
+AAF.L|Airtel Africa
+BAB.L|Babcock
+IGG.L|IG Group
+ITV.L|ITV
+EZJ.L|easyJet
+STJ.L|St James's Place
+RS1.L|RS Group
+BWY.L|Bellway
+VTY.L|Vistry
+TPK.L|Travis Perkins
+GRG.L|Greggs
+INCH.L|Inchcape
+ROR.L|Rotork
+CHG.L|Chemring
+QQ.L|QinetiQ
+SRP.L|Serco
+HAS.L|Hays
+PAGE.L|PageGroup
+MGNS.L|Morgan Sindall
+BBY.L|Balfour Beatty
+WIZZ.L|Wizz Air
+TRN.L|Trainline
+CCC.L|Computacenter
+BYIT.L|Bytes Technology
+OXIG.L|Oxford Instruments
+RSW.L|Renishaw
+VCT.L|Victrex
+JMAT.L|Johnson Matthey
+TATE.L|Tate & Lyle
+PETS.L|Pets at Home
+DNLM.L|Dunelm
+BOY.L|Bodycote
+VSVS.L|Vesuvius
+MGAM.L|Morgan Advanced Materials
+GEN.L|Genuit
+MTO.L|Mitie
+RWS.L|RWS
+FUTR.L|Future
+ASHM.L|Ashmore
+JUP.L|Jupiter
+MNG.L|M&G
+ABDN.L|Aberdeen Group
+PLUS.L|Plus500
+CMCX.L|CMC Markets
+QLT.L|Quilter
+JTC.L|JTC
+SAFE.L|Safestore
+BLND.L|British Land
+DLN.L|Derwent London
+UTG.L|Unite Group
+LMP.L|LondonMetric
+BBOX.L|Tritax Big Box
+HMSO.L|Hammerson
+GPE.L|Great Portland Estates
+SHC.L|Shaftesbury Capital
+CKN.L|Clarkson
+FGP.L|FirstGroup
+MONY.L|MONY Group
+ASC.L|ASOS
+OCDO.L|Ocado
+WOSG.L|Watches of Switzerland
+HTWS.L|Helios Towers
+TEP.L|Telecom Plus
+DRX.L|Drax
+PNN.L|Pennon
+RHIM.L|RHI Magnesita
+ATG.L|Auction Technology Group
+IWG.L|IWG
+SSPG.L|SSP Group
+PFD.L|Premier Foods
+CBG.L|Close Brothers
+HILS.L|Hill & Smith
+SMWH.L|WH Smith
+GFTU.L|Grafton Group
+AML.L|Aston Martin Lagonda
+TBCG.L|TBC Bank
+ENOG.L|Energean
+HBR.L|Harbour Energy
+MTLN.L|Metlen Energy & Metals
+SMT.L|Scottish Mortgage
+SHEL.L|Shell
+HSBA.L|HSBC
+AZN.L|AstraZeneca
+ULVR.L|Unilever
+CRH.L|CRH
+WISE.L|Wise
+## SE XSTO
+HANZA.ST|Hanza
+INWI.ST|Inwido
+KAR.ST|Karnov Group
+SEB-A.ST|SEB
+SHB-A.ST|Handelsbanken
+SWED-A.ST|Swedbank
+ESSITY-B.ST|Essity
+SCA-B.ST|SCA
+SAND.ST|Sandvik
+SKF-B.ST|SKF
+ALFA.ST|Alfa Laval
+EPI-A.ST|Epiroc
+HEXA-B.ST|Hexagon
+TEL2-B.ST|Tele2
+TELIA.ST|Telia
+BOL.ST|Boliden
+SSAB-A.ST|SSAB
+EVO.ST|Evolution
+NIBE-B.ST|NIBE
+LIFCO-B.ST|Lifco
+INDU-C.ST|Industrivärden
+LATO-B.ST|Latour
+ELUX-B.ST|Electrolux
+HUSQ-B.ST|Husqvarna
+SECU-B.ST|Securitas
+SAAB-B.ST|Saab
+TREL-B.ST|Trelleborg
+GETI-B.ST|Getinge
+SOBI.ST|Sobi
+CAST.ST|Castellum
+FABG.ST|Fabege
+BALD-B.ST|Fastighets AB Balder
+SAGA-B.ST|Sagax
+WALL-B.ST|Wallenstam
+AAK.ST|AAK
+AXFO.ST|Axfood
+KINV-B.ST|Kinnevik
+EQT.ST|EQT
+INDT.ST|Indutrade
+ADDT-B.ST|Addtech
+BEIJ-B.ST|Beijer Ref
+NOLA-B.ST|Nolato
+THULE.ST|Thule
+SWEC-B.ST|Sweco
+SKA-B.ST|Skanska
+NCC-B.ST|NCC
+PEAB-B.ST|Peab
+HOLM-B.ST|Holmen
+BILL.ST|Billerud
+AFRY.ST|AFRY
+AZA.ST|Avanza
+NDA-SE.ST|Nordea
+SINCH.ST|Sinch
+VITR.ST|Vitrolife
+MYCR.ST|Mycronic
+LAGR-B.ST|Lagercrantz
+HPOL-B.ST|Hexpol
+ALIV-SDB.ST|Autoliv
+DOM.ST|Dometic
+CLAS-B.ST|Clas Ohlson
+BETS-B.ST|Betsson
+EMBRAC-B.ST|Embracer
+MTRS.ST|Munters
+BURE.ST|Bure Equity
+RATO-B.ST|Ratos
+ATRLJ-B.ST|Atrium Ljungberg
+CATE.ST|Catena
+NYF.ST|Nyfosa
+PNDX-B.ST|Pandox
+CAMX.ST|Camurus
+BIOA-B.ST|BioArctic
+ARJO-B.ST|Arjo
+EKTA-B.ST|Elekta
+BRAV.ST|Bravida
+LOOMIS.ST|Loomis
+ALLEI.ST|Alleima
+VOLCAR-B.ST|Volvo Car
+AQ.ST|AQ Group
+TROAX.ST|Troax
+BUFAB.ST|Bufab
+XVIVO.ST|Xvivo Perfusion
+SECT-B.ST|Sectra
+HMS.ST|HMS Networks
+FNOX.ST|Fortnox
+PDX.ST|Paradox Interactive
+SYSR.ST|Systemair
+GRNG.ST|Gränges
+ENGCON-B.ST|engcon
+BEIA-B.ST|Beijer Alma
+OEM-B.ST|OEM International
+MIPS.ST|MIPS
+IVSO.ST|Invisio
+STOR-B.ST|Storskogen
+SDIP-B.ST|Sdiptech
+INSTAL.ST|Instalco
+SAVE.ST|Nordnet
+BETCO.ST|Better Collective
+ATT.ST|Attendo
+## NO XOSL
+CADLR.OL|Cadeler
+TEL.OL|Telenor
+ORK.OL|Orkla
+YAR.OL|Yara
+AKRBP.OL|Aker BP
+SUBC.OL|Subsea 7
+KOG.OL|Kongsberg Gruppen
+GJF.OL|Gjensidige
+STB.OL|Storebrand
+SALM.OL|SalMar
+LSG.OL|Lerøy Seafood
+BAKKA.OL|Bakkafrost
+AUSS.OL|Austevoll Seafood
+TOM.OL|Tomra
+SCHA.OL|Schibsted
+NOD.OL|Nordic Semiconductor
+AKER.OL|Aker
+AKSO.OL|Aker Solutions
+TGS.OL|TGS
+BWLPG.OL|BW LPG
+FRO.OL|Frontline
+HAFNI.OL|Hafnia
+WAWI.OL|Wallenius Wilhelmsen
+VAR.OL|Vår Energi
+ELK.OL|Elkem
+BOUV.OL|Bouvet
+ATEA.OL|Atea
+EPR.OL|Europris
+KIT.OL|Kitron
+AFG.OL|AF Gruppen
+VEI.OL|Veidekke
+ENTRA.OL|Entra
+MPCC.OL|MPC Container Ships
+PROT.OL|Protector Forsikring
+SRBNK.OL|SpareBank 1 Sør-Norge
+MING.OL|SpareBank 1 SMN
+NAS.OL|Norwegian Air Shuttle
+SCATC.OL|Scatec
+NEL.OL|Nel
+AUTO.OL|AutoStore
+HAUTO.OL|Höegh Autoliners
+ODF.OL|Odfjell
+FLNG.OL|Flex LNG
+DNO.OL|DNO
+KID.OL|Kid
+## FI XHEL
+KCR.HE|Konecranes
+FORTUM.HE|Fortum
+UPM.HE|UPM-Kymmene
+STERV.HE|Stora Enso
+ELISA.HE|Elisa
+ORNBV.HE|Orion
+NDA-FI.HE|Nordea (Helsinki)
+WRT1V.HE|Wärtsilä
+METSO.HE|Metso
+VALMT.HE|Valmet
+KESKOB.HE|Kesko
+HUH1V.HE|Huhtamäki
+TIETO.HE|Tietoevry
+OUT1V.HE|Outokumpu
+KEMIRA.HE|Kemira
+CGCBV.HE|Cargotec
+HIAB.HE|Hiab
+TYRES.HE|Nokian Tyres
+QTCOM.HE|Qt Group
+FSKRS.HE|Fiskars
+YIT.HE|YIT
+CTY1S.HE|Citycon
+KOJAMO.HE|Kojamo
+TOKMAN.HE|Tokmanni
+PUUILO.HE|Puuilo
+HARVIA.HE|Harvia
+REG1V.HE|Revenio
+VAIAS.HE|Vaisala
+MANTA.HE|Mandatum
+TTALO.HE|Terveystalo
+SANOMA.HE|Sanoma
+MEKKO.HE|Marimekko
+PON1V.HE|Ponsse
+OLVAS.HE|Olvi
+KEMPOWR.HE|Kempower
+## DK XCSE
+COLO-B.CO|Coloplast
+GMAB.CO|Genmab
+NSIS-B.CO|Novonesis
+PNDORA.CO|Pandora
+DEMANT.CO|Demant
+GN.CO|GN Store Nord
+ROCK-B.CO|Rockwool
+TRYG.CO|Tryg
+DANSKE.CO|Danske Bank
+JYSK.CO|Jyske Bank
+SYDB.CO|Sydbank
+ISS.CO|ISS
+AMBU-B.CO|Ambu
+ZEAL.CO|Zealand Pharma
+BAVA.CO|Bavarian Nordic
+NETC.CO|Netcompany
+FLS.CO|FLSmidth
+RBREW.CO|Royal Unibrew
+SCHO.CO|Schouw
+DFDS.CO|DFDS
+NKT.CO|NKT
+ALMB.CO|Alm. Brand
+RILBA.CO|Ringkjøbing Landbobank
+MATAS.CO|Matas
+NTG.CO|NTG Nordic Transport
+HLUN-B.CO|Lundbeck
+ALK-B.CO|ALK-Abelló
+## PL XWAR
+PKO.WA|PKO Bank Polski
+PEO.WA|Bank Pekao
+PZU.WA|PZU
+KGH.WA|KGHM
+PKN.WA|Orlen
+LPP.WA|LPP
+DNP.WA|Dino Polska
+ALE.WA|Allegro
+CDR.WA|CD Projekt
+PGE.WA|PGE
+SPL.WA|Santander Bank Polska
+MBK.WA|mBank
+KRU.WA|Kruk
+CPS.WA|Cyfrowy Polsat
+OPL.WA|Orange Polska
+BDX.WA|Budimex
+KTY.WA|Grupa Kęty
+PCO.WA|Pepco
+ZAB.WA|Żabka
+MIL.WA|Bank Millennium
+ALR.WA|Alior Bank
+TPE.WA|Tauron
+ENA.WA|Enea
+ACP.WA|Asseco Poland
+XTB.WA|XTB
+TXT.WA|Text
+CCC.WA|CCC
+JSW.WA|JSW
+DOM.WA|Dom Development
+BFT.WA|Benefit Systems
+## GR ASEX
+ETE.AT|National Bank of Greece
+EUROB.AT|Eurobank
+ALPHA.AT|Alpha Bank
+TPEIR.AT|Piraeus Bank
+OPAP.AT|Allwyn Hellenic (OPAP)
+HTO.AT|OTE
+PPC.AT|PPC
+MOH.AT|Motor Oil Hellas
+ELPE.AT|Helleniq Energy
+BELA.AT|Jumbo
+GEKTERNA.AT|GEK Terna
+AEGN.AT|Aegean Airlines
+TITC.AT|Titan Cement
+LAMDA.AT|Lamda Development
+ADMIE.AT|IPTO
+AIA.AT|Athens International Airport
+CENER.AT|Cenergy (Athens)
+SAR.AT|Sarantis
+QUEST.AT|Quest Holdings
+## CZ XPRA
+CEZ.PR|CEZ
+KOMB.PR|Komerční banka
+MONET.PR|Moneta Money Bank
+CZG.PR|Colt CZ Group
+## HR none
+KOEI.ZA|Končar

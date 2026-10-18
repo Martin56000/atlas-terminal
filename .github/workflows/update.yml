@@ -13,6 +13,7 @@ on:
         default: true
   push:
     branches: [main]
+    paths-ignore: ["probe/**", ".github/workflows/probe.yml"]
 
 permissions:
   contents: write

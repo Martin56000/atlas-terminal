@@ -100,6 +100,25 @@ jobs:
             -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/${{ github.repository }}/actions/workflows/update.yml/enable" || true
 
+      # The 15-minute schedule is driven by heartbeat.yml (GitHub's cron never fired here): restart it if it stopped.
+      - name: Keep the heartbeat going
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          API="https://api.github.com/repos/${{ github.repository }}/actions/workflows/heartbeat.yml"
+          n=0
+          for st in in_progress queued pending waiting; do
+            c=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "$API/runs?status=$st&per_page=1" | python3 -c "import sys,json;print(json.load(sys.stdin).get('total_count',0))")
+            n=$((n + c))
+          done
+          if [ "$n" = "0" ]; then
+            curl -s -o /dev/null -w "heartbeat restarted: HTTP %{http_code}\n" -X POST -H "Authorization: Bearer $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github+json" "$API/dispatches" -d '{"ref":"main"}'
+          else
+            echo "heartbeat running ($n)"
+          fi
+
       # Heavy, slowly-changing files (5-year histories, company pages, ESEF, SEC) live in "data-daily",
       # pushed only after the 08:30 / 17:40 runs; everything else in "data", pushed every run.
       # Both are single-commit branches (force-pushed) so the repository does not grow.

@@ -1,0 +1,62 @@
+name: Heartbeat (starts the updates)
+
+# GitHub's own cron did not fire for this repository, so the schedule is driven from here:
+# each heartbeat run waits until the next 15-minute slot of the Paris working day (weekdays
+# 08:30-18:45; at most ~5 h 50 at a time, overnight and at weekends), starts "Update data and deploy",
+# then starts the next heartbeat. Runs started with the workflow token by workflow_dispatch are allowed
+# by GitHub, and waiting costs nothing on a public repository. The update workflow restarts the chain
+# if it ever stops (any push, manual run or cron run of the update does it).
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "7 5 * * 1-5"      # backup kick-off if GitHub's cron works one day (07:07 / 06:07 Paris)
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: atlas-heartbeat
+  cancel-in-progress: false
+
+jobs:
+  beat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - name: Wait for the next slot
+        id: wait
+        run: |
+          python3 - <<'EOF' >> "$GITHUB_OUTPUT"
+          from datetime import datetime, timedelta
+          from zoneinfo import ZoneInfo
+          paris = ZoneInfo("Europe/Paris")
+          now = datetime.now(paris)
+          t = now.replace(second=0, microsecond=0) + timedelta(minutes=15 - now.minute % 15)
+          for _ in range(7 * 24 * 4):
+              if t.weekday() < 5 and (8, 30) <= (t.hour, t.minute) <= (18, 45):
+                  break
+              t += timedelta(minutes=15)
+          wait = (t - now).total_seconds()
+          cap = 5 * 3600 + 50 * 60
+          print(f"seconds={int(min(wait, cap))}")
+          print(f"update={'true' if wait <= cap else 'false'}")
+          print(f"slot={t.isoformat()}")
+          EOF
+          cat "$GITHUB_OUTPUT"
+      - name: Sleep
+        run: sleep ${{ steps.wait.outputs.seconds }}
+      - name: Start the update
+        if: steps.wait.outputs.update == 'true'
+        run: |
+          curl -s -o /dev/null -w "dispatch update: HTTP %{http_code}\n" -X POST \
+            -H "Authorization: Bearer ${{ github.token }}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/update.yml/dispatches" \
+            -d '{"ref":"main","inputs":{"force":"false"}}'
+      - name: Start the next heartbeat
+        if: always()
+        run: |
+          curl -s -o /dev/null -w "dispatch heartbeat: HTTP %{http_code}\n" -X POST \
+            -H "Authorization: Bearer ${{ github.token }}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/heartbeat.yml/dispatches" \
+            -d '{"ref":"main"}'

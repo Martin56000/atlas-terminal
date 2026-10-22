@@ -528,6 +528,7 @@ def main(argv=None):
         time.sleep(30)
         task_quotes(EU_QUOTES, "EU", currencies)
         task_risk()
+        task_validate()
         state["eu_close"] = today
     if "daily" in tasks or "eu_close" in tasks:
         _safe(task_perf, "perf.json", "daily closes")

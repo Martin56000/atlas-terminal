@@ -36,16 +36,24 @@ def run():
             raise RuntimeError(f"no yfinance history for {t} (cannot cross-check)")
         df.index = df.index.tz_localize(None).normalize()
         df = completed_bars(df, config.BY_TICKER[t]["exchange"])
+        # Yahoo sometimes lists the latest session with an empty close for a few hours: skip such rows
+        # (the site's history drops them too), then compare both sides on the SAME session.
+        df = df.dropna(subset=["Close", "Adj Close"])
         factor = 0.01 if (site_hist or {}).get("currency") == "GBP" else 1.0
         closes = [float(x) * factor for x in df["Close"].tolist()]
         adj = [float(x) * factor for x in df["Adj Close"].tolist()]
-        mvol, n = manual_vol(adj)
-        site_price = site_hist["close"][-1] if site_hist else None
-        price_ok = site_price is not None and abs(site_price / closes[-1] - 1) <= PRICE_TOL
+        manual_dates = [d.strftime("%Y-%m-%d") for d in df.index]
+        site_by_date = dict(zip(site_hist["dates"], site_hist["close"])) if site_hist else {}
+        common = [d for d in manual_dates if d in site_by_date]
+        day = common[-1] if common else manual_dates[-1]
+        site_price = site_by_date.get(day)
+        manual_price = closes[manual_dates.index(day)]
+        mvol, n = manual_vol(adj[:manual_dates.index(day) + 1])      # same window as the site's risk metrics
+        price_ok = site_price is not None and abs(site_price / manual_price - 1) <= PRICE_TOL
         vol_ok = site_vol is not None and abs(site_vol / mvol - 1) <= VOL_TOL
         results.append({
-            "ticker": t, "date": df.index[-1].strftime("%Y-%m-%d"),
-            "manual_last_close": closes[-1], "site_last_close": site_price, "price_match": price_ok,
+            "ticker": t, "date": day, "site_last_date": site_hist["dates"][-1] if site_hist else None,
+            "manual_last_close": manual_price, "site_last_close": site_price, "price_match": price_ok,
             "manual_vol_1y": mvol, "site_vol_1y": site_vol, "vol_match": vol_ok, "n_returns": n,
         })
     return {"checks": results, "all_passed": all(r["price_match"] and r["vol_match"] for r in results)}

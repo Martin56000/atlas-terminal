@@ -1,4 +1,3 @@
-# Round 3: Roche. ROG.SW (dividend-right certificate) has returned an empty history from Yahoo for weeks.
+# Round 3b: Roche. ROG.SW and RO.SW return nothing from Yahoo; Yahoo's search lists ROP.SW.
 ## CH XSWX
-ROG.SW|Roche (Genussschein)
-RO.SW|Roche (action au porteur)
+ROP.SW|Roche (bon de jouissance)

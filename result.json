@@ -1,0 +1,15 @@
+[
+ {
+  "ticker": "ROP.SW",
+  "name": "Roche (bon de jouissance)",
+  "country": "CH",
+  "mic": "XSWX",
+  "ok": true,
+  "last_date": "2026-10-22",
+  "last_close": 392.1000061035156,
+  "currency": "CHF",
+  "market_cap": 312411919350.37317,
+  "exchange": "EBS",
+  "yahoo_name": "Roche Holding AG"
+ }
+]

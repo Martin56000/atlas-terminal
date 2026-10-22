@@ -72,7 +72,8 @@ EU_WATCH = [
     # Switzerland
     _t("NESN.SW", "Nestlé", "EU", "XSWX", query_en="Nestle"),
     _t("NOVN.SW", "Novartis", "EU", "XSWX", query_en="Novartis"),
-    _t("ROG.SW", "Roche", "EU", "XSWX", query_en="Roche Holding"),
+    # Roche (ROG.SW) removed: Yahoo Finance has returned no data for any Roche Swiss line (ROG, RO, ROP) since
+    # mid-October 2026; a permanently empty row only triggered alerts. Re-add when Yahoo serves it again.
     # United Kingdom
     _t("AZN.L", "AstraZeneca", "EU", "XLON", query_en="AstraZeneca", adr="AZN"),
     _t("SHEL.L", "Shell", "EU", "XLON", query_en="Shell plc", adr="SHEL"),

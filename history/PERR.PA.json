@@ -1,0 +1,1 @@
+{"_meta":{"source":"Yahoo Finance via yfinance (daily, delayed)","fetched_at":"2026-11-13T16:49:15+00:00","status":"error","error":"RuntimeError: Yahoo Finance returned an empty history for this symbol (download and history calls)","last_success":"2026-11-06T16:49:02+00:00"},"data":null}

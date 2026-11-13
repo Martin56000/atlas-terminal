@@ -1,0 +1,1 @@
+{"_meta":{"source":"ESEF annual report (filings.xbrl.org)","fetched_at":"2026-11-13T17:02:18+00:00","status":"error","error":"HTTPError: 429 Client Error: Too Many Requests for url: https://filings.xbrl.org/api/entities/635400DPX6WP2KKDOA83/filings?page%5Bsize%5D=50","last_success":null},"data":null}
